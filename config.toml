@@ -8,7 +8,7 @@ googleAnalytics = ""
 # Define the number of posts per page
 paginate = 10
 footnotereturnlinkcontents = "↩"
-theme = "icarus-theme"
+theme = "hugo-icarus-theme"
 
 [permalinks]
     post = "/:year/:month/:day/:slug"
