@@ -1,0 +1,39 @@
+[articles]
+    read_more = "Читать целиком"
+    words = "слов"
+    readingtime = "мин. на чтение"
+    share = "Поделиться"
+    comments = "Комментарии"
+
+# Linked older/newer posts at the bottom of each one
+[articles.linked_posts]
+    older = "Раньше"
+    newer = "Позже"
+
+[search]
+    placeholder = "Искать"
+
+[pagination]
+    previous = "Назад"
+    next = "Вперёд"
+
+[profile]
+    follow_button = "Follow"
+    tags = "Тэгов"
+    posts = "Постов"
+
+[page_not_found]
+    title = "404 – страница не найдена"
+    subtitle = "Похоже, тут ничего нет."
+
+[widgets.categories]
+    title = "Категории"
+
+[widgets.recent_articles]
+    title = "Recents"
+
+[widgets.tag_cloud]
+    title = "Тэги"
+
+[widgets.tags]
+    title = "Тэги"
