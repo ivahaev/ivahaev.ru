@@ -1,7 +1,7 @@
 +++
 date = "2016-05-01T14:12:32+05:00"
 draft = false
-title = "Прокачанный таймер на Go"
+title = "Прокаченный таймер на Go"
 slug = "advanced-go-timer"
 banner = "/img/sandClock.png"
 tags = ["go", "golang", "timer", "time", "pause"]

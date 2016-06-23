@@ -1,84 +1,22 @@
-baseurl = "http://ivahaev.github.io/ivahaev.ru/"
+baseurl = "http://ivahaev.ru/"
 languageCode = "ru-RU"
 title = "ivahaev.ru"
-# Enable comments by entering your Disqus shortname
+copyright = "2016 Евгений Иваха"
 disqusShortname = "ivahaev"
-# Enable Google Analytics by entering your tracking code
-googleAnalytics = ""
-# Define the number of posts per page
+
+theme = "ivahaev.ru"
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
+canonifyurls = true
+MetaDataFormat = "toml"
 paginate = 10
-footnotereturnlinkcontents = "↩"
-theme = "hugo-icarus-theme"
 
-[permalinks]
-    post = "/:year/:month/:day/:slug"
-
+[indexes]
+    category = "categories"
+    tag = "tags"
+[author]
+    name = "ivahaev"
 
 [params]
-    # Tell me who you are
-    author = "ivahaev"
-    bio = ""
-    location = "Russia"
-    site_description = ""
-    copyright  = "Powered by [Hugo](//gohugo.io). Theme by [PPOffice](http://github.com/ppoffice)."
-    avatar = "img/avatar.jpeg"
-
-    # Format dates with Go's time formatting
     date_format = "2006-01-02"
-
-# Create custom menu entries by defining a label and a link for
-# them. Since you can also link posts, you've the option the
-# place the links before or after them.
-#
-# E.g.: "Home" appears before all linked posts in the menu
-# and "Tags" / "Categories" after them.
-[[params.menu]]
-    before = true
-    label  = "Об авторе"
-    link   = "/projects"
-
-
-# Enter a link for the follow button on the left
-[params.profile]
-    follow_button = ""
-
-
-[social]
-# Add your social network accounts to the profile section on the left
-# by entering your username. The links to your account will be
-# create automatically.
-    github          = "ivahaev"
-    bitbucket       = ""
-    jsfiddle        = ""
-    codepen         = ""
-    foursquare      = ""
-    dribbble        = ""
-    deviantart      = ""
-    behance         = ""
-    flickr          = ""
-    instagram       = ""
-    youtube         = ""
-    vimeo           = ""
-    vine            = ""
-    medium          = ""
-    wordpress       = ""
-    tumblr          = ""
-    xing            = ""
-    linkedin        = ""
-    slideshare      = ""
-    stackoverflow   = ""
-    reddit          = ""
-    pinterest       = ""
-    googleplus      = ""
-    facebook        = ""
-    facebook_admin  = ""
-    twitter_domain  = ""
-    twitter         = "ivahaev"
-
-
-# Enable and disable widgets for the right sidebar
-[params.widgets]
-    recent_articles = false
-    categories = false
-    tags = false
-    tag_cloud = true
