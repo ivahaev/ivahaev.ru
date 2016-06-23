@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Voip on ivahaev.ru</title>
+    <link>http://ivahaev.ru/tags/voip/</link>
+    <description>Recent content in Voip on ivahaev.ru</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-RU</language>
+    <copyright>2016 Евгений Иваха</copyright>
+    <lastBuildDate>Thu, 12 Nov 2015 16:30:30 +0500</lastBuildDate>
+    <atom:link href="http://ivahaev.ru/tags/voip/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Глубокий дебаг астериска</title>
+      <link>http://ivahaev.ru/post/deep-debug-astierisk/</link>
+      <pubDate>Thu, 12 Nov 2015 16:30:30 +0500</pubDate>
+      
+      <guid>http://ivahaev.ru/post/deep-debug-astierisk/</guid>
+      <description>&lt;p&gt;Иногда можно потерять довольно много времени, пытаясь в консоли астериска отловить ошибку выполнения &lt;strong&gt;agi&lt;/strong&gt; скрипта, или просто внешнего приложения, запускаемого из дайлплана. Есть один способ, который в документации в явном виде не описан, но очень помогает. Мы запустим &lt;strong&gt;asterisk&lt;/strong&gt; в режиме, похожем на монопольный в &lt;strong&gt;1С&lt;/strong&gt;, при этом будем видеть в его консоли все предупреждения и ошибки.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Выключаем астериск;&lt;/li&gt;
+&lt;li&gt;Выполняем такую команду:
+&lt;code&gt;
+su asterisk
+asterisk -vvvgc
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Теперь все как на ладони!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
