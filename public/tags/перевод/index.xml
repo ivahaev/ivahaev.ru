@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Перевод on ivahaev.ru</title>
-    <link>http://ivahaev.ru/tags/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/</link>
+    <link>http://ivahaev.github.io/ivahaev.ru/tags/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/</link>
     <description>Recent content in Перевод on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
     <lastBuildDate>Thu, 12 Nov 2015 01:32:28 +0500</lastBuildDate>
-    <atom:link href="http://ivahaev.ru/tags/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ivahaev.github.io/ivahaev.ru/tags/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Три частые ошибки, возникающие при разработке на Go</title>
-      <link>http://ivahaev.ru/post/three-often-mistakes-wth-go/</link>
+      <link>http://ivahaev.github.io/ivahaev.ru/2015/11/12/three-often-mistakes-wth-go</link>
       <pubDate>Thu, 12 Nov 2015 01:32:28 +0500</pubDate>
       
-      <guid>http://ivahaev.ru/post/three-often-mistakes-wth-go/</guid>
+      <guid>http://ivahaev.github.io/ivahaev.ru/2015/11/12/three-often-mistakes-wth-go</guid>
       <description>
 
 &lt;p&gt;Это перевод статьи. Раньше желания переводить не возникало, но статья очень понравилась, наверное, из-за того, что сам наступал уже на подобные грабли. Перевод достаточно вольный, но суть передает верно. Если хоть одному начинающему разработчику поможет эта статья, труды мои будут не напрасными :).&lt;/p&gt;
@@ -131,7 +130,7 @@ fmt.Println(list) // [0 1 2 3]
 &lt;pre&gt;&lt;code&gt;foo foobaz foobaz
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ivahaev.ru/img/shta.jpeg&#34; alt=&#34;Шта?&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://ivahaev.github.io/ivahaev.ru/img/shta.jpeg&#34; alt=&#34;Шта?&#34; /&gt;
 Какого? Мы-то ждали &lt;code&gt;foo foobar foobaz&lt;/code&gt;!&lt;/p&gt;
 
 &lt;p&gt;Чтобы понять что произошло, следует разобраться с тем, а что же за звери такие эти срезы? Срез в Go&amp;nbsp;&amp;mdash; это дексриптор, который содержит три компонента:&lt;/p&gt;
@@ -200,7 +199,7 @@ func repeat(list []string) ([]string, error) {
 
 &lt;p&gt;А все потому, что когда использовали оператор &lt;code&gt;:=&lt;/code&gt;, мы на самом деле определили новую переменную &lt;code&gt;list&lt;/code&gt; в области видимости цикла. В Go фигурные скобки создают новую область видимости. Мы это сделали для того, чтобы быстренько объявить переменную &lt;code&gt;err&lt;/code&gt; типа &lt;code&gt;error&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ivahaev.ru/img/norma.jpeg&#34; alt=&#34;Это норма&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://ivahaev.github.io/ivahaev.ru/img/norma.jpeg&#34; alt=&#34;Это норма&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Чтобы исправить ситуацию, нужно объявить &lt;code&gt;err&lt;/code&gt; заранее и далее использовать обычный оператор присваивания &lt;code&gt;=&lt;/code&gt;.&lt;/p&gt;
 

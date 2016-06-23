@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pause on ivahaev.ru</title>
-    <link>http://ivahaev.ru/tags/pause/</link>
+    <link>http://ivahaev.github.io/ivahaev.ru/tags/pause/</link>
     <description>Recent content in Pause on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
     <lastBuildDate>Sun, 01 May 2016 14:12:32 +0500</lastBuildDate>
-    <atom:link href="http://ivahaev.ru/tags/pause/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ivahaev.github.io/ivahaev.ru/tags/pause/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Прокаченный таймер на Go</title>
-      <link>http://ivahaev.ru/post/advanced-go-timer/</link>
+      <title>Прокачанный таймер на Go</title>
+      <link>http://ivahaev.github.io/ivahaev.ru/2016/05/01/advanced-go-timer</link>
       <pubDate>Sun, 01 May 2016 14:12:32 +0500</pubDate>
       
-      <guid>http://ivahaev.ru/post/advanced-go-timer/</guid>
+      <guid>http://ivahaev.github.io/ivahaev.ru/2016/05/01/advanced-go-timer</guid>
       <description>&lt;p&gt;У языка &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет &lt;a href=&#34;https://golang.org/pkg/time/&#34;&gt;time&lt;/a&gt;. За всё время работы с &lt;strong&gt;Go&lt;/strong&gt;, мне всего лишь дважды приходилось расширять его возможности.&lt;/p&gt;
 
 &lt;p&gt;Первый раз, около года назад, понадобилось строковое представление времени и периодов на русском языке, что привело к созданию пакета &lt;a href=&#34;https://github.com/ivahaev/russian-time&#34;&gt;russian-time&lt;/a&gt;. Он не очень красивый, создан на скорую руку, потому не буду на нём останавливаться сегодня.&lt;/p&gt;

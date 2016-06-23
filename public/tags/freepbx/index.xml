@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Freepbx on ivahaev.ru</title>
-    <link>http://ivahaev.ru/tags/freepbx/</link>
+    <link>http://ivahaev.github.io/ivahaev.ru/tags/freepbx/</link>
     <description>Recent content in Freepbx on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
     <lastBuildDate>Wed, 11 Nov 2015 01:53:02 +0500</lastBuildDate>
-    <atom:link href="http://ivahaev.ru/tags/freepbx/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ivahaev.github.io/ivahaev.ru/tags/freepbx/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Проигрывание файла при телефонном разговоре</title>
-      <link>http://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</link>
+      <link>http://ivahaev.github.io/ivahaev.ru/2015/11/11/proighryvaniie-faila-pri-tieliefonnom-razghovorie</link>
       <pubDate>Wed, 11 Nov 2015 01:53:02 +0500</pubDate>
       
-      <guid>http://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</guid>
+      <guid>http://ivahaev.github.io/ivahaev.ru/2015/11/11/proighryvaniie-faila-pri-tieliefonnom-razghovorie</guid>
       <description>&lt;p&gt;В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.&lt;/p&gt;
 
 &lt;p&gt;Рассмотрим вариант решения данной задачи на базе &lt;strong&gt;IP PBX Asterisk&lt;/strong&gt;.&lt;/p&gt;

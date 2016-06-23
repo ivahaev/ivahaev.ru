@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pbx on ivahaev.ru</title>
-    <link>http://ivahaev.ru/tags/pbx/</link>
+    <link>http://ivahaev.github.io/ivahaev.ru/tags/pbx/</link>
     <description>Recent content in Pbx on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
     <lastBuildDate>Mon, 23 Nov 2015 00:57:54 +0500</lastBuildDate>
-    <atom:link href="http://ivahaev.ru/tags/pbx/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ivahaev.github.io/ivahaev.ru/tags/pbx/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Умный колбэк</title>
-      <link>http://ivahaev.ru/post/smart-callback/</link>
+      <link>http://ivahaev.github.io/ivahaev.ru/2015/11/23/smart-callback</link>
       <pubDate>Mon, 23 Nov 2015 00:57:54 +0500</pubDate>
       
-      <guid>http://ivahaev.ru/post/smart-callback/</guid>
+      <guid>http://ivahaev.github.io/ivahaev.ru/2015/11/23/smart-callback</guid>
       <description>
 
 &lt;p&gt;В настоящее время сложно предложить клиентам что-то действительно уникальное, конкурентная борьба переходит в иные плоскости. Сегодняшние клиенты довольно разборчивы. Цена продукта уже не всегда играет решающую роль, покупатели ценят сервис.&lt;/p&gt;

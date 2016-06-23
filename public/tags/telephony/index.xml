@@ -2,20 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Telephony on ivahaev.ru</title>
-    <link>http://ivahaev.ru/tags/telephony/</link>
+    <link>http://ivahaev.github.io/ivahaev.ru/tags/telephony/</link>
     <description>Recent content in Telephony on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
     <lastBuildDate>Mon, 23 Nov 2015 00:57:54 +0500</lastBuildDate>
-    <atom:link href="http://ivahaev.ru/tags/telephony/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ivahaev.github.io/ivahaev.ru/tags/telephony/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Умный колбэк</title>
-      <link>http://ivahaev.ru/post/smart-callback/</link>
+      <link>http://ivahaev.github.io/ivahaev.ru/2015/11/23/smart-callback</link>
       <pubDate>Mon, 23 Nov 2015 00:57:54 +0500</pubDate>
       
-      <guid>http://ivahaev.ru/post/smart-callback/</guid>
+      <guid>http://ivahaev.github.io/ivahaev.ru/2015/11/23/smart-callback</guid>
       <description>
 
 &lt;p&gt;В настоящее время сложно предложить клиентам что-то действительно уникальное, конкурентная борьба переходит в иные плоскости. Сегодняшние клиенты довольно разборчивы. Цена продукта уже не всегда играет решающую роль, покупатели ценят сервис.&lt;/p&gt;
@@ -59,10 +58,10 @@
     
     <item>
       <title>Инкремент переменной в дайлплане Астериска</title>
-      <link>http://ivahaev.ru/post/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</link>
+      <link>http://ivahaev.github.io/ivahaev.ru/2015/11/14/inkriemient-pieriemiennoi-v-dailplanie-astieriska</link>
       <pubDate>Sat, 14 Nov 2015 12:34:30 +0500</pubDate>
       
-      <guid>http://ivahaev.ru/post/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</guid>
+      <guid>http://ivahaev.github.io/ivahaev.ru/2015/11/14/inkriemient-pieriemiennoi-v-dailplanie-astieriska</guid>
       <description>&lt;p&gt;Если требуется реализовать какой-то счетчик в дайлплане, удобно использовать переменную канала. Но просто так изменить её значение, прибавляя единицу, не получится.  Нужно использовать выражение:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;same =&amp;gt; n,Set(REP=$[${REP} + 1])
@@ -72,10 +71,10 @@
     
     <item>
       <title>Глубокий дебаг астериска</title>
-      <link>http://ivahaev.ru/post/deep-debug-astierisk/</link>
+      <link>http://ivahaev.github.io/ivahaev.ru/2015/11/12/deep-debug-astierisk</link>
       <pubDate>Thu, 12 Nov 2015 16:30:30 +0500</pubDate>
       
-      <guid>http://ivahaev.ru/post/deep-debug-astierisk/</guid>
+      <guid>http://ivahaev.github.io/ivahaev.ru/2015/11/12/deep-debug-astierisk</guid>
       <description>&lt;p&gt;Иногда можно потерять довольно много времени, пытаясь в консоли астериска отловить ошибку выполнения &lt;strong&gt;agi&lt;/strong&gt; скрипта, или просто внешнего приложения, запускаемого из дайлплана. Есть один способ, который в документации в явном виде не описан, но очень помогает. Мы запустим &lt;strong&gt;asterisk&lt;/strong&gt; в режиме, похожем на монопольный в &lt;strong&gt;1С&lt;/strong&gt;, при этом будем видеть в его консоли все предупреждения и ошибки.&lt;/p&gt;
 
 &lt;ol&gt;
@@ -93,10 +92,10 @@ asterisk -vvvgc
     
     <item>
       <title>Проигрывание файла при телефонном разговоре</title>
-      <link>http://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</link>
+      <link>http://ivahaev.github.io/ivahaev.ru/2015/11/11/proighryvaniie-faila-pri-tieliefonnom-razghovorie</link>
       <pubDate>Wed, 11 Nov 2015 01:53:02 +0500</pubDate>
       
-      <guid>http://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</guid>
+      <guid>http://ivahaev.github.io/ivahaev.ru/2015/11/11/proighryvaniie-faila-pri-tieliefonnom-razghovorie</guid>
       <description>&lt;p&gt;В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.&lt;/p&gt;
 
 &lt;p&gt;Рассмотрим вариант решения данной задачи на базе &lt;strong&gt;IP PBX Asterisk&lt;/strong&gt;.&lt;/p&gt;
