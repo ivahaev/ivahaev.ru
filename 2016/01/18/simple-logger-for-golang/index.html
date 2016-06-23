@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>go-logger – простой и информативный логгер для Go &middot; ivahaev.ru</title>
+    <meta name="generator" content="Hugo 0.15" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="ivahaev">
+    
+      <meta name="description" content="">
+    
+    
+    <link rel="icon" href="http://ivahaev.github.io/ivahaev.ru/favicon.ico">
+    <link rel="apple-touch-icon" href="http://ivahaev.github.io/ivahaev.ru/apple-touch-icon.png" />
+    <link rel="stylesheet" href="http://ivahaev.github.io/ivahaev.ru/css/style.css">
+    <link rel="stylesheet" href="http://ivahaev.github.io/ivahaev.ru/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://ivahaev.github.io/ivahaev.ru/css/monokai.css">
+    <link rel="stylesheet" href="http://ivahaev.github.io/ivahaev.ru/fancybox/jquery.fancybox.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="go-logger – простой и информативный логгер для Go" />
+<meta property="og:description" content="Не смотря на всё многообразие существующих логгеров для Go, как-то не удалось подобрать удобный и подходящий для меня. Хотелось иметь инструмент, похожий на те, какими пользовался в других языках. Если хочешь сделать что-то хорошо, сделай это сам.
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://ivahaev.github.io/ivahaev.ru/2016/01/18/simple-logger-for-golang" />
+
+
+<meta property="og:updated_time" content="2016-01-18T00:47:11&#43;05:00"/>
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta itemprop="name" content="go-logger – простой и информативный логгер для Go">
+<meta itemprop="description" content="Не смотря на всё многообразие существующих логгеров для Go, как-то не удалось подобрать удобный и подходящий для меня. Хотелось иметь инструмент, похожий на те, какими пользовался в других языках. Если хочешь сделать что-то хорошо, сделай это сам.
+">
+
+
+<meta itemprop="dateModified" content="2016-01-18T00:47:11&#43;05:00" />
+<meta itemprop="wordCount" content="209">
+
+
+
+<meta itemprop="keywords" content="ami,amigo,asterisk,callback,callcenter,cli,counter,debug,dialplan,excel,freepbx,generator,go,golang,increment,log,logger,pause,pbx,report,telephony,template,time,timer,voip,xlsx,перевод," />
+
+    
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="go-logger – простой и информативный логгер для Go"/>
+<meta name="twitter:description" content="Не смотря на всё многообразие существующих логгеров для Go, как-то не удалось подобрать удобный и подходящий для меня. Хотелось иметь инструмент, похожий на те, какими пользовался в других языках. Если хочешь сделать что-то хорошо, сделай это сам.
+"/>
+<meta name="twitter:site" content="@ivahaev"/>
+
+
+    <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
+<meta name='yandex-verification' content='7a8a89f15378f8c0' />
+
+    
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="http://ivahaev.github.io/ivahaev.ru/" id="logo"><i class="logo" style="background-image: url('http://ivahaev.github.io/ivahaev.ru/css/images/logo.png')"></i><span class="site-title">ivahaev.ru</span></a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="http://ivahaev.github.io/ivahaev.ru/projects">Об авторе</a>
+          
+          
+
+          
+
+          
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="http://ivahaev.github.io/ivahaev.ru/img/avatar.jpeg"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" results="0" class="search-form-input" placeholder="Искать">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="q" value="site:http://ivahaev.github.io/ivahaev.ru/">
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="http://ivahaev.github.io/ivahaev.ru/projects">Об авторе</a></td>
+          
+          
+
+          
+
+          
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" results="0" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="q" value="site:http://ivahaev.github.io/ivahaev.ru/">
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   		
+	    <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="http://ivahaev.github.io/ivahaev.ru/img/avatar.jpeg">
+      <h2 id="name">ivahaev</h2>
+      
+      <span id="location"><i class="fa fa-map-marker"></i>Russia</span>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        12
+        <span>Постов</span>
+      </div>
+      <div class="article-info-block">
+        
+          27
+          
+        <span>
+            Тэгов
+        </span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+<td><a href="//github.com/ivahaev" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/ivahaev" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+
+          <td><a href="" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+	    
+
+	    
+<section id="main">
+
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+
+            <header class="article-header">
+    <a href="http://ivahaev.github.io/ivahaev.ru/2016/01/18/simple-logger-for-golang">
+    <h1 class="article-title" itemprop="name">
+        go-logger – простой и информативный логгер для Go
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-01-18 00:47:11 &#43;0500 YEKT" itemprop="datePublished">2016-01-18</time>
+            &middot;
+            209
+            слов
+            &middot;
+            1
+            мин. на чтение
+        </div>
+
+        
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="http://ivahaev.github.io/ivahaev.ru/tags/golang">golang</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.github.io/ivahaev.ru/tags/go">go</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.github.io/ivahaev.ru/tags/log">log</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.github.io/ivahaev.ru/tags/logger">logger</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.github.io/ivahaev.ru/tags/cli">cli</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                
+
+<p>Не смотря на всё многообразие существующих логгеров для <strong>Go</strong>, как-то не удалось подобрать удобный и подходящий для меня. Хотелось иметь инструмент, похожий на те, какими пользовался в других языках. Если хочешь сделать что-то хорошо, сделай это сам.</p>
+
+<p>Итак, мой <a href="https://github.com/ivahaev/go-logger">go-logger</a>. Что он умеет и чем он лучше других:</p>
+
+<ul>
+<li>Все методы логгирования принимают любое количество аргументов любых типов;</li>
+<li>Метод <a href="https://godoc.org/github.com/ivahaev/go-logger#Debug">Debug()</a> красиво выводит данные. Если это структура, слайс или мапа, то будет наглядно видно что в них, если же это простая переменная, то увидим тип и размер;</li>
+<li>Отображается файл и строка в которой вызвано логгирование;</li>
+<li>Цветовое кодирование каждого уровня;</li>
+<li>Возможность изменить формат вывода даты.</li>
+</ul>
+
+<h4 id="пример:7601b1667c165933f68b5b13c8315974">Пример</h4>
+
+<pre><code class="language-go">    package main
+
+    import &quot;github.com/ivahaev/go-logger&quot;
+
+    func main() {
+        logger.SetLevel(&quot;DEBUG&quot;)
+
+        logger.Debug(&quot;Some string for debug&quot;, 123, map[string]interface{}{&quot;prop1&quot;: &quot;val1&quot;, &quot;prop2&quot;: 321})
+        logger.Info(&quot;Some string for info&quot;, 123, map[string]interface{}{&quot;prop1&quot;: &quot;val1&quot;, &quot;prop2&quot;: 321})
+        logger.Notice(&quot;Some string for debug&quot;, 123, map[string]interface{}{&quot;prop1&quot;: &quot;val1&quot;, &quot;prop2&quot;: 321})
+        logger.Warn(&quot;Some string for warning&quot;, 123, map[string]interface{}{&quot;prop1&quot;: &quot;val1&quot;, &quot;prop2&quot;: 321})
+        logger.Error(&quot;Some string for error&quot;, 123, map[string]interface{}{&quot;prop1&quot;: &quot;val1&quot;, &quot;prop2&quot;: 321})
+        logger.Crit(&quot;Some string for critical&quot;, 123, map[string]interface{}{&quot;prop1&quot;: &quot;val1&quot;, &quot;prop2&quot;: 321})
+    }
+</code></pre>
+
+<p>Вот что получим в консоли:
+<img src="/img/logger-console.png" alt="output" /></p>
+
+<p>Со временем добавлю возможность прятать файл вызова и строку, такие мысли уже посещали для продакшина. Может быть, что-то ещё, но пока этот логгер меня устраивает на 100%, я его использую во всех своих проектах. Возможно, пригодится и вам!</p>
+
+            </div>
+            <footer class="article-footer">
+    <a data-url="http://ivahaev.github.io/ivahaev.ru/2016/01/18/simple-logger-for-golang" data-id="7601b1667c165933f68b5b13c8315974" class="article-share-link">
+        Поделиться
+    </a>
+    
+    <a href="http://ivahaev.github.io/ivahaev.ru/2016/01/18/simple-logger-for-golang/#disqus_thread" class="article-comment-link">
+        Комментарии
+    </a>
+    
+</footer>
+
+        </div>
+
+        
+<nav id="article-nav">
+    
+    <a href="http://ivahaev.github.io/ivahaev.ru/2016/01/14/amigo-best-frend-of-golang-and-asterisk" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Раньше
+      </strong>
+      <div class="article-nav-title">Amigo – лучший друг Golang и Asterisk</div>
+    </a>
+    
+
+    
+    <a href="http://ivahaev.github.io/ivahaev.ru/2016/05/01/advanced-go-timer" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Позже
+      </strong>
+      <div class="article-nav-title">Прокачанный таймер на Go</div>
+    </a>
+    
+</nav>
+
+
+    </article>
+
+    
+    <section id="comments">
+        <div id="disqus_thread">
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ivahaev';
+    var disqus_identifier = 'http:\/\/ivahaev.github.io\/ivahaev.ru\/2016\/01\/18\/simple-logger-for-golang';
+    var disqus_title = 'go-logger – простой и информативный логгер для Go';
+    var disqus_url = 'http:\/\/ivahaev.github.io\/ivahaev.ru\/2016\/01\/18\/simple-logger-for-golang';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </section>
+    
+</section>
+
+
+	    
+	    <aside id="sidebar">
+    
+
+    
+    
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Тэги
+    </h3>
+    <div class="widget tagcloud">
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/ami" style="font-size: 12px;">ami</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/amigo" style="font-size: 12px;">amigo</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/asterisk" style="font-size: 12px;">asterisk</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/callback" style="font-size: 12px;">callback</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/callcenter" style="font-size: 12px;">callcenter</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/cli" style="font-size: 12px;">cli</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/counter" style="font-size: 12px;">counter</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/debug" style="font-size: 12px;">debug</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/dialplan" style="font-size: 12px;">dialplan</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/excel" style="font-size: 12px;">excel</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/freepbx" style="font-size: 12px;">freepbx</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/generator" style="font-size: 12px;">generator</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/go" style="font-size: 12px;">go</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/golang" style="font-size: 12px;">golang</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/increment" style="font-size: 12px;">increment</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/log" style="font-size: 12px;">log</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/logger" style="font-size: 12px;">logger</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/pause" style="font-size: 12px;">pause</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/pbx" style="font-size: 12px;">pbx</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/report" style="font-size: 12px;">report</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/telephony" style="font-size: 12px;">telephony</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/template" style="font-size: 12px;">template</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/time" style="font-size: 12px;">time</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/timer" style="font-size: 12px;">timer</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/voip" style="font-size: 12px;">voip</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/xlsx" style="font-size: 12px;">xlsx</a>
+        
+        <a href="http://ivahaev.github.io/ivahaev.ru/tags/%d0%bf%d0%b5%d1%80%d0%b5%d0%b2%d0%be%d0%b4" style="font-size: 12px;">перевод</a>
+        
+    </div>
+</div>
+
+
+
+
+    <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+
+	    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016
+      Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://ivahaev.github.io/ivahaev.ru/fancybox/jquery.fancybox.pack.js"></script>
+<script src="http://ivahaev.github.io/ivahaev.ru/js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter33509963 = new Ya.Metrika({
+                        id:33509963,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    
+</body>
+</html>
