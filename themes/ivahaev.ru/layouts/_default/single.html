@@ -1,0 +1,16 @@
+{{ partial "head" . }}
+
+<body>
+    {{ partial "sidebar" . }}
+
+    <main>
+        <div class="main-inner">
+            <section id="results"></section>
+            {{ partial "single_article" . }}
+        </div>
+    </main>
+
+    {{ partial "footer_js" }}
+</body>
+
+</html>
