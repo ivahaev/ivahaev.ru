@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://ivahaev.ru/</loc>
+    <lastmod>2016-05-01T14:12:32+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/advanced-go-timer/</loc>
+    <lastmod>2016-05-01T14:12:32+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/simple-logger-for-golang/</loc>
+    <lastmod>2016-01-18T00:47:11+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/amigo-best-frend-of-golang-and-asterisk/</loc>
+    <lastmod>2016-01-14T21:52:24+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/go-xlsx-templater/</loc>
+    <lastmod>2015-12-28T00:05:30+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/smart-callback/</loc>
+    <lastmod>2015-11-23T00:57:54+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</loc>
+    <lastmod>2015-11-14T12:34:30+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/deep-debug-astierisk/</loc>
+    <lastmod>2015-11-12T16:30:30+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/three-often-mistakes-wth-go/</loc>
+    <lastmod>2015-11-12T01:32:28+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</loc>
+    <lastmod>2015-11-11T01:53:02+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/blank/</loc>
+    <lastmod>2015-11-11T00:44:42+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/vozrozhdieniie/</loc>
+    <lastmod>2015-11-04T01:22:00+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ivahaev.ru/post/projects/</loc>
+    <lastmod>2015-11-04T01:02:15+05:00</lastmod>
+  </url>
+  
+</urlset>

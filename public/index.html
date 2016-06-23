@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>ivahaev.ru &middot; ivahaev.ru</title>
+    <meta name="generator" content="Hugo 0.15" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <meta name="description" content="">
+    
+    
+      <link href="http://ivahaev.ru/index.xml" rel="alternate" type="application/rss+xml" title="ivahaev.ru" />
+      <link href="http://ivahaev.ru/index.xml" rel="feed" type="application/rss+xml" title="ivahaev.ru" />
+    
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="http://ivahaev.ru/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="http://ivahaev.ru/css/screen.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="http://ivahaev.ru/css/prism.css" />
+    <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
+<meta name='yandex-verification' content='7a8a89f15378f8c0' />
+
+
+</head>
+
+<body>
+    <div id="sidebar">
+    <div id="sidebar-content" class="inner">
+        <h2 class="blog-title"><a href="http://ivahaev.ru/">ivahaev.ru</a></h2>
+        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
+        <div id="sidebar-links">
+            <ul id="subscription-links">
+                <li><a target="_blank" href="http://ivahaev.ru/rss/"><i class="fa fa-rss"></i>Subscribe via RSS</a></li>
+            </ul>
+            <ul id="navigation">
+                <li class="nav" role="presentation"><a href="http://ivahaev.ru/"><i class="fa fa-navicon"></i>Блог</a></li>
+                <li class="nav" role="presentation"><a href="http://ivahaev.ru/projects"><i class="fa fa-navicon"></i>Об авторе</a></li>
+            </ul>
+            <ul id="sidebar-external">
+                <li><a href="https://github.com/ivahaev"><i class="fa fa-github"></i>ivahaev</a></li>
+                <li><a target="_blank" href="mailto:ivahaev@gmail.com"><i class="fa fa-envelope"></i>ivahaev@gmail.com</a></li>
+                <li><a href="skype:ivahaev?chat"><i class="fa fa-skype"></i>ivahaev</a></li>
+            </ul>
+            <ul id="sidebar-partners">
+                <div>Партнёры:</div>
+                <li><a href="http://borisoft.info/"><i class="fa fa-android"></i>Borisoft</a></li>
+                <a href="http://borisoft.info/"></a>
+                <li>
+                    <a href="http://borisoft.info/"></a><a href="http://sclif.pro"><i class="fa fa-linux"></i>Sclif</a></li>
+            </ul>
+        </div>
+
+        <footer class="site-footer">
+            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+        </footer>
+    </div>
+</div>
+
+    <main>
+        <div class="main-inner">
+            <section id="results"></section>
+            <section id="main">
+    
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            <a href="http://ivahaev.ru/post/advanced-go-timer/" itemprop="url">
+                
+                <img src="http://ivahaev.ru//img/sandClock.png" class="article-banner">
+                
+            
+            </a>
+
+            <header class="article-header">
+    <a href="http://ivahaev.ru/post/advanced-go-timer/">
+    <h1 class="article-title" itemprop="name">
+        Прокаченный таймер на Go
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-05-01 14:12:32 &#43;0500 YEKT" itemprop="datePublished" class="fulldate">2016-05-01</time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/go">go</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/golang">golang</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/timer">timer</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/time">time</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/pause">pause</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    У языка <a href="https://golang.org/">Go</a> шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет <a href="https://golang.org/pkg/time/">time</a>. За всё время работы с <strong>Go</strong>, мне всего лишь дважды приходилось расширять его возможности.</p>
+
+<p>Первый раз, около года назад, понадобилось строковое представление времени и периодов на русском языке, что привело к созданию пакета <a href="https://github.com/ivahaev/russian-time">russian-time</a>. Он не очень красивый, создан на скорую руку, потому не буду на нём останавливаться сегодня.</p>
+
+<p>Второй инструмент, мне кажется более интересным. Предпосылкой к созданию этого небольшого пакета, была необходимость контроля времени выполнения скриптов во встроенном интерпретаторе <strong>JavaScript</strong> <strong>Google V8</strong>. Так уж повелось, что <strong>JavaScript</strong>, как правило, характеризуется асинхронным поведением, что несколько затрудняло выполнение поставленной задачи. Одним из компонентов решения должен был стать таймер, который можно приостанавливать на неопределённое время, а после запускать снова с момента остановки. Так появился <a href="https://github.com/ivahaev/timer">timer</a>.
+                    <br>
+                </p>
+                <p class="article-more-link">
+                    <a href="http://ivahaev.ru/post/advanced-go-timer/">
+                        Дальше
+                    </a>
+                </p>
+            </div>
+        </div>
+    </article>
+    <hr>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a>
+
+            <header class="article-header">
+    <a href="http://ivahaev.ru/post/simple-logger-for-golang/">
+    <h1 class="article-title" itemprop="name">
+        go-logger – простой и информативный логгер для Go
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-01-18 00:47:11 &#43;0500 YEKT" itemprop="datePublished" class="fulldate">2016-01-18</time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/golang">golang</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/go">go</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/log">log</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/logger">logger</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/cli">cli</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    Не смотря на всё многообразие существующих логгеров для <strong>Go</strong>, как-то не удалось подобрать удобный и подходящий для меня. Хотелось иметь инструмент, похожий на те, какими пользовался в других языках. Если хочешь сделать что-то хорошо, сделай это сам.
+                    <br>
+                </p>
+                <p class="article-more-link">
+                    <a href="http://ivahaev.ru/post/simple-logger-for-golang/">
+                        Дальше
+                    </a>
+                </p>
+            </div>
+        </div>
+    </article>
+    <hr>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            <a href="http://ivahaev.ru/post/amigo-best-frend-of-golang-and-asterisk/" itemprop="url">
+                
+                <img src="http://ivahaev.ru//img/three-amigos.jpg" class="article-banner">
+                
+            
+            </a>
+
+            <header class="article-header">
+    <a href="http://ivahaev.ru/post/amigo-best-frend-of-golang-and-asterisk/">
+    <h1 class="article-title" itemprop="name">
+        Amigo – лучший друг Golang и Asterisk
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-01-14 21:52:24 &#43;0500 YEKT" itemprop="datePublished" class="fulldate">2016-01-14</time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/asterisk">asterisk</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/golang">golang</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/go">go</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/ami">ami</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/amigo">amigo</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    Начиная писать свой первый <a href="http://peach-dialer.com">Peach Dialer</a>, я выбрал язык, который довольно хорошо знал, благо работал с ним с 1999 года&nbsp;&mdash; <strong>PHP</strong>. Меня не смущало, что он, в принципе, не предназначен для создания долгоживущих процессов, но то, что получилось в итоге, работает по несколько месяцев и радует своих владельцев.</p>
+
+<p>Потом пошла мода на <a href="https://ru.wikipedia.org/wiki/WebSocket">Websocket</a>, который захотелось применить в интерфейсе, а <strong>PHP</strong> в то время не очень-то умел с ними работать (может, и сейчас не умеет). Я обратил внимание на <a href="https://nodejs.org">node.js</a>. Классная штука, любовь на века, подумал я, но вскоре захотелось большего.</p>
+
+<p>Бо&#769;льшим для меня стал <a href="https://golang.org">Go</a>&nbsp;&mdash; язык, совмещающий скорость и удобство деплоя компилируемых языков с простотой разработки, свойственной интерпретируемым языкам. К сожалению, разработанных библиотек надлежащего качества и с ожидаемым функционалом для взаимодействия с <strong>Asterisk</strong> в то время не было. Были какие-то начинания, но не доведённые до конца.</p>
+
+<p>Итак, по сусекам поскребя, да по амбару пометя&#769;, испёк я <a href="https://github.com/ivahaev/amigo">Amigo</a>&nbsp;&mdash; удобную библиотеку для работы с астериском посредством AMI протокола.
+                    <br>
+                </p>
+                <p class="article-more-link">
+                    <a href="http://ivahaev.ru/post/amigo-best-frend-of-golang-and-asterisk/">
+                        Дальше
+                    </a>
+                </p>
+            </div>
+        </div>
+    </article>
+    <hr>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            <a href="http://ivahaev.ru/post/go-xlsx-templater/" itemprop="url">
+                
+                <img src="http://ivahaev.ru/img/template-2.png" class="article-banner">
+                
+            
+            </a>
+
+            <header class="article-header">
+    <a href="http://ivahaev.ru/post/go-xlsx-templater/">
+    <h1 class="article-title" itemprop="name">
+        Шаблонизатор экселя для Go
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2015-12-28 00:05:30 &#43;0500 YEKT" itemprop="datePublished" class="fulldate">2015-12-28</time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/go">go</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/golang">golang</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/excel">excel</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/xlsx">xlsx</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/template">template</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/report">report</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/generator">generator</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    В процессе работы над платформой <a href="http://getblank.net/ru">Blank</a>, возникла задача генерации документов. Так как платформа предполагает очень широкое применение, очень не хотелось формировать документы полностью программно. Нужно дать возможность интеграторам и администраторам системы удобно создавать шаблоны, на основе которых, в дальнейшем, будут формироваться различные документы.</p>
+
+<p>Сервер написан на <a href="https://golang.org/">Go</a>, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область&nbsp;&mdash; есть решения на Яве, используйте их.  Неее, не для того мы на <a href="https://golang.org/">Go</a> пишем, чтобы за собой Яву тянуть.</p>
+
+<p><img src="http://ivahaev.ru/img/net!.jpg" alt="" />
+                    <br>
+                </p>
+                <p class="article-more-link">
+                    <a href="http://ivahaev.ru/post/go-xlsx-templater/">
+                        Дальше
+                    </a>
+                </p>
+            </div>
+        </div>
+    </article>
+    <hr>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a>
+
+            <header class="article-header">
+    <a href="http://ivahaev.ru/post/smart-callback/">
+    <h1 class="article-title" itemprop="name">
+        Умный колбэк
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2015-11-23 00:57:54 &#43;0500 YEKT" itemprop="datePublished" class="fulldate">2015-11-23</time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/callback">callback</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/telephony">telephony</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/callcenter">callcenter</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/pbx">pbx</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    В настоящее время сложно предложить клиентам что-то действительно уникальное, конкурентная борьба переходит в иные плоскости. Сегодняшние клиенты довольно разборчивы. Цена продукта уже не всегда играет решающую роль, покупатели ценят сервис.</p>
+
+<p>Естественно, многие компании придумывают различные способы привлечения и удержания клиентов. Рассмотрим вариант, как правильно настроенный на принятие входящих звонков телефонный сервис поможет не терять потенциальных и удерживать существующих клиентов.
+                    <br>
+                </p>
+                <p class="article-more-link">
+                    <a href="http://ivahaev.ru/post/smart-callback/">
+                        Дальше
+                    </a>
+                </p>
+            </div>
+        </div>
+    </article>
+    <hr>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a>
+
+            <header class="article-header">
+    <a href="http://ivahaev.ru/post/inkriemient-pieriemiennoi-v-dailplanie-astieriska/">
+    <h1 class="article-title" itemprop="name">
+        Инкремент переменной в дайлплане Астериска
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2015-11-14 12:34:30 &#43;0500 YEKT" itemprop="datePublished" class="fulldate">2015-11-14</time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/asterisk">asterisk</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/dialplan">dialplan</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/counter">counter</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/increment">increment</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/telephony">telephony</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    Если требуется реализовать какой-то счетчик в дайлплане, удобно использовать переменную канала. Но просто так изменить её значение, прибавляя единицу, не получится.
+                    <br>
+                </p>
+                <p class="article-more-link">
+                    <a href="http://ivahaev.ru/post/inkriemient-pieriemiennoi-v-dailplanie-astieriska/">
+                        Дальше
+                    </a>
+                </p>
+            </div>
+        </div>
+    </article>
+    <hr>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a>
+
+            <header class="article-header">
+    <a href="http://ivahaev.ru/post/deep-debug-astierisk/">
+    <h1 class="article-title" itemprop="name">
+        Глубокий дебаг астериска
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2015-11-12 16:30:30 &#43;0500 YEKT" itemprop="datePublished" class="fulldate">2015-11-12</time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/asterisk">asterisk</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/voip">voip</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/debug">debug</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/telephony">telephony</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    Иногда можно потерять довольно много времени, пытаясь в консоли астериска отловить ошибку выполнения <strong>agi</strong> скрипта, или просто внешнего приложения, запускаемого из дайлплана. Есть один способ, который в документации в явном виде не описан, но очень помогает. Мы запустим <strong>asterisk</strong> в режиме, похожем на монопольный в <strong>1С</strong>, при этом будем видеть в его консоли все предупреждения и ошибки.
+                    <br>
+                </p>
+                <p class="article-more-link">
+                    <a href="http://ivahaev.ru/post/deep-debug-astierisk/">
+                        Дальше
+                    </a>
+                </p>
+            </div>
+        </div>
+    </article>
+    <hr>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a>
+
+            <header class="article-header">
+    <a href="http://ivahaev.ru/post/three-often-mistakes-wth-go/">
+    <h1 class="article-title" itemprop="name">
+        Три частые ошибки, возникающие при разработке на Go
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2015-11-12 01:32:28 &#43;0500 YEKT" itemprop="datePublished" class="fulldate">2015-11-12</time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/go">go</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/golang">golang</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/%d0%bf%d0%b5%d1%80%d0%b5%d0%b2%d0%be%d0%b4">перевод</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    Это перевод статьи. Раньше желания переводить не возникало, но статья очень понравилась, наверное, из-за того, что сам наступал уже на подобные грабли. Перевод достаточно вольный, но суть передает верно. Если хоть одному начинающему разработчику поможет эта статья, труды мои будут не напрасными :).</p>
+
+<p>Оригинал статьи доступен по адресу <a href="http://bryce.is/writing/code/jekyll/update/2015/11/01/3-go-gotchas.html">http://bryce.is/writing/code/jekyll/update/2015/11/01/3-go-gotchas.html</a>.
+                    <br>
+                </p>
+                <p class="article-more-link">
+                    <a href="http://ivahaev.ru/post/three-often-mistakes-wth-go/">
+                        Дальше
+                    </a>
+                </p>
+            </div>
+        </div>
+    </article>
+    <hr>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a>
+
+            <header class="article-header">
+    <a href="http://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/">
+    <h1 class="article-title" itemprop="name">
+        Проигрывание файла при телефонном разговоре
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2015-11-11 01:53:02 &#43;0500 YEKT" itemprop="datePublished" class="fulldate">2015-11-11</time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/asterisk">asterisk</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/callcenter">callcenter</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/freepbx">freepbx</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://ivahaev.ru/tags/telephony">telephony</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.</p>
+
+<p>Рассмотрим вариант решения данной задачи на базе <strong>IP PBX Asterisk</strong>.
+                    <br>
+                </p>
+                <p class="article-more-link">
+                    <a href="http://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/">
+                        Дальше
+                    </a>
+                </p>
+            </div>
+        </div>
+    </article>
+    <hr>
+    
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a>
+
+            <header class="article-header">
+    <a href="http://ivahaev.ru/post/blank/">
+    <h1 class="article-title" itemprop="name">
+        Blank
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2015-11-11 00:44:42 &#43;0500 YEKT" itemprop="datePublished" class="fulldate">2015-11-11</time>
+        </div>
+
+        
+
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>
+                    В данный момент занимаюсь разработкой собственной универсальной системы автоматизации бизнес-процессов, которая называется <a href="http://getblank.net"><strong>Blank</strong></a>. Данный проект интересен тем, что позволяет построить практически любую информационную систему в кратчайшие сроки. В одном довольно простом конфигурационном файле описывается как структура данных, так и бизнес-логика. Платформа сама создаёт готовый пользовательский интерфейс для работы с данными сразу после описания их структуры. Задействованы многие современные технологии. Это и <strong>Go</strong>, <strong>React.js</strong>, <strong>WAMP</strong>, встроенная база данных. Гибкая настройка прав, автоматическая генерация клиентского интерфейса, простая интеграция с существующими системами. Бизнес-логика описывается на хорошо знакомом <strong>Javascript</strong> и выполняется с помощью движка <strong>V8</strong>.
+                    <br>
+                </p>
+                <p class="article-more-link">
+                    <a href="http://ivahaev.ru/post/blank/">
+                        Дальше
+                    </a>
+                </p>
+            </div>
+        </div>
+    </article>
+    <hr>
+    
+
+    <nav id="page-nav">
+
+    
+    
+        <a class="extend next" rel="next" href="http://ivahaev.ru//page/2/">
+            Вперёд »
+        </a>
+    
+
+</nav>
+
+</section>
+
+
+        </div>
+    </main>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="http://ivahaev.ru/js/prism-loader.js"></script>
+<script type="text/javascript" src="http://ivahaev.ru/js/prism.js"></script>
+</body>
+
+</html>
