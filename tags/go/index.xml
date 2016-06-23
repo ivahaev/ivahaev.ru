@@ -2,19 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go on ivahaev.ru</title>
-    <link>http://ivahaev.github.io/ivahaev.ru/tags/go/</link>
+    <link>http://ivahaev.ru/tags/go/</link>
     <description>Recent content in Go on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
+    <copyright>2016 Евгений Иваха</copyright>
     <lastBuildDate>Sun, 01 May 2016 14:12:32 +0500</lastBuildDate>
-    <atom:link href="http://ivahaev.github.io/ivahaev.ru/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ivahaev.ru/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Прокачанный таймер на Go</title>
-      <link>http://ivahaev.github.io/ivahaev.ru/2016/05/01/advanced-go-timer</link>
+      <title>Прокаченный таймер на Go</title>
+      <link>http://ivahaev.ru/post/advanced-go-timer/</link>
       <pubDate>Sun, 01 May 2016 14:12:32 +0500</pubDate>
       
-      <guid>http://ivahaev.github.io/ivahaev.ru/2016/05/01/advanced-go-timer</guid>
+      <guid>http://ivahaev.ru/post/advanced-go-timer/</guid>
       <description>&lt;p&gt;У языка &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет &lt;a href=&#34;https://golang.org/pkg/time/&#34;&gt;time&lt;/a&gt;. За всё время работы с &lt;strong&gt;Go&lt;/strong&gt;, мне всего лишь дважды приходилось расширять его возможности.&lt;/p&gt;
 
 &lt;p&gt;Первый раз, около года назад, понадобилось строковое представление времени и периодов на русском языке, что привело к созданию пакета &lt;a href=&#34;https://github.com/ivahaev/russian-time&#34;&gt;russian-time&lt;/a&gt;. Он не очень красивый, создан на скорую руку, потому не буду на нём останавливаться сегодня.&lt;/p&gt;
@@ -62,10 +63,10 @@ time.Sleep(time.Second)
     
     <item>
       <title>go-logger – простой и информативный логгер для Go</title>
-      <link>http://ivahaev.github.io/ivahaev.ru/2016/01/18/simple-logger-for-golang</link>
+      <link>http://ivahaev.ru/post/simple-logger-for-golang/</link>
       <pubDate>Mon, 18 Jan 2016 00:47:11 +0500</pubDate>
       
-      <guid>http://ivahaev.github.io/ivahaev.ru/2016/01/18/simple-logger-for-golang</guid>
+      <guid>http://ivahaev.ru/post/simple-logger-for-golang/</guid>
       <description>
 
 &lt;p&gt;Не смотря на всё многообразие существующих логгеров для &lt;strong&gt;Go&lt;/strong&gt;, как-то не удалось подобрать удобный и подходящий для меня. Хотелось иметь инструмент, похожий на те, какими пользовался в других языках. Если хочешь сделать что-то хорошо, сделай это сам.&lt;/p&gt;
@@ -99,7 +100,7 @@ time.Sleep(time.Second)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Вот что получим в консоли:
-&lt;img src=&#34;http://ivahaev.github.io/ivahaev.ru/img/logger-console.png&#34; alt=&#34;output&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;http://ivahaev.ru/img/logger-console.png&#34; alt=&#34;output&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Со временем добавлю возможность прятать файл вызова и строку, такие мысли уже посещали для продакшина. Может быть, что-то ещё, но пока этот логгер меня устраивает на 100%, я его использую во всех своих проектах. Возможно, пригодится и вам!&lt;/p&gt;
 </description>
@@ -107,10 +108,10 @@ time.Sleep(time.Second)
     
     <item>
       <title>Amigo – лучший друг Golang и Asterisk</title>
-      <link>http://ivahaev.github.io/ivahaev.ru/2016/01/14/amigo-best-frend-of-golang-and-asterisk</link>
+      <link>http://ivahaev.ru/post/amigo-best-frend-of-golang-and-asterisk/</link>
       <pubDate>Thu, 14 Jan 2016 21:52:24 +0500</pubDate>
       
-      <guid>http://ivahaev.github.io/ivahaev.ru/2016/01/14/amigo-best-frend-of-golang-and-asterisk</guid>
+      <guid>http://ivahaev.ru/post/amigo-best-frend-of-golang-and-asterisk/</guid>
       <description>&lt;p&gt;Начиная писать свой первый &lt;a href=&#34;http://peach-dialer.com&#34;&gt;Peach Dialer&lt;/a&gt;, я выбрал язык, который довольно хорошо знал, благо работал с ним с 1999 года&amp;nbsp;&amp;mdash; &lt;strong&gt;PHP&lt;/strong&gt;. Меня не смущало, что он, в принципе, не предназначен для создания долгоживущих процессов, но то, что получилось в итоге, работает по несколько месяцев и радует своих владельцев.&lt;/p&gt;
 
 &lt;p&gt;Потом пошла мода на &lt;a href=&#34;https://ru.wikipedia.org/wiki/WebSocket&#34;&gt;Websocket&lt;/a&gt;, который захотелось применить в интерфейсе, а &lt;strong&gt;PHP&lt;/strong&gt; в то время не очень-то умел с ними работать (может, и сейчас не умеет). Я обратил внимание на &lt;a href=&#34;https://nodejs.org&#34;&gt;node.js&lt;/a&gt;. Классная штука, любовь на века, подумал я, но вскоре захотелось большего.&lt;/p&gt;
@@ -180,17 +181,17 @@ func main() {
     
     <item>
       <title>Шаблонизатор экселя для Go</title>
-      <link>http://ivahaev.github.io/ivahaev.ru/2015/12/28/go-xlsx-templater</link>
+      <link>http://ivahaev.ru/post/go-xlsx-templater/</link>
       <pubDate>Mon, 28 Dec 2015 00:05:30 +0500</pubDate>
       
-      <guid>http://ivahaev.github.io/ivahaev.ru/2015/12/28/go-xlsx-templater</guid>
+      <guid>http://ivahaev.ru/post/go-xlsx-templater/</guid>
       <description>
 
 &lt;p&gt;В процессе работы над платформой &lt;a href=&#34;http://getblank.net/ru&#34;&gt;Blank&lt;/a&gt;, возникла задача генерации документов. Так как платформа предполагает очень широкое применение, очень не хотелось формировать документы полностью программно. Нужно дать возможность интеграторам и администраторам системы удобно создавать шаблоны, на основе которых, в дальнейшем, будут формироваться различные документы.&lt;/p&gt;
 
 &lt;p&gt;Сервер написан на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область&amp;nbsp;&amp;mdash; есть решения на Яве, используйте их.  Неее, не для того мы на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; пишем, чтобы за собой Яву тянуть.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ivahaev.github.io/ivahaev.ru/img/net!.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://ivahaev.ru/img/net!.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Также, наш сервер поддерживает пользовательские скрипты на &lt;strong&gt;Javascript&lt;/strong&gt;, но полноценных решений тоже не нашлось.&lt;/p&gt;
 
@@ -202,7 +203,7 @@ func main() {
 
 &lt;p&gt;Первым делом, нужно создать шаблон документа. У нас есть заголовок с приветствием к пользователю, а так же табличка со списком предметов, находящихся во владении пользователем. Как видим, синтаксис определения снипетов совпадает с &lt;a href=&#34;http://handlebarsjs.com/&#34;&gt;Handlebars&lt;/a&gt; или &lt;a href=&#34;https://mustache.github.io/&#34;&gt;Mustache&lt;/a&gt;. Важно помнить, в данном случае, что при указании снипета с точкой внутри, как в примере &lt;code&gt;{{items.name}}&lt;/code&gt;&amp;nbsp;&amp;mdash; это будет означать либо брать свойство из вложенного объекта в переданном контексте, либо из соответствующего элемента в массиве, при этом будет создано нужное количество строк, чтобы заполнить всеми элементами массива, как в нашем случае.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ivahaev.github.io/ivahaev.ru/img/xls-template.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://ivahaev.ru/img/xls-template.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Передаем мы вот что:&lt;/p&gt;
 
@@ -233,7 +234,7 @@ func main() {
 
 &lt;p&gt;После обработки получаем долгожданный документ:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ivahaev.github.io/ivahaev.ru/img/xls-report.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://ivahaev.ru/img/xls-report.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Файл мы можем либо сохранить на диск, либо сразу отдать в ответ на http запрос, благо, библиотека поддерживает интерфейс &lt;code&gt;io.Writer&lt;/code&gt;.&lt;/p&gt;
 
@@ -287,10 +288,10 @@ func main() {
     
     <item>
       <title>Три частые ошибки, возникающие при разработке на Go</title>
-      <link>http://ivahaev.github.io/ivahaev.ru/2015/11/12/three-often-mistakes-wth-go</link>
+      <link>http://ivahaev.ru/post/three-often-mistakes-wth-go/</link>
       <pubDate>Thu, 12 Nov 2015 01:32:28 +0500</pubDate>
       
-      <guid>http://ivahaev.github.io/ivahaev.ru/2015/11/12/three-often-mistakes-wth-go</guid>
+      <guid>http://ivahaev.ru/post/three-often-mistakes-wth-go/</guid>
       <description>
 
 &lt;p&gt;Это перевод статьи. Раньше желания переводить не возникало, но статья очень понравилась, наверное, из-за того, что сам наступал уже на подобные грабли. Перевод достаточно вольный, но суть передает верно. Если хоть одному начинающему разработчику поможет эта статья, труды мои будут не напрасными :).&lt;/p&gt;
@@ -406,7 +407,7 @@ fmt.Println(list) // [0 1 2 3]
 &lt;pre&gt;&lt;code&gt;foo foobaz foobaz
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ivahaev.github.io/ivahaev.ru/img/shta.jpeg&#34; alt=&#34;Шта?&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://ivahaev.ru/img/shta.jpeg&#34; alt=&#34;Шта?&#34; /&gt;
 Какого? Мы-то ждали &lt;code&gt;foo foobar foobaz&lt;/code&gt;!&lt;/p&gt;
 
 &lt;p&gt;Чтобы понять что произошло, следует разобраться с тем, а что же за звери такие эти срезы? Срез в Go&amp;nbsp;&amp;mdash; это дексриптор, который содержит три компонента:&lt;/p&gt;
@@ -475,7 +476,7 @@ func repeat(list []string) ([]string, error) {
 
 &lt;p&gt;А все потому, что когда использовали оператор &lt;code&gt;:=&lt;/code&gt;, мы на самом деле определили новую переменную &lt;code&gt;list&lt;/code&gt; в области видимости цикла. В Go фигурные скобки создают новую область видимости. Мы это сделали для того, чтобы быстренько объявить переменную &lt;code&gt;err&lt;/code&gt; типа &lt;code&gt;error&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://ivahaev.github.io/ivahaev.ru/img/norma.jpeg&#34; alt=&#34;Это норма&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://ivahaev.ru/img/norma.jpeg&#34; alt=&#34;Это норма&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Чтобы исправить ситуацию, нужно объявить &lt;code&gt;err&lt;/code&gt; заранее и далее использовать обычный оператор присваивания &lt;code&gt;=&lt;/code&gt;.&lt;/p&gt;
 
