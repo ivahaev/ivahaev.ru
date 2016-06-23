@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Time on ivahaev.ru</title>
+    <link>http://ivahaev.ru/tags/time/</link>
+    <description>Recent content in Time on ivahaev.ru</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-RU</language>
+    <copyright>2016 Евгений Иваха</copyright>
+    <lastBuildDate>Sun, 01 May 2016 14:12:32 +0500</lastBuildDate>
+    <atom:link href="http://ivahaev.ru/tags/time/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Прокаченный таймер на Go</title>
+      <link>http://ivahaev.ru/post/advanced-go-timer/</link>
+      <pubDate>Sun, 01 May 2016 14:12:32 +0500</pubDate>
+      
+      <guid>http://ivahaev.ru/post/advanced-go-timer/</guid>
+      <description>&lt;p&gt;У языка &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет &lt;a href=&#34;https://golang.org/pkg/time/&#34;&gt;time&lt;/a&gt;. За всё время работы с &lt;strong&gt;Go&lt;/strong&gt;, мне всего лишь дважды приходилось расширять его возможности.&lt;/p&gt;
+
+&lt;p&gt;Первый раз, около года назад, понадобилось строковое представление времени и периодов на русском языке, что привело к созданию пакета &lt;a href=&#34;https://github.com/ivahaev/russian-time&#34;&gt;russian-time&lt;/a&gt;. Он не очень красивый, создан на скорую руку, потому не буду на нём останавливаться сегодня.&lt;/p&gt;
+
+&lt;p&gt;Второй инструмент, мне кажется более интересным. Предпосылкой к созданию этого небольшого пакета, была необходимость контроля времени выполнения скриптов во встроенном интерпретаторе &lt;strong&gt;JavaScript&lt;/strong&gt; &lt;strong&gt;Google V8&lt;/strong&gt;. Так уж повелось, что &lt;strong&gt;JavaScript&lt;/strong&gt;, как правило, характеризуется асинхронным поведением, что несколько затрудняло выполнение поставленной задачи. Одним из компонентов решения должен был стать таймер, который можно приостанавливать на неопределённое время, а после запускать снова с момента остановки. Так появился &lt;a href=&#34;https://github.com/ivahaev/timer&#34;&gt;timer&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Функции &lt;a href=&#34;https://godoc.org/github.com/ivahaev/timer#AfterFunc&#34;&gt;AfterFunc&lt;/a&gt;  и &lt;a href=&#34;https://godoc.org/github.com/ivahaev/timer#NewTimer&#34;&gt;NewTimer&lt;/a&gt;  очень похожи на стандартные, но у возвращаемого указателя на структуру &lt;a href=&#34;https://godoc.org/github.com/ivahaev/timer#Timer&#34;&gt;Timer&lt;/a&gt; есть два новых метода:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://godoc.org/github.com/ivahaev/timer#Timer.Pause&#34;&gt;Pause&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://godoc.org/github.com/ivahaev/timer#Timer.Start&#34;&gt;Start&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Pause&lt;/strong&gt; приостанавливает выполнение таймера, а &lt;strong&gt;Start&lt;/strong&gt;, соответственно, запускает его с момента остановки, либо после инициализации. Т.е. после создания таймера, запускать его требуется вручную.&lt;/p&gt;
+
+&lt;p&gt;Пример из теста лучше покажет идею:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var now = time.Now()
+
+// Создаем таймер на 1 секунду
+var timer = AfterFunc(time.Second, func() {
+
+    // Сравниваем сколько прошло времени
+	if time.Now().Sub(now) &amp;lt; time.Second*2 {
+		panic(&amp;quot;Early func&amp;quot;)
+	}
+})
+
+// Запускаем таймер
+timer.Start()
+
+// Через пол секунды приостанавливаем
+time.Sleep(time.Microsecond * 500)
+timer.Pause()
+
+// Через секунду запускаем снова
+time.Sleep(time.Second)
+timer.Start()
+time.Sleep(time.Second)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://godoc.org/github.com/ivahaev/timer&#34;&gt;&lt;img src=&#34;https://godoc.org/github.com/ivahaev/timer?status.svg&#34; alt=&#34;GoDoc&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
