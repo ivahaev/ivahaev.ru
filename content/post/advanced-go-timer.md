@@ -42,7 +42,7 @@ var timer = AfterFunc(time.Second, func() {
 // Запускаем таймер
 timer.Start()
 
-// Через пол секунды приостанавливаем
+// Через полсекунды приостанавливаем
 time.Sleep(time.Microsecond * 500)
 timer.Pause()
 
