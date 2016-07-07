@@ -2,6 +2,7 @@
 date = "2016-07-01T23:11:50+05:00"
 title = "Версионирование go программ"
 slug = "go-releases-versions"
+banner = "/img/semver02.png"
 
 tags = [ "go", "golang", "SemVer", "node.js", "npm", "git" ]
 +++
