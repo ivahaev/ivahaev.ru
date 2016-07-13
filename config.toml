@@ -4,7 +4,6 @@ title = "ivahaev.ru"
 copyright = "2016 Евгений Иваха"
 disqusShortname = "ivahaev"
 
-theme = "ivahaev.ru"
 contentdir = "content"
 layoutdir = "layouts"
 publishdir = "public"
