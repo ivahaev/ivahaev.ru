@@ -1,10 +1,10 @@
 +++
 date = "2016-07-08T03:11:50+05:00"
 title = "Мой подход к тестированию"
-slug = "how-to-test-go-application-my-way"
+slug = "how-to-test-go-applications-my-way"
 draft = true
 
-tags = [ "go", "golang", "test", "testing", "mocha", "node.js", "javascript" ]
+tags = [ "go", "golang", "test", "testing", "mocha", "node.js", "javascript", "goblin" ]
 +++
 
 Сколько бы я не пытался &laquo;в прошлой жизни&raquo; заставить себя писать тесты, получалось довольно плохо. Точнее, оно получалось, но как-то всё хромало, как у Винни-Пуха правильнописание. Казалось, что быстрее и проще потыкать в браузере, или там клавиши понажимать, проверить, а дальше просто будет работать.

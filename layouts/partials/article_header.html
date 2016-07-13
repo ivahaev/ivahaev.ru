@@ -13,7 +13,7 @@
     <div class="article-meta">
         <div class="post-time">
             <i class="fa fa-calendar"></i>
-            <time datetime="{{ .Date }}" itemprop="datePublished" class="fulldate_">{{ .Date.Format .Site.Params.date_format }}</time>
+            <time datetime="{{ .Date }}" itemprop="datePublished" class="fulldate_"><strong>{{ partial "dater" . }}</strong></time>
         </div>
 
         {{ if isset .Params "categories" }}

@@ -21,11 +21,13 @@
                     {{ printf "%s" .Summary | markdownify }}
                     <br>
                 </p>
+                {{ if .Truncated }}
                 <p class="article-more-link">
                     <a href="{{ .Permalink }}">
                         {{with .Site.Data.l10n.articles.read_more}}{{.}}{{end}}
                     </a>
                 </p>
+                {{ end }}
             </div>
         </div>
     </article>

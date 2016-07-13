@@ -3,6 +3,7 @@ date = "2016-07-13T11:28:50+05:00"
 title = "Двойной API для асинхронных функций"
 slug = "javascript-callback-promise-dual-api"
 draft = false
+moreLabel = "!!!"
 
 tags = [ "javascript", "callback", "promise", "node.js" ]
 +++
