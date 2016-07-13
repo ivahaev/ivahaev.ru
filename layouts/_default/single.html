@@ -6,6 +6,7 @@
     <main>
         <div class="main-inner">
             <section id="results"></section>
+            {{ .Scratch.Set "summary" false }}
             {{ partial "single_article" . }}
         </div>
     </main>

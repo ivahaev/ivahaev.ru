@@ -9,7 +9,7 @@ layoutdir = "layouts"
 publishdir = "public"
 canonifyurls = true
 MetaDataFormat = "toml"
-paginate = 10
+paginate = 3
 
 [indexes]
     category = "categories"

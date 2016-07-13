@@ -1,8 +1,14 @@
 <header class="article-header">
     <a href="{{ .Permalink }}">
+    {{ if .Scratch.Get "summary" }}
+    <h2 class="article-title" itemprop="name">
+        {{ .Title }}
+    </h2>
+    {{ else }}
     <h1 class="article-title" itemprop="name">
         {{ .Title }}
     </h1>
+    {{ end }}
     </a>
     <div class="article-meta">
         <div class="post-time">
@@ -23,7 +29,7 @@
             {{ end }}
         {{ end }}
 
-        {{ if isset .Params "tags_" }}
+        {{ if isset .Params "tags" }}
             {{ $tagsLen := len .Params.tags }}
             {{ if gt $tagsLen 0 }}
             <div class="article-category">
