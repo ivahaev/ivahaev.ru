@@ -19,31 +19,30 @@ tags = [ "javascript", "callback", "promise", "node.js" ]
 Если с первым правилом все достаточно просто, то для удобного выполнения второго, в нашей команде родилось короткое однострочное выражение, которые мы повсеместно используем:
 
 ```Javascript
-
-    let d = (typeof cb !== "function") ? new Promise((f, r) => (cb = (e, d) => e != null ? r(e) : f(d))) : null;
+let d = (typeof cb !== "function") ? new Promise((f, r) => (cb = (e, d) => e != null ? r(e) : f(d))) : null;
 ```
 
 Покажу, как водится, на примере таймера:
 
 ```Javascript
-    var asyncMethod = (timeOut, cb) {
-        // Если cb не является функцией, создаем Promise и модифицируем cb для использования далее.
-        let d = (typeof cb !== "function") ? new Promise((f, r) => (cb = (e, d) => e != null ? r(e) : f(d))) : null;
+var asyncMethod = (timeOut, cb) {
+    // Если cb не является функцией, создаем Promise и модифицируем cb для использования далее.
+    let d = (typeof cb !== "function") ? new Promise((f, r) => (cb = (e, d) => e != null ? r(e) : f(d))) : null;
 
-        // Используем cb как обычный колбэк
-        setTimeout(cb, timeOut);
+    // Используем cb как обычный колбэк
+    setTimeout(cb, timeOut);
 
-        // Возвращаем либо Promise, если колбэка не было, либо null
-        return d;
-    };
+    // Возвращаем либо Promise, если колбэка не было, либо null
+    return d;
+};
 
-    // Используем в классическом стиле:
-    asyncMethod(1000, () => {
-        console.log("Classic timeout reached!");
-    });
+// Используем в классическом стиле:
+asyncMethod(1000, () => {
+    console.log("Classic timeout reached!");
+});
 
-    // Используем через Promise
-    asyncMethod(1000).then(() => console.log("Promise timeout reached!"));
+// Используем через Promise
+asyncMethod(1000).then(() => console.log("Promise timeout reached!"));
 ```
 
 
