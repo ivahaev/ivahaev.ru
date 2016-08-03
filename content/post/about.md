@@ -2,9 +2,10 @@
 date = "2015-11-04T01:02:15+05:00"
 draft = false
 title = "Об авторе"
-slug = "projects"
+slug = "about"
 aliases = [
 	"projects",
+	"posts/projects",
 	"about"
 ]
 +++
