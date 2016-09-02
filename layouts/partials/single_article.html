@@ -17,3 +17,9 @@
         </div>
     </article>
 </section>
+{{ if and (isset .Params "banner") (not (eq .Params.banner "")) }}
+<meta propperty="og:image" content="{{ .Site.BaseURL }}{{ .Params.banner }}" />
+{{end}}
+<meta propperty="og:url" content="{{ .Permalink }}" />
+<meta propperty="og:title" content="{{ .Title }}" />
+<meta propperty="og:description" content="{{ printf `%s` .Summary | markdownify }}" />
