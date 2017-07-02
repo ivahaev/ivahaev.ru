@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>Шаблонизатор экселя для Go &middot; ivahaev.ru</title>
+    <meta name="generator" content="Hugo 0.18-DEV" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <meta name="description" content="">
+    
+    
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
+<meta name='yandex-verification' content='7a8a89f15378f8c0' />
+
+
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter33509963 = new Ya.Metrika({
+                    id:33509963,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+
+    
+      <meta propperty="og:image" content="https://ivahaev.ru/img/template-2.png" />
+    
+    <meta propperty="og:url" content="https://ivahaev.ru/post/go-xlsx-templater/" />
+    <meta propperty="og:title" content="Шаблонизатор экселя для Go" />
+    
+      <meta propperty="og:description" content="В процессе работы над платформой Blank, возникла задача генерации документов. Так как платформа предполагает очень широкое применение, очень не хотелось формировать документы полностью программно. Нужно дать возможность интеграторам и администраторам системы удобно создавать шаблоны, на основе которых, в дальнейшем, будут формироваться различные документы.
+
+Сервер написан на Go, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область&nbsp;&mdash; есть решения на Яве, используйте их.  Неее, не для того мы на Go пишем, чтобы за собой Яву тянуть.
+
+
+
+" />
+    
+
+
+</head>
+
+<body>
+    <div id="sidebar">
+    <div id="sidebar-content" class="inner">
+        <h2 class="blog-title"><a href="https://ivahaev.ru/">ivahaev.ru</a></h2>
+        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
+        <div id="sidebar-links">
+            
+            <ul id="navigation">
+                
+                <li class="nav" role="presentation"><a href="https://ivahaev.ru/about"><i class="fa fa-navicon"></i>Об авторе</a></li>
+            </ul>
+            <ul id="sidebar-external">
+                <li><a href="https://github.com/ivahaev"><i class="fa fa-github"></i>ivahaev</a></li>
+                <li><a href="https://github.com/getblank"><i class="fa fa-github"></i>getblank</a></li>
+                <li><a href="https://telegram.me/ivahaev"><i class="fa fa-paper-plane"></i>ivahaev</a></li>
+                <li><a href="skype:ivahaev?chat"><i class="fa fa-skype"></i>ivahaev</a></li>
+                <li><a target="_blank" href="mailto:ivahaev@gmail.com"><i class="fa fa-envelope"></i>ivahaev@gmail.com</a></li>
+            </ul>
+            <ul id="sidebar-partners">
+                <div>Партнёры:</div>
+                <li><a href="http://borisoft.info/"><i class="fa fa-android"></i>Borisoft</a></li>
+                <a href="http://borisoft.info/"></a>
+                <li>
+                    <a href="http://borisoft.info/"></a><a href="http://sclif.pro"><i class="fa fa-linux"></i>Sclif</a></li>
+            </ul>
+        </div>
+
+        <footer class="site-footer">
+            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+        </footer>
+    </div>
+</div>
+
+    <main>
+        <div class="main-inner">
+            <section id="results"></section>
+            
+            <section id="main">
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            <a href="https://ivahaev.ru/post/go-xlsx-templater/" itemprop="url">
+                
+                <img src="https://ivahaev.ru/img/template-2.png" class="article-banner">
+                
+            
+            </a> <header class="article-header">
+    <a href="https://ivahaev.ru/post/go-xlsx-templater/">
+    
+    <h1 class="article-title" itemprop="name">
+        Шаблонизатор экселя для Go
+    </h1>
+    
+    </a>
+    <div class="article-meta">
+        <div class="post-time">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2015-12-28 00:05:30 &#43;0500 &#43;05" itemprop="datePublished" class="fulldate_"><strong>28 декабря 2015 года
+</strong></time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/go">go</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/golang">golang</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/excel">excel</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/xlsx">xlsx</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/template">template</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/report">report</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/generator">generator</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>В процессе работы над платформой <a href="http://getblank.net/ru">Blank</a>, возникла задача генерации документов. Так как платформа предполагает очень широкое применение, очень не хотелось формировать документы полностью программно. Нужно дать возможность интеграторам и администраторам системы удобно создавать шаблоны, на основе которых, в дальнейшем, будут формироваться различные документы.</p>
+
+<p>Сервер написан на <a href="https://golang.org/">Go</a>, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область&nbsp;&mdash; есть решения на Яве, используйте их.  Неее, не для того мы на <a href="https://golang.org/">Go</a> пишем, чтобы за собой Яву тянуть.</p>
+
+<p><img src="https://ivahaev.ru/img/net!.jpg" alt="" /></p>
+
+<p></p>
+
+<p>Также, наш сервер поддерживает пользовательские скрипты на <strong>Javascript</strong>, но полноценных решений тоже не нашлось.</p>
+
+<p>Решено было сделать все самостоятельно. <a href="http://getblank.net/ru">Blank</a> вовсю использует <a href="http://handlebarsjs.com/">Handlebars</a>, поэтому захотелось использовать похожее поведение для формирования документов. Первым этапом пошли электронные таблицы, то, что мы привыкли видеть в Excel. Родился пакет <a href="https://github.com/ivahaev/go-xlsx-templater">go-xlsx-templater</a>, которые позволяет разметить документ <strong>Excel</strong> (<strong>.xlsx</strong>) тэгами в &laquo;усах&raquo; и получить, в итоге конечный отчет с данными.</p>
+
+<p>На данный момент, библиотека имеет 4 метода: <code>ReadTemplate()</code>, <code>Render()</code>, <code>Save()</code>, <code>Write()</code>. Рассмотрим небольшой пример использования.</p>
+
+<h2 id="создаем-отчет">Создаем отчет</h2>
+
+<p>Первым делом, нужно создать шаблон документа. У нас есть заголовок с приветствием к пользователю, а так же табличка со списком предметов, находящихся во владении пользователем. Как видим, синтаксис определения снипетов совпадает с <a href="http://handlebarsjs.com/">Handlebars</a> или <a href="https://mustache.github.io/">Mustache</a>. Важно помнить, в данном случае, что при указании снипета с точкой внутри, как в примере <code>{{items.name}}</code>&nbsp;&mdash; это будет означать либо брать свойство из вложенного объекта в переданном контексте, либо из соответствующего элемента в массиве, при этом будет создано нужное количество строк, чтобы заполнить всеми элементами массива, как в нашем случае.</p>
+
+<p><img src="https://ivahaev.ru/img/xls-template.png" alt="" /></p>
+
+<p>Передаем мы вот что:</p>
+
+<pre><code class="language-go">	map[string]interface{}{
+		&quot;name&quot;:           &quot;Github User&quot;,
+		&quot;nameHeader&quot;:     &quot;Item name&quot;,
+		&quot;quantityHeader&quot;: &quot;Quantity&quot;,
+		&quot;items&quot;: []map[string]interface{}{
+			{
+				&quot;name&quot;:     &quot;Pen&quot;,
+				&quot;quantity&quot;: 2,
+			},
+			{
+				&quot;name&quot;:     &quot;Pencil&quot;,
+				&quot;quantity&quot;: 1,
+			},
+			{
+				&quot;name&quot;:     &quot;Condom&quot;,
+				&quot;quantity&quot;: 12,
+			},
+			{
+				&quot;name&quot;:     &quot;Beer&quot;,
+				&quot;quantity&quot;: 24,
+			},
+		},
+	}
+</code></pre>
+
+<p>После обработки получаем долгожданный документ:</p>
+
+<p><img src="https://ivahaev.ru/img/xls-report.png" alt="" /></p>
+
+<p>Файл мы можем либо сохранить на диск, либо сразу отдать в ответ на http запрос, благо, библиотека поддерживает интерфейс <code>io.Writer</code>.</p>
+
+<p>Пакет только что создан, еще толком не протестирован, но зато уже его можно как-то использовать в работе. В дальнейшем буду его развивать и улучшать. <em>(Дополнение от 13 июля 2016 года: пакет с марта месяца используется для генерации различных отчетов в одном из подразделений Министерства транспорта РФ и показывает себя только с лучшей стороны)</em>.</p>
+
+<p>Полный код демо-приложения выглядит так:</p>
+
+<pre><code class="language-go">package main
+
+import (
+	&quot;github.com/ivahaev/go-xlsx-templater&quot;
+)
+
+func main() {
+	doc := xlst.New()
+	doc.ReadTemplate(&quot;./template.xlsx&quot;)
+	ctx := map[string]interface{}{
+		&quot;name&quot;:           &quot;Github User&quot;,
+		&quot;nameHeader&quot;:     &quot;Item name&quot;,
+		&quot;quantityHeader&quot;: &quot;Quantity&quot;,
+		&quot;items&quot;: []map[string]interface{}{
+			{
+				&quot;name&quot;:     &quot;Pen&quot;,
+				&quot;quantity&quot;: 2,
+			},
+			{
+				&quot;name&quot;:     &quot;Pencil&quot;,
+				&quot;quantity&quot;: 1,
+			},
+			{
+				&quot;name&quot;:     &quot;Condom&quot;,
+				&quot;quantity&quot;: 12,
+			},
+			{
+				&quot;name&quot;:     &quot;Beer&quot;,
+				&quot;quantity&quot;: 24,
+			},
+		},
+	}
+	doc.Render(ctx)
+	doc.Save(&quot;./report.xlsx&quot;)
+}
+
+</code></pre>
+
+<p>Обработка ошибок здесь не показана, но в реальном приложении, естественно, стоит их учитывать.</p>
+
+<p>Буду рад любым откликам и предложениям по развитию пакета!</p>
+            </div>
+            <footer class="article-footer">
+    
+    <a href="https://ivahaev.ru/post/go-xlsx-templater//#disqus_thread" class="article-comment-link">
+        Комментарии
+    </a>
+
+    <a name="disqus_thread"></a>
+    <section class="post-comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//ivahaev.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </section>
+    
+</footer>
+        </div>
+    </article>
+</section>
+
+        </div>
+    </main>
+
+    <script src="https://ivahaev.ru/js/prism.js"></script>
+</body>
+
+</html>

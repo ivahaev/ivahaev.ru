@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>Javascript &middot; ivahaev.ru</title>
+    <meta name="generator" content="Hugo 0.18-DEV" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <meta name="description" content="">
+    
+    
+      <link href="https://ivahaev.ru/tags/javascript/index.xml" rel="alternate" type="application/rss+xml" title="ivahaev.ru" />
+      <link href="https://ivahaev.ru/tags/javascript/index.xml" rel="feed" type="application/rss+xml" title="ivahaev.ru" />
+    
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
+<meta name='yandex-verification' content='7a8a89f15378f8c0' />
+
+
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter33509963 = new Ya.Metrika({
+                    id:33509963,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+
+    
+    <meta propperty="og:url" content="https://ivahaev.ru/tags/javascript/" />
+    <meta propperty="og:title" content="Javascript" />
+    
+      <meta propperty="og:description" content="Меня зовут Евгений и я программист. Всю сознательную жизнь так или иначе связан с ИТ. С компьютером познакомился лет 20 назад, когда на ЭВМ Электроника, у которого экран монитора был чуть больше спичечного коробка, пытался писать программы на Бейсике. 8 лет работал в области связи — вначале в сотовых операторах, затем с нуля создавал СПД и сопутствующую инфраструктуру местного оператора Интернета и IP телефонии. " />
+    
+
+
+</head>
+
+<body>
+    <div id="sidebar">
+    <div id="sidebar-content" class="inner">
+        <h2 class="blog-title"><a href="https://ivahaev.ru/">ivahaev.ru</a></h2>
+        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
+        <div id="sidebar-links">
+            
+            <ul id="navigation">
+                
+                <li class="nav" role="presentation"><a href="https://ivahaev.ru/about"><i class="fa fa-navicon"></i>Об авторе</a></li>
+            </ul>
+            <ul id="sidebar-external">
+                <li><a href="https://github.com/ivahaev"><i class="fa fa-github"></i>ivahaev</a></li>
+                <li><a href="https://github.com/getblank"><i class="fa fa-github"></i>getblank</a></li>
+                <li><a href="https://telegram.me/ivahaev"><i class="fa fa-paper-plane"></i>ivahaev</a></li>
+                <li><a href="skype:ivahaev?chat"><i class="fa fa-skype"></i>ivahaev</a></li>
+                <li><a target="_blank" href="mailto:ivahaev@gmail.com"><i class="fa fa-envelope"></i>ivahaev@gmail.com</a></li>
+            </ul>
+            <ul id="sidebar-partners">
+                <div>Партнёры:</div>
+                <li><a href="http://borisoft.info/"><i class="fa fa-android"></i>Borisoft</a></li>
+                <a href="http://borisoft.info/"></a>
+                <li>
+                    <a href="http://borisoft.info/"></a><a href="http://sclif.pro"><i class="fa fa-linux"></i>Sclif</a></li>
+            </ul>
+        </div>
+
+        <footer class="site-footer">
+            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+        </footer>
+    </div>
+</div>
+
+    <main>
+        <h1>#Javascript</h1>
+        
+
+
+        
+        <article class="article article-type-post" itemscope="" itemprop="blogPost">
+            <div class="article-inner">
+                
+
+            
+
+            </a> <header class="article-header">
+    <a href="https://ivahaev.ru/post/javascript-callback-promise-dual-api/">
+    
+    <h2 class="article-title" itemprop="name">
+        Двойной API для асинхронных функций
+    </h2>
+    
+    </a>
+    <div class="article-meta">
+        <div class="post-time">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-07-13 11:28:50 &#43;0500 &#43;05" itemprop="datePublished" class="fulldate_"><strong>13 июля 2016 года
+</strong></time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/javascript">javascript</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/callback">callback</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/promise">promise</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/node.js">node.js</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+                <div class="article-entry" itemprop="articleBody">
+                    <p>
+                        Когда пишешь публичные асинхронные методы на <strong>JavaScript</strong>, желательно придерживаться двух простых правил:</p>
+
+<ol>
+<li>Если метод может вернуть ошибку в колбэке, то ошибка должна идти первым аргументом. Часто, даже если метод никогда не возвращает ошибку, первым аргументом передают <code>null</code> для того, чтобы унифицировать все асинхронные вызовы;</li>
+<li>Если в метод не передана колбэк-функция, то метод должен вернуть Promise.</li>
+</ol>
+
+<p>
+                        <br>
+                    </p>
+
+                    <p class="article-more-link">
+                        <a href="https://ivahaev.ru/post/javascript-callback-promise-dual-api/">
+                        Читать целиком
+                    </a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="article article-type-post" itemscope="" itemprop="blogPost">
+            <div class="article-inner">
+                
+
+            
+
+            </a> <header class="article-header">
+    <a href="https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-one/">
+    
+    <h2 class="article-title" itemprop="name">
+        Мой подход к тестированию. Часть первая
+    </h2>
+    
+    </a>
+    <div class="article-meta">
+        <div class="post-time">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-07-08 03:11:50 &#43;0500 &#43;05" itemprop="datePublished" class="fulldate_"><strong>8 июля 2016 года
+</strong></time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/go">go</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/golang">golang</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/test">test</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/testing">testing</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/mocha">mocha</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/node.js">node.js</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/javascript">javascript</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/goblin">goblin</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/goconvey">goconvey</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+                <div class="article-entry" itemprop="articleBody">
+                    <p>
+                        Сколько бы &laquo;в прошлой жизни&raquo; я не пытался заставить себя писать тесты, получалось довольно плохо. Точнее, оно получалось, но как-то всё хромало, как у Винни-Пуха правильнописание. Казалось, что быстрее и проще потыкать в браузере, или клавиши понажимать, проверить, а дальше просто будет работать.</p>
+
+<p>По мере усложнения создаваемых приложений, логика становилась всё замудрённее, времени на такое вот &laquo;протыкивание&raquo; стало уходить всё больше. Каким-то своим отдельным путём я пришёл к тому, что стал писать мелкие отдельные файлы, которые выполняли некоторые функции из проекта и проверяли вывод на корректность. Таким образом, я для себя открыл юнит тестирование. Проблема была в том, что тесты необходимо поддерживать в актуальном состоянии, модифицировать вместе с основным кодом, а ведь кажется, что есть гораздо более важные задачи на данный момент.</p>
+
+<p>В мае 2016 года было принято решение начать писать тесты в принудительном порядке, тем более, что исходные тексты новой версии нашей платформы <a href="https://github.com/getblank">Blank</a> мы открыли сразу, а в грязь лицом ударить не хотелось.</p>
+
+<p>
+                        <br>
+                    </p>
+
+                    <p class="article-more-link">
+                        <a href="https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-one/">
+                        Читать целиком
+                    </a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+
+        <nav id="page-nav">
+
+</nav>
+
+    </main>
+
+    <script src="https://ivahaev.ru/js/prism.js"></script>
+</body>
+
+</html>

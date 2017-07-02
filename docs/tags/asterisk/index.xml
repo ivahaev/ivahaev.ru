@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Asterisk on ivahaev.ru</title>
+    <link>https://ivahaev.ru/tags/asterisk/index.xml</link>
+    <description>Recent content in Asterisk on ivahaev.ru</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-RU</language>
+    <copyright>2016 Евгений Иваха</copyright>
+    <atom:link href="https://ivahaev.ru/tags/asterisk/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Amigo – лучший друг Golang и Asterisk</title>
+      <link>https://ivahaev.ru/post/amigo-best-frend-of-golang-and-asterisk/</link>
+      <pubDate>Thu, 14 Jan 2016 21:52:24 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/post/amigo-best-frend-of-golang-and-asterisk/</guid>
+      <description>&lt;p&gt;Начиная писать свой первый &lt;a href=&#34;http://peach-dialer.com&#34;&gt;Peach Dialer&lt;/a&gt;, я выбрал язык, который довольно хорошо знал, благо работал с ним с 1999 года&amp;nbsp;&amp;mdash; &lt;strong&gt;PHP&lt;/strong&gt;. Меня не смущало, что он, в принципе, не предназначен для создания долгоживущих процессов, но то, что получилось в итоге, работает по несколько месяцев и радует своих владельцев.&lt;/p&gt;
+
+&lt;p&gt;Потом пошла мода на &lt;a href=&#34;https://ru.wikipedia.org/wiki/WebSocket&#34;&gt;Websocket&lt;/a&gt;, который захотелось применить в интерфейсе, а &lt;strong&gt;PHP&lt;/strong&gt; в то время не очень-то умел с ними работать (может, и сейчас не умеет). Я обратил внимание на &lt;a href=&#34;https://nodejs.org&#34;&gt;node.js&lt;/a&gt;. Классная штука, любовь на века, подумал я, но вскоре захотелось большего.&lt;/p&gt;
+
+&lt;p&gt;Бо&amp;#769;льшим для меня стал &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt;&amp;nbsp;&amp;mdash; язык, совмещающий скорость и удобство деплоя компилируемых языков с простотой разработки, свойственной интерпретируемым языкам. К сожалению, разработанных библиотек надлежащего качества и с ожидаемым функционалом для взаимодействия с &lt;strong&gt;Asterisk&lt;/strong&gt; в то время не было. Были какие-то начинания, но не доведённые до конца.&lt;/p&gt;
+
+&lt;p&gt;Итак, по сусекам поскребя, да по амбару пометя&amp;#769;, испёк я &lt;a href=&#34;https://github.com/ivahaev/amigo&#34;&gt;Amigo&lt;/a&gt;&amp;nbsp;&amp;mdash; удобную библиотеку для работы с астериском посредством AMI протокола.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Установка библиотеки:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;go get github.com/ivahaev/amigo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Пример использования (здесь применяется ещё мой простой &lt;a href=&#34;https://github.com/ivahaev/go-logger&#34;&gt;логгер&lt;/a&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;import (
+    &amp;quot;github.com/ivahaev/amigo&amp;quot;
+    &amp;quot;github.com/ivahaev/go-logger&amp;quot;
+)
+
+// Создаем функции-обработчики событий
+// amigo.M – это псевдоним для map[string]string
+func DeviceStateChangeHandler (m amigo.M) {
+    logger.Debug(`Принято событие &amp;quot;DeviceStateChange&amp;quot;`, m)
+}
+
+func DefaultHandler (m amigo.M) {
+    logger.Debug(&amp;quot;Принято событие&amp;quot;, m)
+}
+
+
+func main() {
+
+    // Подключаемся к астериску.
+    // Имя пользователя и пароль являются обязательными параметрами.
+    // По умолчанию хост – &amp;quot;127.0.0.1&amp;quot;, порт – &amp;quot;5038&amp;quot;.
+    a := amigo.New(&amp;quot;username&amp;quot;, &amp;quot;password&amp;quot;, &amp;quot;host&amp;quot;, &amp;quot;port&amp;quot;)
+    a.Connect()
+
+
+    //Регистрируем обработчик для события &amp;quot;DeviceStateChange&amp;quot;
+    a.RegisterHandler(&amp;quot;DeviceStateChange&amp;quot;, DeviceStateChangeHandler)
+
+    // Регистрируем обработчик для всех событий
+    a.RegisterDefaultHandler(DefaultHandler)
+
+    // Также можем создать канал для приема всех событий
+    // и зарегистрировать его
+    c := make(chan map[string]string, 100)
+    a.SetEventChannel(c)
+
+
+    // Проверим, что подключение успешно и отправим запрос &amp;quot;QueueSummary&amp;quot;
+    if a.Connected() {
+        result, err := a.Action(amigo.M{&amp;quot;Action&amp;quot;: &amp;quot;QueueSummary&amp;quot;, &amp;quot;ActionID&amp;quot;: &amp;quot;Init&amp;quot;})
+        // Проверяем на ошибку и обрабатываем результат. Ответ на запрос придёт в соответствующем событии.
+        // Ловить его нужно в общем канале, обработчике по умолчанию, либо в специальном обработчике.
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Стоит заметить, что подключение будет автоматически восстанавливаться при обрыве связи.&lt;/p&gt;
+
+&lt;p&gt;В следующий раз расскажу как использовать библиотеку в режиме &lt;strong&gt;ASYNC:AGI&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Инкремент переменной в дайлплане Астериска</title>
+      <link>https://ivahaev.ru/post/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</link>
+      <pubDate>Sat, 14 Nov 2015 12:34:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/post/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</guid>
+      <description>&lt;p&gt;Если требуется реализовать какой-то счетчик в дайлплане, удобно использовать переменную канала. Но просто так изменить её значение, прибавляя единицу, не получится.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Нужно использовать выражение:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;same =&amp;gt; n,Set(REP=$[${REP} + 1])
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Глубокий дебаг астериска</title>
+      <link>https://ivahaev.ru/post/deep-debug-astierisk/</link>
+      <pubDate>Thu, 12 Nov 2015 16:30:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/post/deep-debug-astierisk/</guid>
+      <description>&lt;p&gt;Иногда можно потерять довольно много времени, пытаясь в консоли астериска отловить ошибку выполнения &lt;strong&gt;agi&lt;/strong&gt; скрипта, или просто внешнего приложения, запускаемого из дайлплана. Есть один способ, который в документации в явном виде не описан, но очень помогает. Мы запустим &lt;strong&gt;asterisk&lt;/strong&gt; в режиме, похожем на монопольный в &lt;strong&gt;1С&lt;/strong&gt;, при этом будем видеть в его консоли все предупреждения и ошибки.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Выключаем астериск;&lt;/li&gt;
+&lt;li&gt;Выполняем такую команду:
+&lt;code&gt;
+su asterisk
+asterisk -vvvgc
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Теперь все как на ладони!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Проигрывание файла при телефонном разговоре</title>
+      <link>https://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</link>
+      <pubDate>Wed, 11 Nov 2015 01:53:02 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</guid>
+      <description>&lt;p&gt;В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.&lt;/p&gt;
+
+&lt;p&gt;Рассмотрим вариант решения данной задачи на базе &lt;strong&gt;IP PBX Asterisk&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Пример для &lt;strong&gt;FreePBX&lt;/strong&gt;, для голого астериска все делается ещё проще.&lt;/p&gt;
+
+&lt;p&gt;Первым делом, нужно добавить сочетание клавиш на вызов макроса в &lt;code&gt;features.conf&lt;/code&gt;, или для &lt;strong&gt;FreePBX&lt;/strong&gt; в &lt;code&gt;features_applicationmap_custom.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;playsound =&amp;gt; *6,callee,macro,playsound
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;По нажатию в разговоре *&lt;strong&gt;6&lt;/strong&gt; вызовется макрос playsound&lt;/p&gt;
+
+&lt;p&gt;Важный момент, нужно добавить возможность вызова макроса. Для этого либо в дайлплане присваиваем переменную:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exten =&amp;gt; _+x.,n,Set(DYNAMIC_FEATURES=playsound)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Либо в &lt;strong&gt;extensions.conf&lt;/strong&gt; пишем в секции &lt;strong&gt;[globals]&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;DYNAMIC_FEATURES=playsound
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Макрос и нужный контекст в дайлплане:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[macro-playsound]
+
+exten =&amp;gt; s,1,AGI(create_spy.php,${CHANNEL})
+
+; end of [macro-playsound]
+
+[spy]
+exten =&amp;gt; 1,1,Chanspy(${chan},v(-4)wqBbE)
+exten =&amp;gt; 1,n,Hangup
+
+exten =&amp;gt; 2,1,Answer
+exten =&amp;gt; 2,n,Set(VOLUME(TX)=-3)
+exten =&amp;gt; 2,n,Playback(${audio})
+exten =&amp;gt; 2,n,Hangup
+
+; end of [spy]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Файл &lt;strong&gt;create_spy.agi&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/php -q
+
+&amp;lt;?php
+
+$par=$argv[1];
+$channel= $par;
+
+    $uid=time();
+    $f1=fopen(&amp;quot;/tmp/$uid.call&amp;quot;,&amp;quot;w&amp;quot;);
+    fputs($f1,&amp;quot;Channel: LOCAL/2@spy\n&amp;quot;);
+    fputs($f1,&amp;quot;MaxRetries: 0\n&amp;quot;);
+    fputs($f1,&amp;quot;RetryTime: 600\n&amp;quot;);
+    fputs($f1,&amp;quot;WaitTime: 30\n&amp;quot;);
+    fputs($f1,&amp;quot;Context: spy\n&amp;quot;);
+    fputs($f1,&amp;quot;Extension: 1\n&amp;quot;);
+    fputs($f1,&amp;quot;Priority: 1\n&amp;quot;);
+    fputs($f1,&amp;quot;Set: audio=custom/VOICE_FILE\nSet: chan=$channel\n&amp;quot;);
+    fclose($f1);
+    system(&amp;quot;mv /tmp/$uid.call /var/spool/asterisk/outgoing/&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Здесь &lt;strong&gt;VOICE_FILE&lt;/strong&gt; - это проигрываемый файл.  Не забыть сделать &lt;code&gt;chmod +x /var/lib/asterisk/agi-bin/create_spy.php&lt;/code&gt; ну или где в нашем дистрибутиве расположены &lt;strong&gt;agi&lt;/strong&gt; скрипты.&lt;/p&gt;
+
+&lt;p&gt;Само собой, можно сделать все через &lt;strong&gt;AMI&lt;/strong&gt;, в данном случае, была задача показать вариант решения вопроса. Реализация за вами!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

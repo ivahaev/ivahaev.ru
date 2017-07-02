@@ -3,10 +3,10 @@ languageCode = "ru-RU"
 title = "ivahaev.ru"
 copyright = "2016 Евгений Иваха"
 disqusShortname = "ivahaev"
+publishdir = "docs"
 
 contentdir = "content"
 layoutdir = "layouts"
-publishdir = "public"
 canonifyurls = true
 MetaDataFormat = "toml"
 paginate = 10

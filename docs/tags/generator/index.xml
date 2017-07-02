@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Generator on ivahaev.ru</title>
+    <link>https://ivahaev.ru/tags/generator/index.xml</link>
+    <description>Recent content in Generator on ivahaev.ru</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-RU</language>
+    <copyright>2016 Евгений Иваха</copyright>
+    <atom:link href="https://ivahaev.ru/tags/generator/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Шаблонизатор экселя для Go</title>
+      <link>https://ivahaev.ru/post/go-xlsx-templater/</link>
+      <pubDate>Mon, 28 Dec 2015 00:05:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/post/go-xlsx-templater/</guid>
+      <description>&lt;p&gt;В процессе работы над платформой &lt;a href=&#34;http://getblank.net/ru&#34;&gt;Blank&lt;/a&gt;, возникла задача генерации документов. Так как платформа предполагает очень широкое применение, очень не хотелось формировать документы полностью программно. Нужно дать возможность интеграторам и администраторам системы удобно создавать шаблоны, на основе которых, в дальнейшем, будут формироваться различные документы.&lt;/p&gt;
+
+&lt;p&gt;Сервер написан на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область&amp;nbsp;&amp;mdash; есть решения на Яве, используйте их.  Неее, не для того мы на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; пишем, чтобы за собой Яву тянуть.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://ivahaev.ru/img/net!.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Также, наш сервер поддерживает пользовательские скрипты на &lt;strong&gt;Javascript&lt;/strong&gt;, но полноценных решений тоже не нашлось.&lt;/p&gt;
+
+&lt;p&gt;Решено было сделать все самостоятельно. &lt;a href=&#34;http://getblank.net/ru&#34;&gt;Blank&lt;/a&gt; вовсю использует &lt;a href=&#34;http://handlebarsjs.com/&#34;&gt;Handlebars&lt;/a&gt;, поэтому захотелось использовать похожее поведение для формирования документов. Первым этапом пошли электронные таблицы, то, что мы привыкли видеть в Excel. Родился пакет &lt;a href=&#34;https://github.com/ivahaev/go-xlsx-templater&#34;&gt;go-xlsx-templater&lt;/a&gt;, которые позволяет разметить документ &lt;strong&gt;Excel&lt;/strong&gt; (&lt;strong&gt;.xlsx&lt;/strong&gt;) тэгами в &amp;laquo;усах&amp;raquo; и получить, в итоге конечный отчет с данными.&lt;/p&gt;
+
+&lt;p&gt;На данный момент, библиотека имеет 4 метода: &lt;code&gt;ReadTemplate()&lt;/code&gt;, &lt;code&gt;Render()&lt;/code&gt;, &lt;code&gt;Save()&lt;/code&gt;, &lt;code&gt;Write()&lt;/code&gt;. Рассмотрим небольшой пример использования.&lt;/p&gt;
+
+&lt;h2 id=&#34;создаем-отчет&#34;&gt;Создаем отчет&lt;/h2&gt;
+
+&lt;p&gt;Первым делом, нужно создать шаблон документа. У нас есть заголовок с приветствием к пользователю, а так же табличка со списком предметов, находящихся во владении пользователем. Как видим, синтаксис определения снипетов совпадает с &lt;a href=&#34;http://handlebarsjs.com/&#34;&gt;Handlebars&lt;/a&gt; или &lt;a href=&#34;https://mustache.github.io/&#34;&gt;Mustache&lt;/a&gt;. Важно помнить, в данном случае, что при указании снипета с точкой внутри, как в примере &lt;code&gt;{{items.name}}&lt;/code&gt;&amp;nbsp;&amp;mdash; это будет означать либо брать свойство из вложенного объекта в переданном контексте, либо из соответствующего элемента в массиве, при этом будет создано нужное количество строк, чтобы заполнить всеми элементами массива, как в нашем случае.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://ivahaev.ru/img/xls-template.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Передаем мы вот что:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;	map[string]interface{}{
+		&amp;quot;name&amp;quot;:           &amp;quot;Github User&amp;quot;,
+		&amp;quot;nameHeader&amp;quot;:     &amp;quot;Item name&amp;quot;,
+		&amp;quot;quantityHeader&amp;quot;: &amp;quot;Quantity&amp;quot;,
+		&amp;quot;items&amp;quot;: []map[string]interface{}{
+			{
+				&amp;quot;name&amp;quot;:     &amp;quot;Pen&amp;quot;,
+				&amp;quot;quantity&amp;quot;: 2,
+			},
+			{
+				&amp;quot;name&amp;quot;:     &amp;quot;Pencil&amp;quot;,
+				&amp;quot;quantity&amp;quot;: 1,
+			},
+			{
+				&amp;quot;name&amp;quot;:     &amp;quot;Condom&amp;quot;,
+				&amp;quot;quantity&amp;quot;: 12,
+			},
+			{
+				&amp;quot;name&amp;quot;:     &amp;quot;Beer&amp;quot;,
+				&amp;quot;quantity&amp;quot;: 24,
+			},
+		},
+	}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;После обработки получаем долгожданный документ:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://ivahaev.ru/img/xls-report.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Файл мы можем либо сохранить на диск, либо сразу отдать в ответ на http запрос, благо, библиотека поддерживает интерфейс &lt;code&gt;io.Writer&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Пакет только что создан, еще толком не протестирован, но зато уже его можно как-то использовать в работе. В дальнейшем буду его развивать и улучшать. &lt;em&gt;(Дополнение от 13 июля 2016 года: пакет с марта месяца используется для генерации различных отчетов в одном из подразделений Министерства транспорта РФ и показывает себя только с лучшей стороны)&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Полный код демо-приложения выглядит так:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+	&amp;quot;github.com/ivahaev/go-xlsx-templater&amp;quot;
+)
+
+func main() {
+	doc := xlst.New()
+	doc.ReadTemplate(&amp;quot;./template.xlsx&amp;quot;)
+	ctx := map[string]interface{}{
+		&amp;quot;name&amp;quot;:           &amp;quot;Github User&amp;quot;,
+		&amp;quot;nameHeader&amp;quot;:     &amp;quot;Item name&amp;quot;,
+		&amp;quot;quantityHeader&amp;quot;: &amp;quot;Quantity&amp;quot;,
+		&amp;quot;items&amp;quot;: []map[string]interface{}{
+			{
+				&amp;quot;name&amp;quot;:     &amp;quot;Pen&amp;quot;,
+				&amp;quot;quantity&amp;quot;: 2,
+			},
+			{
+				&amp;quot;name&amp;quot;:     &amp;quot;Pencil&amp;quot;,
+				&amp;quot;quantity&amp;quot;: 1,
+			},
+			{
+				&amp;quot;name&amp;quot;:     &amp;quot;Condom&amp;quot;,
+				&amp;quot;quantity&amp;quot;: 12,
+			},
+			{
+				&amp;quot;name&amp;quot;:     &amp;quot;Beer&amp;quot;,
+				&amp;quot;quantity&amp;quot;: 24,
+			},
+		},
+	}
+	doc.Render(ctx)
+	doc.Save(&amp;quot;./report.xlsx&amp;quot;)
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Обработка ошибок здесь не показана, но в реальном приложении, естественно, стоит их учитывать.&lt;/p&gt;
+
+&lt;p&gt;Буду рад любым откликам и предложениям по развитию пакета!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
