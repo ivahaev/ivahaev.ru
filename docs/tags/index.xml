@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on ivahaev.ru</title>
+    <link>https://ivahaev.ru/tags/</link>
+    <description>Recent content in Tags on ivahaev.ru</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-RU</language>
+    <copyright>2016 Евгений Иваха</copyright>
+    <lastBuildDate>Thu, 14 Jan 2016 21:52:24 +0500</lastBuildDate>
+    
+	<atom:link href="https://ivahaev.ru/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ami</title>
+      <link>https://ivahaev.ru/tags/ami/</link>
+      <pubDate>Thu, 14 Jan 2016 21:52:24 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/ami/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Amigo</title>
+      <link>https://ivahaev.ru/tags/amigo/</link>
+      <pubDate>Thu, 14 Jan 2016 21:52:24 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/amigo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Asterisk</title>
+      <link>https://ivahaev.ru/tags/asterisk/</link>
+      <pubDate>Thu, 14 Jan 2016 21:52:24 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/asterisk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Callback</title>
+      <link>https://ivahaev.ru/tags/callback/</link>
+      <pubDate>Wed, 13 Jul 2016 11:28:50 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/callback/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Callcenter</title>
+      <link>https://ivahaev.ru/tags/callcenter/</link>
+      <pubDate>Mon, 23 Nov 2015 00:57:54 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/callcenter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cli</title>
+      <link>https://ivahaev.ru/tags/cli/</link>
+      <pubDate>Mon, 18 Jan 2016 00:47:11 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/cli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Counter</title>
+      <link>https://ivahaev.ru/tags/counter/</link>
+      <pubDate>Sat, 14 Nov 2015 12:34:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/counter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Debug</title>
+      <link>https://ivahaev.ru/tags/debug/</link>
+      <pubDate>Thu, 12 Nov 2015 16:30:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/debug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dialplan</title>
+      <link>https://ivahaev.ru/tags/dialplan/</link>
+      <pubDate>Sat, 14 Nov 2015 12:34:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/dialplan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Excel</title>
+      <link>https://ivahaev.ru/tags/excel/</link>
+      <pubDate>Mon, 28 Dec 2015 00:05:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/excel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Freepbx</title>
+      <link>https://ivahaev.ru/tags/freepbx/</link>
+      <pubDate>Wed, 11 Nov 2015 01:53:02 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/freepbx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Generator</title>
+      <link>https://ivahaev.ru/tags/generator/</link>
+      <pubDate>Mon, 28 Dec 2015 00:05:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/generator/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://ivahaev.ru/tags/git/</link>
+      <pubDate>Fri, 01 Jul 2016 23:11:50 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://ivahaev.ru/tags/go/</link>
+      <pubDate>Sat, 21 Apr 2018 11:55:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Goblin</title>
+      <link>https://ivahaev.ru/tags/goblin/</link>
+      <pubDate>Sat, 21 Apr 2018 11:55:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/goblin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Goconvey</title>
+      <link>https://ivahaev.ru/tags/goconvey/</link>
+      <pubDate>Sat, 21 Apr 2018 11:55:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/goconvey/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://ivahaev.ru/tags/golang/</link>
+      <pubDate>Sat, 21 Apr 2018 11:55:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Increment</title>
+      <link>https://ivahaev.ru/tags/increment/</link>
+      <pubDate>Sat, 14 Nov 2015 12:34:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/increment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Javascript</title>
+      <link>https://ivahaev.ru/tags/javascript/</link>
+      <pubDate>Wed, 13 Jul 2016 11:28:50 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Log</title>
+      <link>https://ivahaev.ru/tags/log/</link>
+      <pubDate>Mon, 18 Jan 2016 00:47:11 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/log/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Logger</title>
+      <link>https://ivahaev.ru/tags/logger/</link>
+      <pubDate>Mon, 18 Jan 2016 00:47:11 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/logger/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mocha</title>
+      <link>https://ivahaev.ru/tags/mocha/</link>
+      <pubDate>Fri, 08 Jul 2016 03:11:50 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/mocha/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Node.js</title>
+      <link>https://ivahaev.ru/tags/node.js/</link>
+      <pubDate>Wed, 13 Jul 2016 11:28:50 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/node.js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Npm</title>
+      <link>https://ivahaev.ru/tags/npm/</link>
+      <pubDate>Fri, 01 Jul 2016 23:11:50 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/npm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pause</title>
+      <link>https://ivahaev.ru/tags/pause/</link>
+      <pubDate>Sun, 01 May 2016 14:12:32 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/pause/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pbx</title>
+      <link>https://ivahaev.ru/tags/pbx/</link>
+      <pubDate>Mon, 23 Nov 2015 00:57:54 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/pbx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Promise</title>
+      <link>https://ivahaev.ru/tags/promise/</link>
+      <pubDate>Wed, 13 Jul 2016 11:28:50 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/promise/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Report</title>
+      <link>https://ivahaev.ru/tags/report/</link>
+      <pubDate>Mon, 28 Dec 2015 00:05:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/report/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Semver</title>
+      <link>https://ivahaev.ru/tags/semver/</link>
+      <pubDate>Fri, 01 Jul 2016 23:11:50 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/semver/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Telephony</title>
+      <link>https://ivahaev.ru/tags/telephony/</link>
+      <pubDate>Mon, 23 Nov 2015 00:57:54 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/telephony/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Template</title>
+      <link>https://ivahaev.ru/tags/template/</link>
+      <pubDate>Mon, 28 Dec 2015 00:05:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/template/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>https://ivahaev.ru/tags/test/</link>
+      <pubDate>Sat, 21 Apr 2018 11:55:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://ivahaev.ru/tags/testing/</link>
+      <pubDate>Sat, 21 Apr 2018 11:55:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Time</title>
+      <link>https://ivahaev.ru/tags/time/</link>
+      <pubDate>Sun, 01 May 2016 14:12:32 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/time/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Timer</title>
+      <link>https://ivahaev.ru/tags/timer/</link>
+      <pubDate>Sun, 01 May 2016 14:12:32 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/timer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Voip</title>
+      <link>https://ivahaev.ru/tags/voip/</link>
+      <pubDate>Thu, 12 Nov 2015 16:30:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/voip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Xlsx</title>
+      <link>https://ivahaev.ru/tags/xlsx/</link>
+      <pubDate>Mon, 28 Dec 2015 00:05:30 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/xlsx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Перевод</title>
+      <link>https://ivahaev.ru/tags/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/</link>
+      <pubDate>Thu, 12 Nov 2015 01:32:28 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

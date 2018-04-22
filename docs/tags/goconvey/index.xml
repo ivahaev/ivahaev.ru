@@ -2,12 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Goconvey on ivahaev.ru</title>
-    <link>https://ivahaev.ru/tags/goconvey/index.xml</link>
+    <link>https://ivahaev.ru/tags/goconvey/</link>
     <description>Recent content in Goconvey on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
     <copyright>2016 Евгений Иваха</copyright>
-    <atom:link href="https://ivahaev.ru/tags/goconvey/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 Apr 2018 11:55:00 +0500</lastBuildDate>
+    
+	<atom:link href="https://ivahaev.ru/tags/goconvey/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Мой подход к тестированию. Часть вторая</title>
+      <link>https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/</link>
+      <pubDate>Sat, 21 Apr 2018 11:55:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/</guid>
+      <description>&lt;p&gt;В &lt;a href=&#34;https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-one/&#34;&gt;первой статье&lt;/a&gt; цикла о тестировании, которая вышла почти два года назад, я описал свой подход к тестированию, который был актуален в 2016 году. Время идёт, всё изменяется, стандартная библиотека &lt;strong&gt;Go&lt;/strong&gt; становится лучше и вот пару-тройку мажорных версий назад в пакете &lt;a href=&#34;https://golang.org/pkg/testing/&#34;&gt;testing&lt;/a&gt; появился новый метод &lt;a href=&#34;https://golang.org/pkg/testing/#T.Run&#34;&gt;Run()&lt;/a&gt;, который позволяет запускать именованные подтесты. Теперь &lt;a href=&#34;https://github.com/franela/goblin&#34;&gt;Гоблина&lt;/a&gt; можно отправить обратно в пещеру и уменьшить число зависимостей проекта.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Мой подход к тестированию. Часть первая</title>
@@ -21,145 +35,7 @@
 
 &lt;p&gt;В мае 2016 года было принято решение начать писать тесты в принудительном порядке, тем более, что исходные тексты новой версии нашей платформы &lt;a href=&#34;https://github.com/getblank&#34;&gt;Blank&lt;/a&gt; мы открыли сразу, а в грязь лицом ударить не хотелось.&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;node-js&#34;&gt;Node.js&lt;/h3&gt;
-
-&lt;p&gt;С подсистемой на &lt;a href=&#34;https://nodejs.org&#34;&gt;Node.js&lt;/a&gt; вопросов никаких не возникло. Есть популярное решения для тестирования&amp;nbsp;&amp;mdash; &lt;a href=&#34;mochajs.org&#34;&gt;Mocha&lt;/a&gt; (по-русски лучше не читать :) с понятным синтаксисом и весьма приятным форматированием результатов тестирования. Ну и, конечно, стандартный модуль &lt;a href=&#34;https://nodejs.org/api/assert.html&#34;&gt;Assert&lt;/a&gt; для выполнения проверок.&lt;/p&gt;
-
-&lt;h3 id=&#34;go&#34;&gt;Go&lt;/h3&gt;
-
-&lt;p&gt;С &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; ситуация несколько иная. Стандартная поставка уже имеет средства для оформления и запуска тестов. Я сейчас говорю о пакете &lt;a href=&#34;https://golang.org/pkg/testing/&#34;&gt;testing&lt;/a&gt;, в котором есть даже средства для замера производительности кода. Всё, что требуется&amp;nbsp;&amp;mdash; это создать рядом с тестируемым кодом файл с именем, &lt;em&gt;оканчивающимся&lt;/em&gt; на &lt;code&gt;_test.go&lt;/code&gt;, например, &lt;code&gt;app_test.go&lt;/code&gt;, а в нем должны быть функции, &lt;em&gt;начинающиеся&lt;/em&gt; на &lt;code&gt;Test&lt;/code&gt; и получающие на вход указатель на структуру &lt;code&gt;testing.T&lt;/code&gt;, с помощью методов которой можно, например, &amp;laquo;завалить&amp;raquo; тест. Во время компилляции, такие файлы игнорируются.&lt;/p&gt;
-
-&lt;p&gt;Например, у нас есть пакет с единственным методом, складывающим два положительных целых числа. В случае, если одно из чисел окажется отрицательным, функция возвращает ошибку. Понятно, что в реальной жизни программы должны делать что-то более полезное, но для объяснения сути, так даже понятнее:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// adder.go
-package adder
-
-import &amp;quot;errors&amp;quot;
-
-func AddPositive(a, b int) (int, error) {
-    if a &amp;lt; 0 || b &amp;lt; 0 {
-        return 0, errors.New(&amp;quot;only positive integers allowed&amp;quot;)
-    }
-    return a + b, nil
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Напишем тесты:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// adder_test.go
-package adder
-
-import &amp;quot;testing&amp;quot;
-
-func TestAddPositiveSuccess(t *testing.T) {
-	expected := 5
-	res, err := AddPositive(2, 3)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if res != expected {
-		t.Fatal(&amp;quot;Achtung! value != expected&amp;quot;)
-	}
-}
-
-func TestAddPositiveFail(t *testing.T) {
-	_, err := AddPositive(2, -3)
-	if err == nil {
-		t.Fatal(&amp;quot;must return error&amp;quot;)
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;В общем случае, чтобы запустить тестирование, достаточно выполнить команду &lt;code&gt;go test&lt;/code&gt;. Если все работает правильно, мы увидим нечто вроде &lt;strong&gt;PASS&lt;/strong&gt; в консоли, что означает, что тесты выполнились успешно.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bash-3.2$ go test
-PASS
-ok  	_/tmp/adder	0.018s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Не очень-то информативно.&lt;/p&gt;
-
-&lt;p&gt;Вроде бы, никаких проблем, тест читаемый&amp;nbsp;&amp;mdash; если произошла ошибка, или результат выполнения функции не тот, что ожидали, то всё плохо. Смысл теста можно вложить в название тест-функции. Если тест будет завален, то в консоль будет выведена функция, в которой не прошли проверки и строка с соответствующей инструкцией &lt;code&gt;t.Fatal&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bash-3.2$ go test
---- FAIL: TestAddPositiveFail (0.00s)
-	adder_test.go:19: must return error
-FAIL
-exit status 1
-FAIL	_/tmp/adder	0.009s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Но после  &lt;strong&gt;Mocha&lt;/strong&gt; хочется какого-то бо&amp;#769;льшего удовлетворения. Чтобы красиво вывести все проверки. Чтобы можно было подробнее описать что именно тестируем и почему такой-то результат ожидаем.&lt;/p&gt;
-
-&lt;h3 id=&#34;goblin&#34;&gt;Goblin&lt;/h3&gt;
-
-&lt;p&gt;Поиск инструмента я начал с ресурса &lt;a href=&#34;https://github.com/avelino/awesome-go&#34;&gt;Awesome Go&lt;/a&gt;, там вообще много чего интересного можно найти, а иногда даже и полезного. Перебрал кучу тестирующих фреймворков, пока не дошёл до &lt;a href=&#34;https://github.com/franela/goblin&#34;&gt;Гоблина&lt;/a&gt;. Т.к. мы договорились не называть по-русски другой фреймворк, то скажу дословно, как рассказывают о Гоблине его содатели:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;A Mocha like BDD testing framework for Go&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;То, что доктор прописал!&lt;/p&gt;
-
-&lt;p&gt;Перепишем наш тест с использованием Гоблина:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package adder
-
-import (
-	&amp;quot;github.com/franela/goblin&amp;quot;
-	&amp;quot;testing&amp;quot;
-)
-
-func TestAddPositive(t *testing.T) {
-	g := goblin.Goblin(t)
-
-	g.Describe(&amp;quot;#AddPositive&amp;quot;, func() {
-		g.It(&amp;quot;should return nil error and expected result when positive integer passed&amp;quot;, func() {
-			expected := 5
-			res, err := AddPositive(2, 3)
-			g.Assert(err == nil).IsTrue()
-			g.Assert(res).Equal(expected)
-		})
-
-		g.It(&amp;quot;should return error when negative integer passed&amp;quot;, func() {
-			_, err := AddPositive(2, -3)
-			g.Assert(err == nil).IsFalse()
-		})
-	})
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;А теперь посмотрим на вывод команды &lt;code&gt;go test&lt;/code&gt; в консоли:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bash-3.2$ go test
-
-  #AddPositive
-    ✔ should return nil error and expected result when positiv integer passed
-    ✔ should return error when negative integer passed
-
-
- 2 tests complete (0 ms)
-PASS
-ok  	_/tmp/adder	0.008s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;На мой взгляд, гораздо приятнее. При этом ещё и красиво цветом выделяются пройдённые тесты. Что тест, что вывод в консоли говорит сам за себя&amp;nbsp;&amp;mdash; тестируем функцию &lt;code&gt;AddPositive&lt;/code&gt;, которая должна выполниться без ошибки и вернуть ожидаемый результат, если на вход подаются положительные значения, а так же должна вернуть ошибку, если на вход подали что-то отрицательное.&lt;/p&gt;
-
-&lt;p&gt;Попробовав один раз, использую теперь Гоблина во всех проектах, я им очень доволен. При этом, Гоблин полностью совместим со стандартной библиотекой testing.&lt;/p&gt;
-
-&lt;h3 id=&#34;goconvey&#34;&gt;GoConvey&lt;/h3&gt;
-
-&lt;p&gt;А теперь ещё один секрет. Есть довольно интересная штука, которая называется &lt;a href=&#34;http://goconvey.co/&#34;&gt;GoConvey&lt;/a&gt;. Это тоже фреймворк для тестирования, но с несколько другой идеологией, которая мне не очень понравилась. Зато мне понравилось как GoConvey работает в связке с Гоблином. Установив программу, запускаем в корне проекта. GoConvey сам откроет браузер, где мы сможем наблюдать вот такую красоту:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://ivahaev.ru/img/goconvey_success800.png&#34; alt=&#34;output&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Он сам запустит тесты во всех сабмодулях, выведет суммарный отчет, покажет степень покрытия кода тестами (у нас 100% покрытие, как мы видим :). При этом будет перезапускать тесты при каждом изменении исходного кода и тут же отображать результат в браузере. Это просто праздник какой-то!&lt;/p&gt;
-
-&lt;p&gt;С самостоятельным тестированием разобрались. В следующей статье расскажу, как тестировать проекты принудительно. Не переключайтесь!&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

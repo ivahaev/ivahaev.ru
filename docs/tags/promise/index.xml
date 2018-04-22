@@ -2,12 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Promise on ivahaev.ru</title>
-    <link>https://ivahaev.ru/tags/promise/index.xml</link>
+    <link>https://ivahaev.ru/tags/promise/</link>
     <description>Recent content in Promise on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
     <copyright>2016 Евгений Иваха</copyright>
-    <atom:link href="https://ivahaev.ru/tags/promise/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Jul 2016 11:28:50 +0500</lastBuildDate>
+    
+	<atom:link href="https://ivahaev.ru/tags/promise/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Двойной API для асинхронных функций</title>
@@ -22,36 +25,7 @@
 &lt;li&gt;Если в метод не передана колбэк-функция, то метод должен вернуть Promise.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;Если с первым правилом все достаточно просто, то для удобного выполнения второго, в нашей команде родилось короткое однострочное выражение, которые мы повсеместно используем:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Javascript&#34;&gt;let d = (typeof cb !== &amp;quot;function&amp;quot;) ? new Promise((f, r) =&amp;gt; (cb = (e, d) =&amp;gt; e != null ? r(e) : f(d))) : null;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Покажу, как водится, на примере таймера:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Javascript&#34;&gt;var asyncMethod = (timeOut, cb) {
-    // Если cb не является функцией, создаем Promise и модифицируем cb для использования далее.
-    let d = (typeof cb !== &amp;quot;function&amp;quot;) ? new Promise((f, r) =&amp;gt; (cb = (e, d) =&amp;gt; e != null ? r(e) : f(d))) : null;
-
-    // Используем cb как обычный колбэк
-    setTimeout(cb, timeOut);
-
-    // Возвращаем либо Promise, если колбэка не было, либо null
-    return d;
-};
-
-// Используем в классическом стиле:
-asyncMethod(1000, () =&amp;gt; {
-    console.log(&amp;quot;Classic timeout reached!&amp;quot;);
-});
-
-// Используем через Promise
-asyncMethod(1000).then(() =&amp;gt; console.log(&amp;quot;Promise timeout reached!&amp;quot;));
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Таким вот простым способом, можно улучшить публичный API в части асинхронных методов.&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

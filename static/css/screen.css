@@ -146,22 +146,27 @@ h2 {
     line-height: 1.2em;
     letter-spacing: -1px;
     text-indent: -2px;
+    margin-top: 42px;
 }
 
 h3 {
     font-size: 3rem;
+    margin-top: 42px;
 }
 
 h4 {
     font-size: 2.75rem;
+    margin-top: 42px;
 }
 
 h5 {
     font-size: 2.5rem;
+    margin-top: 42px;
 }
 
 h6 {
     font-size: 2rem;
+    margin-top: 42px;
 }
 
 a {
@@ -631,7 +636,7 @@ main
     margin-top: 1px;
     right: 10px;
     position: absolute; /* must be set to absolute */
-} 
+}
 
 #results
 {
@@ -784,23 +789,23 @@ main
     display: none;
 }
 
-/* Stop elements, such as img wider than the post content, from 
-   creating horizontal scroll - slight hack due to imperfections 
+/* Stop elements, such as img wider than the post content, from
+   creating horizontal scroll - slight hack due to imperfections
    with browser width % calculations and rounding */
 .post-template .content {
     overflow: hidden;
 }
 
-/* Keep images centered, and allow images wider than the main 
+/* Keep images centered, and allow images wider than the main
    text column to break out. */
 .post-content img {
     display: block;
     max-width: 126%;
     height: auto;
     padding: 0.6em 0;
-    /* Centers an image by (1) pushing its left edge to the 
-       center of its container and (2) shifting the entire image 
-       in the opposite direction by half its own width. 
+    /* Centers an image by (1) pushing its left edge to the
+       center of its container and (2) shifting the entire image
+       in the opposite direction by half its own width.
        Works for images that are larger than their containers. */
     position: relative;
     left: 50%;

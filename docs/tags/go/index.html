@@ -2,7 +2,7 @@
 <html lang="ru-RU">
 <head>
     <title>Go &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.18-DEV" />
+    <meta name="generator" content="Hugo 0.39" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -67,27 +67,49 @@
 <body>
     <div id="sidebar">
     <div id="sidebar-content" class="inner">
-        <h2 class="blog-title"><a href="https://ivahaev.ru/">ivahaev.ru</a></h2>
+        <h2 class="blog-title">
+            <a href="https://ivahaev.ru/">ivahaev.ru</a>
+        </h2>
         <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
         <div id="sidebar-links">
             
             <ul id="navigation">
                 
-                <li class="nav" role="presentation"><a href="https://ivahaev.ru/about"><i class="fa fa-navicon"></i>Об авторе</a></li>
+                <li class="nav" role="presentation">
+                    <a href="https://ivahaev.ru/about">
+                        <i class="fa fa-navicon"></i>Об авторе</a>
+                </li>
             </ul>
             <ul id="sidebar-external">
-                <li><a href="https://github.com/ivahaev"><i class="fa fa-github"></i>ivahaev</a></li>
-                <li><a href="https://github.com/getblank"><i class="fa fa-github"></i>getblank</a></li>
-                <li><a href="https://telegram.me/ivahaev"><i class="fa fa-paper-plane"></i>ivahaev</a></li>
-                <li><a href="skype:ivahaev?chat"><i class="fa fa-skype"></i>ivahaev</a></li>
-                <li><a target="_blank" href="mailto:ivahaev@gmail.com"><i class="fa fa-envelope"></i>ivahaev@gmail.com</a></li>
+                <li>
+                    <a href="https://github.com/ivahaev">
+                        <i class="fa fa-github"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="https://github.com/getblank">
+                        <i class="fa fa-github"></i>getblank</a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/ivahaev">
+                        <i class="fa fa-paper-plane"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="skype:ivahaev?chat">
+                        <i class="fa fa-skype"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a target="_blank" href="mailto:ivahaev@gmail.com">
+                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
+                </li>
             </ul>
             <ul id="sidebar-partners">
                 <div>Партнёры:</div>
-                <li><a href="http://borisoft.info/"><i class="fa fa-android"></i>Borisoft</a></li>
-                <a href="http://borisoft.info/"></a>
+                
                 <li>
-                    <a href="http://borisoft.info/"></a><a href="http://sclif.pro"><i class="fa fa-linux"></i>Sclif</a></li>
+                    <a href="http://borisoft.info/"></a>
+                    <a href="http://sclif.pro">
+                        <i class="fa fa-linux"></i>Sclif</a>
+                </li>
             </ul>
         </div>
 
@@ -102,6 +124,77 @@
         
 
 
+        
+        <article class="article article-type-post" itemscope="" itemprop="blogPost">
+            <div class="article-inner">
+                
+
+            
+
+            </a> <header class="article-header">
+    <a href="https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/">
+    
+    <h2 class="article-title" itemprop="name">
+        Мой подход к тестированию. Часть вторая
+    </h2>
+    
+    </a>
+    <div class="article-meta">
+        <div class="post-time">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2018-04-21 11:55:00 &#43;0500 &#43;05" itemprop="datePublished" class="fulldate_"><strong>21 апреля 2018 года
+</strong></time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/go">go</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/golang">golang</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/test">test</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/testing">testing</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/goconvey">goconvey</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/goblin">goblin</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+                <div class="article-entry" itemprop="articleBody">
+                    <p>
+                        <p>В <a href="https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-one/">первой статье</a> цикла о тестировании, которая вышла почти два года назад, я описал свой подход к тестированию, который был актуален в 2016 году. Время идёт, всё изменяется, стандартная библиотека <strong>Go</strong> становится лучше и вот пару-тройку мажорных версий назад в пакете <a href="https://golang.org/pkg/testing/">testing</a> появился новый метод <a href="https://golang.org/pkg/testing/#T.Run">Run()</a>, который позволяет запускать именованные подтесты. Теперь <a href="https://github.com/franela/goblin">Гоблина</a> можно отправить обратно в пещеру и уменьшить число зависимостей проекта.</p>
+
+<p></p>
+
+                        <br>
+                    </p>
+
+                    <p class="article-more-link">
+                        <a href="https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/">
+                        Читать целиком
+                    </a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="article article-type-post" itemscope="" itemprop="blogPost">
             <div class="article-inner">
@@ -167,13 +260,14 @@
 
                 <div class="article-entry" itemprop="articleBody">
                     <p>
-                        Сколько бы &laquo;в прошлой жизни&raquo; я не пытался заставить себя писать тесты, получалось довольно плохо. Точнее, оно получалось, но как-то всё хромало, как у Винни-Пуха правильнописание. Казалось, что быстрее и проще потыкать в браузере, или клавиши понажимать, проверить, а дальше просто будет работать.</p>
+                        <p>Сколько бы &laquo;в прошлой жизни&raquo; я не пытался заставить себя писать тесты, получалось довольно плохо. Точнее, оно получалось, но как-то всё хромало, как у Винни-Пуха правильнописание. Казалось, что быстрее и проще потыкать в браузере, или клавиши понажимать, проверить, а дальше просто будет работать.</p>
 
 <p>По мере усложнения создаваемых приложений, логика становилась всё замудрённее, времени на такое вот &laquo;протыкивание&raquo; стало уходить всё больше. Каким-то своим отдельным путём я пришёл к тому, что стал писать мелкие отдельные файлы, которые выполняли некоторые функции из проекта и проверяли вывод на корректность. Таким образом, я для себя открыл юнит тестирование. Проблема была в том, что тесты необходимо поддерживать в актуальном состоянии, модифицировать вместе с основным кодом, а ведь кажется, что есть гораздо более важные задачи на данный момент.</p>
 
 <p>В мае 2016 года было принято решение начать писать тесты в принудительном порядке, тем более, что исходные тексты новой версии нашей платформы <a href="https://github.com/getblank">Blank</a> мы открыли сразу, а в грязь лицом ударить не хотелось.</p>
 
-<p>
+<p></p>
+
                         <br>
                     </p>
 
@@ -246,11 +340,12 @@
 
                 <div class="article-entry" itemprop="articleBody">
                     <p>
-                        Читая новости <a href="http://4gophers.ru/">на отличном ресурсе по Go</a>, наткнулся на статью Дейва Чени <a href="http://dave.cheney.net/2016/06/24/gophers-please-tag-your-releases">Гоферы, тэгируйте свои релизы</a>. Вкратце, там говорится о полезности тэгов к комитам пакета в git репозитории, а так же о том, что при указании версии, стоит обратить внимание на формат <a href="http://semver.org/spec/v2.0.0.html">SemVer 2.0.0</a>.</p>
+                        <p>Читая новости <a href="http://4gophers.ru/">на отличном ресурсе по Go</a>, наткнулся на статью Дейва Чени <a href="http://dave.cheney.net/2016/06/24/gophers-please-tag-your-releases">Гоферы, тэгируйте свои релизы</a>. Вкратце, там говорится о полезности тэгов к комитам пакета в git репозитории, а так же о том, что при указании версии, стоит обратить внимание на формат <a href="http://semver.org/spec/v2.0.0.html">SemVer 2.0.0</a>.</p>
 
 <p>Что самое интересное, статья написана 24 июня, примерно в то же время, может быть, днём ранее, я написал инструмент для себя, который позволяет автоматизировать процесс изменения патч-версии приложений, написанных на <a href="https://golang.org/">Go</a>.</p>
 
-<p>
+<p></p>
+
                         <br>
                     </p>
 
@@ -320,13 +415,14 @@
 
                 <div class="article-entry" itemprop="articleBody">
                     <p>
-                        У языка <a href="https://golang.org/">Go</a> шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет <a href="https://golang.org/pkg/time/">time</a>. За всё время работы с <strong>Go</strong>, мне всего лишь дважды приходилось расширять его возможности.</p>
+                        <p>У языка <a href="https://golang.org/">Go</a> шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет <a href="https://golang.org/pkg/time/">time</a>. За всё время работы с <strong>Go</strong>, мне всего лишь дважды приходилось расширять его возможности.</p>
 
 <p>Первый раз, около года назад, понадобилось строковое представление времени и периодов на русском языке, что привело к созданию пакета <a href="https://github.com/ivahaev/russian-time">russian-time</a>. Он не очень красивый, создан на скорую руку, потому не буду на нём останавливаться.</p>
 
 <p>Второй инструмент мне кажется более интересным. Предпосылкой к созданию этого небольшого пакета, была необходимость контроля времени выполнения скриптов во встроенном интерпретаторе <strong>JavaScript</strong> <strong>Google V8</strong>. Так уж повелось, что <strong>JavaScript</strong>, как правило, характеризуется асинхронным поведением, что несколько затрудняло выполнение поставленной задачи. Одним из компонентов решения должен был стать таймер, который можно приостанавливать на неопределённое время, а после запускать снова с момента остановки. Так появился <a href="https://github.com/ivahaev/timer">timer</a>.</p>
 
-<p>
+<p></p>
+
                         <br>
                     </p>
 
@@ -391,9 +487,10 @@
 
                 <div class="article-entry" itemprop="articleBody">
                     <p>
-                        Не смотря на всё многообразие существующих логгеров для <strong>Go</strong>, как-то не удалось подобрать удобный и подходящий для меня. Хотелось иметь инструмент, похожий на те, какими пользовался в других языках. Если хочешь сделать что-то хорошо, сделай это сам.</p>
+                        <p>Не смотря на всё многообразие существующих логгеров для <strong>Go</strong>, как-то не удалось подобрать удобный и подходящий для меня. Хотелось иметь инструмент, похожий на те, какими пользовался в других языках. Если хочешь сделать что-то хорошо, сделай это сам.</p>
 
-<p>
+<p></p>
+
                         <br>
                     </p>
 
@@ -463,7 +560,7 @@
 
                 <div class="article-entry" itemprop="articleBody">
                     <p>
-                        Начиная писать свой первый <a href="http://peach-dialer.com">Peach Dialer</a>, я выбрал язык, который довольно хорошо знал, благо работал с ним с 1999 года&nbsp;&mdash; <strong>PHP</strong>. Меня не смущало, что он, в принципе, не предназначен для создания долгоживущих процессов, но то, что получилось в итоге, работает по несколько месяцев и радует своих владельцев.</p>
+                        <p>Начиная писать свой первый <a href="http://peach-dialer.com">Peach Dialer</a>, я выбрал язык, который довольно хорошо знал, благо работал с ним с 1999 года&nbsp;&mdash; <strong>PHP</strong>. Меня не смущало, что он, в принципе, не предназначен для создания долгоживущих процессов, но то, что получилось в итоге, работает по несколько месяцев и радует своих владельцев.</p>
 
 <p>Потом пошла мода на <a href="https://ru.wikipedia.org/wiki/WebSocket">Websocket</a>, который захотелось применить в интерфейсе, а <strong>PHP</strong> в то время не очень-то умел с ними работать (может, и сейчас не умеет). Я обратил внимание на <a href="https://nodejs.org">node.js</a>. Классная штука, любовь на века, подумал я, но вскоре захотелось большего.</p>
 
@@ -471,7 +568,8 @@
 
 <p>Итак, по сусекам поскребя, да по амбару пометя&#769;, испёк я <a href="https://github.com/ivahaev/amigo">Amigo</a>&nbsp;&mdash; удобную библиотеку для работы с астериском посредством AMI протокола.</p>
 
-<p>
+<p></p>
+
                         <br>
                     </p>
 
@@ -547,13 +645,14 @@
 
                 <div class="article-entry" itemprop="articleBody">
                     <p>
-                        В процессе работы над платформой <a href="http://getblank.net/ru">Blank</a>, возникла задача генерации документов. Так как платформа предполагает очень широкое применение, очень не хотелось формировать документы полностью программно. Нужно дать возможность интеграторам и администраторам системы удобно создавать шаблоны, на основе которых, в дальнейшем, будут формироваться различные документы.</p>
+                        <p>В процессе работы над платформой <a href="http://getblank.net/ru">Blank</a>, возникла задача генерации документов. Так как платформа предполагает очень широкое применение, очень не хотелось формировать документы полностью программно. Нужно дать возможность интеграторам и администраторам системы удобно создавать шаблоны, на основе которых, в дальнейшем, будут формироваться различные документы.</p>
 
 <p>Сервер написан на <a href="https://golang.org/">Go</a>, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область&nbsp;&mdash; есть решения на Яве, используйте их.  Неее, не для того мы на <a href="https://golang.org/">Go</a> пишем, чтобы за собой Яву тянуть.</p>
 
 <p><img src="https://ivahaev.ru/img/net!.jpg" alt="" /></p>
 
-<p>
+<p></p>
+
                         <br>
                     </p>
 
@@ -612,11 +711,12 @@
 
                 <div class="article-entry" itemprop="articleBody">
                     <p>
-                        Это перевод статьи. Раньше желания переводить не возникало, но статья очень понравилась, наверное, из-за того, что сам наступал уже на подобные грабли. Перевод достаточно вольный, но суть передает верно. Если хоть одному начинающему разработчику поможет эта статья, труды мои будут не напрасными :).</p>
+                        <p>Это перевод статьи. Раньше желания переводить не возникало, но статья очень понравилась, наверное, из-за того, что сам наступал уже на подобные грабли. Перевод достаточно вольный, но суть передает верно. Если хоть одному начинающему разработчику поможет эта статья, труды мои будут не напрасными :).</p>
 
 <p>Оригинал статьи доступен по адресу <a href="http://bryce.is/writing/code/jekyll/update/2015/11/01/3-go-gotchas.html">http://bryce.is/writing/code/jekyll/update/2015/11/01/3-go-gotchas.html</a>.</p>
 
-<p>
+<p></p>
+
                         <br>
                     </p>
 

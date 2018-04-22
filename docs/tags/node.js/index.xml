@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Node.Js on ivahaev.ru</title>
-    <link>https://ivahaev.ru/tags/node.js/index.xml</link>
-    <description>Recent content in Node.Js on ivahaev.ru</description>
+    <title>Node.js on ivahaev.ru</title>
+    <link>https://ivahaev.ru/tags/node.js/</link>
+    <description>Recent content in Node.js on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
     <copyright>2016 Евгений Иваха</copyright>
-    <atom:link href="https://ivahaev.ru/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Jul 2016 11:28:50 +0500</lastBuildDate>
+    
+	<atom:link href="https://ivahaev.ru/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Двойной API для асинхронных функций</title>
@@ -22,36 +25,7 @@
 &lt;li&gt;Если в метод не передана колбэк-функция, то метод должен вернуть Promise.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;Если с первым правилом все достаточно просто, то для удобного выполнения второго, в нашей команде родилось короткое однострочное выражение, которые мы повсеместно используем:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Javascript&#34;&gt;let d = (typeof cb !== &amp;quot;function&amp;quot;) ? new Promise((f, r) =&amp;gt; (cb = (e, d) =&amp;gt; e != null ? r(e) : f(d))) : null;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Покажу, как водится, на примере таймера:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Javascript&#34;&gt;var asyncMethod = (timeOut, cb) {
-    // Если cb не является функцией, создаем Promise и модифицируем cb для использования далее.
-    let d = (typeof cb !== &amp;quot;function&amp;quot;) ? new Promise((f, r) =&amp;gt; (cb = (e, d) =&amp;gt; e != null ? r(e) : f(d))) : null;
-
-    // Используем cb как обычный колбэк
-    setTimeout(cb, timeOut);
-
-    // Возвращаем либо Promise, если колбэка не было, либо null
-    return d;
-};
-
-// Используем в классическом стиле:
-asyncMethod(1000, () =&amp;gt; {
-    console.log(&amp;quot;Classic timeout reached!&amp;quot;);
-});
-
-// Используем через Promise
-asyncMethod(1000).then(() =&amp;gt; console.log(&amp;quot;Promise timeout reached!&amp;quot;));
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Таким вот простым способом, можно улучшить публичный API в части асинхронных методов.&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -66,145 +40,7 @@ asyncMethod(1000).then(() =&amp;gt; console.log(&amp;quot;Promise timeout reache
 
 &lt;p&gt;В мае 2016 года было принято решение начать писать тесты в принудительном порядке, тем более, что исходные тексты новой версии нашей платформы &lt;a href=&#34;https://github.com/getblank&#34;&gt;Blank&lt;/a&gt; мы открыли сразу, а в грязь лицом ударить не хотелось.&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;node-js&#34;&gt;Node.js&lt;/h3&gt;
-
-&lt;p&gt;С подсистемой на &lt;a href=&#34;https://nodejs.org&#34;&gt;Node.js&lt;/a&gt; вопросов никаких не возникло. Есть популярное решения для тестирования&amp;nbsp;&amp;mdash; &lt;a href=&#34;mochajs.org&#34;&gt;Mocha&lt;/a&gt; (по-русски лучше не читать :) с понятным синтаксисом и весьма приятным форматированием результатов тестирования. Ну и, конечно, стандартный модуль &lt;a href=&#34;https://nodejs.org/api/assert.html&#34;&gt;Assert&lt;/a&gt; для выполнения проверок.&lt;/p&gt;
-
-&lt;h3 id=&#34;go&#34;&gt;Go&lt;/h3&gt;
-
-&lt;p&gt;С &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; ситуация несколько иная. Стандартная поставка уже имеет средства для оформления и запуска тестов. Я сейчас говорю о пакете &lt;a href=&#34;https://golang.org/pkg/testing/&#34;&gt;testing&lt;/a&gt;, в котором есть даже средства для замера производительности кода. Всё, что требуется&amp;nbsp;&amp;mdash; это создать рядом с тестируемым кодом файл с именем, &lt;em&gt;оканчивающимся&lt;/em&gt; на &lt;code&gt;_test.go&lt;/code&gt;, например, &lt;code&gt;app_test.go&lt;/code&gt;, а в нем должны быть функции, &lt;em&gt;начинающиеся&lt;/em&gt; на &lt;code&gt;Test&lt;/code&gt; и получающие на вход указатель на структуру &lt;code&gt;testing.T&lt;/code&gt;, с помощью методов которой можно, например, &amp;laquo;завалить&amp;raquo; тест. Во время компилляции, такие файлы игнорируются.&lt;/p&gt;
-
-&lt;p&gt;Например, у нас есть пакет с единственным методом, складывающим два положительных целых числа. В случае, если одно из чисел окажется отрицательным, функция возвращает ошибку. Понятно, что в реальной жизни программы должны делать что-то более полезное, но для объяснения сути, так даже понятнее:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// adder.go
-package adder
-
-import &amp;quot;errors&amp;quot;
-
-func AddPositive(a, b int) (int, error) {
-    if a &amp;lt; 0 || b &amp;lt; 0 {
-        return 0, errors.New(&amp;quot;only positive integers allowed&amp;quot;)
-    }
-    return a + b, nil
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Напишем тесты:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// adder_test.go
-package adder
-
-import &amp;quot;testing&amp;quot;
-
-func TestAddPositiveSuccess(t *testing.T) {
-	expected := 5
-	res, err := AddPositive(2, 3)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if res != expected {
-		t.Fatal(&amp;quot;Achtung! value != expected&amp;quot;)
-	}
-}
-
-func TestAddPositiveFail(t *testing.T) {
-	_, err := AddPositive(2, -3)
-	if err == nil {
-		t.Fatal(&amp;quot;must return error&amp;quot;)
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;В общем случае, чтобы запустить тестирование, достаточно выполнить команду &lt;code&gt;go test&lt;/code&gt;. Если все работает правильно, мы увидим нечто вроде &lt;strong&gt;PASS&lt;/strong&gt; в консоли, что означает, что тесты выполнились успешно.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bash-3.2$ go test
-PASS
-ok  	_/tmp/adder	0.018s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Не очень-то информативно.&lt;/p&gt;
-
-&lt;p&gt;Вроде бы, никаких проблем, тест читаемый&amp;nbsp;&amp;mdash; если произошла ошибка, или результат выполнения функции не тот, что ожидали, то всё плохо. Смысл теста можно вложить в название тест-функции. Если тест будет завален, то в консоль будет выведена функция, в которой не прошли проверки и строка с соответствующей инструкцией &lt;code&gt;t.Fatal&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bash-3.2$ go test
---- FAIL: TestAddPositiveFail (0.00s)
-	adder_test.go:19: must return error
-FAIL
-exit status 1
-FAIL	_/tmp/adder	0.009s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Но после  &lt;strong&gt;Mocha&lt;/strong&gt; хочется какого-то бо&amp;#769;льшего удовлетворения. Чтобы красиво вывести все проверки. Чтобы можно было подробнее описать что именно тестируем и почему такой-то результат ожидаем.&lt;/p&gt;
-
-&lt;h3 id=&#34;goblin&#34;&gt;Goblin&lt;/h3&gt;
-
-&lt;p&gt;Поиск инструмента я начал с ресурса &lt;a href=&#34;https://github.com/avelino/awesome-go&#34;&gt;Awesome Go&lt;/a&gt;, там вообще много чего интересного можно найти, а иногда даже и полезного. Перебрал кучу тестирующих фреймворков, пока не дошёл до &lt;a href=&#34;https://github.com/franela/goblin&#34;&gt;Гоблина&lt;/a&gt;. Т.к. мы договорились не называть по-русски другой фреймворк, то скажу дословно, как рассказывают о Гоблине его содатели:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;A Mocha like BDD testing framework for Go&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;То, что доктор прописал!&lt;/p&gt;
-
-&lt;p&gt;Перепишем наш тест с использованием Гоблина:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package adder
-
-import (
-	&amp;quot;github.com/franela/goblin&amp;quot;
-	&amp;quot;testing&amp;quot;
-)
-
-func TestAddPositive(t *testing.T) {
-	g := goblin.Goblin(t)
-
-	g.Describe(&amp;quot;#AddPositive&amp;quot;, func() {
-		g.It(&amp;quot;should return nil error and expected result when positive integer passed&amp;quot;, func() {
-			expected := 5
-			res, err := AddPositive(2, 3)
-			g.Assert(err == nil).IsTrue()
-			g.Assert(res).Equal(expected)
-		})
-
-		g.It(&amp;quot;should return error when negative integer passed&amp;quot;, func() {
-			_, err := AddPositive(2, -3)
-			g.Assert(err == nil).IsFalse()
-		})
-	})
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;А теперь посмотрим на вывод команды &lt;code&gt;go test&lt;/code&gt; в консоли:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bash-3.2$ go test
-
-  #AddPositive
-    ✔ should return nil error and expected result when positiv integer passed
-    ✔ should return error when negative integer passed
-
-
- 2 tests complete (0 ms)
-PASS
-ok  	_/tmp/adder	0.008s
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;На мой взгляд, гораздо приятнее. При этом ещё и красиво цветом выделяются пройдённые тесты. Что тест, что вывод в консоли говорит сам за себя&amp;nbsp;&amp;mdash; тестируем функцию &lt;code&gt;AddPositive&lt;/code&gt;, которая должна выполниться без ошибки и вернуть ожидаемый результат, если на вход подаются положительные значения, а так же должна вернуть ошибку, если на вход подали что-то отрицательное.&lt;/p&gt;
-
-&lt;p&gt;Попробовав один раз, использую теперь Гоблина во всех проектах, я им очень доволен. При этом, Гоблин полностью совместим со стандартной библиотекой testing.&lt;/p&gt;
-
-&lt;h3 id=&#34;goconvey&#34;&gt;GoConvey&lt;/h3&gt;
-
-&lt;p&gt;А теперь ещё один секрет. Есть довольно интересная штука, которая называется &lt;a href=&#34;http://goconvey.co/&#34;&gt;GoConvey&lt;/a&gt;. Это тоже фреймворк для тестирования, но с несколько другой идеологией, которая мне не очень понравилась. Зато мне понравилось как GoConvey работает в связке с Гоблином. Установив программу, запускаем в корне проекта. GoConvey сам откроет браузер, где мы сможем наблюдать вот такую красоту:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://ivahaev.ru/img/goconvey_success800.png&#34; alt=&#34;output&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Он сам запустит тесты во всех сабмодулях, выведет суммарный отчет, покажет степень покрытия кода тестами (у нас 100% покрытие, как мы видим :). При этом будет перезапускать тесты при каждом изменении исходного кода и тут же отображать результат в браузере. Это просто праздник какой-то!&lt;/p&gt;
-
-&lt;p&gt;С самостоятельным тестированием разобрались. В следующей статье расскажу, как тестировать проекты принудительно. Не переключайтесь!&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -217,65 +53,7 @@ ok  	_/tmp/adder	0.008s
 
 &lt;p&gt;Что самое интересное, статья написана 24 июня, примерно в то же время, может быть, днём ранее, я написал инструмент для себя, который позволяет автоматизировать процесс изменения патч-версии приложений, написанных на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;Вдохновил меня на этот поступок, как ни странно, инструмент из мира &lt;a href=&#34;https://nodejs.org&#34;&gt;node.js&lt;/a&gt;&amp;nbsp;&amp;mdash; &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt;. Дело в том, что &lt;strong&gt;npm&lt;/strong&gt; имеет в своём арсенале команду &lt;code&gt;version patch&lt;/code&gt;, которая делает три простые и очень нужные вещи для npm пакетов:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Увеличивает на единичку в файле &lt;strong&gt;package.json&lt;/strong&gt; версию патча, согласно &lt;a href=&#34;http://semver.org/spec/v2.0.0.html&#34;&gt;SemVer 2.0.0&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;Комитит файла &lt;strong&gt;package.json&lt;/strong&gt;;&lt;/li&gt;
-&lt;li&gt;Навешивает на комит тэг, соответствующий версии в &lt;strong&gt;package.json&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;В нашем главном проекте &lt;a href=&#34;http://getblank.net&#34;&gt;Blank&lt;/a&gt;, в npm пакетах, мы дописали скрипты в файл &lt;strong&gt;package.json&lt;/strong&gt; для автоматической заливки изменений на &lt;a href=&#34;https://github.com/&#34;&gt;github&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JSON&#34;&gt;  &amp;quot;scripts&amp;quot;: {
-    &amp;quot;patch&amp;quot;: &amp;quot;npm version patch &amp;amp;&amp;amp; npm run push&amp;quot;,
-    &amp;quot;push&amp;quot;: &amp;quot;git push origin master --follow-tags &amp;amp;&amp;amp; npm publish&amp;quot;
-  }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Таким образом, для того, чтобы &amp;laquo;зарелизить&amp;raquo; новую патч-версию своего приложения, достаточно написать в корне проекта:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; npm run patch
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;NPM остальное сделает сам&amp;nbsp;&amp;mdash; увеличит версию патча, сделает комит, навесит тэг с версией и отправит на github.&lt;/p&gt;
-
-&lt;p&gt;Мне эта штука так понравилась, что, не найдя ничего похожего для &lt;strong&gt;Go&lt;/strong&gt;, я решил сделать подобный инструмент для гоферов. Итак, представляю &lt;a href=&#34;https://github.com/ivahaev/patcher&#34;&gt;patcher&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Что он делает:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;В файле &lt;strong&gt;main.go&lt;/strong&gt; в корне проекта ищет переменную &lt;strong&gt;version&lt;/strong&gt; и увеличивает на единицу патч-версию;&lt;/li&gt;
-&lt;li&gt;Комитит файл &lt;strong&gt;main.go&lt;/strong&gt; с сообщением &lt;strong&gt;Version update: ЗНАЧЕНИЕ_ПЕРЕМЕННОЙ_version&lt;/strong&gt;;&lt;/li&gt;
-&lt;li&gt;Навешивает к комиту тэг &lt;strong&gt;vЗНАЧЕНИЕ_ПЕРЕМЕННОЙ_version&lt;/strong&gt;;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Кроме того, при запуске с ключом &lt;strong&gt;-p&lt;/strong&gt; (&lt;code&gt;patcher -p&lt;/code&gt;), утилита тут же отправит все изменения в удалённый репозиторий. Вот так всё просто.&lt;/p&gt;
-
-&lt;p&gt;Далее уже можно настроить систему непрерывной интеграции, например, на сборку тэгированных релизов с автоматическим обновлением сервисов, либо с публикацией на ресурсах для скачивания приложения.&lt;/p&gt;
-
-&lt;p&gt;Установка производится как обычно:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; go get github.com/ivahaev/patcher
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Если &lt;code&gt;$GOPATH/bin&lt;/code&gt; находится в вашем &lt;code&gt;$PATH&lt;/code&gt;, запуск производится из командной строки&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; patcher [filename [varName]] [-p]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Или если в &lt;code&gt;$PATH&lt;/code&gt; не прописаны пути:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; $GOPATH/bin/patcher [filename [varName]] [-p]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Есть два необязательных параметра&amp;nbsp;&amp;mdash; имя файла, в котором находится переменная с версией и, имя самой переменной с версией приложения. По-умолчанию, эти параметры равны &lt;strong&gt;main.go&lt;/strong&gt; и &lt;strong&gt;version&lt;/strong&gt;, соответственно. Также, если указать ключ &lt;strong&gt;-p&lt;/strong&gt;, утилита автоматически отправит изменения в удалённый репозиторий.&lt;/p&gt;
-
-&lt;p&gt;Я использую эту утилиту каждый день и она делает мою жизнь гораздо ярче, чего и вам желаю :).&lt;/p&gt;
-
-&lt;p&gt;В другой раз расскажу о том, как всё это используется для непрерывной интеграции в наших проектах.&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

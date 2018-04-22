@@ -2,12 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Log on ivahaev.ru</title>
-    <link>https://ivahaev.ru/tags/log/index.xml</link>
+    <link>https://ivahaev.ru/tags/log/</link>
     <description>Recent content in Log on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
     <copyright>2016 Евгений Иваха</copyright>
-    <atom:link href="https://ivahaev.ru/tags/log/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jan 2016 00:47:11 +0500</lastBuildDate>
+    
+	<atom:link href="https://ivahaev.ru/tags/log/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>go-logger – простой и информативный логгер для Go</title>
@@ -17,50 +20,7 @@
       <guid>https://ivahaev.ru/post/simple-logger-for-golang/</guid>
       <description>&lt;p&gt;Не смотря на всё многообразие существующих логгеров для &lt;strong&gt;Go&lt;/strong&gt;, как-то не удалось подобрать удобный и подходящий для меня. Хотелось иметь инструмент, похожий на те, какими пользовался в других языках. Если хочешь сделать что-то хорошо, сделай это сам.&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Update 3 августа 2016 года.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Здесь имеется ввиду логирование какой-то информации в консоль, либо файл. Случай со структурированными логами рассматривается в конце статьи.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Итак, мой &lt;a href=&#34;https://github.com/ivahaev/go-logger&#34;&gt;go-logger&lt;/a&gt;. Что он умеет и чем он лучше других:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Все методы логгирования принимают любое количество аргументов любых типов;&lt;/li&gt;
-&lt;li&gt;Метод &lt;a href=&#34;https://godoc.org/github.com/ivahaev/go-logger#Debug&#34;&gt;Debug()&lt;/a&gt; красиво выводит данные. Если это структура, слайс или мапа, то будет наглядно видно что в них, если же это простая переменная, то увидим тип и размер;&lt;/li&gt;
-&lt;li&gt;Отображается файл и строка в которой вызвано логгирование;&lt;/li&gt;
-&lt;li&gt;Цветовое кодирование каждого уровня;&lt;/li&gt;
-&lt;li&gt;Возможность изменить формат вывода даты.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;пример&#34;&gt;Пример&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    package main
-
-    import &amp;quot;github.com/ivahaev/go-logger&amp;quot;
-
-    func main() {
-        logger.SetLevel(&amp;quot;DEBUG&amp;quot;)
-
-        logger.Debug(&amp;quot;Some string for debug&amp;quot;, 123, map[string]interface{}{&amp;quot;prop1&amp;quot;: &amp;quot;val1&amp;quot;, &amp;quot;prop2&amp;quot;: 321})
-        logger.Info(&amp;quot;Some string for info&amp;quot;, 123, map[string]interface{}{&amp;quot;prop1&amp;quot;: &amp;quot;val1&amp;quot;, &amp;quot;prop2&amp;quot;: 321})
-        logger.Notice(&amp;quot;Some string for debug&amp;quot;, 123, map[string]interface{}{&amp;quot;prop1&amp;quot;: &amp;quot;val1&amp;quot;, &amp;quot;prop2&amp;quot;: 321})
-        logger.Warn(&amp;quot;Some string for warning&amp;quot;, 123, map[string]interface{}{&amp;quot;prop1&amp;quot;: &amp;quot;val1&amp;quot;, &amp;quot;prop2&amp;quot;: 321})
-        logger.Error(&amp;quot;Some string for error&amp;quot;, 123, map[string]interface{}{&amp;quot;prop1&amp;quot;: &amp;quot;val1&amp;quot;, &amp;quot;prop2&amp;quot;: 321})
-        logger.Crit(&amp;quot;Some string for critical&amp;quot;, 123, map[string]interface{}{&amp;quot;prop1&amp;quot;: &amp;quot;val1&amp;quot;, &amp;quot;prop2&amp;quot;: 321})
-    }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Вот что получим в консоли:
-&lt;img src=&#34;https://ivahaev.ru/img/logger-console.png&#34; alt=&#34;output&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Со временем добавлю возможность прятать файл вызова и строку, такие мысли уже посещали для продакшина. Может быть, что-то ещё, но пока этот логгер меня устраивает на 100%, я его использую во всех своих проектах. Возможно, пригодится и вам!&lt;/p&gt;
-
-&lt;h4 id=&#34;p-s-3-августа-2016-года&#34;&gt;P.S. 3 августа 2016 года.&lt;/h4&gt;
-
-&lt;p&gt;В данный момент полностью перешёл на &lt;a href=&#34;https://github.com/Sirupsen/logrus&#34;&gt;logrus&lt;/a&gt;, т.к. стал использовать аггрегирование логов в &lt;a href=&#34;https://www.graylog.org/&#34;&gt;Graylog2&lt;/a&gt;, и он здесь удобнее, я оценил всю прелесть структурированных логов. Свой же логгер использую для дебага в процессе разработки, в основном, метод &lt;a href=&#34;https://godoc.org/github.com/ivahaev/go-logger#Debug&#34;&gt;Debug()&lt;/a&gt;.&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

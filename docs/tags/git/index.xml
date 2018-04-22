@@ -2,12 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on ivahaev.ru</title>
-    <link>https://ivahaev.ru/tags/git/index.xml</link>
+    <link>https://ivahaev.ru/tags/git/</link>
     <description>Recent content in Git on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
     <copyright>2016 Евгений Иваха</copyright>
-    <atom:link href="https://ivahaev.ru/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Jul 2016 23:11:50 +0500</lastBuildDate>
+    
+	<atom:link href="https://ivahaev.ru/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Версионирование go программ</title>
@@ -19,65 +22,7 @@
 
 &lt;p&gt;Что самое интересное, статья написана 24 июня, примерно в то же время, может быть, днём ранее, я написал инструмент для себя, который позволяет автоматизировать процесс изменения патч-версии приложений, написанных на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;Вдохновил меня на этот поступок, как ни странно, инструмент из мира &lt;a href=&#34;https://nodejs.org&#34;&gt;node.js&lt;/a&gt;&amp;nbsp;&amp;mdash; &lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt;. Дело в том, что &lt;strong&gt;npm&lt;/strong&gt; имеет в своём арсенале команду &lt;code&gt;version patch&lt;/code&gt;, которая делает три простые и очень нужные вещи для npm пакетов:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Увеличивает на единичку в файле &lt;strong&gt;package.json&lt;/strong&gt; версию патча, согласно &lt;a href=&#34;http://semver.org/spec/v2.0.0.html&#34;&gt;SemVer 2.0.0&lt;/a&gt;;&lt;/li&gt;
-&lt;li&gt;Комитит файла &lt;strong&gt;package.json&lt;/strong&gt;;&lt;/li&gt;
-&lt;li&gt;Навешивает на комит тэг, соответствующий версии в &lt;strong&gt;package.json&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;В нашем главном проекте &lt;a href=&#34;http://getblank.net&#34;&gt;Blank&lt;/a&gt;, в npm пакетах, мы дописали скрипты в файл &lt;strong&gt;package.json&lt;/strong&gt; для автоматической заливки изменений на &lt;a href=&#34;https://github.com/&#34;&gt;github&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-JSON&#34;&gt;  &amp;quot;scripts&amp;quot;: {
-    &amp;quot;patch&amp;quot;: &amp;quot;npm version patch &amp;amp;&amp;amp; npm run push&amp;quot;,
-    &amp;quot;push&amp;quot;: &amp;quot;git push origin master --follow-tags &amp;amp;&amp;amp; npm publish&amp;quot;
-  }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Таким образом, для того, чтобы &amp;laquo;зарелизить&amp;raquo; новую патч-версию своего приложения, достаточно написать в корне проекта:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; npm run patch
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;NPM остальное сделает сам&amp;nbsp;&amp;mdash; увеличит версию патча, сделает комит, навесит тэг с версией и отправит на github.&lt;/p&gt;
-
-&lt;p&gt;Мне эта штука так понравилась, что, не найдя ничего похожего для &lt;strong&gt;Go&lt;/strong&gt;, я решил сделать подобный инструмент для гоферов. Итак, представляю &lt;a href=&#34;https://github.com/ivahaev/patcher&#34;&gt;patcher&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Что он делает:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;В файле &lt;strong&gt;main.go&lt;/strong&gt; в корне проекта ищет переменную &lt;strong&gt;version&lt;/strong&gt; и увеличивает на единицу патч-версию;&lt;/li&gt;
-&lt;li&gt;Комитит файл &lt;strong&gt;main.go&lt;/strong&gt; с сообщением &lt;strong&gt;Version update: ЗНАЧЕНИЕ_ПЕРЕМЕННОЙ_version&lt;/strong&gt;;&lt;/li&gt;
-&lt;li&gt;Навешивает к комиту тэг &lt;strong&gt;vЗНАЧЕНИЕ_ПЕРЕМЕННОЙ_version&lt;/strong&gt;;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Кроме того, при запуске с ключом &lt;strong&gt;-p&lt;/strong&gt; (&lt;code&gt;patcher -p&lt;/code&gt;), утилита тут же отправит все изменения в удалённый репозиторий. Вот так всё просто.&lt;/p&gt;
-
-&lt;p&gt;Далее уже можно настроить систему непрерывной интеграции, например, на сборку тэгированных релизов с автоматическим обновлением сервисов, либо с публикацией на ресурсах для скачивания приложения.&lt;/p&gt;
-
-&lt;p&gt;Установка производится как обычно:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; go get github.com/ivahaev/patcher
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Если &lt;code&gt;$GOPATH/bin&lt;/code&gt; находится в вашем &lt;code&gt;$PATH&lt;/code&gt;, запуск производится из командной строки&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; patcher [filename [varName]] [-p]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Или если в &lt;code&gt;$PATH&lt;/code&gt; не прописаны пути:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; $GOPATH/bin/patcher [filename [varName]] [-p]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Есть два необязательных параметра&amp;nbsp;&amp;mdash; имя файла, в котором находится переменная с версией и, имя самой переменной с версией приложения. По-умолчанию, эти параметры равны &lt;strong&gt;main.go&lt;/strong&gt; и &lt;strong&gt;version&lt;/strong&gt;, соответственно. Также, если указать ключ &lt;strong&gt;-p&lt;/strong&gt;, утилита автоматически отправит изменения в удалённый репозиторий.&lt;/p&gt;
-
-&lt;p&gt;Я использую эту утилиту каждый день и она делает мою жизнь гораздо ярче, чего и вам желаю :).&lt;/p&gt;
-
-&lt;p&gt;В другой раз расскажу о том, как всё это используется для непрерывной интеграции в наших проектах.&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>
