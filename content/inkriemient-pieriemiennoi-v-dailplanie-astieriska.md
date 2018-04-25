@@ -4,8 +4,9 @@ draft = false
 title = "Инкремент переменной в дайлплане Астериска"
 slug = "inkriemient-pieriemiennoi-v-dailplanie-astieriska"
 tags = ["asterisk", "dialplan", "counter", "increment", "telephony"]
+type = "post"
 aliases = [
-	"inkriemient-pieriemiennoi-v-dailplanie-astieriska"
+	"post/inkriemient-pieriemiennoi-v-dailplanie-astieriska"
 ]
 +++
 Если требуется реализовать какой-то счетчик в дайлплане, удобно использовать переменную канала. Но просто так изменить её значение, прибавляя единицу, не получится.

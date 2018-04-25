@@ -14,10 +14,10 @@
     
     <item>
       <title>Инкремент переменной в дайлплане Астериска</title>
-      <link>https://ivahaev.ru/post/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</link>
+      <link>https://ivahaev.ru/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</link>
       <pubDate>Sat, 14 Nov 2015 12:34:30 +0500</pubDate>
       
-      <guid>https://ivahaev.ru/post/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</guid>
+      <guid>https://ivahaev.ru/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</guid>
       <description>&lt;p&gt;Если требуется реализовать какой-то счетчик в дайлплане, удобно использовать переменную канала. Но просто так изменить её значение, прибавляя единицу, не получится.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>

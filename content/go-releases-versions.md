@@ -5,6 +5,10 @@ slug = "go-releases-versions"
 banner = "/img/semver02.png"
 
 tags = [ "go", "golang", "SemVer", "node.js", "npm", "git" ]
+type = "post"
+aliases = [
+     "post/go-releases-versions"
+]
 +++
 
 Читая новости [на отличном ресурсе по Go](http://4gophers.ru/), наткнулся на статью Дейва Чени [Гоферы, тэгируйте свои релизы](http://dave.cheney.net/2016/06/24/gophers-please-tag-your-releases). Вкратце, там говорится о полезности тэгов к комитам пакета в git репозитории, а так же о том, что при указании версии, стоит обратить внимание на формат [SemVer 2.0.0](http://semver.org/spec/v2.0.0.html).

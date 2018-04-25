@@ -14,10 +14,10 @@
     
     <item>
       <title>Прокаченный таймер на Go</title>
-      <link>https://ivahaev.ru/post/advanced-go-timer/</link>
+      <link>https://ivahaev.ru/advanced-go-timer/</link>
       <pubDate>Sun, 01 May 2016 14:12:32 +0500</pubDate>
       
-      <guid>https://ivahaev.ru/post/advanced-go-timer/</guid>
+      <guid>https://ivahaev.ru/advanced-go-timer/</guid>
       <description>&lt;p&gt;У языка &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет &lt;a href=&#34;https://golang.org/pkg/time/&#34;&gt;time&lt;/a&gt;. За всё время работы с &lt;strong&gt;Go&lt;/strong&gt;, мне всего лишь дважды приходилось расширять его возможности.&lt;/p&gt;
 
 &lt;p&gt;Первый раз, около года назад, понадобилось строковое представление времени и периодов на русском языке, что привело к созданию пакета &lt;a href=&#34;https://github.com/ivahaev/russian-time&#34;&gt;russian-time&lt;/a&gt;. Он не очень красивый, создан на скорую руку, потому не буду на нём останавливаться.&lt;/p&gt;

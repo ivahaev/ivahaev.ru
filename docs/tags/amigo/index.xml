@@ -14,10 +14,10 @@
     
     <item>
       <title>Amigo – лучший друг Golang и Asterisk</title>
-      <link>https://ivahaev.ru/post/amigo-best-frend-of-golang-and-asterisk/</link>
+      <link>https://ivahaev.ru/amigo-best-frend-of-golang-and-asterisk/</link>
       <pubDate>Thu, 14 Jan 2016 21:52:24 +0500</pubDate>
       
-      <guid>https://ivahaev.ru/post/amigo-best-frend-of-golang-and-asterisk/</guid>
+      <guid>https://ivahaev.ru/amigo-best-frend-of-golang-and-asterisk/</guid>
       <description>&lt;p&gt;Начиная писать свой первый &lt;a href=&#34;http://peach-dialer.com&#34;&gt;Peach Dialer&lt;/a&gt;, я выбрал язык, который довольно хорошо знал, благо работал с ним с 1999 года&amp;nbsp;&amp;mdash; &lt;strong&gt;PHP&lt;/strong&gt;. Меня не смущало, что он, в принципе, не предназначен для создания долгоживущих процессов, но то, что получилось в итоге, работает по несколько месяцев и радует своих владельцев.&lt;/p&gt;
 
 &lt;p&gt;Потом пошла мода на &lt;a href=&#34;https://ru.wikipedia.org/wiki/WebSocket&#34;&gt;Websocket&lt;/a&gt;, который захотелось применить в интерфейсе, а &lt;strong&gt;PHP&lt;/strong&gt; в то время не очень-то умел с ними работать (может, и сейчас не умеет). Я обратил внимание на &lt;a href=&#34;https://nodejs.org&#34;&gt;node.js&lt;/a&gt;. Классная штука, любовь на века, подумал я, но вскоре захотелось большего.&lt;/p&gt;

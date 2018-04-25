@@ -3,6 +3,7 @@ date = "2018-04-21T11:55:00+05:00"
 title = "Мой подход к тестированию. Часть вторая"
 slug = "how-to-test-go-applications-my-way-part-two"
 draft = false
+type = "post"
 
 tags = [ "go", "golang", "test", "testing", "goconvey", "goblin" ]
 +++

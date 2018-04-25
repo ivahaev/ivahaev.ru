@@ -1,1 +1,276 @@
-<!DOCTYPE html><html><head><title>https://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</title><link rel="canonical" href="https://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/"/><meta name="robots" content="noindex"><meta http-equiv="content-type" content="text/html; charset=utf-8" /><meta http-equiv="refresh" content="0; url=https://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/" /></head></html>
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>Проигрывание файла при телефонном разговоре &middot; ivahaev.ru</title>
+    <meta name="generator" content="Hugo 0.39" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <meta name="description" content="">
+    
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
+<meta name='yandex-verification' content='7a8a89f15378f8c0' />
+
+
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter33509963 = new Ya.Metrika({
+                    id:33509963,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+
+    
+    <meta propperty="og:url" content="https://ivahaev.ru/proighryvaniie-faila-pri-tieliefonnom-razghovorie/" />
+    <meta propperty="og:title" content="Проигрывание файла при телефонном разговоре" />
+    
+      <meta propperty="og:description" content="В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.
+
+Рассмотрим вариант решения данной задачи на базе IP PBX Asterisk.
+
+
+" />
+    
+
+
+</head>
+
+<body>
+    <div id="sidebar">
+    <div id="sidebar-content" class="inner">
+        <h2 class="blog-title">
+            <a href="https://ivahaev.ru/">ivahaev.ru</a>
+        </h2>
+        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
+        <div id="sidebar-links">
+            
+            <ul id="navigation">
+                
+                <li class="nav" role="presentation">
+                    <a href="https://ivahaev.ru/about">
+                        <i class="fa fa-navicon"></i>Об авторе</a>
+                </li>
+            </ul>
+            <ul id="sidebar-external">
+                <li>
+                    <a href="https://github.com/ivahaev">
+                        <i class="fa fa-github"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="https://github.com/getblank">
+                        <i class="fa fa-github"></i>getblank</a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/ivahaev">
+                        <i class="fa fa-paper-plane"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="skype:ivahaev?chat">
+                        <i class="fa fa-skype"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a target="_blank" href="mailto:ivahaev@gmail.com">
+                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
+                </li>
+            </ul>
+            <ul id="sidebar-partners">
+                <div>Партнёры:</div>
+                
+                <li>
+                    <a href="http://borisoft.info/"></a>
+                    <a href="http://sclif.pro">
+                        <i class="fa fa-linux"></i>Sclif</a>
+                </li>
+            </ul>
+        </div>
+
+        <footer class="site-footer">
+            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+        </footer>
+    </div>
+</div>
+
+    <main>
+        <div class="main-inner">
+            <section id="results"></section>
+            
+            <section id="main">
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a> <header class="article-header">
+    <a href="https://ivahaev.ru/proighryvaniie-faila-pri-tieliefonnom-razghovorie/">
+    
+    <h1 class="article-title" itemprop="name">
+        Проигрывание файла при телефонном разговоре
+    </h1>
+    
+    </a>
+    <div class="article-meta">
+        <div class="post-time">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2015-11-11 01:53:02 &#43;0500 &#43;05" itemprop="datePublished" class="fulldate_"><strong>11 ноября 2015 года
+</strong></time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/asterisk">asterisk</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/callcenter">callcenter</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/freepbx">freepbx</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/telephony">telephony</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.</p>
+
+<p>Рассмотрим вариант решения данной задачи на базе <strong>IP PBX Asterisk</strong>.</p>
+
+<p></p>
+
+<p>Пример для <strong>FreePBX</strong>, для голого астериска все делается ещё проще.</p>
+
+<p>Первым делом, нужно добавить сочетание клавиш на вызов макроса в <code>features.conf</code>, или для <strong>FreePBX</strong> в <code>features_applicationmap_custom.conf</code>:</p>
+
+<pre><code>playsound =&gt; *6,callee,macro,playsound
+</code></pre>
+
+<p>По нажатию в разговоре *<strong>6</strong> вызовется макрос playsound</p>
+
+<p>Важный момент, нужно добавить возможность вызова макроса. Для этого либо в дайлплане присваиваем переменную:</p>
+
+<pre><code>exten =&gt; _+x.,n,Set(DYNAMIC_FEATURES=playsound)
+</code></pre>
+
+<p>Либо в <strong>extensions.conf</strong> пишем в секции <strong>[globals]</strong>:</p>
+
+<pre><code>DYNAMIC_FEATURES=playsound
+</code></pre>
+
+<p>Макрос и нужный контекст в дайлплане:</p>
+
+<pre><code>[macro-playsound]
+
+exten =&gt; s,1,AGI(create_spy.php,${CHANNEL})
+
+; end of [macro-playsound]
+
+[spy]
+exten =&gt; 1,1,Chanspy(${chan},v(-4)wqBbE)
+exten =&gt; 1,n,Hangup
+
+exten =&gt; 2,1,Answer
+exten =&gt; 2,n,Set(VOLUME(TX)=-3)
+exten =&gt; 2,n,Playback(${audio})
+exten =&gt; 2,n,Hangup
+
+; end of [spy]
+</code></pre>
+
+<p>Файл <strong>create_spy.agi</strong>:</p>
+
+<pre><code>#!/usr/bin/php -q
+
+&lt;?php
+
+$par=$argv[1];
+$channel= $par;
+
+    $uid=time();
+    $f1=fopen(&quot;/tmp/$uid.call&quot;,&quot;w&quot;);
+    fputs($f1,&quot;Channel: LOCAL/2@spy\n&quot;);
+    fputs($f1,&quot;MaxRetries: 0\n&quot;);
+    fputs($f1,&quot;RetryTime: 600\n&quot;);
+    fputs($f1,&quot;WaitTime: 30\n&quot;);
+    fputs($f1,&quot;Context: spy\n&quot;);
+    fputs($f1,&quot;Extension: 1\n&quot;);
+    fputs($f1,&quot;Priority: 1\n&quot;);
+    fputs($f1,&quot;Set: audio=custom/VOICE_FILE\nSet: chan=$channel\n&quot;);
+    fclose($f1);
+    system(&quot;mv /tmp/$uid.call /var/spool/asterisk/outgoing/&quot;);
+</code></pre>
+
+<p>Здесь <strong>VOICE_FILE</strong> - это проигрываемый файл.  Не забыть сделать <code>chmod +x /var/lib/asterisk/agi-bin/create_spy.php</code> ну или где в нашем дистрибутиве расположены <strong>agi</strong> скрипты.</p>
+
+<p>Само собой, можно сделать все через <strong>AMI</strong>, в данном случае, была задача показать вариант решения вопроса. Реализация за вами!</p>
+            </div>
+            <footer class="article-footer">
+    
+    <a href="https://ivahaev.ru/proighryvaniie-faila-pri-tieliefonnom-razghovorie//#disqus_thread" class="article-comment-link">
+        Комментарии
+    </a>
+
+    <a name="disqus_thread"></a>
+    <section class="post-comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//ivahaev.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </section>
+    
+</footer>
+        </div>
+    </article>
+</section>
+
+        </div>
+    </main>
+
+    <script src="https://ivahaev.ru/js/prism.js"></script>
+</body>
+
+</html>

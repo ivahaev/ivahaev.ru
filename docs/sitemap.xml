@@ -3,72 +3,72 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/</loc>
+    <loc>https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/</loc>
     <lastmod>2018-04-21T11:55:00+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/javascript-callback-promise-dual-api/</loc>
+    <loc>https://ivahaev.ru/javascript-callback-promise-dual-api/</loc>
     <lastmod>2016-07-13T11:28:50+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-one/</loc>
+    <loc>https://ivahaev.ru/how-to-test-go-applications-my-way-part-one/</loc>
     <lastmod>2016-07-08T03:11:50+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/go-releases-versions/</loc>
+    <loc>https://ivahaev.ru/go-releases-versions/</loc>
     <lastmod>2016-07-01T23:11:50+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/advanced-go-timer/</loc>
+    <loc>https://ivahaev.ru/advanced-go-timer/</loc>
     <lastmod>2016-05-01T14:12:32+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/simple-logger-for-golang/</loc>
+    <loc>https://ivahaev.ru/simple-logger-for-golang/</loc>
     <lastmod>2016-01-18T00:47:11+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/amigo-best-frend-of-golang-and-asterisk/</loc>
+    <loc>https://ivahaev.ru/amigo-best-frend-of-golang-and-asterisk/</loc>
     <lastmod>2016-01-14T21:52:24+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/go-xlsx-templater/</loc>
+    <loc>https://ivahaev.ru/go-xlsx-templater/</loc>
     <lastmod>2015-12-28T00:05:30+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/smart-callback/</loc>
+    <loc>https://ivahaev.ru/smart-callback/</loc>
     <lastmod>2015-11-23T00:57:54+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</loc>
+    <loc>https://ivahaev.ru/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</loc>
     <lastmod>2015-11-14T12:34:30+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/deep-debug-astierisk/</loc>
+    <loc>https://ivahaev.ru/deep-debug-astierisk/</loc>
     <lastmod>2015-11-12T16:30:30+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/three-often-mistakes-wth-go/</loc>
+    <loc>https://ivahaev.ru/three-often-mistakes-wth-go/</loc>
     <lastmod>2015-11-12T01:32:28+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</loc>
+    <loc>https://ivahaev.ru/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</loc>
     <lastmod>2015-11-11T01:53:02+05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ivahaev.ru/post/blank/</loc>
+    <loc>https://ivahaev.ru/blank/</loc>
     <lastmod>2015-11-11T00:44:42+05:00</lastmod>
   </url>
   
@@ -235,12 +235,6 @@
   <url>
     <loc>https://ivahaev.ru/tags/pbx/</loc>
     <lastmod>2015-11-23T00:57:54+05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ivahaev.ru/post/</loc>
-    <lastmod>2018-04-21T11:55:00+05:00</lastmod>
     <priority>0</priority>
   </url>
   

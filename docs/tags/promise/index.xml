@@ -14,10 +14,10 @@
     
     <item>
       <title>Двойной API для асинхронных функций</title>
-      <link>https://ivahaev.ru/post/javascript-callback-promise-dual-api/</link>
+      <link>https://ivahaev.ru/javascript-callback-promise-dual-api/</link>
       <pubDate>Wed, 13 Jul 2016 11:28:50 +0500</pubDate>
       
-      <guid>https://ivahaev.ru/post/javascript-callback-promise-dual-api/</guid>
+      <guid>https://ivahaev.ru/javascript-callback-promise-dual-api/</guid>
       <description>&lt;p&gt;Когда пишешь публичные асинхронные методы на &lt;strong&gt;JavaScript&lt;/strong&gt;, желательно придерживаться двух простых правил:&lt;/p&gt;
 
 &lt;ol&gt;

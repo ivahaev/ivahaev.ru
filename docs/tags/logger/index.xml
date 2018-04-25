@@ -14,10 +14,10 @@
     
     <item>
       <title>go-logger – простой и информативный логгер для Go</title>
-      <link>https://ivahaev.ru/post/simple-logger-for-golang/</link>
+      <link>https://ivahaev.ru/simple-logger-for-golang/</link>
       <pubDate>Mon, 18 Jan 2016 00:47:11 +0500</pubDate>
       
-      <guid>https://ivahaev.ru/post/simple-logger-for-golang/</guid>
+      <guid>https://ivahaev.ru/simple-logger-for-golang/</guid>
       <description>&lt;p&gt;Не смотря на всё многообразие существующих логгеров для &lt;strong&gt;Go&lt;/strong&gt;, как-то не удалось подобрать удобный и подходящий для меня. Хотелось иметь инструмент, похожий на те, какими пользовался в других языках. Если хочешь сделать что-то хорошо, сделай это сам.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>

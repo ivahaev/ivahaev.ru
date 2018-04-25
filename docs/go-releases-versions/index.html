@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>Версионирование go программ &middot; ivahaev.ru</title>
+    <meta name="generator" content="Hugo 0.39" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <meta name="description" content="">
+    
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
+<meta name='yandex-verification' content='7a8a89f15378f8c0' />
+
+
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter33509963 = new Ya.Metrika({
+                    id:33509963,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+
+    
+      <meta propperty="og:image" content="https://ivahaev.ru//img/semver02.png" />
+    
+    <meta propperty="og:url" content="https://ivahaev.ru/go-releases-versions/" />
+    <meta propperty="og:title" content="Версионирование go программ" />
+    
+      <meta propperty="og:description" content="Читая новости на отличном ресурсе по Go, наткнулся на статью Дейва Чени Гоферы, тэгируйте свои релизы. Вкратце, там говорится о полезности тэгов к комитам пакета в git репозитории, а так же о том, что при указании версии, стоит обратить внимание на формат SemVer 2.0.0.
+
+Что самое интересное, статья написана 24 июня, примерно в то же время, может быть, днём ранее, я написал инструмент для себя, который позволяет автоматизировать процесс изменения патч-версии приложений, написанных на Go.
+
+
+" />
+    
+
+
+</head>
+
+<body>
+    <div id="sidebar">
+    <div id="sidebar-content" class="inner">
+        <h2 class="blog-title">
+            <a href="https://ivahaev.ru/">ivahaev.ru</a>
+        </h2>
+        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
+        <div id="sidebar-links">
+            
+            <ul id="navigation">
+                
+                <li class="nav" role="presentation">
+                    <a href="https://ivahaev.ru/about">
+                        <i class="fa fa-navicon"></i>Об авторе</a>
+                </li>
+            </ul>
+            <ul id="sidebar-external">
+                <li>
+                    <a href="https://github.com/ivahaev">
+                        <i class="fa fa-github"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="https://github.com/getblank">
+                        <i class="fa fa-github"></i>getblank</a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/ivahaev">
+                        <i class="fa fa-paper-plane"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="skype:ivahaev?chat">
+                        <i class="fa fa-skype"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a target="_blank" href="mailto:ivahaev@gmail.com">
+                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
+                </li>
+            </ul>
+            <ul id="sidebar-partners">
+                <div>Партнёры:</div>
+                
+                <li>
+                    <a href="http://borisoft.info/"></a>
+                    <a href="http://sclif.pro">
+                        <i class="fa fa-linux"></i>Sclif</a>
+                </li>
+            </ul>
+        </div>
+
+        <footer class="site-footer">
+            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+        </footer>
+    </div>
+</div>
+
+    <main>
+        <div class="main-inner">
+            <section id="results"></section>
+            
+            <section id="main">
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            <a href="https://ivahaev.ru/go-releases-versions/" itemprop="url">
+                
+                <img src="https://ivahaev.ru//img/semver02.png" class="article-banner">
+                
+            
+            </a> <header class="article-header">
+    <a href="https://ivahaev.ru/go-releases-versions/">
+    
+    <h1 class="article-title" itemprop="name">
+        Версионирование go программ
+    </h1>
+    
+    </a>
+    <div class="article-meta">
+        <div class="post-time">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-07-01 23:11:50 &#43;0500 &#43;05" itemprop="datePublished" class="fulldate_"><strong>1 июля 2016 года
+</strong></time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/go">go</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/golang">golang</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/semver">SemVer</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/node.js">node.js</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/npm">npm</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/git">git</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>Читая новости <a href="http://4gophers.ru/">на отличном ресурсе по Go</a>, наткнулся на статью Дейва Чени <a href="http://dave.cheney.net/2016/06/24/gophers-please-tag-your-releases">Гоферы, тэгируйте свои релизы</a>. Вкратце, там говорится о полезности тэгов к комитам пакета в git репозитории, а так же о том, что при указании версии, стоит обратить внимание на формат <a href="http://semver.org/spec/v2.0.0.html">SemVer 2.0.0</a>.</p>
+
+<p>Что самое интересное, статья написана 24 июня, примерно в то же время, может быть, днём ранее, я написал инструмент для себя, который позволяет автоматизировать процесс изменения патч-версии приложений, написанных на <a href="https://golang.org/">Go</a>.</p>
+
+<p></p>
+
+<p>Вдохновил меня на этот поступок, как ни странно, инструмент из мира <a href="https://nodejs.org">node.js</a>&nbsp;&mdash; <a href="https://www.npmjs.com/">npm</a>. Дело в том, что <strong>npm</strong> имеет в своём арсенале команду <code>version patch</code>, которая делает три простые и очень нужные вещи для npm пакетов:</p>
+
+<ul>
+<li>Увеличивает на единичку в файле <strong>package.json</strong> версию патча, согласно <a href="http://semver.org/spec/v2.0.0.html">SemVer 2.0.0</a>;</li>
+<li>Комитит файла <strong>package.json</strong>;</li>
+<li>Навешивает на комит тэг, соответствующий версии в <strong>package.json</strong>.</li>
+</ul>
+
+<p>В нашем главном проекте <a href="http://getblank.net">Blank</a>, в npm пакетах, мы дописали скрипты в файл <strong>package.json</strong> для автоматической заливки изменений на <a href="https://github.com/">github</a>.</p>
+
+<pre><code class="language-JSON">  &quot;scripts&quot;: {
+    &quot;patch&quot;: &quot;npm version patch &amp;&amp; npm run push&quot;,
+    &quot;push&quot;: &quot;git push origin master --follow-tags &amp;&amp; npm publish&quot;
+  }
+</code></pre>
+
+<p>Таким образом, для того, чтобы &laquo;зарелизить&raquo; новую патч-версию своего приложения, достаточно написать в корне проекта:</p>
+
+<pre><code>&gt; npm run patch
+</code></pre>
+
+<p>NPM остальное сделает сам&nbsp;&mdash; увеличит версию патча, сделает комит, навесит тэг с версией и отправит на github.</p>
+
+<p>Мне эта штука так понравилась, что, не найдя ничего похожего для <strong>Go</strong>, я решил сделать подобный инструмент для гоферов. Итак, представляю <a href="https://github.com/ivahaev/patcher">patcher</a>.</p>
+
+<p>Что он делает:</p>
+
+<ul>
+<li>В файле <strong>main.go</strong> в корне проекта ищет переменную <strong>version</strong> и увеличивает на единицу патч-версию;</li>
+<li>Комитит файл <strong>main.go</strong> с сообщением <strong>Version update: ЗНАЧЕНИЕ_ПЕРЕМЕННОЙ_version</strong>;</li>
+<li>Навешивает к комиту тэг <strong>vЗНАЧЕНИЕ_ПЕРЕМЕННОЙ_version</strong>;</li>
+</ul>
+
+<p>Кроме того, при запуске с ключом <strong>-p</strong> (<code>patcher -p</code>), утилита тут же отправит все изменения в удалённый репозиторий. Вот так всё просто.</p>
+
+<p>Далее уже можно настроить систему непрерывной интеграции, например, на сборку тэгированных релизов с автоматическим обновлением сервисов, либо с публикацией на ресурсах для скачивания приложения.</p>
+
+<p>Установка производится как обычно:</p>
+
+<pre><code>&gt; go get github.com/ivahaev/patcher
+</code></pre>
+
+<p>Если <code>$GOPATH/bin</code> находится в вашем <code>$PATH</code>, запуск производится из командной строки</p>
+
+<pre><code>&gt; patcher [filename [varName]] [-p]
+</code></pre>
+
+<p>Или если в <code>$PATH</code> не прописаны пути:</p>
+
+<pre><code>&gt; $GOPATH/bin/patcher [filename [varName]] [-p]
+</code></pre>
+
+<p>Есть два необязательных параметра&nbsp;&mdash; имя файла, в котором находится переменная с версией и, имя самой переменной с версией приложения. По-умолчанию, эти параметры равны <strong>main.go</strong> и <strong>version</strong>, соответственно. Также, если указать ключ <strong>-p</strong>, утилита автоматически отправит изменения в удалённый репозиторий.</p>
+
+<p>Я использую эту утилиту каждый день и она делает мою жизнь гораздо ярче, чего и вам желаю :).</p>
+
+<p>В другой раз расскажу о том, как всё это используется для непрерывной интеграции в наших проектах.</p>
+            </div>
+            <footer class="article-footer">
+    
+    <a href="https://ivahaev.ru/go-releases-versions//#disqus_thread" class="article-comment-link">
+        Комментарии
+    </a>
+
+    <a name="disqus_thread"></a>
+    <section class="post-comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//ivahaev.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </section>
+    
+</footer>
+        </div>
+    </article>
+</section>
+
+        </div>
+    </main>
+
+    <script src="https://ivahaev.ru/js/prism.js"></script>
+</body>
+
+</html>

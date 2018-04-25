@@ -32,7 +32,6 @@
             <div class="article-entry" itemprop="articleBody">
                 <p>
                     {{ printf "%s" .Summary | markdownify }}
-                    <br>
                 </p>
                 {{ if .Truncated }}
                 <p class="article-more-link">

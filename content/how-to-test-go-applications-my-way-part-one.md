@@ -5,6 +5,10 @@ slug = "how-to-test-go-applications-my-way-part-one"
 draft = false
 
 tags = [ "go", "golang", "test", "testing", "mocha", "node.js", "javascript", "goblin", "goconvey" ]
+type = "post"
+aliases = [
+	"post/how-to-test-go-applications-my-way-part-one"
+]
 +++
 
 Сколько бы &laquo;в прошлой жизни&raquo; я не пытался заставить себя писать тесты, получалось довольно плохо. Точнее, оно получалось, но как-то всё хромало, как у Винни-Пуха правильнописание. Казалось, что быстрее и проще потыкать в браузере, или клавиши понажимать, проверить, а дальше просто будет работать.

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>Мой подход к тестированию. Часть вторая &middot; ivahaev.ru</title>
+    <meta name="generator" content="Hugo 0.39" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <meta name="description" content="">
+    
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
+<meta name='yandex-verification' content='7a8a89f15378f8c0' />
+
+
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter33509963 = new Ya.Metrika({
+                    id:33509963,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+
+    
+    <meta propperty="og:url" content="https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/" />
+    <meta propperty="og:title" content="Мой подход к тестированию. Часть вторая" />
+    
+      <meta propperty="og:description" content="В первой статье цикла о тестировании, которая вышла почти два года назад, я описал свой подход к тестированию, который был актуален в 2016 году. Время идёт, всё изменяется, стандартная библиотека Go становится лучше и вот пару-тройку мажорных версий назад в пакете testing появился новый метод Run(), который позволяет запускать именованные подтесты. Теперь Гоблина можно отправить обратно в пещеру и уменьшить число зависимостей проекта.
+
+
+" />
+    
+
+
+</head>
+
+<body>
+    <div id="sidebar">
+    <div id="sidebar-content" class="inner">
+        <h2 class="blog-title">
+            <a href="https://ivahaev.ru/">ivahaev.ru</a>
+        </h2>
+        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
+        <div id="sidebar-links">
+            
+            <ul id="navigation">
+                
+                <li class="nav" role="presentation">
+                    <a href="https://ivahaev.ru/about">
+                        <i class="fa fa-navicon"></i>Об авторе</a>
+                </li>
+            </ul>
+            <ul id="sidebar-external">
+                <li>
+                    <a href="https://github.com/ivahaev">
+                        <i class="fa fa-github"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="https://github.com/getblank">
+                        <i class="fa fa-github"></i>getblank</a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/ivahaev">
+                        <i class="fa fa-paper-plane"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="skype:ivahaev?chat">
+                        <i class="fa fa-skype"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a target="_blank" href="mailto:ivahaev@gmail.com">
+                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
+                </li>
+            </ul>
+            <ul id="sidebar-partners">
+                <div>Партнёры:</div>
+                
+                <li>
+                    <a href="http://borisoft.info/"></a>
+                    <a href="http://sclif.pro">
+                        <i class="fa fa-linux"></i>Sclif</a>
+                </li>
+            </ul>
+        </div>
+
+        <footer class="site-footer">
+            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+        </footer>
+    </div>
+</div>
+
+    <main>
+        <div class="main-inner">
+            <section id="results"></section>
+            
+            <section id="main">
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a> <header class="article-header">
+    <a href="https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/">
+    
+    <h1 class="article-title" itemprop="name">
+        Мой подход к тестированию. Часть вторая
+    </h1>
+    
+    </a>
+    <div class="article-meta">
+        <div class="post-time">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2018-04-21 11:55:00 &#43;0500 &#43;05" itemprop="datePublished" class="fulldate_"><strong>21 апреля 2018 года
+</strong></time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/go">go</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/golang">golang</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/test">test</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/testing">testing</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/goconvey">goconvey</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/goblin">goblin</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>В <a href="https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-one/">первой статье</a> цикла о тестировании, которая вышла почти два года назад, я описал свой подход к тестированию, который был актуален в 2016 году. Время идёт, всё изменяется, стандартная библиотека <strong>Go</strong> становится лучше и вот пару-тройку мажорных версий назад в пакете <a href="https://golang.org/pkg/testing/">testing</a> появился новый метод <a href="https://golang.org/pkg/testing/#T.Run">Run()</a>, который позволяет запускать именованные подтесты. Теперь <a href="https://github.com/franela/goblin">Гоблина</a> можно отправить обратно в пещеру и уменьшить число зависимостей проекта.</p>
+
+<p></p>
+
+<h3 id="run-tester-run">Run tester Run</h3>
+
+<p>Не будем вспоминать, как мы без этого жили раньше, сразу же рассмотрим пример. Имеется у нас функция странного умножения:</p>
+
+<pre><code class="language-go">func Multiply(a, b int) int {
+    res := a * b
+    if res == 0 {
+        return 0
+    }
+
+    if res % 2 == 0 {
+        return res - 1
+    }
+
+    return res + 1
+}
+</code></pre>
+
+<p>Нам нужно её протестировать. Как обычно, используем табличное тестирование, но теперь мы можем вложить дополнительную информацию в таблицу и вывести её:</p>
+
+<pre><code class="language-go">package multi
+
+import (
+    &quot;fmt&quot;
+    &quot;testing&quot;
+)
+
+func TestMultiply(t *testing.T) {
+    testData := []struct{
+        name string
+        a, b, res int
+    }{
+        {
+            name: &quot;First&quot;,
+            a: 1,
+            b: 1,
+            res: 2,
+        },
+        {
+            name: &quot;Second&quot;,
+            a: 2,
+            b: 1,
+            res: 1,
+        },
+        {
+            name: &quot;First&quot;,
+            a: 2,
+            b: 2,
+            res: 3,
+        },
+    }
+
+    for i, v := range testData {
+        t.Run(fmt.Sprintf(&quot;#%d name: %s&quot;, i, v.name), func(t  *testing.T) {
+            res := Multiply(v.a, v.b)
+            if res != v.res {
+                t.Errorf(&quot;Multiply(%d, %d) =&gt; %d, expected %d&quot;, v.a, v.b, res, v.res)
+            }
+        })
+    }
+}
+</code></pre>
+
+<p>Выполнив данный тест, мы увидим следующее:</p>
+
+<pre><code class="language-bash">go test -v
+=== RUN   TestMultiply
+=== RUN   TestMultiply/#0_name:_First
+=== RUN   TestMultiply/#1_name:_Second
+=== RUN   TestMultiply/#2_name:_First
+--- PASS: TestMultiply (0.00s)
+    --- PASS: TestMultiply/#0_name:_First (0.00s)
+    --- PASS: TestMultiply/#1_name:_Second (0.00s)
+    --- PASS: TestMultiply/#2_name:_First (0.00s)
+PASS
+ok  	multi	0.008s
+</code></pre>
+
+<p>Теперь усложним нашу функцию. Предположим, мы хотим к результату кратному десяти прибавлять пять. Добавим этот случай в таблицу:</p>
+
+<pre><code class="language-go">    testData := []struct{
+        name string
+        a, b, res int
+    }{
+        {
+            name: &quot;First&quot;,
+            a: 1,
+            b: 1,
+            res: 2,
+        },
+        {
+            name: &quot;Second&quot;,
+            a: 2,
+            b: 1,
+            res: 1,
+        },
+        {
+            name: &quot;First&quot;,
+            a: 2,
+            b: 2,
+            res: 3,
+        },
+        {
+            name: &quot;Twenty&quot;,
+            a: 2,
+            b: 10,
+            res: 25,
+        },
+    }
+</code></pre>
+
+<p>Тут же видим на каком элементе наш тест завалился:</p>
+
+<pre><code class="language-bash">go test -v
+=== RUN   TestMultiply
+=== RUN   TestMultiply/#0_name:_First
+=== RUN   TestMultiply/#1_name:_Second
+=== RUN   TestMultiply/#2_name:_First
+=== RUN   TestMultiply/#3_name:_Twenty
+--- FAIL: TestMultiply (0.00s)
+    --- PASS: TestMultiply/#0_name:_First (0.00s)
+    --- PASS: TestMultiply/#1_name:_Second (0.00s)
+    --- PASS: TestMultiply/#2_name:_First (0.00s)
+    --- FAIL: TestMultiply/#3_name:_Twenty (0.00s)
+    	ttt_test.go:43: Multiply(2, 10) =&gt; 19, expected 25
+FAIL
+exit status 1
+FAIL     _/multi    0.008s
+</code></pre>
+
+<p>Теперь подправим нашу функцию:</p>
+
+<pre><code class="language-go">func Multiply(a, b int) int {
+    res := a * b
+    if res == 0 {
+        return 0
+    }
+
+    if res % 10 == 0 {
+        return res + 5
+    }
+
+    if res % 2 == 0 {
+        return res - 1
+    }
+
+    return res + 1
+}
+</code></pre>
+
+<p>Всё встало на свои места, все проверки пройдены:</p>
+
+<pre><code class="language-bash">go test -v
+=== RUN   TestMultiply
+=== RUN   TestMultiply/#0_name:_First
+=== RUN   TestMultiply/#1_name:_Second
+=== RUN   TestMultiply/#2_name:_First
+=== RUN   TestMultiply/#3_name:_Twenty
+--- PASS: TestMultiply (0.00s)
+    --- PASS: TestMultiply/#0_name:_First (0.00s)
+    --- PASS: TestMultiply/#1_name:_Second (0.00s)
+    --- PASS: TestMultiply/#2_name:_First (0.00s)
+    --- PASS: TestMultiply/#3_name:_Twenty (0.00s)
+PASS
+ok  	multi	0.008s
+</code></pre>
+
+<h3 id="покрытие">Покрытие</h3>
+
+<p>Не смотря на то, что проверки в тесте выполнены успешно, мы не можем с уверенностью сказать, что протестировали все возможные результаты. Значительно повысить (либо наоборот) уверенность нам поможет ключ <code>-cover</code> команды <code>go test</code>. Запустим выполнение тестов нашего примера с ключом <code>-cover</code>:</p>
+
+<pre><code class="language-bash">go test -cover
+PASS
+coverage: 87.5% of statements
+ok  	multi	0.009s
+</code></pre>
+
+<p>Да, опасения были небеспочвенны, у нас покрыто только 87.5%. Наш старый знакомый <a href="http://goconvey.co/">GoConvey</a> в очень удобном виде покажет какие именно части кода не покрыты тестами:
+
+
+
+
+<img src="https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/multi-cover-01.png" alt="test coverage 01" width="540" />
+</p>
+
+<p>У нас не отработан кейс, при котором произведение получается равным нулю, следует его добавить:</p>
+
+<pre><code class="language-go">    testData := []struct{
+        name string
+        a, b, res int
+    }{
+        {
+            name: &quot;First&quot;,
+            a: 1,
+            b: 1,
+            res: 2,
+        },
+        {
+            name: &quot;Second&quot;,
+            a: 2,
+            b: 1,
+            res: 1,
+        },
+        {
+            name: &quot;First&quot;,
+            a: 2,
+            b: 2,
+            res: 3,
+        },
+        {
+            name: &quot;Twenty&quot;,
+            a: 2,
+            b: 10,
+            res: 25,
+        },
+        {
+            name: &quot;Zero&quot;,
+            a: 2,
+            b: 0,
+            res: 0,
+        },
+    }
+</code></pre>
+
+<p>Проверяем покрытие:</p>
+
+<pre><code class="language-bash">go test -cover
+PASS
+coverage: 100.0% of statements
+ok  	multi	0.007s
+</code></pre>
+
+<p>С таким покрытием не стыдно и в продакшн!</p>
+            </div>
+            <footer class="article-footer">
+    
+    <a href="https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two//#disqus_thread" class="article-comment-link">
+        Комментарии
+    </a>
+
+    <a name="disqus_thread"></a>
+    <section class="post-comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//ivahaev.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </section>
+    
+</footer>
+        </div>
+    </article>
+</section>
+
+        </div>
+    </main>
+
+    <script src="https://ivahaev.ru/js/prism.js"></script>
+</body>
+
+</html>

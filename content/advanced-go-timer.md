@@ -5,8 +5,9 @@ title = "Прокаченный таймер на Go"
 slug = "advanced-go-timer"
 banner = "/img/sandClock.png"
 tags = ["go", "golang", "timer", "time", "pause"]
+type = "post"
 aliases = [
-	"advanced-go-timer"
+	"post/advanced-go-timer"
 ]
 +++
 

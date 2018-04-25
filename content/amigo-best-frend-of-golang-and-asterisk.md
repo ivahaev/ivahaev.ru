@@ -5,8 +5,9 @@ title = "Amigo – лучший друг Golang и Asterisk"
 slug = "amigo-best-frend-of-golang-and-asterisk"
 banner = "/img/three-amigos.jpg"
 tags = [ "asterisk", "golang", "go", "ami", "amigo" ]
+type = "post"
 aliases = [
-	"amigo-best-frend-of-golang-and-asterisk"
+	"post/amigo-best-frend-of-golang-and-asterisk"
 ]
 +++
 Начиная писать свой первый [Peach Dialer](http://peach-dialer.com), я выбрал язык, который довольно хорошо знал, благо работал с ним с 1999 года&nbsp;&mdash; **PHP**. Меня не смущало, что он, в принципе, не предназначен для создания долгоживущих процессов, но то, что получилось в итоге, работает по несколько месяцев и радует своих владельцев.
@@ -75,5 +76,3 @@ func main() {
 ```
 
 Стоит заметить, что подключение будет автоматически восстанавливаться при обрыве связи.
-
-В следующий раз расскажу как использовать библиотеку в режиме **ASYNC:AGI**.

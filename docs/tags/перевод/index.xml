@@ -14,10 +14,10 @@
     
     <item>
       <title>Три частые ошибки, возникающие при разработке на Go</title>
-      <link>https://ivahaev.ru/post/three-often-mistakes-wth-go/</link>
+      <link>https://ivahaev.ru/three-often-mistakes-wth-go/</link>
       <pubDate>Thu, 12 Nov 2015 01:32:28 +0500</pubDate>
       
-      <guid>https://ivahaev.ru/post/three-often-mistakes-wth-go/</guid>
+      <guid>https://ivahaev.ru/three-often-mistakes-wth-go/</guid>
       <description>&lt;p&gt;Это перевод статьи. Раньше желания переводить не возникало, но статья очень понравилась, наверное, из-за того, что сам наступал уже на подобные грабли. Перевод достаточно вольный, но суть передает верно. Если хоть одному начинающему разработчику поможет эта статья, труды мои будут не напрасными :).&lt;/p&gt;
 
 &lt;p&gt;Оригинал статьи доступен по адресу &lt;a href=&#34;http://bryce.is/writing/code/jekyll/update/2015/11/01/3-go-gotchas.html&#34;&gt;http://bryce.is/writing/code/jekyll/update/2015/11/01/3-go-gotchas.html&lt;/a&gt;.&lt;/p&gt;

@@ -6,7 +6,7 @@
         </a>
     {{ end }}
     {{ if .Paginator.HasNext }}
-        <a class="extend next" rel="next" href="{{ .Site.BaseURL }}{{.Paginator.Next.URL}}">
+        <a class="extend next" rel="next" style="float: right;" href="{{ .Site.BaseURL }}{{.Paginator.Next.URL}}">
             {{with .Site.Data.l10n.pagination.next}}{{.}}{{end}} »
         </a>
     {{ end }}

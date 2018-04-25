@@ -4,8 +4,9 @@ draft = false
 title = "Проигрывание файла при телефонном разговоре"
 slug = "proighryvaniie-faila-pri-tieliefonnom-razghovorie"
 tags = [ "asterisk", "callcenter", "freepbx", "telephony" ]
+type = "post"
 aliases = [
-	"proighryvaniie-faila-pri-tieliefonnom-razghovorie"
+	"post/proighryvaniie-faila-pri-tieliefonnom-razghovorie"
 ]
 +++
 В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.

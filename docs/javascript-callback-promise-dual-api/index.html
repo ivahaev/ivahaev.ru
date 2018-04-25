@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>Двойной API для асинхронных функций &middot; ivahaev.ru</title>
+    <meta name="generator" content="Hugo 0.39" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <meta name="description" content="">
+    
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
+<meta name='yandex-verification' content='7a8a89f15378f8c0' />
+
+
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter33509963 = new Ya.Metrika({
+                    id:33509963,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+
+    
+    <meta propperty="og:url" content="https://ivahaev.ru/javascript-callback-promise-dual-api/" />
+    <meta propperty="og:title" content="Двойной API для асинхронных функций" />
+    
+      <meta propperty="og:description" content="Когда пишешь публичные асинхронные методы на JavaScript, желательно придерживаться двух простых правил:
+
+
+Если метод может вернуть ошибку в колбэке, то ошибка должна идти первым аргументом. Часто, даже если метод никогда не возвращает ошибку, первым аргументом передают null для того, чтобы унифицировать все асинхронные вызовы;
+Если в метод не передана колбэк-функция, то метод должен вернуть Promise.
+
+
+
+" />
+    
+
+
+</head>
+
+<body>
+    <div id="sidebar">
+    <div id="sidebar-content" class="inner">
+        <h2 class="blog-title">
+            <a href="https://ivahaev.ru/">ivahaev.ru</a>
+        </h2>
+        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
+        <div id="sidebar-links">
+            
+            <ul id="navigation">
+                
+                <li class="nav" role="presentation">
+                    <a href="https://ivahaev.ru/about">
+                        <i class="fa fa-navicon"></i>Об авторе</a>
+                </li>
+            </ul>
+            <ul id="sidebar-external">
+                <li>
+                    <a href="https://github.com/ivahaev">
+                        <i class="fa fa-github"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="https://github.com/getblank">
+                        <i class="fa fa-github"></i>getblank</a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/ivahaev">
+                        <i class="fa fa-paper-plane"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="skype:ivahaev?chat">
+                        <i class="fa fa-skype"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a target="_blank" href="mailto:ivahaev@gmail.com">
+                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
+                </li>
+            </ul>
+            <ul id="sidebar-partners">
+                <div>Партнёры:</div>
+                
+                <li>
+                    <a href="http://borisoft.info/"></a>
+                    <a href="http://sclif.pro">
+                        <i class="fa fa-linux"></i>Sclif</a>
+                </li>
+            </ul>
+        </div>
+
+        <footer class="site-footer">
+            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+        </footer>
+    </div>
+</div>
+
+    <main>
+        <div class="main-inner">
+            <section id="results"></section>
+            
+            <section id="main">
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a> <header class="article-header">
+    <a href="https://ivahaev.ru/javascript-callback-promise-dual-api/">
+    
+    <h1 class="article-title" itemprop="name">
+        Двойной API для асинхронных функций
+    </h1>
+    
+    </a>
+    <div class="article-meta">
+        <div class="post-time">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-07-13 11:28:50 &#43;0500 &#43;05" itemprop="datePublished" class="fulldate_"><strong>13 июля 2016 года
+</strong></time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/javascript">javascript</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/callback">callback</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/promise">promise</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/node.js">node.js</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>Когда пишешь публичные асинхронные методы на <strong>JavaScript</strong>, желательно придерживаться двух простых правил:</p>
+
+<ol>
+<li>Если метод может вернуть ошибку в колбэке, то ошибка должна идти первым аргументом. Часто, даже если метод никогда не возвращает ошибку, первым аргументом передают <code>null</code> для того, чтобы унифицировать все асинхронные вызовы;</li>
+<li>Если в метод не передана колбэк-функция, то метод должен вернуть Promise.</li>
+</ol>
+
+<p></p>
+
+<p>Если с первым правилом все достаточно просто, то для удобного выполнения второго, в нашей команде родилось короткое однострочное выражение, которые мы повсеместно используем:</p>
+
+<pre><code class="language-Javascript">const d = (typeof cb !== &quot;function&quot;) ? new Promise((f, r) =&gt; (cb = (e, d) =&gt; e != null ? r(e) : f(d))) : null;
+</code></pre>
+
+<p>Покажу, как водится, на примере таймера:</p>
+
+<pre><code class="language-Javascript">const asyncMethod = (timeOut, cb) =&gt; {
+    // Если cb не является функцией, создаем Promise и модифицируем cb для использования далее.
+    const d = (typeof cb !== &quot;function&quot;) ? new Promise((f, r) =&gt; (cb = (e, d) =&gt; e != null ? r(e) : f(d))) : null;
+
+    // Используем cb как обычный колбэк
+    setTimeout(cb, timeOut);
+
+    // Возвращаем либо Promise, если колбэка не было, либо null
+    return d;
+};
+
+// Используем в классическом стиле:
+asyncMethod(1000, () =&gt; {
+    console.log(&quot;Classic timeout reached!&quot;);
+});
+
+// Используем через Promise
+asyncMethod(1000).then(() =&gt; console.log(&quot;Promise timeout reached!&quot;));
+</code></pre>
+
+<p>Таким вот простым способом, можно улучшить публичный API в части асинхронных методов.</p>
+            </div>
+            <footer class="article-footer">
+    
+    <a href="https://ivahaev.ru/javascript-callback-promise-dual-api//#disqus_thread" class="article-comment-link">
+        Комментарии
+    </a>
+
+    <a name="disqus_thread"></a>
+    <section class="post-comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//ivahaev.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </section>
+    
+</footer>
+        </div>
+    </article>
+</section>
+
+        </div>
+    </main>
+
+    <script src="https://ivahaev.ru/js/prism.js"></script>
+</body>
+
+</html>
