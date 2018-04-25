@@ -165,6 +165,9 @@
                 &middot;
                 
                 <a class="article-category-link" href="https://ivahaev.ru/tags/goblin">goblin</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/testify">testify</a>
                 
                 
             </div>
@@ -411,6 +414,43 @@ ok  	multi	0.007s
 </code></pre>
 
 <p>С таким покрытием не стыдно и в продакшн!</p>
+
+<h3 id="немного-о-проверках">Немного о проверках</h3>
+
+<p>В стандартном пакете <a href="https://golang.org/pkg/testing/">testing</a> нет никаких инструментов для проведения проверок, т.н. ассертов (assert). Многие рекомендуют использовать пакет <a href="https://github.com/stretchr/testify/assert">assert</a> из поставки <a href="https://github.com/stretchr/testify">testify</a>. Я для себя решил, что обойдусь. Виной тому несколько причин:</p>
+
+<h4 id="сложнее-читать-код">Сложнее читать код</h4>
+
+<p>Сравним:</p>
+
+<pre><code class="language-go">    assert.Equal(t, a, b, &quot;The two words should be the same.&quot;)
+
+// и
+
+   if b != a {
+       t.Errorf(&quot;got %s, want %s&quot;, b, a)
+   }
+</code></pre>
+
+<p>Если не знать API <em>testify</em>, не сразу догадаешься, что к чему. Обычное сравнение и вывод ошибки гораздо нагляднее, не смотря на то, что более громоздко выглядит.</p>
+
+<h4 id="не-канонично">Не канонично</h4>
+
+<p>Обратимся к официальным комментариям к коду, в частости о <a href="https://github.com/golang/go/wiki/CodeReviewComments#useful-test-failures">проверках в тестах</a>:</p>
+
+<blockquote>
+<p>Some test frameworks encourage writing these backwards: 0 != x, &ldquo;expected 0, got x&rdquo;, and so on. Go does not.
+(Некоторые тест-фреймворки подстрекают писать проверки в обратном порядке: 0 != x, &ldquo;хотели 0, получили x&rdquo; и в таком духе. Go не такой!)</p>
+</blockquote>
+
+<p>Посмотрим на сигнатуру метода <a href="https://godoc.org/github.com/stretchr/testify/assert#Equal">Equal</a>:</p>
+
+<pre><code class="language-go">func Equal(t TestingT, expected, actual interface{}, msgAndArgs ...interface{}) bool
+</code></pre>
+
+<p>Видим, что первым аргументом идёт ожидаемый результат, а лишь затем полученный, что идёт в разрез с рекомендациями. И тут не трудно запутиться. Какзалось бы, для проверки на равенство не имеет значение что с чем сравнивать, но, в случае, если проверка завалится, вывод в консоль может быть некорректным, что только добавит путаницы.</p>
+
+<p>Именно поэтому я не использую <a href="https://github.com/stretchr/testify">testify</a>, а пишу размашисто, зато более понятно.</p>
             </div>
             <footer class="article-footer">
     

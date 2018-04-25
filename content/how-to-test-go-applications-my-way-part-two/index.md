@@ -5,7 +5,7 @@ slug = "how-to-test-go-applications-my-way-part-two"
 draft = false
 type = "post"
 
-tags = [ "go", "golang", "test", "testing", "goconvey", "goblin" ]
+tags = [ "go", "golang", "test", "testing", "goconvey", "goblin", "testify" ]
 +++
 
 В [первой статье](/post/how-to-test-go-applications-my-way-part-one/) цикла о тестировании, которая вышла почти два года назад, я описал свой подход к тестированию, который был актуален в 2016 году. Время идёт, всё изменяется, стандартная библиотека **Go** становится лучше и вот пару-тройку мажорных версий назад в пакете [testing](https://golang.org/pkg/testing/) появился новый метод [Run()](https://golang.org/pkg/testing/#T.Run), который позволяет запускать именованные подтесты. Теперь [Гоблина](https://github.com/franela/goblin) можно отправить обратно в пещеру и уменьшить число зависимостей проекта.
@@ -201,6 +201,7 @@ ok  	multi	0.009s
 {{< img src="multi-cover-01.png" alt="test coverage 01" width="540" >}}
 
 У нас не отработан кейс, при котором произведение получается равным нулю, следует его добавить:
+
 ```go
     testData := []struct{
         name string
@@ -249,3 +250,40 @@ ok  	multi	0.007s
 ```
 
 С таким покрытием не стыдно и в продакшн!
+
+### Немного о проверках
+
+В стандартном пакете [testing](https://golang.org/pkg/testing/) нет никаких инструментов для проведения проверок, т.н. ассертов (assert). Многие рекомендуют использовать пакет [assert](https://github.com/stretchr/testify/assert) из поставки [testify](https://github.com/stretchr/testify). Я для себя решил, что обойдусь. Виной тому несколько причин:
+
+#### Сложнее читать код
+
+Сравним:
+
+```go
+    assert.Equal(t, a, b, "The two words should be the same.")
+
+// и
+
+   if b != a {
+       t.Errorf("got %s, want %s", b, a)
+   }
+```
+
+Если не знать API *testify*, не сразу догадаешься, что к чему. Обычное сравнение и вывод ошибки гораздо нагляднее, не смотря на то, что более громоздко выглядит.
+
+#### Не канонично
+
+Обратимся к официальным комментариям к коду, в частости о [проверках в тестах](https://github.com/golang/go/wiki/CodeReviewComments#useful-test-failures):
+
+> Some test frameworks encourage writing these backwards: 0 != x, "expected 0, got x", and so on. Go does not.
+(Некоторые тест-фреймворки подстрекают писать проверки в обратном порядке: 0 != x, "хотели 0, получили x" и в таком духе. Go не такой!)
+
+Посмотрим на сигнатуру метода [Equal](https://godoc.org/github.com/stretchr/testify/assert#Equal):
+
+```go
+func Equal(t TestingT, expected, actual interface{}, msgAndArgs ...interface{}) bool
+```
+
+Видим, что первым аргументом идёт ожидаемый результат, а лишь затем полученный, что идёт в разрез с рекомендациями. И тут не трудно запутиться. Какзалось бы, для проверки на равенство не имеет значение что с чем сравнивать, но, в случае, если проверка завалится, вывод в консоль может быть некорректным, что только добавит путаницы.
+
+Именно поэтому я не использую [testify](https://github.com/stretchr/testify), а пишу размашисто, зато более понятно.
