@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Transactions on ivahaev.ru</title>
+    <link>https://ivahaev.ru/tags/transactions/</link>
+    <description>Recent content in Transactions on ivahaev.ru</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-RU</language>
+    <copyright>2016 Евгений Иваха</copyright>
+    <lastBuildDate>Tue, 10 Jul 2018 23:11:00 +0500</lastBuildDate>
+    
+	<atom:link href="https://ivahaev.ru/tags/transactions/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ACID Транзакции и MongoDB</title>
+      <link>https://ivahaev.ru/mongodb-docker-dev-transactions/</link>
+      <pubDate>Tue, 10 Jul 2018 23:11:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/mongodb-docker-dev-transactions/</guid>
+      <description>&lt;p&gt;Летом 2018 года (т.е. прямо сейчас, на момент написания данной статьи) случилось невероятное&amp;nbsp;&amp;mdash; в &lt;a href=&#34;https://www.mongodb.com/&#34;&gt;MongoDB&lt;/a&gt; завезли честные &lt;a href=&#34;https://ru.wikipedia.org/wiki/ACID&#34;&gt;ACID транзакции&lt;/a&gt;. С выходом четвёртой версии этой документ-ориентированной &lt;a href=&#34;https://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_%D0%B1%D0%B0%D0%B7%D0%B0%D0%BC%D0%B8_%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85&#34;&gt;СУБД&lt;/a&gt;, её можно использовать для чуть более серьёзных приложений.&lt;/p&gt;
+
+&lt;p&gt;Для тех, кто в танке, в двух словах: транзакции позволяют нам провести серию изменений в нескольких документах и сохранить их разом, либо так же разом отменить все вносимые в рамках транзакции изменения, если что-то пошло не так, либо произошел сбой в приложении.&lt;/p&gt;
+
+&lt;p&gt;К сожалению, разработчику воспользоваться этой супер-фичей не так-то просто. Ниже я расскажу почему, и что с этим всем делать.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
     <copyright>2016 Евгений Иваха</copyright>
-    <lastBuildDate>Thu, 14 Jan 2016 21:52:24 +0500</lastBuildDate>
+    <lastBuildDate>Tue, 10 Jul 2018 23:11:00 +0500</lastBuildDate>
     
 	<atom:link href="https://ivahaev.ru/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Acid</title>
+      <link>https://ivahaev.ru/tags/acid/</link>
+      <pubDate>Tue, 10 Jul 2018 23:11:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/acid/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Ami</title>
@@ -67,6 +76,15 @@
     </item>
     
     <item>
+      <title>Cluster</title>
+      <link>https://ivahaev.ru/tags/cluster/</link>
+      <pubDate>Tue, 10 Jul 2018 23:11:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/cluster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Counter</title>
       <link>https://ivahaev.ru/tags/counter/</link>
       <pubDate>Sat, 14 Nov 2015 12:34:30 +0500</pubDate>
@@ -90,6 +108,15 @@
       <pubDate>Sat, 14 Nov 2015 12:34:30 +0500</pubDate>
       
       <guid>https://ivahaev.ru/tags/dialplan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://ivahaev.ru/tags/docker/</link>
+      <pubDate>Tue, 10 Jul 2018 23:11:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/docker/</guid>
       <description></description>
     </item>
     
@@ -207,6 +234,15 @@
       <pubDate>Fri, 08 Jul 2016 03:11:50 +0500</pubDate>
       
       <guid>https://ivahaev.ru/tags/mocha/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mongodb</title>
+      <link>https://ivahaev.ru/tags/mongodb/</link>
+      <pubDate>Tue, 10 Jul 2018 23:11:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/mongodb/</guid>
       <description></description>
     </item>
     
@@ -333,6 +369,15 @@
       <pubDate>Sun, 01 May 2016 14:12:32 +0500</pubDate>
       
       <guid>https://ivahaev.ru/tags/timer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Transactions</title>
+      <link>https://ivahaev.ru/tags/transactions/</link>
+      <pubDate>Tue, 10 Jul 2018 23:11:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/transactions/</guid>
       <description></description>
     </item>
     

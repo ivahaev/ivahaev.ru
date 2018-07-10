@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://ivahaev.ru/mongodb-docker-dev-transactions/</loc>
+    <lastmod>2018-07-10T23:11:00+05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/</loc>
     <lastmod>2018-04-21T11:55:00+05:00</lastmod>
   </url>
@@ -78,6 +83,12 @@
   </url>
   
   <url>
+    <loc>https://ivahaev.ru/tags/acid/</loc>
+    <lastmod>2018-07-10T23:11:00+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://ivahaev.ru/tags/ami/</loc>
     <lastmod>2016-01-14T21:52:24+05:00</lastmod>
     <priority>0</priority>
@@ -119,6 +130,12 @@
   </url>
   
   <url>
+    <loc>https://ivahaev.ru/tags/cluster/</loc>
+    <lastmod>2018-07-10T23:11:00+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://ivahaev.ru/tags/counter/</loc>
     <lastmod>2015-11-14T12:34:30+05:00</lastmod>
     <priority>0</priority>
@@ -133,6 +150,12 @@
   <url>
     <loc>https://ivahaev.ru/tags/dialplan/</loc>
     <lastmod>2015-11-14T12:34:30+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ivahaev.ru/tags/docker/</loc>
+    <lastmod>2018-07-10T23:11:00+05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -215,6 +238,12 @@
   </url>
   
   <url>
+    <loc>https://ivahaev.ru/tags/mongodb/</loc>
+    <lastmod>2018-07-10T23:11:00+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://ivahaev.ru/tags/node.js/</loc>
     <lastmod>2016-07-13T11:28:50+05:00</lastmod>
     <priority>0</priority>
@@ -258,7 +287,7 @@
   
   <url>
     <loc>https://ivahaev.ru/tags/</loc>
-    <lastmod>2016-01-14T21:52:24+05:00</lastmod>
+    <lastmod>2018-07-10T23:11:00+05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -305,6 +334,12 @@
   </url>
   
   <url>
+    <loc>https://ivahaev.ru/tags/transactions/</loc>
+    <lastmod>2018-07-10T23:11:00+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://ivahaev.ru/tags/voip/</loc>
     <lastmod>2015-11-12T16:30:30+05:00</lastmod>
     <priority>0</priority>
@@ -318,7 +353,7 @@
   
   <url>
     <loc>https://ivahaev.ru/</loc>
-    <lastmod>2018-04-21T11:55:00+05:00</lastmod>
+    <lastmod>2018-07-10T23:11:00+05:00</lastmod>
     <priority>0</priority>
   </url>
   

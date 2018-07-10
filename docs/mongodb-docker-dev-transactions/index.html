@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>ACID Транзакции и MongoDB &middot; ivahaev.ru</title>
+    <meta name="generator" content="Hugo 0.39" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <meta name="description" content="">
+    
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
+<meta name='yandex-verification' content='7a8a89f15378f8c0' />
+
+
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter33509963 = new Ya.Metrika({
+                    id:33509963,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+
+    
+    <meta propperty="og:url" content="https://ivahaev.ru/mongodb-docker-dev-transactions/" />
+    <meta propperty="og:title" content="ACID Транзакции и MongoDB" />
+    
+      <meta propperty="og:description" content="Летом 2018 года (т.е. прямо сейчас, на момент написания данной статьи) случилось невероятное&nbsp;&mdash; в MongoDB завезли честные ACID транзакции. С выходом четвёртой версии этой документ-ориентированной СУБД, её можно использовать для чуть более серьёзных приложений.
+
+Для тех, кто в танке, в двух словах: транзакции позволяют нам провести серию изменений в нескольких документах и сохранить их разом, либо так же разом отменить все вносимые в рамках транзакции изменения, если что-то пошло не так, либо произошел сбой в приложении.
+
+К сожалению, разработчику воспользоваться этой супер-фичей не так-то просто. Ниже я расскажу почему, и что с этим всем делать.
+
+
+" />
+    
+
+
+</head>
+
+<body>
+    <div id="sidebar">
+    <div id="sidebar-content" class="inner">
+        <h2 class="blog-title">
+            <a href="https://ivahaev.ru/">ivahaev.ru</a>
+        </h2>
+        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
+        <div id="sidebar-links">
+            
+            <ul id="navigation">
+                
+                <li class="nav" role="presentation">
+                    <a href="https://ivahaev.ru/about">
+                        <i class="fa fa-navicon"></i>Об авторе</a>
+                </li>
+            </ul>
+            <ul id="sidebar-external">
+                <li>
+                    <a href="https://github.com/ivahaev">
+                        <i class="fa fa-github"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="https://github.com/getblank">
+                        <i class="fa fa-github"></i>getblank</a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/ivahaev">
+                        <i class="fa fa-paper-plane"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="skype:ivahaev?chat">
+                        <i class="fa fa-skype"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a target="_blank" href="mailto:ivahaev@gmail.com">
+                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
+                </li>
+            </ul>
+            <ul id="sidebar-partners">
+                <div>Партнёры:</div>
+                
+                <li>
+                    <a href="http://borisoft.info/"></a>
+                    <a href="http://sclif.pro">
+                        <i class="fa fa-linux"></i>Sclif</a>
+                </li>
+            </ul>
+        </div>
+
+        <footer class="site-footer">
+            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+        </footer>
+    </div>
+</div>
+
+    <main>
+        <div class="main-inner">
+            <section id="results"></section>
+            
+            <section id="main">
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a> <header class="article-header">
+    <a href="https://ivahaev.ru/mongodb-docker-dev-transactions/">
+    
+    <h1 class="article-title" itemprop="name">
+        ACID Транзакции и MongoDB
+    </h1>
+    
+    </a>
+    <div class="article-meta">
+        <div class="post-time">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2018-07-10 23:11:00 &#43;0500 &#43;05" itemprop="datePublished" class="fulldate_"><strong>10 июля 2018 года
+</strong></time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/mongodb">mongodb</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/acid">acid</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/transactions">transactions</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/docker">docker</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/cluster">cluster</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>Летом 2018 года (т.е. прямо сейчас, на момент написания данной статьи) случилось невероятное&nbsp;&mdash; в <a href="https://www.mongodb.com/">MongoDB</a> завезли честные <a href="https://ru.wikipedia.org/wiki/ACID">ACID транзакции</a>. С выходом четвёртой версии этой документ-ориентированной <a href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_%D0%B1%D0%B0%D0%B7%D0%B0%D0%BC%D0%B8_%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85">СУБД</a>, её можно использовать для чуть более серьёзных приложений.</p>
+
+<p>Для тех, кто в танке, в двух словах: транзакции позволяют нам провести серию изменений в нескольких документах и сохранить их разом, либо так же разом отменить все вносимые в рамках транзакции изменения, если что-то пошло не так, либо произошел сбой в приложении.</p>
+
+<p>К сожалению, разработчику воспользоваться этой супер-фичей не так-то просто. Ниже я расскажу почему, и что с этим всем делать.</p>
+
+<p></p>
+
+<p>Если открыть документацию к СУБД на разделе <a href="https://docs.mongodb.com/master/core/transactions/">Транзакции</a>, можем увидеть следующую ремарку:</p>
+
+<blockquote>
+<p>Multi-document transactions are available for replica sets only. Transactions for sharded clusters are scheduled for MongoDB 4.2</p>
+</blockquote>
+
+<p>Это нам говорит о том, что простой сервер MongoDB не поддерживает транзакции, только кластер в режиме <strong>replica set</strong>. Поддержка в <strong>sharded</strong> кластерах также будет позже, в версии 4.2.</p>
+
+<p>При этом, обычный сервер даст нам начать транзакцию, сохранить её, или отменить, но ничего в рамках неё сделать не получится, будет выведена примерно такая ошибка:</p>
+
+<pre><code class="language-mongodb">WriteCommandError({
+  &quot;ok&quot; : 0,
+  &quot;errmsg&quot; : &quot;Transaction numbers are only allowed on a replica set member or mongos&quot;,
+  &quot;code&quot; : 20,
+  &quot;codeName&quot; : &quot;IllegalOperation&quot;
+})
+</code></pre>
+
+<p>К счастью, каждый может запустить у себя кластер MongoDB, состоящий из одного сервера. На своих машинах, на которых я занимаюсь разработкой, все СУБД я запускаю в <a href="http://docker.com/">docker</a> контейнерах. Например, запуск обычного сервера MongoDB выглядит так:</p>
+
+<pre><code class="language-bash">docker run -v ~/mongo/:/data/db --name mongo --restart=always -p 27017:27017 -d mongo mongod --smallfiles
+</code></pre>
+
+<p>Разберём ключи запуска:</p>
+
+<ul>
+<li><code>-v ~/mongo/:/data/db</code> означает примонтировать локальную директорию <code>~/mongo/</code> в <code>/data/db</code> контейнера, таким образом, сама база будет храниться на хост-машине, что позволит нам удалять запущенный контейнер, обновлять версии и т.д. с сохраненим наших данных;</li>
+<li><code>--name mongo</code> задаёт имя контейнеру;</li>
+<li><code>--restart=always</code> говорит о том, что при любых падениях сервиса в контейнере, его следует перезапустить, а так же, стартовать контейнер после загрузки операционной системы;</li>
+<li><code>-p 27017:27017</code> &laquo;прокидывает&raquo; порт на хост машину;</li>
+<li><code>-d</code> указывает на то, что нужно запустить контейнер в виде демона;</li>
+<li><code>mongo</code>&nbsp;&mdash; имя образа для запуска контейнера;</li>
+<li><code>mongod --smallfiles</code>&nbsp;&mdash; команда для запуска сервиса в контейнере.</li>
+</ul>
+
+<p>Как запускать простой сервер, я привёл просто для справки. Теперь давайте разбираться, что необходимо сделать для запуска сервера, поддерживающего транзакции.</p>
+
+<p>Первым делом, следует создать новую сеть внутри докера, в которой будут работать все серверы нашего кластера. Да, я писал выше, что сервер будет один, но сеть нужно создать обязательно, иначе ничего не получится.</p>
+
+<pre><code class="language-bash">docker network create mongo-cluster
+</code></pre>
+
+<p>Далее в параметрах запуска контейнера нужно указать использование новой сети <code>--net mongo-cluster</code>, а также передать параметр серверу, для работы в режиме <strong>replica set:</strong> <code>--replSet rs0</code>.</p>
+
+<pre><code class="language-bash">docker run -v ~/mongo/:/data/db --name mongo -p 27017:27017 -d mongo mongod --smallfiles --replSet rs0
+</code></pre>
+
+<p>Отлично, контейнер запущен, в чем мы можем убедиться, выполнив команду <code>docker ps</code> и увидев примерно следующее:</p>
+
+<pre><code class="language-bash">docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                      NAMES
+2292d7e0778b        mongo               &quot;docker-entrypoint.s…&quot;   About a minute ago   Up About a minute   0.0.0.0:27017-&gt;27017/tcp   mongo
+</code></pre>
+
+<p>Далее нам нужно инициализировать кластер, для этого войдём в консоль запущенного сервера, создадим конфигурацию нашего кластера и проведём инициализацию:</p>
+
+<pre><code class="language-bash">docker exec -it mongo mongo
+# output omited #
+
+&gt; config = {
+    &quot;_id&quot; : &quot;rs0&quot;,
+    &quot;members&quot; : [
+        {
+            &quot;_id&quot; : 0,
+            &quot;host&quot; : &quot;mongo:27017&quot;
+        }
+    ]
+}
+&gt; rs.initiate(config)
+{
+	&quot;ok&quot; : 1,
+	&quot;operationTime&quot; : Timestamp(1531248932, 1),
+	&quot;$clusterTime&quot; : {
+		&quot;clusterTime&quot; : Timestamp(1531248932, 1),
+		&quot;signature&quot; : {
+			&quot;hash&quot; : BinData(0,&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAA=&quot;),
+			&quot;keyId&quot; : NumberLong(0)
+		}
+	}
+}
+rs0:SECONDARY&gt;
+rs0:PRIMARY&gt;
+</code></pre>
+
+<p>Готово! Мы получили кластер из одного сервера MongoDB. Теперь можно проверить, что всё работает, как ожидается.</p>
+
+<pre><code class="language-bash">rs0:PRIMARY&gt; session = db.getMongo().startSession()
+session { &quot;id&quot; : UUID(&quot;7eb81006-983f-4398-adc7-5ed23e027377&quot;) }
+rs0:PRIMARY&gt; database = session.getDatabase(&quot;test&quot;)
+test
+rs0:PRIMARY&gt; // Создадим несколько документов
+rs0:PRIMARY&gt; database.col.insert({name: &quot;1&quot;})
+WriteResult({ &quot;nInserted&quot; : 1 })
+rs0:PRIMARY&gt; database.col.insert({name: &quot;2&quot;})
+WriteResult({ &quot;nInserted&quot; : 1 })
+rs0:PRIMARY&gt; database.col.insert({name: &quot;3&quot;})
+WriteResult({ &quot;nInserted&quot; : 1 })
+rs0:PRIMARY&gt; database.col.insert({name: &quot;4&quot;})
+WriteResult({ &quot;nInserted&quot; : 1 })
+rs0:PRIMARY&gt; // Посмотрим, что у нас получилось
+rs0:PRIMARY&gt; database.col.find({})
+{ &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;1&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;4&quot; }
+rs0:PRIMARY&gt; // Начинаем транзакцию
+rs0:PRIMARY&gt; session.startTransaction()
+rs0:PRIMARY&gt; // Изменим один документ
+rs0:PRIMARY&gt; database.col.update({name: &quot;4&quot;}, {name: &quot;44&quot;})
+WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+rs0:PRIMARY&gt; // Проверим изменения
+rs0:PRIMARY&gt; database.col.find({})
+{ &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;1&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;44&quot; }
+rs0:PRIMARY&gt; // Можно открыть соседний терминал и убедиться в другой сесии, что документ выглядит по-прежнему:
+rs0:PRIMARY&gt; // { &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;4&quot; }
+rs0:PRIMARY&gt; // Сохраняем изменения
+rs0:PRIMARY&gt; session.commitTransaction()
+rs0:PRIMARY&gt; // Проверяем результат
+rs0:PRIMARY&gt; database.col.find({})
+{ &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;1&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;44&quot; }
+rs0:PRIMARY&gt; // Попробуем изменить несколько документов
+rs0:PRIMARY&gt; session.startTransaction()
+rs0:PRIMARY&gt; database.col.update({name: &quot;44&quot;}, {name: &quot;42&quot;})
+WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+rs0:PRIMARY&gt; database.col.find({})
+{ &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;1&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;42&quot; }
+rs0:PRIMARY&gt; database.col.update({name: &quot;1&quot;}, {name: &quot;21&quot;})
+WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+rs0:PRIMARY&gt; database.col.find({})
+{ &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;21&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;42&quot; }
+rs0:PRIMARY&gt; session.commitTransaction()
+rs0:PRIMARY&gt; // Проверяем результат
+rs0:PRIMARY&gt; database.col.find({})
+{ &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;21&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;42&quot; }
+rs0:PRIMARY&gt; // А теперь убедимся, что работает отмена изменений
+rs0:PRIMARY&gt; session.startTransaction()
+rs0:PRIMARY&gt; database.col.update({name: &quot;21&quot;}, {name: &quot;1&quot;})
+WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+rs0:PRIMARY&gt; database.col.find({})
+{ &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;1&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;42&quot; }
+rs0:PRIMARY&gt; // Отменим изменения
+rs0:PRIMARY&gt; session.abortTransaction()
+rs0:PRIMARY&gt; database.col.find({})
+{ &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;21&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;42&quot; }
+rs0:PRIMARY&gt; // Отлично! Данные вернулись в прежнее состояние!
+rs0:PRIMARY&gt;
+</code></pre>
+
+<p>Таким образом, совершенно не напрягаясь, можно попробовать монговские транзакции уже сейчас без запуска многосерверного кластера. Советую заглянуть в <a href="https://docs.mongodb.com/master/core/transactions/">документацию</a> и прочитать об ограничениях транзакций. Например о том, что транзакции &laquo;живут&raquo; не более 1 минуты, если не успеть сохранить изменения, они будут отменены.</p>
+
+<p>Успехов!</p>
+            </div>
+            <footer class="article-footer">
+    
+    <a href="https://ivahaev.ru/mongodb-docker-dev-transactions//#disqus_thread" class="article-comment-link">
+        Комментарии
+    </a>
+
+    <a name="disqus_thread"></a>
+    <section class="post-comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//ivahaev.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </section>
+    
+</footer>
+        </div>
+    </article>
+</section>
+
+        </div>
+    </main>
+
+    <script src="https://ivahaev.ru/js/prism.js"></script>
+</body>
+
+</html>
