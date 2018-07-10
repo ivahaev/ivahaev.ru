@@ -57,7 +57,7 @@ docker run -v ~/mongo/:/data/db --name mongo --restart=always -p 27017:27017 -d 
 docker network create mongo-cluster
 ```
 
-Далее в параметрах запуска контейнера нужно указать использование новой сети `--net mongo-cluster`, а также передать параметр серверу, для работы в режиме **replica set:** `--replSet rs0`.
+Далее в параметрах запуска контейнера нужно указать использование новой сети `--net mongo-cluster`, а также передать параметр серверу, для работы в режиме **replica set:** `--replSet rs0`. Также, я намеренно опустил ключ `--restart=always`, т.к. не всегда использую MongoDB в работе в настоящее время и не хочу, чтобы она стартовала вместе с операционной системой.
 
 ```bash
 docker run -v ~/mongo/:/data/db --name mongo -p 27017:27017 -d mongo mongod --smallfiles --replSet rs0
@@ -109,6 +109,7 @@ rs0:PRIMARY> session = db.getMongo().startSession()
 session { "id" : UUID("7eb81006-983f-4398-adc7-5ed23e027377") }
 rs0:PRIMARY> database = session.getDatabase("test")
 test
+
 rs0:PRIMARY> // Создадим несколько документов
 rs0:PRIMARY> database.col.insert({name: "1"})
 WriteResult({ "nInserted" : 1 })
@@ -118,33 +119,41 @@ rs0:PRIMARY> database.col.insert({name: "3"})
 WriteResult({ "nInserted" : 1 })
 rs0:PRIMARY> database.col.insert({name: "4"})
 WriteResult({ "nInserted" : 1 })
+
 rs0:PRIMARY> // Посмотрим, что у нас получилось
 rs0:PRIMARY> database.col.find({})
 { "_id" : ObjectId("5b45026edc396f534f11952f"), "name" : "1" }
 { "_id" : ObjectId("5b450272dc396f534f119530"), "name" : "2" }
 { "_id" : ObjectId("5b450274dc396f534f119531"), "name" : "3" }
 { "_id" : ObjectId("5b450276dc396f534f119532"), "name" : "4" }
+
 rs0:PRIMARY> // Начинаем транзакцию
 rs0:PRIMARY> session.startTransaction()
+
 rs0:PRIMARY> // Изменим один документ
 rs0:PRIMARY> database.col.update({name: "4"}, {name: "44"})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
 rs0:PRIMARY> // Проверим изменения
 rs0:PRIMARY> database.col.find({})
 { "_id" : ObjectId("5b45026edc396f534f11952f"), "name" : "1" }
 { "_id" : ObjectId("5b450272dc396f534f119530"), "name" : "2" }
 { "_id" : ObjectId("5b450274dc396f534f119531"), "name" : "3" }
 { "_id" : ObjectId("5b450276dc396f534f119532"), "name" : "44" }
+
 rs0:PRIMARY> // Можно открыть соседний терминал и убедиться в другой сесии, что документ выглядит по-прежнему:
 rs0:PRIMARY> // { "_id" : ObjectId("5b450276dc396f534f119532"), "name" : "4" }
+
 rs0:PRIMARY> // Сохраняем изменения
 rs0:PRIMARY> session.commitTransaction()
+
 rs0:PRIMARY> // Проверяем результат
 rs0:PRIMARY> database.col.find({})
 { "_id" : ObjectId("5b45026edc396f534f11952f"), "name" : "1" }
 { "_id" : ObjectId("5b450272dc396f534f119530"), "name" : "2" }
 { "_id" : ObjectId("5b450274dc396f534f119531"), "name" : "3" }
 { "_id" : ObjectId("5b450276dc396f534f119532"), "name" : "44" }
+
 rs0:PRIMARY> // Попробуем изменить несколько документов
 rs0:PRIMARY> session.startTransaction()
 rs0:PRIMARY> database.col.update({name: "44"}, {name: "42"})
@@ -162,12 +171,14 @@ rs0:PRIMARY> database.col.find({})
 { "_id" : ObjectId("5b450274dc396f534f119531"), "name" : "3" }
 { "_id" : ObjectId("5b450276dc396f534f119532"), "name" : "42" }
 rs0:PRIMARY> session.commitTransaction()
+
 rs0:PRIMARY> // Проверяем результат
 rs0:PRIMARY> database.col.find({})
 { "_id" : ObjectId("5b45026edc396f534f11952f"), "name" : "21" }
 { "_id" : ObjectId("5b450272dc396f534f119530"), "name" : "2" }
 { "_id" : ObjectId("5b450274dc396f534f119531"), "name" : "3" }
 { "_id" : ObjectId("5b450276dc396f534f119532"), "name" : "42" }
+
 rs0:PRIMARY> // А теперь убедимся, что работает отмена изменений
 rs0:PRIMARY> session.startTransaction()
 rs0:PRIMARY> database.col.update({name: "21"}, {name: "1"})
@@ -177,6 +188,7 @@ rs0:PRIMARY> database.col.find({})
 { "_id" : ObjectId("5b450272dc396f534f119530"), "name" : "2" }
 { "_id" : ObjectId("5b450274dc396f534f119531"), "name" : "3" }
 { "_id" : ObjectId("5b450276dc396f534f119532"), "name" : "42" }
+
 rs0:PRIMARY> // Отменим изменения
 rs0:PRIMARY> session.abortTransaction()
 rs0:PRIMARY> database.col.find({})
@@ -184,6 +196,7 @@ rs0:PRIMARY> database.col.find({})
 { "_id" : ObjectId("5b450272dc396f534f119530"), "name" : "2" }
 { "_id" : ObjectId("5b450274dc396f534f119531"), "name" : "3" }
 { "_id" : ObjectId("5b450276dc396f534f119532"), "name" : "42" }
+
 rs0:PRIMARY> // Отлично! Данные вернулись в прежнее состояние!
 rs0:PRIMARY>
 ```

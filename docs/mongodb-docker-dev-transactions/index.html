@@ -225,7 +225,7 @@
 <pre><code class="language-bash">docker network create mongo-cluster
 </code></pre>
 
-<p>Далее в параметрах запуска контейнера нужно указать использование новой сети <code>--net mongo-cluster</code>, а также передать параметр серверу, для работы в режиме <strong>replica set:</strong> <code>--replSet rs0</code>.</p>
+<p>Далее в параметрах запуска контейнера нужно указать использование новой сети <code>--net mongo-cluster</code>, а также передать параметр серверу, для работы в режиме <strong>replica set:</strong> <code>--replSet rs0</code>. Также, я намеренно опустил ключ <code>--restart=always</code>, т.к. не всегда использую MongoDB в работе в настоящее время и не хочу, чтобы она стартовала вместе с операционной системой.</p>
 
 <pre><code class="language-bash">docker run -v ~/mongo/:/data/db --name mongo -p 27017:27017 -d mongo mongod --smallfiles --replSet rs0
 </code></pre>
@@ -273,6 +273,7 @@ rs0:PRIMARY&gt;
 session { &quot;id&quot; : UUID(&quot;7eb81006-983f-4398-adc7-5ed23e027377&quot;) }
 rs0:PRIMARY&gt; database = session.getDatabase(&quot;test&quot;)
 test
+
 rs0:PRIMARY&gt; // Создадим несколько документов
 rs0:PRIMARY&gt; database.col.insert({name: &quot;1&quot;})
 WriteResult({ &quot;nInserted&quot; : 1 })
@@ -282,33 +283,41 @@ rs0:PRIMARY&gt; database.col.insert({name: &quot;3&quot;})
 WriteResult({ &quot;nInserted&quot; : 1 })
 rs0:PRIMARY&gt; database.col.insert({name: &quot;4&quot;})
 WriteResult({ &quot;nInserted&quot; : 1 })
+
 rs0:PRIMARY&gt; // Посмотрим, что у нас получилось
 rs0:PRIMARY&gt; database.col.find({})
 { &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;1&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;4&quot; }
+
 rs0:PRIMARY&gt; // Начинаем транзакцию
 rs0:PRIMARY&gt; session.startTransaction()
+
 rs0:PRIMARY&gt; // Изменим один документ
 rs0:PRIMARY&gt; database.col.update({name: &quot;4&quot;}, {name: &quot;44&quot;})
 WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+
 rs0:PRIMARY&gt; // Проверим изменения
 rs0:PRIMARY&gt; database.col.find({})
 { &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;1&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;44&quot; }
+
 rs0:PRIMARY&gt; // Можно открыть соседний терминал и убедиться в другой сесии, что документ выглядит по-прежнему:
 rs0:PRIMARY&gt; // { &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;4&quot; }
+
 rs0:PRIMARY&gt; // Сохраняем изменения
 rs0:PRIMARY&gt; session.commitTransaction()
+
 rs0:PRIMARY&gt; // Проверяем результат
 rs0:PRIMARY&gt; database.col.find({})
 { &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;1&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;44&quot; }
+
 rs0:PRIMARY&gt; // Попробуем изменить несколько документов
 rs0:PRIMARY&gt; session.startTransaction()
 rs0:PRIMARY&gt; database.col.update({name: &quot;44&quot;}, {name: &quot;42&quot;})
@@ -326,12 +335,14 @@ rs0:PRIMARY&gt; database.col.find({})
 { &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;42&quot; }
 rs0:PRIMARY&gt; session.commitTransaction()
+
 rs0:PRIMARY&gt; // Проверяем результат
 rs0:PRIMARY&gt; database.col.find({})
 { &quot;_id&quot; : ObjectId(&quot;5b45026edc396f534f11952f&quot;), &quot;name&quot; : &quot;21&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;42&quot; }
+
 rs0:PRIMARY&gt; // А теперь убедимся, что работает отмена изменений
 rs0:PRIMARY&gt; session.startTransaction()
 rs0:PRIMARY&gt; database.col.update({name: &quot;21&quot;}, {name: &quot;1&quot;})
@@ -341,6 +352,7 @@ rs0:PRIMARY&gt; database.col.find({})
 { &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;42&quot; }
+
 rs0:PRIMARY&gt; // Отменим изменения
 rs0:PRIMARY&gt; session.abortTransaction()
 rs0:PRIMARY&gt; database.col.find({})
@@ -348,6 +360,7 @@ rs0:PRIMARY&gt; database.col.find({})
 { &quot;_id&quot; : ObjectId(&quot;5b450272dc396f534f119530&quot;), &quot;name&quot; : &quot;2&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450274dc396f534f119531&quot;), &quot;name&quot; : &quot;3&quot; }
 { &quot;_id&quot; : ObjectId(&quot;5b450276dc396f534f119532&quot;), &quot;name&quot; : &quot;42&quot; }
+
 rs0:PRIMARY&gt; // Отлично! Данные вернулись в прежнее состояние!
 rs0:PRIMARY&gt;
 </code></pre>
