@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pbx on ivahaev.ru</title>
+    <title>pbx on ivahaev.ru</title>
     <link>https://ivahaev.ru/tags/pbx/</link>
-    <description>Recent content in Pbx on ivahaev.ru</description>
+    <description>Recent content in pbx on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
+    <copyright>2020 Евгений Иваха</copyright>
     <lastBuildDate>Mon, 23 Nov 2015 00:57:54 +0500</lastBuildDate>
     
 	<atom:link href="https://ivahaev.ru/tags/pbx/index.xml" rel="self" type="application/rss+xml" />
@@ -19,10 +19,7 @@
       
       <guid>https://ivahaev.ru/smart-callback/</guid>
       <description>&lt;p&gt;В настоящее время сложно предложить клиентам что-то действительно уникальное, конкурентная борьба переходит в иные плоскости. Сегодняшние клиенты довольно разборчивы. Цена продукта уже не всегда играет решающую роль, покупатели ценят сервис.&lt;/p&gt;
-
-&lt;p&gt;Естественно, многие компании придумывают различные способы привлечения и удержания клиентов. Рассмотрим вариант, как правильно настроенный на принятие входящих звонков телефонный сервис поможет не терять потенциальных и удерживать существующих клиентов.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Естественно, многие компании придумывают различные способы привлечения и удержания клиентов. Рассмотрим вариант, как правильно настроенный на принятие входящих звонков телефонный сервис поможет не терять потенциальных и удерживать существующих клиентов.&lt;/p&gt;</description>
     </item>
     
   </channel>

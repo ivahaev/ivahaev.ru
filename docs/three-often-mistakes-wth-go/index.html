@@ -2,7 +2,7 @@
 <html lang="ru-RU">
 <head>
     <title>Три частые ошибки, возникающие при разработке на Go &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.39" />
+    <meta name="generator" content="Hugo 0.69.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -55,11 +55,7 @@
     <meta propperty="og:title" content="Три частые ошибки, возникающие при разработке на Go" />
     
       <meta propperty="og:description" content="Это перевод статьи. Раньше желания переводить не возникало, но статья очень понравилась, наверное, из-за того, что сам наступал уже на подобные грабли. Перевод достаточно вольный, но суть передает верно. Если хоть одному начинающему разработчику поможет эта статья, труды мои будут не напрасными :).
-
-Оригинал статьи доступен по адресу http://bryce.is/writing/code/jekyll/update/2015/11/01/3-go-gotchas.html.
-
-
-" />
+Оригинал статьи доступен по адресу http://bryce.is/writing/code/jekyll/update/2015/11/01/3-go-gotchas.html." />
     
 
 
@@ -115,7 +111,7 @@
         </div>
 
         <footer class="site-footer">
-            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+            <section class="copyright">&copy; 2020 Евгений Иваха</section>
         </footer>
     </div>
 </div>
@@ -168,168 +164,114 @@
 
             <div class="article-entry" itemprop="articleBody">
                 <p>Это перевод статьи. Раньше желания переводить не возникало, но статья очень понравилась, наверное, из-за того, что сам наступал уже на подобные грабли. Перевод достаточно вольный, но суть передает верно. Если хоть одному начинающему разработчику поможет эта статья, труды мои будут не напрасными :).</p>
-
 <p>Оригинал статьи доступен по адресу <a href="http://bryce.is/writing/code/jekyll/update/2015/11/01/3-go-gotchas.html">http://bryce.is/writing/code/jekyll/update/2015/11/01/3-go-gotchas.html</a>.</p>
-
-<p></p>
-
 <h2 id="1-итерация-через-range">1. Итерация через range</h2>
-
 <p>Использовать <code>range</code> очень удобно. Перебирая срез или отображение, для каждого элемента мы получаем две переменные, в первой индекс элемента, во второй <strong>копия</strong> значения.
 Например:</p>
-
-<pre><code class="language-go">for index, value := range mySlice {
-    fmt.Println(&quot;index: &quot; + index)
-    fmt.Println(&quot;value: &quot; + value)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">mySlice</span> {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;index: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">index</span>)
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;value: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">value</span>)
 }
-</code></pre>
-
-<p>Но что же здесь происходит на самом деле? Рассмотрим более подробный пример:</p>
-
-<pre><code class="language-go">type Foo struct {
-    bar string
+</code></pre></div><p>Но что же здесь происходит на самом деле? Рассмотрим более подробный пример:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Foo</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">bar</span> <span style="color:#66d9ef">string</span>
 }
 
-func main() {
-    list := []Foo{
-        {&quot;A&quot;},
-        {&quot;B&quot;},
-        {&quot;C&quot;},
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">list</span> <span style="color:#f92672">:=</span> []<span style="color:#a6e22e">Foo</span>{
+        {<span style="color:#e6db74">&#34;A&#34;</span>},
+        {<span style="color:#e6db74">&#34;B&#34;</span>},
+        {<span style="color:#e6db74">&#34;C&#34;</span>},
     }
 
-    list2 := make([]*Foo, len(list))
-    for i, value := range list {
-        list2[i] = &amp;value
+    <span style="color:#a6e22e">list2</span> <span style="color:#f92672">:=</span> make([]<span style="color:#f92672">*</span><span style="color:#a6e22e">Foo</span>, len(<span style="color:#a6e22e">list</span>))
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+        <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">value</span>
     }
 
-    fmt.Println(list[0], list[1], list[2])
-    fmt.Println(list2[0], list2[1], list2[2])
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">list</span>[<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">list</span>[<span style="color:#ae81ff">2</span>])
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list2</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">list2</span>[<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">list2</span>[<span style="color:#ae81ff">2</span>])
 }
-</code></pre>
-
-<p>В данном примере происходит следующее:</p>
-
+</code></pre></div><p>В данном примере происходит следующее:</p>
 <ul>
 <li>Создается срез структур <code>Foo</code> под названием <code>list</code>;</li>
 <li>Определяется срез указателей на структуры <code>Foo</code>, под названием <code>list2</code> с длиной равной длине массива <code>list</code>;</li>
 <li>Перебираем все структуры в срезе <code>list</code> и присваиваем указатель на структуру соответствующему элементу среза <code>list2</code> (имеющему тот же индекс);</li>
 </ul>
-
 <p>Вероятнее всего, мы ожидаем следующий результат работы вышеприведенного кода:</p>
-
-<pre><code class="language-bash">{A} {B} {C}
-&amp;{A} &amp;{B} &amp;{C}
-</code></pre>
-
-<p>А на самом деле, получаем:</p>
-
-<pre><code class="language-bash">{A} {B} {C}
-&amp;{C} &amp;{C} &amp;{C}
-</code></pre>
-
-<p>Первая строка именно такая как ожидалась, а вот со второй что-то не так. Как будто бы распечатался указатель на третий элемент среза <code>list2</code> три раза. Почему же такое произошло?</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{</span>A<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>B<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>A<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>B<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
+</code></pre></div><p>А на самом деле, получаем:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{</span>A<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>B<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
+&amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
+</code></pre></div><p>Первая строка именно такая как ожидалась, а вот со второй что-то не так. Как будто бы распечатался указатель на третий элемент среза <code>list2</code> три раза. Почему же такое произошло?</p>
 <p>Всему виной этот самый удобный <code>range</code>.</p>
-
-<pre><code class="language-go">for i, value := range list {
-    list2[i] = &amp;value
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+    <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">value</span>
 }
-</code></pre>
-
-<p>Go передает <strong>копий</strong> значений элементов вместо самих значений, когда производится итерация с помощью <code>range</code>. И когда мы создаем указатель на <code>value</code>, на самом деле, мы создаем указатель на <strong>копию</strong> значения. При каждой итерации, копия нового значения помещается в ту же ячейку памяти, что и предыдущее, таким образом, все указатели в срезе <code>list2</code> приводят к одной области памяти.</p>
-
+</code></pre></div><p>Go передает <strong>копий</strong> значений элементов вместо самих значений, когда производится итерация с помощью <code>range</code>. И когда мы создаем указатель на <code>value</code>, на самом деле, мы создаем указатель на <strong>копию</strong> значения. При каждой итерации, копия нового значения помещается в ту же ячейку памяти, что и предыдущее, таким образом, все указатели в срезе <code>list2</code> приводят к одной области памяти.</p>
 <p>Правильно решить поставленную задачу можно так:</p>
-
-<pre><code class="language-go">var value Foo
-for var i := 0; i &lt; len(list); i++ {
-    value = list[i]
-    list2[i] = &amp;value
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">value</span> <span style="color:#a6e22e">Foo</span>
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">list</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+    <span style="color:#a6e22e">value</span> = <span style="color:#a6e22e">list</span>[<span style="color:#a6e22e">i</span>]
+    <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">value</span>
 }
-</code></pre>
-
-<p>Или, все-таки, с помощью <code>range</code>, но взяв из него только индекс элемента:</p>
-
-<pre><code class="language-go">for i := range list {
-    list2[i] = &amp;list[i]
+</code></pre></div><p>Или, все-таки, с помощью <code>range</code>, но взяв из него только индекс элемента:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+    <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">list</span>[<span style="color:#a6e22e">i</span>]
 }
-</code></pre>
-
-<h2 id="2-использование-встроенной-функций-append">2. Использование встроенной функций append</h2>
-
-<p>Срезы&nbsp;&mdash; один из примитивных типов в Go. То что в других языках делается с массивами, в гоу можно сделать только со срезом.
+</code></pre></div><h2 id="2-использование-встроенной-функций-append">2. Использование встроенной функций append</h2>
+<p>Срезы — один из примитивных типов в Go. То что в других языках делается с массивами, в гоу можно сделать только со срезом.
 Например, нам нужно добавить значение в срез элементов типа <code>int</code>.</p>
-
-<pre><code class="language-go">list := []int{0,1,2}
-list = append(list, 3)
-fmt.Println(list) // [0 1 2 3]
-</code></pre>
-
-<p>На первый взгляд, все похоже на метод <code>push()</code> для массивов в других языках, но срезы&nbsp;&mdash; это не совсем массивы и функция <code>append</code> иногда может удивить.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">list</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>}
+<span style="color:#a6e22e">list</span> = append(<span style="color:#a6e22e">list</span>, <span style="color:#ae81ff">3</span>)
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>) <span style="color:#75715e">// [0 1 2 3]
+</span></code></pre></div><p>На первый взгляд, все похоже на метод <code>push()</code> для массивов в других языках, но срезы — это не совсем массивы и функция <code>append</code> иногда может удивить.</p>
 <p>Рассмотрим другой пример:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> []byte(<span style="color:#e6db74">&#34;foo&#34;</span>)
+    <span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> append(<span style="color:#a6e22e">a</span>, []byte(<span style="color:#e6db74">&#34;bar&#34;</span>)<span style="color:#f92672">...</span>)
+    <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> append(<span style="color:#a6e22e">a</span>, []byte(<span style="color:#e6db74">&#34;baz&#34;</span>)<span style="color:#f92672">...</span>)
 
-<pre><code class="language-go">func main() {
-    a := []byte(&quot;foo&quot;)
-    b := append(a, []byte(&quot;bar&quot;)...)
-    c := append(a, []byte(&quot;baz&quot;)...)
-
-    fmt.Println(string(a), string(b), string(c))
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(string(<span style="color:#a6e22e">a</span>), string(<span style="color:#a6e22e">b</span>), string(<span style="color:#a6e22e">c</span>))
 }
-</code></pre>
-
-<p>Здесь мы определили срез байт и сразу же инициировали его, преобразовав в срез строку <strong>&ldquo;foo&rdquo;</strong>. Далее мы добавляем срез <strong>[&ldquo;bar&rdquo;]</strong> к первому срезу, присваиваем полученное переменной <code>b</code>, после чего добавляем другой срез <strong>[&ldquo;baz&rdquo;]</strong> также к первому срезу и присваиваем полученное переменной <code>c</code>. Результатом работы данной программы будет следующее:</p>
-
-<pre><code class="language-bash">foo foobaz foobaz
-</code></pre>
-
-<p><img src="https://ivahaev.ru/img/shta.jpeg" alt="Шта?" /></p>
-
+</code></pre></div><p>Здесь мы определили срез байт и сразу же инициировали его, преобразовав в срез строку <strong>&ldquo;foo&rdquo;</strong>. Далее мы добавляем срез <strong>[&ldquo;bar&rdquo;]</strong> к первому срезу, присваиваем полученное переменной <code>b</code>, после чего добавляем другой срез <strong>[&ldquo;baz&rdquo;]</strong> также к первому срезу и присваиваем полученное переменной <code>c</code>. Результатом работы данной программы будет следующее:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">foo foobaz foobaz
+</code></pre></div><p><img src="https://ivahaev.ru/img/shta.jpeg" alt="Шта?"></p>
 <p>Какого? Мы-то ждали <code>foo foobar foobaz</code>!</p>
-
-<p>Чтобы понять что произошло, следует разобраться с тем, а что же за звери такие эти срезы? Срез в Go&nbsp;&mdash; это дексриптор, который содержит три компонента:</p>
-
+<p>Чтобы понять что произошло, следует разобраться с тем, а что же за звери такие эти срезы? Срез в Go — это дексриптор, который содержит три компонента:</p>
 <ul>
 <li>Указатель на базовый <strong>массив</strong> элементов. К этому массиву мы не получим прямого доступа;</li>
 <li>Емкость базового массива;</li>
 <li>Длину среза.</li>
 </ul>
-
 <p>Так что же произошло на самом деле? Go переиспользует базовый массив в функции <code>append</code> если он может сделать это не изменяя его емкости. Все три переменные в примере указывают на одну и ту же области памяти. Единственная разница, что срез <code>a</code> имеет длину <strong>3</strong>, а срезы <code>b</code> и <code>c</code> длину равную 6.</p>
-
 <p>Следует всегда помнить, что Go будет использовать тот же базовый массив, если длина нового среза будет меньшей или равной емкости изначального среза.</p>
-
 <h2 id="3-затенение-переменных">3. Затенение переменных</h2>
-
 <p>Не уверен в переводе термина (<strong>Variable shadowing</strong>), но примерно как-то так.</p>
-
-<p>В Go есть один интересный оператор, который выглядит вот так: <code>:=</code>. Из-за него некоторые говорят, что Go очень похож на Pascal, хотя в Go оператор выполняет несколько другую работу. <code>:=</code>&nbsp;&mdash; это короткая форма объявления переменной с одновременным присвоением значения и типа, соответствующего переданному значению. Очень удобная форма записи, но, к сожалению, именно она и таит в себе возможность совершить ошибку.</p>
-
+<p>В Go есть один интересный оператор, который выглядит вот так: <code>:=</code>. Из-за него некоторые говорят, что Go очень похож на Pascal, хотя в Go оператор выполняет несколько другую работу. <code>:=</code> — это короткая форма объявления переменной с одновременным присвоением значения и типа, соответствующего переданному значению. Очень удобная форма записи, но, к сожалению, именно она и таит в себе возможность совершить ошибку.</p>
 <p>Рассмотрим следующий код:</p>
-
-<pre><code class="language-go">func main() {
-    list := []string{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}
-    for {
-        list, err := repeat(list)
-        if err != nil {
-            panic(err)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">list</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>}
+    <span style="color:#66d9ef">for</span> {
+        <span style="color:#a6e22e">list</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">repeat</span>(<span style="color:#a6e22e">list</span>)
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+            panic(<span style="color:#a6e22e">err</span>)
         }
-        fmt.Println(list)
-        break
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>)
+        <span style="color:#66d9ef">break</span>
     }
-    fmt.Println(list)
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>)
 }
 
-func repeat(list []string) ([]string, error) {
-    if len(list) == 0 {
-        return nil, errors.New(&quot;Nothing to repeat!&quot;)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">repeat</span>(<span style="color:#a6e22e">list</span> []<span style="color:#66d9ef">string</span>) ([]<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">error</span>) {
+    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">list</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;Nothing to repeat!&#34;</span>)
     }
-    list = append(list, list...)
-    return list, nil
+    <span style="color:#a6e22e">list</span> = append(<span style="color:#a6e22e">list</span>, <span style="color:#a6e22e">list</span><span style="color:#f92672">...</span>)
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">list</span>, <span style="color:#66d9ef">nil</span>
 }
-</code></pre>
-
-<p>Автор считает, что это очень показательный пример. Ну что же, поверим, к тому же, он вполне себе хорошо иллюстрирует проблему. Происходит следующее:</p>
-
+</code></pre></div><p>Автор считает, что это очень показательный пример. Ну что же, поверим, к тому же, он вполне себе хорошо иллюстрирует проблему. Происходит следующее:</p>
 <ul>
 <li>Создается срез строк с именем <code>list</code>;</li>
 <li>Запускается бесконечный цикл;</li>
@@ -337,32 +279,19 @@ func repeat(list []string) ([]string, error) {
 <li>Прерываем цикл;</li>
 <li>Печатаем <code>list</code>.</li>
 </ul>
-
 <p>Глядя на код, ожидается следующий вывод:</p>
-
-<pre><code class="language-bash">[a b c a b c]
-[a b c a b c]
-</code></pre>
-
-<p>Но на деле получаем:</p>
-
-<pre><code class="language-bash">[a b c a b c]
-[a b c]
-</code></pre>
-
-<p>А все потому, что когда использовали оператор <code>:=</code>, мы на самом деле определили новую переменную <code>list</code> в области видимости цикла. В Go фигурные скобки создают новую область видимости. Мы это сделали для того, чтобы быстренько объявить переменную <code>err</code> типа <code>error</code>.</p>
-
-<p><img src="https://ivahaev.ru/img/norma.jpeg" alt="Это норма" /></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>a b c a b c<span style="color:#f92672">]</span>
+<span style="color:#f92672">[</span>a b c a b c<span style="color:#f92672">]</span>
+</code></pre></div><p>Но на деле получаем:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>a b c a b c<span style="color:#f92672">]</span>
+<span style="color:#f92672">[</span>a b c<span style="color:#f92672">]</span>
+</code></pre></div><p>А все потому, что когда использовали оператор <code>:=</code>, мы на самом деле определили новую переменную <code>list</code> в области видимости цикла. В Go фигурные скобки создают новую область видимости. Мы это сделали для того, чтобы быстренько объявить переменную <code>err</code> типа <code>error</code>.</p>
+<p><img src="https://ivahaev.ru/img/norma.jpeg" alt="Это норма"></p>
 <p>Чтобы исправить ситуацию, нужно объявить <code>err</code> заранее и далее использовать обычный оператор присваивания <code>=</code>.</p>
-
-<pre><code class="language-go">var err error
-list, err = duplicate(list)
-</code></pre>
-
-<p>В поставке Go есть отличная утилита <code>go vet</code>, запустив которую с опцией <code>-shadow</code>, можно проверить код на наличие потенциальных ошибок связанных с затенением переменных.</p>
-
-<p>Go&nbsp;&mdash; отличный язык, но чтобы создавать действительно классно работающие приложения, стоит понимать что происходит у него &ldquo;под капотом&rdquo;.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
+<span style="color:#a6e22e">list</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">duplicate</span>(<span style="color:#a6e22e">list</span>)
+</code></pre></div><p>В поставке Go есть отличная утилита <code>go vet</code>, запустив которую с опцией <code>-shadow</code>, можно проверить код на наличие потенциальных ошибок связанных с затенением переменных.</p>
+<p>Go — отличный язык, но чтобы создавать действительно классно работающие приложения, стоит понимать что происходит у него &ldquo;под капотом&rdquo;.</p>
             </div>
             <footer class="article-footer">
     

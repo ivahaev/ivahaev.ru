@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Testify on ivahaev.ru</title>
+    <title>testify on ivahaev.ru</title>
     <link>https://ivahaev.ru/tags/testify/</link>
-    <description>Recent content in Testify on ivahaev.ru</description>
+    <description>Recent content in testify on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
+    <copyright>2020 Евгений Иваха</copyright>
     <lastBuildDate>Sat, 21 Apr 2018 11:55:00 +0500</lastBuildDate>
     
 	<atom:link href="https://ivahaev.ru/tags/testify/index.xml" rel="self" type="application/rss+xml" />
@@ -14,13 +14,11 @@
     
     <item>
       <title>Мой подход к тестированию. Часть вторая</title>
-      <link>https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/</link>
+      <link>https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/</link>
       <pubDate>Sat, 21 Apr 2018 11:55:00 +0500</pubDate>
       
-      <guid>https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/how-to-test-go-applications-my-way-part-two/</guid>
-      <description>&lt;p&gt;В &lt;a href=&#34;https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-one/&#34;&gt;первой статье&lt;/a&gt; цикла о тестировании, которая вышла почти два года назад, я описал свой подход к тестированию, который был актуален в 2016 году. Время идёт, всё изменяется, стандартная библиотека &lt;strong&gt;Go&lt;/strong&gt; становится лучше и вот пару-тройку мажорных версий назад в пакете &lt;a href=&#34;https://golang.org/pkg/testing/&#34;&gt;testing&lt;/a&gt; появился новый метод &lt;a href=&#34;https://golang.org/pkg/testing/#T.Run&#34;&gt;Run()&lt;/a&gt;, который позволяет запускать именованные подтесты. Теперь &lt;a href=&#34;https://github.com/franela/goblin&#34;&gt;Гоблина&lt;/a&gt; можно отправить обратно в пещеру и уменьшить число зависимостей проекта.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/</guid>
+      <description>&lt;p&gt;В &lt;a href=&#34;https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-one/&#34;&gt;первой статье&lt;/a&gt; цикла о тестировании, которая вышла почти два года назад, я описал свой подход к тестированию, который был актуален в 2016 году. Время идёт, всё изменяется, стандартная библиотека &lt;strong&gt;Go&lt;/strong&gt; становится лучше и вот пару-тройку мажорных версий назад в пакете &lt;a href=&#34;https://golang.org/pkg/testing/&#34;&gt;testing&lt;/a&gt; появился новый метод &lt;a href=&#34;https://golang.org/pkg/testing/#T.Run&#34;&gt;Run()&lt;/a&gt;, который позволяет запускать именованные подтесты. Теперь &lt;a href=&#34;https://github.com/franela/goblin&#34;&gt;Гоблина&lt;/a&gt; можно отправить обратно в пещеру и уменьшить число зависимостей проекта.&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -2,7 +2,7 @@
 <html lang="ru-RU">
 <head>
     <title>Двойной API для асинхронных функций &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.39" />
+    <meta name="generator" content="Hugo 0.69.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -56,12 +56,8 @@
     
       <meta propperty="og:description" content="Когда пишешь публичные асинхронные методы на JavaScript, желательно придерживаться двух простых правил:
 
-
 Если метод может вернуть ошибку в колбэке, то ошибка должна идти первым аргументом. Часто, даже если метод никогда не возвращает ошибку, первым аргументом передают null для того, чтобы унифицировать все асинхронные вызовы;
 Если в метод не передана колбэк-функция, то метод должен вернуть Promise.
-
-
-
 " />
     
 
@@ -118,7 +114,7 @@
         </div>
 
         <footer class="site-footer">
-            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+            <section class="copyright">&copy; 2020 Евгений Иваха</section>
         </footer>
     </div>
 </div>
@@ -174,42 +170,32 @@
 
             <div class="article-entry" itemprop="articleBody">
                 <p>Когда пишешь публичные асинхронные методы на <strong>JavaScript</strong>, желательно придерживаться двух простых правил:</p>
-
 <ol>
 <li>Если метод может вернуть ошибку в колбэке, то ошибка должна идти первым аргументом. Часто, даже если метод никогда не возвращает ошибку, первым аргументом передают <code>null</code> для того, чтобы унифицировать все асинхронные вызовы;</li>
 <li>Если в метод не передана колбэк-функция, то метод должен вернуть Promise.</li>
 </ol>
-
-<p></p>
-
 <p>Если с первым правилом все достаточно просто, то для удобного выполнения второго, в нашей команде родилось короткое однострочное выражение, которые мы повсеместно используем:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Javascript" data-lang="Javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">cb</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;function&#34;</span>) <span style="color:#f92672">?</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">f</span>, <span style="color:#a6e22e">r</span>) =&gt; (<span style="color:#a6e22e">cb</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">d</span>) =&gt; <span style="color:#a6e22e">e</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">r</span>(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">:</span> <span style="color:#a6e22e">f</span>(<span style="color:#a6e22e">d</span>))) <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
+</code></pre></div><p>Покажу, как водится, на примере таймера:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Javascript" data-lang="Javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">asyncMethod</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">timeOut</span>, <span style="color:#a6e22e">cb</span>) =&gt; {
+    <span style="color:#75715e">// Если cb не является функцией, создаем Promise и модифицируем cb для использования далее.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">cb</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;function&#34;</span>) <span style="color:#f92672">?</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">f</span>, <span style="color:#a6e22e">r</span>) =&gt; (<span style="color:#a6e22e">cb</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">d</span>) =&gt; <span style="color:#a6e22e">e</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">r</span>(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">:</span> <span style="color:#a6e22e">f</span>(<span style="color:#a6e22e">d</span>))) <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
 
-<pre><code class="language-Javascript">const d = (typeof cb !== &quot;function&quot;) ? new Promise((f, r) =&gt; (cb = (e, d) =&gt; e != null ? r(e) : f(d))) : null;
-</code></pre>
+    <span style="color:#75715e">// Используем cb как обычный колбэк
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">cb</span>, <span style="color:#a6e22e">timeOut</span>);
 
-<p>Покажу, как водится, на примере таймера:</p>
-
-<pre><code class="language-Javascript">const asyncMethod = (timeOut, cb) =&gt; {
-    // Если cb не является функцией, создаем Promise и модифицируем cb для использования далее.
-    const d = (typeof cb !== &quot;function&quot;) ? new Promise((f, r) =&gt; (cb = (e, d) =&gt; e != null ? r(e) : f(d))) : null;
-
-    // Используем cb как обычный колбэк
-    setTimeout(cb, timeOut);
-
-    // Возвращаем либо Promise, если колбэка не было, либо null
-    return d;
+    <span style="color:#75715e">// Возвращаем либо Promise, если колбэка не было, либо null
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">d</span>;
 };
 
-// Используем в классическом стиле:
-asyncMethod(1000, () =&gt; {
-    console.log(&quot;Classic timeout reached!&quot;);
+<span style="color:#75715e">// Используем в классическом стиле:
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">asyncMethod</span>(<span style="color:#ae81ff">1000</span>, () =&gt; {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Classic timeout reached!&#34;</span>);
 });
 
-// Используем через Promise
-asyncMethod(1000).then(() =&gt; console.log(&quot;Promise timeout reached!&quot;));
-</code></pre>
-
-<p>Таким вот простым способом, можно улучшить публичный API в части асинхронных методов.</p>
+<span style="color:#75715e">// Используем через Promise
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">asyncMethod</span>(<span style="color:#ae81ff">1000</span>).<span style="color:#a6e22e">then</span>(() =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Promise timeout reached!&#34;</span>));
+</code></pre></div><p>Таким вот простым способом, можно улучшить публичный API в части асинхронных методов.</p>
             </div>
             <footer class="article-footer">
     

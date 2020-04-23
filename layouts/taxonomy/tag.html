@@ -25,7 +25,7 @@
             </a> {{ partial "article_header" . (dict "summary" true)  }}
                 <div class="article-entry" itemprop="articleBody">
                     <p>
-                        {{ printf "%s" .Summary | markdownify }}
+                        {{ .Summary }}
                         <br>
                     </p>
 

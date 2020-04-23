@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Freepbx on ivahaev.ru</title>
+    <title>freepbx on ivahaev.ru</title>
     <link>https://ivahaev.ru/tags/freepbx/</link>
-    <description>Recent content in Freepbx on ivahaev.ru</description>
+    <description>Recent content in freepbx on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
+    <copyright>2020 Евгений Иваха</copyright>
     <lastBuildDate>Wed, 11 Nov 2015 01:53:02 +0500</lastBuildDate>
     
 	<atom:link href="https://ivahaev.ru/tags/freepbx/index.xml" rel="self" type="application/rss+xml" />
@@ -19,10 +19,7 @@
       
       <guid>https://ivahaev.ru/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</guid>
       <description>&lt;p&gt;В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.&lt;/p&gt;
-
-&lt;p&gt;Рассмотрим вариант решения данной задачи на базе &lt;strong&gt;IP PBX Asterisk&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Рассмотрим вариант решения данной задачи на базе &lt;strong&gt;IP PBX Asterisk&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

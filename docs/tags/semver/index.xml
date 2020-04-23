@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Semver on ivahaev.ru</title>
+    <title>SemVer on ivahaev.ru</title>
     <link>https://ivahaev.ru/tags/semver/</link>
-    <description>Recent content in Semver on ivahaev.ru</description>
+    <description>Recent content in SemVer on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
+    <copyright>2020 Евгений Иваха</copyright>
     <lastBuildDate>Fri, 01 Jul 2016 23:11:50 +0500</lastBuildDate>
     
 	<atom:link href="https://ivahaev.ru/tags/semver/index.xml" rel="self" type="application/rss+xml" />
@@ -19,10 +19,7 @@
       
       <guid>https://ivahaev.ru/go-releases-versions/</guid>
       <description>&lt;p&gt;Читая новости &lt;a href=&#34;http://4gophers.ru/&#34;&gt;на отличном ресурсе по Go&lt;/a&gt;, наткнулся на статью Дейва Чени &lt;a href=&#34;http://dave.cheney.net/2016/06/24/gophers-please-tag-your-releases&#34;&gt;Гоферы, тэгируйте свои релизы&lt;/a&gt;. Вкратце, там говорится о полезности тэгов к комитам пакета в git репозитории, а так же о том, что при указании версии, стоит обратить внимание на формат &lt;a href=&#34;http://semver.org/spec/v2.0.0.html&#34;&gt;SemVer 2.0.0&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Что самое интересное, статья написана 24 июня, примерно в то же время, может быть, днём ранее, я написал инструмент для себя, который позволяет автоматизировать процесс изменения патч-версии приложений, написанных на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Что самое интересное, статья написана 24 июня, примерно в то же время, может быть, днём ранее, я написал инструмент для себя, который позволяет автоматизировать процесс изменения патч-версии приложений, написанных на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

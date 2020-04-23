@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Telephony on ivahaev.ru</title>
+    <title>telephony on ivahaev.ru</title>
     <link>https://ivahaev.ru/tags/telephony/</link>
-    <description>Recent content in Telephony on ivahaev.ru</description>
+    <description>Recent content in telephony on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
+    <copyright>2020 Евгений Иваха</copyright>
     <lastBuildDate>Mon, 23 Nov 2015 00:57:54 +0500</lastBuildDate>
     
 	<atom:link href="https://ivahaev.ru/tags/telephony/index.xml" rel="self" type="application/rss+xml" />
@@ -19,10 +19,7 @@
       
       <guid>https://ivahaev.ru/smart-callback/</guid>
       <description>&lt;p&gt;В настоящее время сложно предложить клиентам что-то действительно уникальное, конкурентная борьба переходит в иные плоскости. Сегодняшние клиенты довольно разборчивы. Цена продукта уже не всегда играет решающую роль, покупатели ценят сервис.&lt;/p&gt;
-
-&lt;p&gt;Естественно, многие компании придумывают различные способы привлечения и удержания клиентов. Рассмотрим вариант, как правильно настроенный на принятие входящих звонков телефонный сервис поможет не терять потенциальных и удерживать существующих клиентов.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Естественно, многие компании придумывают различные способы привлечения и удержания клиентов. Рассмотрим вариант, как правильно настроенный на принятие входящих звонков телефонный сервис поможет не терять потенциальных и удерживать существующих клиентов.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,9 +28,7 @@
       <pubDate>Sat, 14 Nov 2015 12:34:30 +0500</pubDate>
       
       <guid>https://ivahaev.ru/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</guid>
-      <description>&lt;p&gt;Если требуется реализовать какой-то счетчик в дайлплане, удобно использовать переменную канала. Но просто так изменить её значение, прибавляя единицу, не получится.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Если требуется реализовать какой-то счетчик в дайлплане, удобно использовать переменную канала. Но просто так изменить её значение, прибавляя единицу, не получится.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -42,9 +37,7 @@
       <pubDate>Thu, 12 Nov 2015 16:30:30 +0500</pubDate>
       
       <guid>https://ivahaev.ru/deep-debug-astierisk/</guid>
-      <description>&lt;p&gt;Иногда можно потерять довольно много времени, пытаясь в консоли астериска отловить ошибку выполнения &lt;strong&gt;agi&lt;/strong&gt; скрипта, или просто внешнего приложения, запускаемого из дайлплана. Есть один способ, который в документации в явном виде не описан, но очень помогает. Мы запустим &lt;strong&gt;asterisk&lt;/strong&gt; в режиме, похожем на монопольный в &lt;strong&gt;1С&lt;/strong&gt;, при этом будем видеть в его консоли все предупреждения и ошибки.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Иногда можно потерять довольно много времени, пытаясь в консоли астериска отловить ошибку выполнения &lt;strong&gt;agi&lt;/strong&gt; скрипта, или просто внешнего приложения, запускаемого из дайлплана. Есть один способ, который в документации в явном виде не описан, но очень помогает. Мы запустим &lt;strong&gt;asterisk&lt;/strong&gt; в режиме, похожем на монопольный в &lt;strong&gt;1С&lt;/strong&gt;, при этом будем видеть в его консоли все предупреждения и ошибки.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -54,10 +47,7 @@
       
       <guid>https://ivahaev.ru/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</guid>
       <description>&lt;p&gt;В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.&lt;/p&gt;
-
-&lt;p&gt;Рассмотрим вариант решения данной задачи на базе &lt;strong&gt;IP PBX Asterisk&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Рассмотрим вариант решения данной задачи на базе &lt;strong&gt;IP PBX Asterisk&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

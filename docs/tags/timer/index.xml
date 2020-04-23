@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Timer on ivahaev.ru</title>
+    <title>timer on ivahaev.ru</title>
     <link>https://ivahaev.ru/tags/timer/</link>
-    <description>Recent content in Timer on ivahaev.ru</description>
+    <description>Recent content in timer on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
+    <copyright>2020 Евгений Иваха</copyright>
     <lastBuildDate>Sun, 01 May 2016 14:12:32 +0500</lastBuildDate>
     
 	<atom:link href="https://ivahaev.ru/tags/timer/index.xml" rel="self" type="application/rss+xml" />
@@ -19,12 +19,8 @@
       
       <guid>https://ivahaev.ru/advanced-go-timer/</guid>
       <description>&lt;p&gt;У языка &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет &lt;a href=&#34;https://golang.org/pkg/time/&#34;&gt;time&lt;/a&gt;. За всё время работы с &lt;strong&gt;Go&lt;/strong&gt;, мне всего лишь дважды приходилось расширять его возможности.&lt;/p&gt;
-
 &lt;p&gt;Первый раз, около года назад, понадобилось строковое представление времени и периодов на русском языке, что привело к созданию пакета &lt;a href=&#34;https://github.com/ivahaev/russian-time&#34;&gt;russian-time&lt;/a&gt;. Он не очень красивый, создан на скорую руку, потому не буду на нём останавливаться.&lt;/p&gt;
-
-&lt;p&gt;Второй инструмент мне кажется более интересным. Предпосылкой к созданию этого небольшого пакета, была необходимость контроля времени выполнения скриптов во встроенном интерпретаторе &lt;strong&gt;JavaScript&lt;/strong&gt; &lt;strong&gt;Google V8&lt;/strong&gt;. Так уж повелось, что &lt;strong&gt;JavaScript&lt;/strong&gt;, как правило, характеризуется асинхронным поведением, что несколько затрудняло выполнение поставленной задачи. Одним из компонентов решения должен был стать таймер, который можно приостанавливать на неопределённое время, а после запускать снова с момента остановки. Так появился &lt;a href=&#34;https://github.com/ivahaev/timer&#34;&gt;timer&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Второй инструмент мне кажется более интересным. Предпосылкой к созданию этого небольшого пакета, была необходимость контроля времени выполнения скриптов во встроенном интерпретаторе &lt;strong&gt;JavaScript&lt;/strong&gt; &lt;strong&gt;Google V8&lt;/strong&gt;. Так уж повелось, что &lt;strong&gt;JavaScript&lt;/strong&gt;, как правило, характеризуется асинхронным поведением, что несколько затрудняло выполнение поставленной задачи. Одним из компонентов решения должен был стать таймер, который можно приостанавливать на неопределённое время, а после запускать снова с момента остановки. Так появился &lt;a href=&#34;https://github.com/ivahaev/timer&#34;&gt;timer&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

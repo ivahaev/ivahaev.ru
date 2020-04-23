@@ -2,7 +2,7 @@
 <html lang="ru-RU">
 <head>
     <title>Прокаченный таймер на Go &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.39" />
+    <meta name="generator" content="Hugo 0.69.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -57,13 +57,8 @@
     <meta propperty="og:title" content="Прокаченный таймер на Go" />
     
       <meta propperty="og:description" content="У языка Go шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет time. За всё время работы с Go, мне всего лишь дважды приходилось расширять его возможности.
-
 Первый раз, около года назад, понадобилось строковое представление времени и периодов на русском языке, что привело к созданию пакета russian-time. Он не очень красивый, создан на скорую руку, потому не буду на нём останавливаться.
-
-Второй инструмент мне кажется более интересным. Предпосылкой к созданию этого небольшого пакета, была необходимость контроля времени выполнения скриптов во встроенном интерпретаторе JavaScript Google V8. Так уж повелось, что JavaScript, как правило, характеризуется асинхронным поведением, что несколько затрудняло выполнение поставленной задачи. Одним из компонентов решения должен был стать таймер, который можно приостанавливать на неопределённое время, а после запускать снова с момента остановки. Так появился timer.
-
-
-" />
+Второй инструмент мне кажется более интересным. Предпосылкой к созданию этого небольшого пакета, была необходимость контроля времени выполнения скриптов во встроенном интерпретаторе JavaScript Google V8. Так уж повелось, что JavaScript, как правило, характеризуется асинхронным поведением, что несколько затрудняло выполнение поставленной задачи. Одним из компонентов решения должен был стать таймер, который можно приостанавливать на неопределённое время, а после запускать снова с момента остановки. Так появился timer." />
     
 
 
@@ -119,7 +114,7 @@
         </div>
 
         <footer class="site-footer">
-            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+            <section class="copyright">&copy; 2020 Евгений Иваха</section>
         </footer>
     </div>
 </div>
@@ -183,49 +178,38 @@
 
             <div class="article-entry" itemprop="articleBody">
                 <p>У языка <a href="https://golang.org/">Go</a> шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет <a href="https://golang.org/pkg/time/">time</a>. За всё время работы с <strong>Go</strong>, мне всего лишь дважды приходилось расширять его возможности.</p>
-
 <p>Первый раз, около года назад, понадобилось строковое представление времени и периодов на русском языке, что привело к созданию пакета <a href="https://github.com/ivahaev/russian-time">russian-time</a>. Он не очень красивый, создан на скорую руку, потому не буду на нём останавливаться.</p>
-
 <p>Второй инструмент мне кажется более интересным. Предпосылкой к созданию этого небольшого пакета, была необходимость контроля времени выполнения скриптов во встроенном интерпретаторе <strong>JavaScript</strong> <strong>Google V8</strong>. Так уж повелось, что <strong>JavaScript</strong>, как правило, характеризуется асинхронным поведением, что несколько затрудняло выполнение поставленной задачи. Одним из компонентов решения должен был стать таймер, который можно приостанавливать на неопределённое время, а после запускать снова с момента остановки. Так появился <a href="https://github.com/ivahaev/timer">timer</a>.</p>
-
-<p></p>
-
 <p>Функции <a href="https://godoc.org/github.com/ivahaev/timer#AfterFunc">AfterFunc</a>  и <a href="https://godoc.org/github.com/ivahaev/timer#NewTimer">NewTimer</a>  очень похожи на стандартные, но у возвращаемого указателя на структуру <a href="https://godoc.org/github.com/ivahaev/timer#Timer">Timer</a> есть два новых метода:</p>
-
 <ul>
 <li><a href="https://godoc.org/github.com/ivahaev/timer#Timer.Pause">Pause</a></li>
 <li><a href="https://godoc.org/github.com/ivahaev/timer#Timer.Start">Start</a></li>
 </ul>
-
 <p><strong>Pause</strong> приостанавливает выполнение таймера, а <strong>Start</strong>, соответственно, запускает его с момента остановки, либо после инициализации. Т.е. после создания таймера, запускать его требуется вручную.</p>
-
 <p>Пример из теста лучше покажет идею:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">now</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
 
-<pre><code class="language-go">var now = time.Now()
+<span style="color:#75715e">// Создаем таймер на 1 секунду
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timer</span> = <span style="color:#a6e22e">AfterFunc</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>, <span style="color:#66d9ef">func</span>() {
 
-// Создаем таймер на 1 секунду
-var timer = AfterFunc(time.Second, func() {
-
-    // Сравниваем сколько прошло времени
-	if time.Now().Sub(now) &lt; time.Second*2 {
-		panic(&quot;Early func&quot;)
+    <span style="color:#75715e">// Сравниваем сколько прошло времени
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Sub</span>(<span style="color:#a6e22e">now</span>) &lt; <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> {
+		panic(<span style="color:#e6db74">&#34;Early func&#34;</span>)
 	}
 })
 
-// Запускаем таймер
-timer.Start()
+<span style="color:#75715e">// Запускаем таймер
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Start</span>()
 
-// Через полсекунды приостанавливаем
-time.Sleep(time.Microsecond * 500)
-timer.Pause()
+<span style="color:#75715e">// Через полсекунды приостанавливаем
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Microsecond</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">500</span>)
+<span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Pause</span>()
 
-// Через секунду запускаем снова
-time.Sleep(time.Second)
-timer.Start()
-time.Sleep(time.Second)
-</code></pre>
-
-<p><a href="https://godoc.org/github.com/ivahaev/timer"><img src="https://godoc.org/github.com/ivahaev/timer?status.svg" alt="GoDoc" /></a></p>
+<span style="color:#75715e">// Через секунду запускаем снова
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+<span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Start</span>()
+<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+</code></pre></div><p><a href="https://godoc.org/github.com/ivahaev/timer"><img src="https://godoc.org/github.com/ivahaev/timer?status.svg" alt="GoDoc"></a></p>
             </div>
             <footer class="article-footer">
     

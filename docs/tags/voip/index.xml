@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Voip on ivahaev.ru</title>
+    <title>voip on ivahaev.ru</title>
     <link>https://ivahaev.ru/tags/voip/</link>
-    <description>Recent content in Voip on ivahaev.ru</description>
+    <description>Recent content in voip on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
+    <copyright>2020 Евгений Иваха</copyright>
     <lastBuildDate>Thu, 12 Nov 2015 16:30:30 +0500</lastBuildDate>
     
 	<atom:link href="https://ivahaev.ru/tags/voip/index.xml" rel="self" type="application/rss+xml" />
@@ -18,9 +18,7 @@
       <pubDate>Thu, 12 Nov 2015 16:30:30 +0500</pubDate>
       
       <guid>https://ivahaev.ru/deep-debug-astierisk/</guid>
-      <description>&lt;p&gt;Иногда можно потерять довольно много времени, пытаясь в консоли астериска отловить ошибку выполнения &lt;strong&gt;agi&lt;/strong&gt; скрипта, или просто внешнего приложения, запускаемого из дайлплана. Есть один способ, который в документации в явном виде не описан, но очень помогает. Мы запустим &lt;strong&gt;asterisk&lt;/strong&gt; в режиме, похожем на монопольный в &lt;strong&gt;1С&lt;/strong&gt;, при этом будем видеть в его консоли все предупреждения и ошибки.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Иногда можно потерять довольно много времени, пытаясь в консоли астериска отловить ошибку выполнения &lt;strong&gt;agi&lt;/strong&gt; скрипта, или просто внешнего приложения, запускаемого из дайлплана. Есть один способ, который в документации в явном виде не описан, но очень помогает. Мы запустим &lt;strong&gt;asterisk&lt;/strong&gt; в режиме, похожем на монопольный в &lt;strong&gt;1С&lt;/strong&gt;, при этом будем видеть в его консоли все предупреждения и ошибки.&lt;/p&gt;</description>
     </item>
     
   </channel>

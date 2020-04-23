@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
 <head>
-    <title>Promise &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.39" />
+    <title>promise &middot; ivahaev.ru</title>
+    <meta name="generator" content="Hugo 0.69.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -52,7 +52,7 @@
 
     
     <meta propperty="og:url" content="https://ivahaev.ru/tags/promise/" />
-    <meta propperty="og:title" content="Promise" />
+    <meta propperty="og:title" content="promise" />
     
       <meta propperty="og:description" content="Меня зовут Евгений и я программист. Всю сознательную жизнь так или иначе связан с ИТ. С компьютером познакомился лет 20 назад, когда на ЭВМ Электроника, у которого экран монитора был чуть больше спичечного коробка, пытался писать программы на Бейсике. 8 лет работал в области связи — вначале в сотовых операторах, затем с нуля создавал СПД и сопутствующую инфраструктуру местного оператора Интернета и IP телефонии. " />
     
@@ -110,13 +110,13 @@
         </div>
 
         <footer class="site-footer">
-            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+            <section class="copyright">&copy; 2020 Евгений Иваха</section>
         </footer>
     </div>
 </div>
 
     <main>
-        <h1>#Promise</h1>
+        <h1>#promise</h1>
         
 
 
@@ -171,14 +171,10 @@
                 <div class="article-entry" itemprop="articleBody">
                     <p>
                         <p>Когда пишешь публичные асинхронные методы на <strong>JavaScript</strong>, желательно придерживаться двух простых правил:</p>
-
 <ol>
 <li>Если метод может вернуть ошибку в колбэке, то ошибка должна идти первым аргументом. Часто, даже если метод никогда не возвращает ошибку, первым аргументом передают <code>null</code> для того, чтобы унифицировать все асинхронные вызовы;</li>
 <li>Если в метод не передана колбэк-функция, то метод должен вернуть Promise.</li>
 </ol>
-
-<p></p>
-
                         <br>
                     </p>
 

@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Excel on ivahaev.ru</title>
+    <title>excel on ivahaev.ru</title>
     <link>https://ivahaev.ru/tags/excel/</link>
-    <description>Recent content in Excel on ivahaev.ru</description>
+    <description>Recent content in excel on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
+    <copyright>2020 Евгений Иваха</copyright>
     <lastBuildDate>Mon, 28 Dec 2015 00:05:30 +0500</lastBuildDate>
     
 	<atom:link href="https://ivahaev.ru/tags/excel/index.xml" rel="self" type="application/rss+xml" />
@@ -19,12 +19,8 @@
       
       <guid>https://ivahaev.ru/go-xlsx-templater/</guid>
       <description>&lt;p&gt;В процессе работы над платформой &lt;a href=&#34;http://getblank.net/ru&#34;&gt;Blank&lt;/a&gt;, возникла задача генерации документов. Так как платформа предполагает очень широкое применение, очень не хотелось формировать документы полностью программно. Нужно дать возможность интеграторам и администраторам системы удобно создавать шаблоны, на основе которых, в дальнейшем, будут формироваться различные документы.&lt;/p&gt;
-
-&lt;p&gt;Сервер написан на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область&amp;nbsp;&amp;mdash; есть решения на Яве, используйте их.  Неее, не для того мы на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; пишем, чтобы за собой Яву тянуть.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://ivahaev.ru/img/net!.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Сервер написан на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область — есть решения на Яве, используйте их.  Неее, не для того мы на &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; пишем, чтобы за собой Яву тянуть.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ivahaev.ru/img/net!.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

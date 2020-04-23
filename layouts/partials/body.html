@@ -1,21 +1,6 @@
 <section id="main">
-    <h1>На правах рекламы</h1>
-    <p>Используя собственные наработки, в краткий срок создаем качественные и современные веб приложения для автоматизации любых
-        бизнес-процессов. Системы взаимодействия с клиентами (CRM), документооборота, складской учет, интернет-магазины,
-        службы доставки, биллинговые системы, сервисы на базе телефонии (вплоть до уровня распределённых колл-центров) и
-        многое другое.</p>
-    <p>Интеграция с социальными сетями, генераторы отчетов, готовое SDK для мобильных приложений и другие нужные функции работают
-        &laquo;из коробки&raquo;.</p>
-    <p>Не
-        <strike>Гербалайф</strike> PHP!</p>
-
-    <p>В работе используем <a href="http://getblank.net">Blank</a>, <a href="https://golang.org">Go</a>, <a href="https://nodejs.org">Node.js</a>,
-        <a href="https://facebook.github.io/react/">React.js</a>, <a href="https://angularjs.org/">Angular.js</a>,
-        <a href="mongodb.com">MongoDB</a>, <a href="https://clickhouse.yandex/">ClickHouse</a>,
-        <a href="https://www.postgresql.org/">PostgreSQL</a> и другие современные технологии.
-    </p>
-    <p>В зависимости от проекта, возможно применение гибкой методологии разработки по <b>Agile/Scrum</b>.</p>
-    <p>Обращайтесь по контактам в меню.</p>
+    <h1>Персональный блог одного разработчика</h1>
+    <p>Разработка, внедрение, эксплуатация и вот это вот всё.</p>
 
     {{ $paginator := .Paginate (where .Site.Pages "Type" "post") }} {{ range $paginator.Pages }}
     <article class="article article-type-post" itemscope="" itemprop="blogPost">
@@ -31,7 +16,7 @@
             </a> {{ .Scratch.Set "summary" true }} {{ partial "article_header" . }}
             <div class="article-entry" itemprop="articleBody">
                 <p>
-                    {{ printf "%s" .Summary | markdownify }}
+                    {{ .Summary }}
                 </p>
                 {{ if .Truncated }}
                 <p class="article-more-link">

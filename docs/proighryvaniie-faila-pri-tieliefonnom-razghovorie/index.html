@@ -2,7 +2,7 @@
 <html lang="ru-RU">
 <head>
     <title>Проигрывание файла при телефонном разговоре &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.39" />
+    <meta name="generator" content="Hugo 0.69.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -55,11 +55,7 @@
     <meta propperty="og:title" content="Проигрывание файла при телефонном разговоре" />
     
       <meta propperty="og:description" content="В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.
-
-Рассмотрим вариант решения данной задачи на базе IP PBX Asterisk.
-
-
-" />
+Рассмотрим вариант решения данной задачи на базе IP PBX Asterisk." />
     
 
 
@@ -115,7 +111,7 @@
         </div>
 
         <footer class="site-footer">
-            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+            <section class="copyright">&copy; 2020 Евгений Иваха</section>
         </footer>
     </div>
 </div>
@@ -171,32 +167,16 @@
 
             <div class="article-entry" itemprop="articleBody">
                 <p>В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.</p>
-
 <p>Рассмотрим вариант решения данной задачи на базе <strong>IP PBX Asterisk</strong>.</p>
-
-<p></p>
-
 <p>Пример для <strong>FreePBX</strong>, для голого астериска все делается ещё проще.</p>
-
 <p>Первым делом, нужно добавить сочетание клавиш на вызов макроса в <code>features.conf</code>, или для <strong>FreePBX</strong> в <code>features_applicationmap_custom.conf</code>:</p>
-
 <pre><code>playsound =&gt; *6,callee,macro,playsound
-</code></pre>
-
-<p>По нажатию в разговоре *<strong>6</strong> вызовется макрос playsound</p>
-
+</code></pre><p>По нажатию в разговоре *<strong>6</strong> вызовется макрос playsound</p>
 <p>Важный момент, нужно добавить возможность вызова макроса. Для этого либо в дайлплане присваиваем переменную:</p>
-
 <pre><code>exten =&gt; _+x.,n,Set(DYNAMIC_FEATURES=playsound)
-</code></pre>
-
-<p>Либо в <strong>extensions.conf</strong> пишем в секции <strong>[globals]</strong>:</p>
-
+</code></pre><p>Либо в <strong>extensions.conf</strong> пишем в секции <strong>[globals]</strong>:</p>
 <pre><code>DYNAMIC_FEATURES=playsound
-</code></pre>
-
-<p>Макрос и нужный контекст в дайлплане:</p>
-
+</code></pre><p>Макрос и нужный контекст в дайлплане:</p>
 <pre><code>[macro-playsound]
 
 exten =&gt; s,1,AGI(create_spy.php,${CHANNEL})
@@ -213,10 +193,7 @@ exten =&gt; 2,n,Playback(${audio})
 exten =&gt; 2,n,Hangup
 
 ; end of [spy]
-</code></pre>
-
-<p>Файл <strong>create_spy.agi</strong>:</p>
-
+</code></pre><p>Файл <strong>create_spy.agi</strong>:</p>
 <pre><code>#!/usr/bin/php -q
 
 &lt;?php
@@ -236,10 +213,7 @@ $channel= $par;
     fputs($f1,&quot;Set: audio=custom/VOICE_FILE\nSet: chan=$channel\n&quot;);
     fclose($f1);
     system(&quot;mv /tmp/$uid.call /var/spool/asterisk/outgoing/&quot;);
-</code></pre>
-
-<p>Здесь <strong>VOICE_FILE</strong> - это проигрываемый файл.  Не забыть сделать <code>chmod +x /var/lib/asterisk/agi-bin/create_spy.php</code> ну или где в нашем дистрибутиве расположены <strong>agi</strong> скрипты.</p>
-
+</code></pre><p>Здесь <strong>VOICE_FILE</strong> - это проигрываемый файл.  Не забыть сделать <code>chmod +x /var/lib/asterisk/agi-bin/create_spy.php</code> ну или где в нашем дистрибутиве расположены <strong>agi</strong> скрипты.</p>
 <p>Само собой, можно сделать все через <strong>AMI</strong>, в данном случае, была задача показать вариант решения вопроса. Реализация за вами!</p>
             </div>
             <footer class="article-footer">

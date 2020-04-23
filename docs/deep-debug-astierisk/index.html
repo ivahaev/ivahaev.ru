@@ -2,7 +2,7 @@
 <html lang="ru-RU">
 <head>
     <title>Глубокий дебаг астериска &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.39" />
+    <meta name="generator" content="Hugo 0.69.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -54,10 +54,7 @@
     <meta propperty="og:url" content="https://ivahaev.ru/deep-debug-astierisk/" />
     <meta propperty="og:title" content="Глубокий дебаг астериска" />
     
-      <meta propperty="og:description" content="Иногда можно потерять довольно много времени, пытаясь в консоли астериска отловить ошибку выполнения agi скрипта, или просто внешнего приложения, запускаемого из дайлплана. Есть один способ, который в документации в явном виде не описан, но очень помогает. Мы запустим asterisk в режиме, похожем на монопольный в 1С, при этом будем видеть в его консоли все предупреждения и ошибки.
-
-
-" />
+      <meta propperty="og:description" content="Иногда можно потерять довольно много времени, пытаясь в консоли астериска отловить ошибку выполнения agi скрипта, или просто внешнего приложения, запускаемого из дайлплана. Есть один способ, который в документации в явном виде не описан, но очень помогает. Мы запустим asterisk в режиме, похожем на монопольный в 1С, при этом будем видеть в его консоли все предупреждения и ошибки." />
     
 
 
@@ -113,7 +110,7 @@
         </div>
 
         <footer class="site-footer">
-            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+            <section class="copyright">&copy; 2020 Евгений Иваха</section>
         </footer>
     </div>
 </div>
@@ -169,19 +166,13 @@
 
             <div class="article-entry" itemprop="articleBody">
                 <p>Иногда можно потерять довольно много времени, пытаясь в консоли астериска отловить ошибку выполнения <strong>agi</strong> скрипта, или просто внешнего приложения, запускаемого из дайлплана. Есть один способ, который в документации в явном виде не описан, но очень помогает. Мы запустим <strong>asterisk</strong> в режиме, похожем на монопольный в <strong>1С</strong>, при этом будем видеть в его консоли все предупреждения и ошибки.</p>
-
-<p></p>
-
 <ol>
 <li>Выключаем астериск;</li>
 <li>Выполняем такую команду:</li>
 </ol>
-
-<pre><code class="language-bash">su asterisk
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">su asterisk
 asterisk -vvvgc
-</code></pre>
-
-<p>Теперь все как на ладони!</p>
+</code></pre></div><p>Теперь все как на ладони!</p>
             </div>
             <footer class="article-footer">
     

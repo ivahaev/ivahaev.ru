@@ -2,7 +2,7 @@
 <html lang="ru-RU">
 <head>
     <title>Шаблонизатор экселя для Go &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.39" />
+    <meta name="generator" content="Hugo 0.69.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -57,12 +57,7 @@
     <meta propperty="og:title" content="Шаблонизатор экселя для Go" />
     
       <meta propperty="og:description" content="В процессе работы над платформой Blank, возникла задача генерации документов. Так как платформа предполагает очень широкое применение, очень не хотелось формировать документы полностью программно. Нужно дать возможность интеграторам и администраторам системы удобно создавать шаблоны, на основе которых, в дальнейшем, будут формироваться различные документы.
-
-Сервер написан на Go, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область&nbsp;&mdash; есть решения на Яве, используйте их.  Неее, не для того мы на Go пишем, чтобы за собой Яву тянуть.
-
-
-
-
+Сервер написан на Go, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область — есть решения на Яве, используйте их.  Неее, не для того мы на Go пишем, чтобы за собой Яву тянуть.
 " />
     
 
@@ -119,7 +114,7 @@
         </div>
 
         <footer class="site-footer">
-            <section class="copyright">&copy; 2016 Евгений Иваха</section>
+            <section class="copyright">&copy; 2020 Евгений Иваха</section>
         </footer>
     </div>
 </div>
@@ -189,102 +184,80 @@
 
             <div class="article-entry" itemprop="articleBody">
                 <p>В процессе работы над платформой <a href="http://getblank.net/ru">Blank</a>, возникла задача генерации документов. Так как платформа предполагает очень широкое применение, очень не хотелось формировать документы полностью программно. Нужно дать возможность интеграторам и администраторам системы удобно создавать шаблоны, на основе которых, в дальнейшем, будут формироваться различные документы.</p>
-
-<p>Сервер написан на <a href="https://golang.org/">Go</a>, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область&nbsp;&mdash; есть решения на Яве, используйте их.  Неее, не для того мы на <a href="https://golang.org/">Go</a> пишем, чтобы за собой Яву тянуть.</p>
-
-<p><img src="https://ivahaev.ru/img/net!.jpg" alt="" /></p>
-
-<p></p>
-
+<p>Сервер написан на <a href="https://golang.org/">Go</a>, поэтому первым делом я принялся изучать что уже придумано умными людьми для решения подобных задач. Оказалось, что совсем не много. Обсуждения, в основном, скатываются в область — есть решения на Яве, используйте их.  Неее, не для того мы на <a href="https://golang.org/">Go</a> пишем, чтобы за собой Яву тянуть.</p>
+<p><img src="https://ivahaev.ru/img/net!.jpg" alt=""></p>
 <p>Также, наш сервер поддерживает пользовательские скрипты на <strong>Javascript</strong>, но полноценных решений тоже не нашлось.</p>
-
-<p>Решено было сделать все самостоятельно. <a href="http://getblank.net/ru">Blank</a> вовсю использует <a href="http://handlebarsjs.com/">Handlebars</a>, поэтому захотелось использовать похожее поведение для формирования документов. Первым этапом пошли электронные таблицы, то, что мы привыкли видеть в Excel. Родился пакет <a href="https://github.com/ivahaev/go-xlsx-templater">go-xlsx-templater</a>, которые позволяет разметить документ <strong>Excel</strong> (<strong>.xlsx</strong>) тэгами в &laquo;усах&raquo; и получить, в итоге конечный отчет с данными.</p>
-
+<p>Решено было сделать все самостоятельно. <a href="http://getblank.net/ru">Blank</a> вовсю использует <a href="http://handlebarsjs.com/">Handlebars</a>, поэтому захотелось использовать похожее поведение для формирования документов. Первым этапом пошли электронные таблицы, то, что мы привыкли видеть в Excel. Родился пакет <a href="https://github.com/ivahaev/go-xlsx-templater">go-xlsx-templater</a>, которые позволяет разметить документ <strong>Excel</strong> (<strong>.xlsx</strong>) тэгами в «усах» и получить, в итоге конечный отчет с данными.</p>
 <p>На данный момент, библиотека имеет 4 метода: <code>ReadTemplate()</code>, <code>Render()</code>, <code>Save()</code>, <code>Write()</code>. Рассмотрим небольшой пример использования.</p>
-
 <h2 id="создаем-отчет">Создаем отчет</h2>
-
-<p>Первым делом, нужно создать шаблон документа. У нас есть заголовок с приветствием к пользователю, а так же табличка со списком предметов, находящихся во владении пользователем. Как видим, синтаксис определения снипетов совпадает с <a href="http://handlebarsjs.com/">Handlebars</a> или <a href="https://mustache.github.io/">Mustache</a>. Важно помнить, в данном случае, что при указании снипета с точкой внутри, как в примере <code>{{items.name}}</code>&nbsp;&mdash; это будет означать либо брать свойство из вложенного объекта в переданном контексте, либо из соответствующего элемента в массиве, при этом будет создано нужное количество строк, чтобы заполнить всеми элементами массива, как в нашем случае.</p>
-
-<p><img src="https://ivahaev.ru/img/xls-template.png" alt="" /></p>
-
+<p>Первым делом, нужно создать шаблон документа. У нас есть заголовок с приветствием к пользователю, а так же табличка со списком предметов, находящихся во владении пользователем. Как видим, синтаксис определения снипетов совпадает с <a href="http://handlebarsjs.com/">Handlebars</a> или <a href="https://mustache.github.io/">Mustache</a>. Важно помнить, в данном случае, что при указании снипета с точкой внутри, как в примере <code>{{items.name}}</code> — это будет означать либо брать свойство из вложенного объекта в переданном контексте, либо из соответствующего элемента в массиве, при этом будет создано нужное количество строк, чтобы заполнить всеми элементами массива, как в нашем случае.</p>
+<p><img src="https://ivahaev.ru/img/xls-template.png" alt=""></p>
 <p>Передаем мы вот что:</p>
-
-<pre><code class="language-go">	map[string]interface{}{
-		&quot;name&quot;:           &quot;Github User&quot;,
-		&quot;nameHeader&quot;:     &quot;Item name&quot;,
-		&quot;quantityHeader&quot;: &quot;Quantity&quot;,
-		&quot;items&quot;: []map[string]interface{}{
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}{
+		<span style="color:#e6db74">&#34;name&#34;</span>:           <span style="color:#e6db74">&#34;Github User&#34;</span>,
+		<span style="color:#e6db74">&#34;nameHeader&#34;</span>:     <span style="color:#e6db74">&#34;Item name&#34;</span>,
+		<span style="color:#e6db74">&#34;quantityHeader&#34;</span>: <span style="color:#e6db74">&#34;Quantity&#34;</span>,
+		<span style="color:#e6db74">&#34;items&#34;</span>: []<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}{
 			{
-				&quot;name&quot;:     &quot;Pen&quot;,
-				&quot;quantity&quot;: 2,
+				<span style="color:#e6db74">&#34;name&#34;</span>:     <span style="color:#e6db74">&#34;Pen&#34;</span>,
+				<span style="color:#e6db74">&#34;quantity&#34;</span>: <span style="color:#ae81ff">2</span>,
 			},
 			{
-				&quot;name&quot;:     &quot;Pencil&quot;,
-				&quot;quantity&quot;: 1,
+				<span style="color:#e6db74">&#34;name&#34;</span>:     <span style="color:#e6db74">&#34;Pencil&#34;</span>,
+				<span style="color:#e6db74">&#34;quantity&#34;</span>: <span style="color:#ae81ff">1</span>,
 			},
 			{
-				&quot;name&quot;:     &quot;Condom&quot;,
-				&quot;quantity&quot;: 12,
+				<span style="color:#e6db74">&#34;name&#34;</span>:     <span style="color:#e6db74">&#34;Condom&#34;</span>,
+				<span style="color:#e6db74">&#34;quantity&#34;</span>: <span style="color:#ae81ff">12</span>,
 			},
 			{
-				&quot;name&quot;:     &quot;Beer&quot;,
-				&quot;quantity&quot;: 24,
+				<span style="color:#e6db74">&#34;name&#34;</span>:     <span style="color:#e6db74">&#34;Beer&#34;</span>,
+				<span style="color:#e6db74">&#34;quantity&#34;</span>: <span style="color:#ae81ff">24</span>,
 			},
 		},
 	}
-</code></pre>
-
-<p>После обработки получаем долгожданный документ:</p>
-
-<p><img src="https://ivahaev.ru/img/xls-report.png" alt="" /></p>
-
+</code></pre></div><p>После обработки получаем долгожданный документ:</p>
+<p><img src="https://ivahaev.ru/img/xls-report.png" alt=""></p>
 <p>Файл мы можем либо сохранить на диск, либо сразу отдать в ответ на http запрос, благо, библиотека поддерживает интерфейс <code>io.Writer</code>.</p>
-
 <p>Пакет только что создан, еще толком не протестирован, но зато уже его можно как-то использовать в работе. В дальнейшем буду его развивать и улучшать. <em>(Дополнение от 13 июля 2016 года: пакет с марта месяца используется для генерации различных отчетов в одном из подразделений Министерства транспорта РФ и показывает себя только с лучшей стороны)</em>.</p>
-
 <p>Полный код демо-приложения выглядит так:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-<pre><code class="language-go">package main
-
-import (
-	&quot;github.com/ivahaev/go-xlsx-templater&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;github.com/ivahaev/go-xlsx-templater&#34;</span>
 )
 
-func main() {
-	doc := xlst.New()
-	doc.ReadTemplate(&quot;./template.xlsx&quot;)
-	ctx := map[string]interface{}{
-		&quot;name&quot;:           &quot;Github User&quot;,
-		&quot;nameHeader&quot;:     &quot;Item name&quot;,
-		&quot;quantityHeader&quot;: &quot;Quantity&quot;,
-		&quot;items&quot;: []map[string]interface{}{
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">doc</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">xlst</span>.<span style="color:#a6e22e">New</span>()
+	<span style="color:#a6e22e">doc</span>.<span style="color:#a6e22e">ReadTemplate</span>(<span style="color:#e6db74">&#34;./template.xlsx&#34;</span>)
+	<span style="color:#a6e22e">ctx</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}{
+		<span style="color:#e6db74">&#34;name&#34;</span>:           <span style="color:#e6db74">&#34;Github User&#34;</span>,
+		<span style="color:#e6db74">&#34;nameHeader&#34;</span>:     <span style="color:#e6db74">&#34;Item name&#34;</span>,
+		<span style="color:#e6db74">&#34;quantityHeader&#34;</span>: <span style="color:#e6db74">&#34;Quantity&#34;</span>,
+		<span style="color:#e6db74">&#34;items&#34;</span>: []<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}{
 			{
-				&quot;name&quot;:     &quot;Pen&quot;,
-				&quot;quantity&quot;: 2,
+				<span style="color:#e6db74">&#34;name&#34;</span>:     <span style="color:#e6db74">&#34;Pen&#34;</span>,
+				<span style="color:#e6db74">&#34;quantity&#34;</span>: <span style="color:#ae81ff">2</span>,
 			},
 			{
-				&quot;name&quot;:     &quot;Pencil&quot;,
-				&quot;quantity&quot;: 1,
+				<span style="color:#e6db74">&#34;name&#34;</span>:     <span style="color:#e6db74">&#34;Pencil&#34;</span>,
+				<span style="color:#e6db74">&#34;quantity&#34;</span>: <span style="color:#ae81ff">1</span>,
 			},
 			{
-				&quot;name&quot;:     &quot;Condom&quot;,
-				&quot;quantity&quot;: 12,
+				<span style="color:#e6db74">&#34;name&#34;</span>:     <span style="color:#e6db74">&#34;Condom&#34;</span>,
+				<span style="color:#e6db74">&#34;quantity&#34;</span>: <span style="color:#ae81ff">12</span>,
 			},
 			{
-				&quot;name&quot;:     &quot;Beer&quot;,
-				&quot;quantity&quot;: 24,
+				<span style="color:#e6db74">&#34;name&#34;</span>:     <span style="color:#e6db74">&#34;Beer&#34;</span>,
+				<span style="color:#e6db74">&#34;quantity&#34;</span>: <span style="color:#ae81ff">24</span>,
 			},
 		},
 	}
-	doc.Render(ctx)
-	doc.Save(&quot;./report.xlsx&quot;)
+	<span style="color:#a6e22e">doc</span>.<span style="color:#a6e22e">Render</span>(<span style="color:#a6e22e">ctx</span>)
+	<span style="color:#a6e22e">doc</span>.<span style="color:#a6e22e">Save</span>(<span style="color:#e6db74">&#34;./report.xlsx&#34;</span>)
 }
 
-</code></pre>
-
-<p>Обработка ошибок здесь не показана, но в реальном приложении, естественно, стоит их учитывать.</p>
-
+</code></pre></div><p>Обработка ошибок здесь не показана, но в реальном приложении, естественно, стоит их учитывать.</p>
 <p>Буду рад любым откликам и предложениям по развитию пакета!</p>
             </div>
             <footer class="article-footer">

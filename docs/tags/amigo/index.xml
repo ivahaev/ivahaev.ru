@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Amigo on ivahaev.ru</title>
+    <title>amigo on ivahaev.ru</title>
     <link>https://ivahaev.ru/tags/amigo/</link>
-    <description>Recent content in Amigo on ivahaev.ru</description>
+    <description>Recent content in amigo on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2016 Евгений Иваха</copyright>
+    <copyright>2020 Евгений Иваха</copyright>
     <lastBuildDate>Thu, 14 Jan 2016 21:52:24 +0500</lastBuildDate>
     
 	<atom:link href="https://ivahaev.ru/tags/amigo/index.xml" rel="self" type="application/rss+xml" />
@@ -18,15 +18,10 @@
       <pubDate>Thu, 14 Jan 2016 21:52:24 +0500</pubDate>
       
       <guid>https://ivahaev.ru/amigo-best-frend-of-golang-and-asterisk/</guid>
-      <description>&lt;p&gt;Начиная писать свой первый &lt;a href=&#34;http://peach-dialer.com&#34;&gt;Peach Dialer&lt;/a&gt;, я выбрал язык, который довольно хорошо знал, благо работал с ним с 1999 года&amp;nbsp;&amp;mdash; &lt;strong&gt;PHP&lt;/strong&gt;. Меня не смущало, что он, в принципе, не предназначен для создания долгоживущих процессов, но то, что получилось в итоге, работает по несколько месяцев и радует своих владельцев.&lt;/p&gt;
-
+      <description>&lt;p&gt;Начиная писать свой первый &lt;a href=&#34;http://peach-dialer.com&#34;&gt;Peach Dialer&lt;/a&gt;, я выбрал язык, который довольно хорошо знал, благо работал с ним с 1999 года — &lt;strong&gt;PHP&lt;/strong&gt;. Меня не смущало, что он, в принципе, не предназначен для создания долгоживущих процессов, но то, что получилось в итоге, работает по несколько месяцев и радует своих владельцев.&lt;/p&gt;
 &lt;p&gt;Потом пошла мода на &lt;a href=&#34;https://ru.wikipedia.org/wiki/WebSocket&#34;&gt;Websocket&lt;/a&gt;, который захотелось применить в интерфейсе, а &lt;strong&gt;PHP&lt;/strong&gt; в то время не очень-то умел с ними работать (может, и сейчас не умеет). Я обратил внимание на &lt;a href=&#34;https://nodejs.org&#34;&gt;node.js&lt;/a&gt;. Классная штука, любовь на века, подумал я, но вскоре захотелось большего.&lt;/p&gt;
-
-&lt;p&gt;Бо&amp;#769;льшим для меня стал &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt;&amp;nbsp;&amp;mdash; язык, совмещающий скорость и удобство деплоя компилируемых языков с простотой разработки, свойственной интерпретируемым языкам. К сожалению, разработанных библиотек надлежащего качества и с ожидаемым функционалом для взаимодействия с &lt;strong&gt;Asterisk&lt;/strong&gt; в то время не было. Были какие-то начинания, но не доведённые до конца.&lt;/p&gt;
-
-&lt;p&gt;Итак, по сусекам поскребя, да по амбару пометя&amp;#769;, испёк я &lt;a href=&#34;https://github.com/ivahaev/amigo&#34;&gt;Amigo&lt;/a&gt;&amp;nbsp;&amp;mdash; удобную библиотеку для работы с астериском посредством AMI протокола.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;Бо́льшим для меня стал &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; — язык, совмещающий скорость и удобство деплоя компилируемых языков с простотой разработки, свойственной интерпретируемым языкам. К сожалению, разработанных библиотек надлежащего качества и с ожидаемым функционалом для взаимодействия с &lt;strong&gt;Asterisk&lt;/strong&gt; в то время не было. Были какие-то начинания, но не доведённые до конца.&lt;/p&gt;
+&lt;p&gt;Итак, по сусекам поскребя, да по амбару пометя́, испёк я &lt;a href=&#34;https://github.com/ivahaev/amigo&#34;&gt;Amigo&lt;/a&gt; — удобную библиотеку для работы с астериском посредством AMI протокола.&lt;/p&gt;</description>
     </item>
     
   </channel>
