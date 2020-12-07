@@ -5,7 +5,9 @@
 </body>
 <script>
   window.mcAsyncInit = function() {
+    console.log('MC loaded', MC)
     MC.getWidget(13790125).setPayload('Payload value')
+    console.log('Payload has been set')
   };
 </script>
 
