@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>react on ivahaev.ru</title>
+    <link>https://ivahaev.ru/tags/react/</link>
+    <description>Recent content in react on ivahaev.ru</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-RU</language>
+    <copyright>2020 Евгений Иваха</copyright>
+    <lastBuildDate>Thu, 18 Feb 2021 00:19:00 +0500</lastBuildDate>
+    
+	<atom:link href="https://ivahaev.ru/tags/react/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Кому с Redux жить хорошо</title>
+      <link>https://ivahaev.ru/how-to-get-profit-with-redux-and-react/</link>
+      <pubDate>Thu, 18 Feb 2021 00:19:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/how-to-get-profit-with-redux-and-react/</guid>
+      <description>&lt;p&gt;После почти трёхлетнего молчания, у меня есть новый материал. Эту статью я написал для корпоративного блога компании ManyChat на Хабре. Спустя некоторое время, могу опубликовать и у себя в оригинальной редакции.&lt;/p&gt;
+&lt;p&gt;Существует мнение, что разработка через тестирование, или по канонам &lt;strong&gt;Test Driven Development (TDD)&lt;/strong&gt; для фронтенда не применима. В данной статье я постараюсь развенчать этот миф и покажу, что это не только возможно, но и очень удобно и приятно.&lt;/p&gt;
+&lt;p&gt;Сам по себе &lt;strong&gt;&lt;a href=&#34;https://reactjs.org/&#34;&gt;React&lt;/a&gt;&lt;/strong&gt; достаточно понятен любому разработчику, чего не скажешь про &lt;strong&gt;&lt;a href=&#34;https://redux.js.org/&#34;&gt;Redux&lt;/a&gt;&lt;/strong&gt;. На первый взгляд может показаться, что это какой-то монструозный и непонятный инструмент. Прочитав данную статью, вы узнаете как разрабатывать приложения через тестирование на &lt;strong&gt;React&lt;/strong&gt;, используя &lt;strong&gt;Redux&lt;/strong&gt;, поймёте преимущества его использования, научитесь не открывать браузер при разработке фронтенд-приложений и экономить время на дебаге. Возможно, найдёте что-то новое для себя про написание фронтовых тестов.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

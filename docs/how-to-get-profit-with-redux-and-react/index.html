@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <title>Кому с Redux жить хорошо &middot; ivahaev.ru</title>
+    <meta name="generator" content="Hugo 0.69.1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <meta name="description" content="">
+    
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
+<meta name='yandex-verification' content='7a8a89f15378f8c0' />
+
+
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter33509963 = new Ya.Metrika({
+                    id:33509963,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+
+    
+    <meta propperty="og:url" content="https://ivahaev.ru/how-to-get-profit-with-redux-and-react/" />
+    <meta propperty="og:title" content="Кому с Redux жить хорошо" />
+    
+      <meta propperty="og:description" content="После почти трёхлетнего молчания, у меня есть новый материал. Эту статью я написал для корпоративного блога компании ManyChat на Хабре. Спустя некоторое время, могу опубликовать и у себя в оригинальной редакции.
+Существует мнение, что разработка через тестирование, или по канонам Test Driven Development (TDD) для фронтенда не применима. В данной статье я постараюсь развенчать этот миф и покажу, что это не только возможно, но и очень удобно и приятно.
+Сам по себе React достаточно понятен любому разработчику, чего не скажешь про Redux. На первый взгляд может показаться, что это какой-то монструозный и непонятный инструмент. Прочитав данную статью, вы узнаете как разрабатывать приложения через тестирование на React, используя Redux, поймёте преимущества его использования, научитесь не открывать браузер при разработке фронтенд-приложений и экономить время на дебаге. Возможно, найдёте что-то новое для себя про написание фронтовых тестов." />
+    
+
+
+</head>
+
+<body>
+    <div id="sidebar">
+    <div id="sidebar-content" class="inner">
+        <h2 class="blog-title">
+            <a href="https://ivahaev.ru/">ivahaev.ru</a>
+        </h2>
+        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
+        <div id="sidebar-links">
+            
+            <ul id="navigation">
+                
+                <li class="nav" role="presentation">
+                    <a href="https://ivahaev.ru/about">
+                        <i class="fa fa-navicon"></i>Об авторе</a>
+                </li>
+            </ul>
+            <ul id="sidebar-external">
+                <li>
+                    <a href="https://github.com/ivahaev">
+                        <i class="fa fa-github"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="https://github.com/getblank">
+                        <i class="fa fa-github"></i>getblank</a>
+                </li>
+                <li>
+                    <a href="https://telegram.me/ivahaev">
+                        <i class="fa fa-paper-plane"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a href="skype:ivahaev?chat">
+                        <i class="fa fa-skype"></i>ivahaev</a>
+                </li>
+                <li>
+                    <a target="_blank" href="mailto:ivahaev@gmail.com">
+                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
+                </li>
+            </ul>
+            <ul id="sidebar-partners">
+                <div>Партнёры:</div>
+                
+                <li>
+                    <a href="http://borisoft.info/"></a>
+                    <a href="http://sclif.pro">
+                        <i class="fa fa-linux"></i>Sclif</a>
+                </li>
+            </ul>
+        </div>
+
+        <footer class="site-footer">
+            <section class="copyright">&copy; 2020 Евгений Иваха</section>
+        </footer>
+    </div>
+</div>
+
+    <main>
+        <div class="main-inner">
+            <section id="results"></section>
+            
+            <section id="main">
+    <article class="article article-type-post" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
+            
+            </a> <header class="article-header">
+    <a href="https://ivahaev.ru/how-to-get-profit-with-redux-and-react/">
+    
+    <h1 class="article-title" itemprop="name">
+        Кому с Redux жить хорошо
+    </h1>
+    
+    </a>
+    <div class="article-meta">
+        <div class="post-time">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2021-02-18 00:19:00 &#43;0500 &#43;05" itemprop="datePublished" class="fulldate_"><strong>18 февраля 2021 года
+</strong></time>
+        </div>
+
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/react">react</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/redux">redux</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/frontend">frontend</a>
+                &middot;
+                
+                <a class="article-category-link" href="https://ivahaev.ru/tags/tdd">tdd</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+            <div class="article-entry" itemprop="articleBody">
+                <p>После почти трёхлетнего молчания, у меня есть новый материал. Эту статью я написал для корпоративного блога компании ManyChat на Хабре. Спустя некоторое время, могу опубликовать и у себя в оригинальной редакции.</p>
+<p>Существует мнение, что разработка через тестирование, или по канонам <strong>Test Driven Development (TDD)</strong> для фронтенда не применима. В данной статье я постараюсь развенчать этот миф и покажу, что это не только возможно, но и очень удобно и приятно.</p>
+<p>Сам по себе <strong><a href="https://reactjs.org/">React</a></strong> достаточно понятен любому разработчику, чего не скажешь про <strong><a href="https://redux.js.org/">Redux</a></strong>. На первый взгляд может показаться, что это какой-то монструозный и непонятный инструмент. Прочитав данную статью, вы узнаете как разрабатывать приложения через тестирование на <strong>React</strong>, используя <strong>Redux</strong>, поймёте преимущества его использования, научитесь не открывать браузер при разработке фронтенд-приложений и экономить время на дебаге. Возможно, найдёте что-то новое для себя про написание фронтовых тестов.</p>
+<p>Про <strong>TDD</strong> вообще и частный случай тестирования <strong>React</strong> компонентов можно прочитать в <a href="https://habr.com/ru/company/manychat/blog/528794/">статье моего коллеги Андрея</a>, в данном материале я не буду заострять внимания на нюансах, но целиком и полностью пройду весь путь создания приложения через написание тестов.</p>
+<p>Любой фронтенд компонент продукта сам по себе делится на несколько составляющих. Для простоты можно считать, что в браузерном приложении есть свой фронтенд и свой бэкенд. Первый отвечает за непосредственный пользовательский интерфейс, а второй за бизнес-логику. <strong>React</strong> нам помогает с интерфейсами, а <strong>Redux</strong> представляет собой очень удобный инструмент для обработки бизнес-логики.</p>
+<p>Поскольку, мы в ManyChat в начале 2020 года полностью перешли на <strong><a href="https://www.typescriptlang.org/">TypeScript</a></strong>, будем писать код сразу с использованием строгой типизации.</p>
+<h2 id="redux">Redux</h2>
+<p>Что такое <strong>Redux</strong>? <strong>Redux</strong> - это паттерн и библиотека для управления и обновления состояния приложения с использованием специальных событий, называемых <strong>action</strong>. Он предоставляет централизованное хранилище состояние, которое используется во всём приложении с правилами, гарантирующими предсказуемое изменение этого состояния. Если посмотреть на диаграмму потока данных в <strong>Redux</strong> для приложений на <strong>React</strong>, мы увидим примерно следующее:</p>
+<p><img src="https://ivahaev.ru/img/redux/cycle.png" alt="/img/redux/cycle.png"></p>
+<p>При необходимости изменения состояния, например, при клике на элемент в DOM, вызывается <strong>Action creator</strong>, который создаёт определенный <strong>Action</strong>. Этот <strong>Action</strong> c помощью метода <strong>Dispatch</strong> отправляется в <strong>Store</strong>, где он передаётся на обработку в <strong>Reducers</strong>. Редьюсеры, в свою очередь, на основании текущего состояния и информации, которая находится в экшене, возвращают новое состояние приложения, которое принимает <strong>React</strong> с помощью <strong>Selectors</strong> для нового рендера DOM. Более подробно о каждом компоненте <strong>Redux</strong> будет рассказано ниже по ходу разработки приложения.</p>
+<p>Такой однонаправленный поток данных даёт множество преимуществ, таких как — ослабление связанности компонентов, один источник информации о том, как должно выглядеть и действовать приложение, плюс разделение бизнес-логики и отображения, что приводит к значительному упрощению тестирования кода.</p>
+<h2 id="задача">Задача</h2>
+<p>Создадим форму принятия какого-то пользовательского соглашения. Форма должна содержать чекбокс, который следует отметить пользователем, в случае, если он принимает соглашение, а так же кнопку <strong>Submit</strong>, которая становится активной только при активации чекбокса. Выглядеть это должно примерно вот так:</p>
+<p><img src="https://ivahaev.ru/img/redux/eula.png" alt="/img/redux/eula.png"></p>
+<p>Воспользуемся шаблоном create-react-app:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npx create-react-app my-app --template typescript
+cd my-app
+npm start
+</code></pre></div><p>Запустили, убедились, что приложение работает.</p>
+<p><img src="https://ivahaev.ru/img/redux/app.png" alt="/img/redux/app.png"></p>
+<p>Можем остановить сборщик, поскольку он понадобится нам ещё очень не скоро. Можем даже закрыть браузер.</p>
+<p>Теперь приступим к самому вкусному — подключению <strong>Redux</strong> в наш проект. Т.к. приложение у нас совершенно пустое, мы не знаем структуру стора, оставим его напоследок.</p>
+<p>Установим нужные пакеты:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i redux react-redux redux-mock-store @types/redux @types/react-redux @types/redux-mock-store
+</code></pre></div><h2 id="actions">Actions</h2>
+<p>Что такое <strong>Action</strong>? Это обычный Javascript объект, у которого есть обязательное свойство <strong>type</strong>, в котором содержится, как правило, осознанное имя экшена. Создатели Redux рекомендуют формировать строку для свойства type по шаблону <strong>домен/событие</strong>. Также в нём может присутствовать дополнительная информация, которая, обычно, складывается в свойство <strong>payload</strong>. Экшены создаются с помощью <strong>Action Creators</strong> - функций, которые возвращают экшены.</p>
+<p>Раз у нас всего лишь чекбоксы, кажется, достаточно одного экшена, отрабатывающего изменение его состояния, нам нужно только придумать ему название или <code>type</code>.</p>
+<p>Напишем первый тест. Для тестирования используем уже ставший стандартным фреймворк <a href="https://jestjs.io/">Jest</a>. Для запуска тестов в следящем режиме, достаточно в корне проекта выполнить команду <code>npm test</code> .</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// actions/actions.test.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">checkboxClick</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;.&#39;</span>
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;checkboxClick&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;returns checkboxClick action with action name in payload&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;anyCheckbox&#39;</span>
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">checkboxClick</span>(<span style="color:#a6e22e">checkboxName</span>)
+
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">result</span>).<span style="color:#a6e22e">toEqual</span>({ <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;checkbox/click&#39;</span>, <span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">checkboxName</span> })
+  })
+})
+</code></pre></div><p>Здесь мы проверяем, <strong>action creator</strong> вернёт экшн с нужным типом и правильными данными, а именно - с названием чекбокса. И больше нам здесь нечего проверять.</p>
+<p>Само собой, тест у нас красный (сломанный), т.к. код ещё не написан:</p>
+<p><img src="https://ivahaev.ru/img/redux/test3.png" alt="/img/redux/test3.png"></p>
+<p>Пора написать код:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// actions/package.json
+</span><span style="color:#75715e"></span>{
+  <span style="color:#e6db74">&#34;main&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;./actions&#34;</span>
+}
+
+<span style="color:#75715e">// actions/actions.ts
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxClick</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>) <span style="color:#f92672">=&gt;</span> ({ <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;checkbox/click&#39;</span>, <span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">name</span> })
+</code></pre></div><p>Проверяем:</p>
+<p><img src="https://ivahaev.ru/img/redux/test4.png" alt="/img/redux/test4.png"></p>
+<p>Тест пройден, можем приступить к рефакторингу. Здесь мы видим явное дублирование константы с типом экшена, вынесем её в отдельный модуль.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">// actionTypes.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">CHECKBOX_CLICK</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;checkbox/click&#39;</span>
+</code></pre></div><p>Поправим тест:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// actions/actions.test.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CHECKBOX_CLICK</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;actionTypes&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">checkboxClick</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;.&#39;</span>
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;checkboxClick&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;returns checkboxClick action with action name in payload&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;anyCheckbox&#39;</span>
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">checkboxClick</span>(<span style="color:#a6e22e">checkboxName</span>)
+
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">result</span>).<span style="color:#a6e22e">toEqual</span>({ <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">CHECKBOX_CLICK</span>, <span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">checkboxName</span> })
+  })
+})
+</code></pre></div><p>Тест не проходит потому что мы не использовали относительный путь к <code>actionTypes</code>. Чтобы это исправить, добавим в <code>tsconfig.json</code> в секцию <code>compilerOptions</code> следующий параметр <code>&quot;baseUrl&quot;: &quot;src&quot;</code> . После этого понадобится перезапустить тесты вручную.</p>
+<p>Убедимся, что тест позеленел, теперь поправим сам код:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// actions/actions.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CHECKBOX_CLICK</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;actionTypes&#39;</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxClick</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>) <span style="color:#f92672">=&gt;</span> ({ <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">CHECKBOX_CLICK</span>, <span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">name</span> })
+</code></pre></div><p>Ещё раз убеждаемся, что тест проходит, и можем двигаться дальше.</p>
+<h2 id="reducers">Reducers</h2>
+<p>Напишем обработчик события изменения состояния чекбокса, т.е. <strong>Reducer</strong>. Редьюсеры - это специальные чистые функции, которые принимают на вход текущий <strong>state</strong> и <strong>action</strong>, решают как нужно изменить состояние, если это требуется, и возвращают новый <strong>state</strong>. Редьюсеры <a href="https://redux.js.org/style-guide/style-guide#put-as-much-logic-as-possible-in-reducers">должны содержать всю бизнес-логику приложения</a>, насколько это возможно.</p>
+<p>Хранить состояние чекбоксов (отмечены они или нет) мы будем простым объектом, где ключом будет выступать название чекбокса, а в булевом значении непосредственно его состояние.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx">{
+  <span style="color:#a6e22e">checkboxName</span>: <span style="color:#66d9ef">true</span>
+}
+</code></pre></div><p>Приступим. Первый тест будет проверять, что мы получаем исходное состояние, т.е. пустой объект.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// reducers/reducers.test.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">checkboxReducer</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;.&#39;</span>
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;checkboxReducer&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;creates default state&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">checkboxReducer</span>(<span style="color:#66d9ef">undefined</span>, { <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;anyAction&#39;</span> })
+
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">state</span>).<span style="color:#a6e22e">toEqual</span>({})
+  })
+})
+</code></pre></div><p>Т.к. у нас даже нет файла с редьюсером, тест сломан. Напишем код.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// reducers/package.json
+</span><span style="color:#75715e"></span>
+{
+  <span style="color:#e6db74">&#34;main&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;./reducers&#34;</span>
+}
+
+<span style="color:#75715e">// reducers/reducers.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialState</span>: <span style="color:#66d9ef">Record</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">boolean</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> {}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxReducer</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">initialState</span>, <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">string</span> }) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">state</span>
+}
+</code></pre></div><p>Первый тест редьюсера починили, можем написать новый, который уже проверит, что получим в результате обработки экшена с информацией о нажатом чекбоксе.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// reducers/reducers.test.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CHECKBOX_CLICK</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;actionTypes&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">checkboxReducer</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;.&#39;</span>
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;checkboxReducer&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;creates default state&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">checkboxReducer</span>(<span style="color:#66d9ef">undefined</span>, { <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;anyAction&#39;</span> })
+
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">state</span>).<span style="color:#a6e22e">toEqual</span>({})
+  })
+
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;sets checked flag&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">checkboxReducer</span>(<span style="color:#66d9ef">undefined</span>, { <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">CHECKBOX_CLICK</span>, <span style="color:#a6e22e">payload</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;anyName&#39;</span> })
+
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">anyName</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#66d9ef">true</span>)
+  })
+})
+</code></pre></div><p>Минимальный код для прохождения данного теста будет выглядеть следующим образом:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// reducers/reducers.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CHECKBOX_CLICK</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;actionTypes&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialState</span>: <span style="color:#66d9ef">Record</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">boolean</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> {}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxReducer</span> <span style="color:#f92672">=</span> (
+  <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">initialState</span>,
+  <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">string</span>; <span style="color:#a6e22e">payload?</span>: <span style="color:#66d9ef">string</span> },
+) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">action</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">CHECKBOX_CLICK</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">action</span>.<span style="color:#a6e22e">payload</span>) {
+    <span style="color:#66d9ef">return</span> { ...<span style="color:#a6e22e">state</span>, [<span style="color:#a6e22e">action</span>.<span style="color:#a6e22e">payload</span>]<span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> }
+  }
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">state</span>
+}
+</code></pre></div><p>Мы убедились, что при обработке экшена, в котором содержится имя чекбокса, в <code>state</code> будет состояние о том, что он отмечен. Теперь напишем тест, который проверит обратное поведение, т.е. если чекбокс был отмечен, то отметка должна быть снята, свойство должно получить значение <strong>false.</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// reducers/reducers.test.ts
+</span><span style="color:#75715e"></span>
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;sets checked flag to false when it was checked&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">checkboxReducer</span>({ <span style="color:#a6e22e">anyName</span>: <span style="color:#66d9ef">true</span> }, { <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">CHECKBOX_CLICK</span>, <span style="color:#a6e22e">payload</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;anyName&#39;</span> })
+
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">anyName</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#66d9ef">false</span>)
+  })
+</code></pre></div><p>Убеждаемся, что тест красный, т.к. у нас всегда устанавливается значение в <code>true</code>, ведь до сего момента у нас не было других требований к коду. Исправим это.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// reducers/reducers.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CHECKBOX_CLICK</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;actionTypes&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialState</span>: <span style="color:#66d9ef">Record</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">boolean</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> {}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxReducer</span> <span style="color:#f92672">=</span> (
+  <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">initialState</span>,
+  <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">string</span>; <span style="color:#a6e22e">payload?</span>: <span style="color:#66d9ef">string</span> },
+) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">action</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">CHECKBOX_CLICK</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">action</span>.<span style="color:#a6e22e">payload</span>) {
+    <span style="color:#66d9ef">return</span> { ...<span style="color:#a6e22e">state</span>, [<span style="color:#a6e22e">action</span>.<span style="color:#a6e22e">payload</span>]<span style="color:#f92672">:</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">state</span>[<span style="color:#a6e22e">action</span>.<span style="color:#a6e22e">payload</span>] }
+  }
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">state</span>
+}
+</code></pre></div><p>Отлично! Мы описали всю необходимую бизнес-логику в тестах, написали код, который этим тестам удовлетворяет.</p>
+<h2 id="selectors">Selectors</h2>
+<p>Чтобы получить состояние чекбокса, нам понадобится <strong>Selector</strong>. Селекторы - это функции, которые умеют извлекать требуемую информацию из общего состояния приложения. Если в нескольких частях приложения требуется одинаковая информация, используется один и тот же селектор.</p>
+<p>Напишем первый тест для селектора.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// selectors/selectors.test.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getCheckboxState</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./selectors&#39;</span>
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;getCheckboxState&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">checkboxes</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">anyName</span>: <span style="color:#66d9ef">true</span> },
+  }
+
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;returns current checkbox state&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCheckboxState</span>(<span style="color:#e6db74">&#39;anyName&#39;</span>)(<span style="color:#a6e22e">state</span>)
+
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">result</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#66d9ef">true</span>)
+  })
+})
+</code></pre></div><p>Теперь заставим его &ldquo;позеленеть&rdquo;.</p>
+<p>Так как селектор должен знать, откуда извлекать информацию, определим структуру хранения.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// types.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">export</span> <span style="color:#a6e22e">type</span> <span style="color:#a6e22e">State</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">checkboxes</span>: <span style="color:#66d9ef">Record</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">boolean</span><span style="color:#f92672">&gt;</span>
+}
+</code></pre></div><p>Теперь напишем код селектора. Здесь используется функция высшего порядка из-за особенностей хука <code>useSelector</code> пакета <code>react-redux</code>, который принимает на вход функцию, принимающую один аргумент - текущее состояние стора, а нам требуется сообщить ещё дополнительные параметры - название чекбокса.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// selectors/package.json
+</span><span style="color:#75715e"></span>
+{
+  <span style="color:#e6db74">&#34;main&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;./selectors&#34;</span>
+}
+
+<span style="color:#75715e">// selectors/selectors.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">State</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;types&#39;</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getCheckboxState</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>) <span style="color:#f92672">=&gt;</span> (<span style="color:#a6e22e">state</span>: <span style="color:#66d9ef">State</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">checkboxes</span>[<span style="color:#a6e22e">name</span>]
+</code></pre></div><p>Кажется, мы всё сделали правильно, тест теперь зелёный. Но что произойдёт, если у нас ещё не было информации о состоянии чекбокса? Напишем ещё один тест.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// selectors/selectors.test.ts
+</span><span style="color:#75715e"></span>
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;returns false when checkbox state is undefined&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCheckboxState</span>(<span style="color:#e6db74">&#39;anotherName&#39;</span>)(<span style="color:#a6e22e">state</span>)
+
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">result</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#66d9ef">false</span>)
+  })
+</code></pre></div><p>Получим вот такую картину:</p>
+<p><img src="https://ivahaev.ru/img/redux/test5.png" alt="/img/redux/test5.png"></p>
+<p>И это правильно, мы получили на выходе <code>undefined</code>, т.е. <strong>state</strong> ничего не знает об этом чекбоксе. Исправим код.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// selectors/selectors.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">State</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;types&#39;</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getCheckboxState</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>) <span style="color:#f92672">=&gt;</span> (<span style="color:#a6e22e">state</span>: <span style="color:#66d9ef">State</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">checkboxes</span>[<span style="color:#a6e22e">name</span>] <span style="color:#f92672">??</span> <span style="color:#66d9ef">false</span>
+</code></pre></div><p>Вот теперь селектор работает, как и требуется.</p>
+<h2 id="store">Store</h2>
+<p>Давайте теперь создадим сам <strong>Store</strong>, т.е. специальный объект <strong>Redux</strong>, в котором хранится состояние приложения.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// store.ts
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AnyAction</span>, <span style="color:#a6e22e">createStore</span>, <span style="color:#a6e22e">combineReducers</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;redux&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">State</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;types&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">checkboxReducer</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;reducers&#39;</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">createAppStore</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">initialState?</span>: <span style="color:#66d9ef">State</span>) <span style="color:#f92672">=&gt;</span>
+  <span style="color:#a6e22e">createStore</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">State</span>, <span style="color:#a6e22e">AnyAction</span>, <span style="color:#a6e22e">unknown</span>, <span style="color:#a6e22e">unknown</span><span style="color:#f92672">&gt;</span>(
+    <span style="color:#a6e22e">combineReducers</span>({
+      <span style="color:#a6e22e">checkboxes</span>: <span style="color:#66d9ef">checkboxReducer</span>,
+    }),
+    <span style="color:#a6e22e">initialState</span>,
+  )
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">createAppStore</span>()
+</code></pre></div><p>Этот код мы отдельно тестировать не будем, т.к. мы используем стороннюю библиотеку, которая уже протестирована. Но далее мы напишем интеграционный тест, который проверит всю связку <strong>React + Redux</strong>.</p>
+<h2 id="react-components">React Components</h2>
+<p>Т.к. всю необходимую бизнес-логику мы уже описали, можем приступить к слою отображения.</p>
+<p>Для более удобной работы мы написали небольшую утилиту для тестов. В ней несколько больше функциональности, чем требуется для нашего первого теста, но далее мы всё это применим. Используем удобную библиотеку <code>react-test-renderer</code>, которая позволяет не производить рендер в настоящий <strong>DOM</strong>, а получать его <strong>JS</strong> представление. Установим пакет:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i react-test-renderer @types/react-test-renderer
+</code></pre></div><p>Приступим к написанию тестов на компоненты. Начнём непосредственно с чекбокса.</p>
+<h3 id="checkbox">Checkbox</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.test.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">create</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-test-renderer&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;.&#39;</span>
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;Checkbox&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;renders checkbox input&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;anyName&#39;</span>
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">create</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;input&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">type</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#e6db74">&#39;checkbox&#39;</span>)
+  })
+})
+</code></pre></div><p>Первый тест компонента проверяет, что внутри <code>Checkbox</code> рендерится стандартный <code>input</code>. с типом <code>checkbox</code> .</p>
+<p>Сделаем тест зелёным.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/package.json
+</span><span style="color:#75715e"></span>
+{
+  <span style="color:#e6db74">&#34;main&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Checkbox&#34;</span>
+}
+
+<span style="color:#75715e">// components/Checkbox/Checkbox.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Checkbox</span>: <span style="color:#66d9ef">React.FC</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">return</span> (
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;checkbox&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+  )
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Checkbox</span>
+</code></pre></div><p>Отлично, теперь добавим свойство <code>label</code>, содержащее текст для html элемента <code>label</code>, который должен отображаться рядом с чекбоксом.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.test.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;renders label&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">labelText</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;anyLabel&#39;</span>
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">create</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">labelText</span>} <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;label&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">children</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#a6e22e">labelText</span>)
+  })
+</code></pre></div><p>Заставим тест пройти.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Checkbox</span>: <span style="color:#66d9ef">React.FC</span><span style="color:#f92672">&lt;</span>{ <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">string</span> }<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> ({ <span style="color:#a6e22e">label</span> }) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">return</span> (
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;checkbox&#34;</span> <span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">label</span><span style="color:#f92672">&gt;</span>{<span style="color:#a6e22e">label</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/label&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+  )
+}
+</code></pre></div><p>Осталась небольшая деталь - чекбокс как-то должен себя идентифицировать, кроме того, для корректной работы клика по <code>label</code>, нужно прописать id чекбокса в свойство <code>htmlFor</code>. Напишем тест, проверяющий установку свойства id:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.test.tsx
+</span><span style="color:#75715e"></span>
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;sets name prop as input id&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;anyCheckbox&#39;</span>
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">create</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">checkboxName</span>} <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;anyLabel&#39;</span>} <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;input&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">id</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#a6e22e">checkboxName</span>)
+  })
+</code></pre></div><p>Убедившись, что он красный, исправим код:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Checkbox</span>: <span style="color:#66d9ef">React.FC</span><span style="color:#f92672">&lt;</span>{ <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>; <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">string</span> }<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> ({ <span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">label</span> }) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">return</span> (
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">name</span>} <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;checkbox&#34;</span> <span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">label</span><span style="color:#f92672">&gt;</span>{<span style="color:#a6e22e">label</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/label&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+  )
+}
+</code></pre></div><p>Тест зеленый, можем написать ещё один, который проверит установку свойства name в свойство <code>htmlFor</code> элемента <code>label</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.test.tsx
+</span><span style="color:#75715e"></span>
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;sets name prop as label htmlFor&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;anyCheckbox&#39;</span>
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">create</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">checkboxName</span>} <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;anyLabel&#39;</span>} <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;label&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">htmlFor</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#a6e22e">checkboxName</span>)
+  })
+</code></pre></div><p>Тест красный, нужно снова поправить код.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Checkbox</span>: <span style="color:#66d9ef">React.FC</span><span style="color:#f92672">&lt;</span>{ <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>; <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">string</span> }<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> ({ <span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">label</span> }) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">return</span> (
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">name</span>} <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;checkbox&#34;</span> <span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">name</span>}<span style="color:#f92672">&gt;</span>{<span style="color:#a6e22e">label</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/label&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+  )
+}
+</code></pre></div><p>Пора бы подключить <strong>Store</strong> к компоненту. Напишем тест, который покажет, что состояние чекбокса (свойство <code>checked</code>) соответствует тому, что хранится в <strong>Store</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.test.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Provider</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-redux&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">create</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-test-renderer&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createAppStore</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;store&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;.&#39;</span>
+
+<span style="color:#75715e">// omit old code
+</span><span style="color:#75715e"></span>
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;sets checked flag from store when it`s checked&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">store</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createAppStore</span>({ <span style="color:#a6e22e">checkboxes</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">anyName</span>: <span style="color:#66d9ef">true</span> } })
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">create</span>(
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Provider</span> <span style="color:#a6e22e">store</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">store</span>}<span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anyName&#34;</span> <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anyLabel&#34;</span> <span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/Provider&gt;,</span>
+    )
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;input&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">checked</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#66d9ef">true</span>)
+  })
+</code></pre></div><p>Тест пока красный, т.к. компонент ничего не знает о сторе. Заставим тест &ldquo;позеленеть&rdquo;.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useSelector</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-redux&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getCheckboxState</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;selectors&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Checkbox</span>: <span style="color:#66d9ef">React.FC</span><span style="color:#f92672">&lt;</span>{ <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>; <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">string</span> }<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> ({ <span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">label</span> }) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checked</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useSelector</span>(<span style="color:#a6e22e">getCheckboxState</span>(<span style="color:#a6e22e">name</span>))
+
+  <span style="color:#66d9ef">return</span> (
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">name</span>} <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;checkbox&#34;</span> <span style="color:#a6e22e">checked</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">checked</span>} <span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">name</span>}<span style="color:#f92672">&gt;</span>{<span style="color:#a6e22e">label</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/label&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+  )
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Checkbox</span>
+</code></pre></div><p>Тест пройден. Наконец-то, мы задействовали <strong>Redux</strong>! Мы использовали ранее написанный селектор <code>getCheckboxState</code>, который вызвали с помощью хука <code>useSelector</code>, получили значение и передали его в свойство <code>checked</code> элемента <code>input</code>.  Но сейчас произошла другая проблема - сломались остальные тесты на компонент.</p>
+<p><img src="https://ivahaev.ru/img/redux/test6.png" alt="/img/redux/test6.png"></p>
+<p>Дело в том, что ранее в тестах мы не передавали стор в компонент. Выделим часть с провайдером стора в функцию и перепишем наши тесты.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.test.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactElement</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Provider</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-redux&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">create</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-test-renderer&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createAppStore</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;store&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">State</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;types&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;.&#39;</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderWithRedux</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">node</span>: <span style="color:#66d9ef">ReactElement</span>, <span style="color:#a6e22e">initialState</span>: <span style="color:#66d9ef">State</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">checkboxes</span><span style="color:#f92672">:</span> {} }) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">store</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createAppStore</span>(<span style="color:#a6e22e">initialState</span>)
+
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">create</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Provider</span> <span style="color:#a6e22e">store</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">store</span>}<span style="color:#f92672">&gt;</span>{<span style="color:#a6e22e">node</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/Provider&gt;)</span>
+}
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;Checkbox&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;renders checkbox input&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;anyName&#39;</span>
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;input&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">type</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#e6db74">&#39;checkbox&#39;</span>)
+  })
+
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;renders label&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">labelText</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;anyLabel&#39;</span>
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">labelText</span>} <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;label&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">children</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#a6e22e">labelText</span>)
+  })
+
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;sets name prop as input id&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;anyCheckbox&#39;</span>
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">checkboxName</span>} <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;anyLabel&#39;</span>} <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;input&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">id</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#a6e22e">checkboxName</span>)
+  })
+
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;sets name prop as label htmlFor&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;anyCheckbox&#39;</span>
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">checkboxName</span>} <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;anyLabel&#39;</span>} <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;label&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">htmlFor</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#a6e22e">checkboxName</span>)
+  })
+
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;sets checked flag from store when it`s checked&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialState</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">checkboxes</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">anyName</span>: <span style="color:#66d9ef">true</span> } }
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anyName&#34;</span> <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anyLabel&#34;</span> <span style="color:#f92672">/&gt;</span>, <span style="color:#a6e22e">initialState</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;input&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">checked</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#66d9ef">true</span>)
+  })
+})
+</code></pre></div><p>Функция <strong>renderWithRedux</strong> выглядит достаточно полезной, вынесем её в отдельный модуль и импортируем в тестах.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// utils.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ReactElement</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Provider</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-redux&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">create</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-test-renderer&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Store</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./types&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createAppStore</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./store&#39;</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderWithRedux</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">node</span>: <span style="color:#66d9ef">ReactElement</span>, <span style="color:#a6e22e">initialState</span>: <span style="color:#66d9ef">Store</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">checkboxes</span><span style="color:#f92672">:</span> {} }) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">store</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createAppStore</span>(<span style="color:#a6e22e">initialState</span>)
+
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">create</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Provider</span> <span style="color:#a6e22e">store</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">store</span>}<span style="color:#f92672">&gt;</span>{<span style="color:#a6e22e">node</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/Provider&gt;)</span>
+}
+</code></pre></div><p>В итоге, шапка тестового файла будет выглядеть вот так:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.test.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">renderWithRedux</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;utils&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;.&#39;</span>
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;Checkbox&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+</code></pre></div><p>Для полной уверенности напишем ещё один тест, который проверит, что <code>checked</code> бывает и <code>false</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.test.tsx
+</span><span style="color:#75715e"></span>
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;sets checked flag from store when it`s unchecked&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialState</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">checkboxes</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">anyName</span>: <span style="color:#66d9ef">false</span> } }
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anyName&#34;</span> <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anyLabel&#34;</span> <span style="color:#f92672">/&gt;</span>, <span style="color:#a6e22e">initialState</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;input&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">checked</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#66d9ef">false</span>)
+  })
+</code></pre></div><p>Тест пройден, но у нас теперь появилось два теста с похожими описаниями и почти идентичным кодом, давайте немного модифицируем наши тесты, создав табличный тест. Последние два теста превратятся в один:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.test.tsx
+</span><span style="color:#75715e"></span>
+  <span style="color:#a6e22e">test</span>.<span style="color:#a6e22e">each</span><span style="color:#e6db74">`
+</span><span style="color:#e6db74">    storedState | state
+</span><span style="color:#e6db74">    </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">true</span><span style="color:#e6db74">}</span><span style="color:#e6db74">     | </span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#39;checked&#39;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">false</span><span style="color:#e6db74">}</span><span style="color:#e6db74">    | </span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#39;unchecked&#39;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  `</span>(<span style="color:#e6db74">&#39;sets checked flag from store when it`s $state&#39;</span>, ({ <span style="color:#a6e22e">storedState</span> }) <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialState</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">checkboxes</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">anyName</span>: <span style="color:#66d9ef">storedState</span> } }
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anyName&#34;</span> <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anyLabel&#34;</span> <span style="color:#f92672">/&gt;</span>, <span style="color:#a6e22e">initialState</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;input&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">checked</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#a6e22e">storedState</span>)
+  })
+</code></pre></div><p>Так уже лучше. А теперь самое вкусное - напишем интеграционный тест, который проверит, что при нажатии на чекбокс, он изменит своё состояние, т.е. свойство <strong>checked</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.test.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">act</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-test-renderer&#39;</span>
+
+<span style="color:#75715e">// omit old code
+</span><span style="color:#75715e"></span>
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;changes it`s checked state when it`s clicked&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialState</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">checkboxes</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">anyName</span>: <span style="color:#66d9ef">false</span> } }
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anyName&#34;</span> <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anyLabel&#34;</span> <span style="color:#f92672">/&gt;</span>, <span style="color:#a6e22e">initialState</span>)
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;input&#39;</span>)
+
+    <span style="color:#a6e22e">act</span>(() <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">onChange</span>()
+    })
+
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">checked</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#66d9ef">true</span>)
+  })
+</code></pre></div><p>Здесь мы воспользовались функцией <code>act</code>, пакета <code>react-test-renderer</code>, выполняя которую, мы убеждаемся в том, что все сайд-эффекты уже произошли и мы можем продолжить проверки. И далее проверяем, что когда будет вызвано событие <code>onChange</code> на нашем чекбоксе, он изменит свойство <code>checked</code> на  <code>true</code>. Пока этого не происходит, требуется написать код. Окончательный вариант компонента примет вот такой вид.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/Checkbox/Checkbox.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useDispatch</span>, <span style="color:#a6e22e">useSelector</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-redux&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getCheckboxState</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;selectors&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">checkboxClick</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;actions&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Checkbox</span>: <span style="color:#66d9ef">React.FC</span><span style="color:#f92672">&lt;</span>{ <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>; <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">string</span> }<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> ({ <span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">label</span> }) <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dispatch</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useDispatch</span>()
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checked</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useSelector</span>(<span style="color:#a6e22e">getCheckboxState</span>(<span style="color:#a6e22e">name</span>))
+
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">handleClick</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">useCallback</span>(() <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#a6e22e">dispatch</span>(<span style="color:#a6e22e">checkboxClick</span>(<span style="color:#a6e22e">name</span>))
+  }, [<span style="color:#a6e22e">dispatch</span>, <span style="color:#a6e22e">name</span>])
+
+  <span style="color:#66d9ef">return</span> (
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">name</span>} <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;checkbox&#34;</span> <span style="color:#a6e22e">checked</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">checked</span>} <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">handleClick</span>} <span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">label</span> <span style="color:#a6e22e">htmlFor</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">name</span>}<span style="color:#f92672">&gt;</span>{<span style="color:#a6e22e">label</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/label&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+  )
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Checkbox</span>
+</code></pre></div><p>В коде мы навесили обработчик на событие <code>change</code>, который отправляет <strong>action</strong> в <strong>store</strong>, создаваемый функцией <code>checkboxClick</code>. Как видим, тест позеленел. Не открывая браузера и даже не запуская сборку приложения, мы имеем протестированный компонент с отдельным слоем бизнес-логики, заключенной в <strong>Redux</strong>.</p>
+<h3 id="agreementsubmitbutton">AgreementSubmitButton</h3>
+<p>Нам требуется ещё один компонент - непосредственно кнопка <strong>Submit</strong>, создадим его. Конечно, вначале тест:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/AgreementSubmitButton/AgreementSubmitButton.test.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">renderWithRedux</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;utils&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">AgreementSubmitButton</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;.&#39;</span>
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;AgreementSubmitButton&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;renders button with label Submit&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">AgreementSubmitButton</span> <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;input&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">type</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#e6db74">&#39;button&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">value</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#e6db74">&#39;Submit&#39;</span>)
+  })
+})
+</code></pre></div><p>Теперь заставим тест &ldquo;позеленеть&rdquo;:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/AgreementSubmitButton/package.json
+</span><span style="color:#75715e"></span>{
+  <span style="color:#e6db74">&#34;main&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;./AgreementSubmitButton&#34;</span>
+}
+
+<span style="color:#75715e">// components/AgreementSubmitButton/AgreementSubmitButton.tsx
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AgreementSubmitButton</span>: <span style="color:#66d9ef">React.FC</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">return</span> <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Submit&#34;</span> <span style="color:#f92672">/&gt;</span>
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">AgreementSubmitButton</span>
+</code></pre></div><p>Тест зелёный, начало положено. Напишем новый тест, проверяющий зависимость свойства <strong>disabled</strong> новой кнопки от состояния чекбокса. Т.к. может быть два состояния, вновь используем табличный тест:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/AgreementSubmitButton/AgreementSubmitButton.test.tsx
+</span><span style="color:#75715e"></span>
+  <span style="color:#a6e22e">test</span>.<span style="color:#a6e22e">each</span><span style="color:#e6db74">`
+</span><span style="color:#e6db74">    checkboxState | disabled | agreementState
+</span><span style="color:#e6db74">    </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">false</span><span style="color:#e6db74">}</span><span style="color:#e6db74">      | </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">true</span><span style="color:#e6db74">}</span><span style="color:#e6db74">  | </span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#39;not agreed&#39;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">true</span><span style="color:#e6db74">}</span><span style="color:#e6db74">       | </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">false</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> | </span><span style="color:#e6db74">${</span><span style="color:#e6db74">&#39;agreed&#39;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  `</span>(
+    <span style="color:#e6db74">&#39;render button with disabled=$disabled when agreement is $agreementState&#39;</span>,
+    ({ <span style="color:#a6e22e">checkboxState</span>, <span style="color:#a6e22e">disabled</span> }) <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialState</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">checkboxes</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">agree</span>: <span style="color:#66d9ef">checkboxState</span> } }
+
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">AgreementSubmitButton</span> <span style="color:#f92672">/&gt;</span>, <span style="color:#a6e22e">initialState</span>)
+
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#e6db74">&#39;input&#39;</span>)
+      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">disabled</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#a6e22e">disabled</span>)
+    },
+  )
+</code></pre></div><p>Имеем двойной красный тест, напишем код для прохождения этого теста. Компонент станет выглядеть вот так:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/AgreementSubmitButton/AgreementSubmitButton.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useSelector</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-redux&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getCheckboxState</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;selectors/selectors&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">AgreementSubmitButton</span>: <span style="color:#66d9ef">React.FC</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkboxName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;agree&#39;</span>
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">agreed</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useSelector</span>(<span style="color:#a6e22e">getCheckboxState</span>(<span style="color:#a6e22e">checkboxName</span>))
+
+  <span style="color:#66d9ef">return</span> <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Submit&#34;</span> <span style="color:#a6e22e">disabled</span><span style="color:#f92672">=</span>{<span style="color:#f92672">!</span><span style="color:#a6e22e">agreed</span>} <span style="color:#f92672">/&gt;</span>
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">AgreementSubmitButton</span>
+</code></pre></div><p>Ура, все тесты зелёные!</p>
+<p>Следует обратить внимание, что в табличном тесте мы намеренно использовали два различных параметра <code>checkboxState</code> и <code>disabled</code>, хотя может показаться, что достаточно только первого, а в тесте написать вот так <code>expect(element.props.disabled).toBe(!disabled)</code>. Но это плохой паттерн - закладывать какую-то логику внутри тестов. Вместо этого мы явно описываем входные и выходные параметры. Так же, мы здесь немного ускорились, т.к., фактически написали два теста за раз. Такое допустимо, когда чувствуешь в себе силы и понимаешь, что реализация достаточно очевидная. Когда уровень владения TDD ещё не совершенный, лучше создавать по одному тесту за раз. В нашем случае - это писать по одной строчке в таблице.</p>
+<h3 id="licenseagreement">LicenseAgreement</h3>
+<p>Оформим нашу работу в то, ради чего мы всё это затевали - в форму принятия лицензионного соглашения. Какие имеются требования к форме:</p>
+<ol>
+<li>Содержится заголовок и непосредственно текст лицензионного соглашения. Эта часть компонента не требует тестирования.</li>
+<li>На форме имеется компонент <code>Checkbox</code> с определенными <code>label</code> и <code>name</code>. Это можно и нужно тестировать.</li>
+<li>На форме имеется кнопка <code>AgreementSubmitButton</code>. Это тоже прекрасно поддаётся тестированию.</li>
+</ol>
+<p>Приступим, первый тест на то, что на форме есть <code>Checkbox</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/LicenseAgreement/LicenseAgreement.test.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">renderWithRedux</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;utils&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;components/Checkbox&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">LicenseAgreement</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;.&#39;</span>
+
+<span style="color:#a6e22e">jest</span>.<span style="color:#a6e22e">mock</span>(<span style="color:#e6db74">&#39;components/Checkbox&#39;</span>, () <span style="color:#f92672">=&gt;</span> () <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">null</span>)
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;LicenseAgreement&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;renders Checkbox with name and label&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">LicenseAgreement</span> <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#a6e22e">Checkbox</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">name</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#e6db74">&#39;agree&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">label</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#e6db74">&#39;Agree&#39;</span>)
+  })
+})
+</code></pre></div><p>На что тут стоит обратить внимание - мы использовали тестовый дублёр для компонента <code>Checkbox</code> в строчке <code>jest.mock('components/Checkbox', () =&gt; () =&gt; null)</code>. Это делает наш тест изолированным, таким образом он не зависит от реализации <code>Checkbox</code>, возможные ошибки в этом компоненте не повлияют на результат выполнения данного теста. Дополнительно это экономит вычислительные ресурсы и время выполнения тестов. Тест красный, требуется написать правильный код:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/LicenseAgreement/package.json
+</span><span style="color:#75715e"></span>{
+  <span style="color:#e6db74">&#34;main&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;./LicenseAgreement&#34;</span>
+}
+
+<span style="color:#75715e">// src/components/LicenseAgreement/LicenseAgreement.tsx
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;components/Checkbox&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">LicenseAgreement</span>: <span style="color:#66d9ef">React.FC</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">return</span> (
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;agree&#34;</span> <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Agree&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+  )
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">LicenseAgreement</span>
+</code></pre></div><p>Получили зеленый тест, можем написать второй для этого компонента. Файл с тестами изменится:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// components/LicenseAgreement/LicenseAgreement.test.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">renderWithRedux</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;utils&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;components/Checkbox&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">AgreementSubmitButton</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;components/AgreementSubmitButton&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">LicenseAgreement</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;.&#39;</span>
+
+<span style="color:#a6e22e">jest</span>.<span style="color:#a6e22e">mock</span>(<span style="color:#e6db74">&#39;components/Checkbox&#39;</span>, () <span style="color:#f92672">=&gt;</span> () <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">null</span>)
+<span style="color:#a6e22e">jest</span>.<span style="color:#a6e22e">mock</span>(<span style="color:#e6db74">&#39;components/AgreementSubmitButton&#39;</span>, () <span style="color:#f92672">=&gt;</span> () <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">null</span>)
+
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;LicenseAgreement&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;renders Checkbox with name and label&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">LicenseAgreement</span> <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#a6e22e">Checkbox</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">name</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#e6db74">&#39;agree&#39;</span>)
+    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">label</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#e6db74">&#39;Agree&#39;</span>)
+  })
+
+  <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;renders SubmitAgreementButton&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">LicenseAgreement</span> <span style="color:#f92672">/&gt;</span>)
+
+    <span style="color:#a6e22e">expect</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#a6e22e">AgreementSubmitButton</span>)).<span style="color:#a6e22e">not</span>.<span style="color:#a6e22e">toThrow</span>()
+  })
+})
+</code></pre></div><p>Чтобы он позеленел, добавим <code>AgreementSubmitButton</code> в компонент:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// src/components/LicenseAgreement/LicenseAgreement.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;components/Checkbox&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">AgreementSubmitButton</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;components/AgreementSubmitButton&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">LicenseAgreement</span>: <span style="color:#66d9ef">React.FC</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">return</span> (
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Checkbox</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;agree&#34;</span> <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Agree&#34;</span> <span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">AgreementSubmitButton</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+  )
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">LicenseAgreement</span>
+</code></pre></div><p>Заметим, что <code>Checkbox</code> и <code>AgreementSubmitButton</code> не зависят друг от друга. Каждый компонент зависит только от стора и больше ни от чего.</p>
+<h3 id="ключ-на-старт">Ключ на старт!</h3>
+<p>Вставим над компонентами сам текст соглашения, далее можем добавлять компонент в приложение. В сгенерированном приложении имеется корневой компонент <code>App</code>, модифицируем его тесты на проверку рендера <code>LicenseAgreement</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// App.test.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">renderWithRedux</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;utils&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">LicenseAgreement</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;components/LicenseAgreement&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">App</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;App&#39;</span>
+
+<span style="color:#a6e22e">jest</span>.<span style="color:#a6e22e">mock</span>(<span style="color:#e6db74">&#39;components/LicenseAgreement&#39;</span>, () <span style="color:#f92672">=&gt;</span> () <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">null</span>)
+
+<span style="color:#a6e22e">test</span>(<span style="color:#e6db74">&#39;renders LicenseAgreement&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">renderWithRedux</span>(<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">App</span> <span style="color:#f92672">/&gt;</span>)
+
+  <span style="color:#a6e22e">expect</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">findByType</span>(<span style="color:#a6e22e">LicenseAgreement</span>)).<span style="color:#a6e22e">not</span>.<span style="color:#a6e22e">toThrow</span>()
+})
+</code></pre></div><p>Заставим тест позеленеть:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// App.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">LicenseAgreement</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;components/LicenseAgreement&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">App</span>: <span style="color:#66d9ef">React.FC</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">return</span> <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">LicenseAgreement</span> <span style="color:#f92672">/&gt;</span>
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">App</span>
+</code></pre></div><p>Мы получили зелёный тест, можно, наконец, запустить сборку приложения с помощью <code>npm start</code>. Сборка пройдёт успешно, но в браузере мы увидим следующую картину:</p>
+<p><img src="https://ivahaev.ru/img/redux/test7.png" alt="/img/redux/test7.png"></p>
+<p>Это говорит о том, что мы не подключили <strong>Redux store</strong> в само приложение. Сделаем это в файле <code>index.tsx</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">// index.tsx
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">ReactDOM</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-dom&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Provider</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;react-redux&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;index.css&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">store</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;store&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">App</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;App&#39;</span>
+
+<span style="color:#a6e22e">ReactDOM</span>.<span style="color:#a6e22e">render</span>(
+  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">StrictMode</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Provider</span> <span style="color:#a6e22e">store</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">store</span>}<span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">App</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/Provider&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/React.StrictMode&gt;,</span>
+  document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;root&#39;</span>),
+)
+</code></pre></div><p>Теперь приложение запускается, всё работает, как ожидается, кроме внешнего вида:</p>
+<p><img src="https://ivahaev.ru/img/redux/eula8.png" alt="/img/redux/eula8.png"></p>
+<p>Исправим это, поправив вёрстку, и получим конечный результат:</p>
+<p><img src="https://ivahaev.ru/img/redux/Agreement.gif" alt="Agreement"></p>
+<h2 id="заключение">Заключение</h2>
+<p>Я намеренно выбрал максимально простой пример, чтобы не перегружать статью текстом и кодом. Конечно, здесь можно было обойтись и без <strong>Redux</strong>, а хранить состояние чекбокса в локальном стейте компонента, и на мелких компонентах это может быть оправдано. Но по мере роста приложения, преимущества <strong>Redux</strong> будут становиться всё более очевидными, особенно когда появляется более сложная бизнес-логика, которую потребуется тестировать. <strong>Redux</strong> позволяет избавиться от прокидывания свойств через множество компонентов, каждый компонент либо достает необходимую информацию из стора самостоятельно, либо сам же диспатчит экшены.</p>
+<p>Во второй части данной статьи предполагался рассказ о библиотеке <strong>Redux Tookilt</strong>, которая значительно упрощает использование <strong>Redux</strong> в разработке фронтенд-приложений, но я решил в следующей статье показать, как можно написать настоящее полезное приложение, хоть и очень простое, на <strong>React</strong>, <strong>Redux</strong> и <strong>Redux Toolkit</strong>.</p>
+<p>Исходные коды полученного приложения доступны на <a href="https://github.com/ivahaev/redux-article-app">GitHub</a>.</p>
+<p>Дополнительные источники информации:</p>
+<ul>
+<li><a href="https://redux.js.org">Официальный сайт Redux</a></li>
+<li><a href="https://redux.js.org/style-guide/style-guide">Best practice по разработке приложений с использованием Redux</a></li>
+<li><a href="https://jestjs.io/">Фреймворк для тестирования JS приложений Jest</a></li>
+<li><a href="https://habr.com/ru/company/manychat/blog/528794/">Хабрастатья Андрея Хижняка <strong>REACT + JEST = TDD</strong> ❤️</a></li>
+</ul>
+            </div>
+            <footer class="article-footer">
+    
+    <a href="https://ivahaev.ru/how-to-get-profit-with-redux-and-react//#disqus_thread" class="article-comment-link">
+        Комментарии
+    </a>
+
+    <a name="disqus_thread"></a>
+    <section class="post-comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//ivahaev.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </section>
+    
+</footer>
+        </div>
+    </article>
+</section>
+
+        </div>
+    </main>
+
+    <script src="https://ivahaev.ru/js/prism.js"></script>
+</body>
+
+</html>

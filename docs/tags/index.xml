@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
     <copyright>2020 Евгений Иваха</copyright>
-    <lastBuildDate>Tue, 10 Jul 2018 23:11:00 +0500</lastBuildDate>
+    <lastBuildDate>Thu, 18 Feb 2021 00:19:00 +0500</lastBuildDate>
     
 	<atom:link href="https://ivahaev.ru/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>frontend</title>
+      <link>https://ivahaev.ru/tags/frontend/</link>
+      <pubDate>Thu, 18 Feb 2021 00:19:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/frontend/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>react</title>
+      <link>https://ivahaev.ru/tags/react/</link>
+      <pubDate>Thu, 18 Feb 2021 00:19:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>redux</title>
+      <link>https://ivahaev.ru/tags/redux/</link>
+      <pubDate>Thu, 18 Feb 2021 00:19:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/redux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tdd</title>
+      <link>https://ivahaev.ru/tags/tdd/</link>
+      <pubDate>Thu, 18 Feb 2021 00:19:00 +0500</pubDate>
+      
+      <guid>https://ivahaev.ru/tags/tdd/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>acid</title>
