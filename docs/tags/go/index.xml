@@ -6,12 +6,8 @@
     <description>Recent content in go on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2020 Евгений Иваха</copyright>
-    <lastBuildDate>Sat, 21 Apr 2018 11:55:00 +0500</lastBuildDate>
-    
-	<atom:link href="https://ivahaev.ru/tags/go/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2022 Евгений Иваха</copyright>
+    <lastBuildDate>Sat, 21 Apr 2018 11:55:00 +0500</lastBuildDate><atom:link href="https://ivahaev.ru/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Мой подход к тестированию. Часть вторая</title>
       <link>https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/</link>

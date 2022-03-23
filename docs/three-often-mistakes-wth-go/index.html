@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
-<head>
+  <head>
     <title>Три частые ошибки, возникающие при разработке на Go &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.69.1" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <meta name="description" content="">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+     
+    <meta name="description" content="" />
     
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <link
+      href="//fonts.googleapis.com/css?family=Open+Sans:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css" />
     <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
 <meta name='yandex-verification' content='7a8a89f15378f8c0' />
 
@@ -48,73 +56,74 @@
     })(document, window, "yandex_metrika_callbacks");
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
-
-    
+ 
     <meta propperty="og:url" content="https://ivahaev.ru/three-often-mistakes-wth-go/" />
     <meta propperty="og:title" content="Три частые ошибки, возникающие при разработке на Go" />
     
-      <meta propperty="og:description" content="Это перевод статьи. Раньше желания переводить не возникало, но статья очень понравилась, наверное, из-за того, что сам наступал уже на подобные грабли. Перевод достаточно вольный, но суть передает верно. Если хоть одному начинающему разработчику поможет эта статья, труды мои будут не напрасными :).
+    <meta propperty="og:description" content="Это перевод статьи. Раньше желания переводить не возникало, но статья очень понравилась, наверное, из-за того, что сам наступал уже на подобные грабли. Перевод достаточно вольный, но суть передает верно. Если хоть одному начинающему разработчику поможет эта статья, труды мои будут не напрасными :).
 Оригинал статьи доступен по адресу http://bryce.is/writing/code/jekyll/update/2015/11/01/3-go-gotchas.html." />
     
+  </head>
+</html>
 
-
-</head>
 
 <body>
     <div id="sidebar">
-    <div id="sidebar-content" class="inner">
-        <h2 class="blog-title">
-            <a href="https://ivahaev.ru/">ivahaev.ru</a>
-        </h2>
-        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
-        <div id="sidebar-links">
-            
-            <ul id="navigation">
-                
-                <li class="nav" role="presentation">
-                    <a href="https://ivahaev.ru/about">
-                        <i class="fa fa-navicon"></i>Об авторе</a>
-                </li>
-            </ul>
-            <ul id="sidebar-external">
-                <li>
-                    <a href="https://github.com/ivahaev">
-                        <i class="fa fa-github"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="https://github.com/getblank">
-                        <i class="fa fa-github"></i>getblank</a>
-                </li>
-                <li>
-                    <a href="https://telegram.me/ivahaev">
-                        <i class="fa fa-paper-plane"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="skype:ivahaev?chat">
-                        <i class="fa fa-skype"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a target="_blank" href="mailto:ivahaev@gmail.com">
-                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
-                </li>
-            </ul>
-            <ul id="sidebar-partners">
-                <div>Партнёры:</div>
-                
-                <li>
-                    <a href="http://borisoft.info/"></a>
-                    <a href="http://sclif.pro">
-                        <i class="fa fa-linux"></i>Sclif</a>
-                </li>
-            </ul>
-        </div>
-
-        <footer class="site-footer">
-            <section class="copyright">&copy; 2020 Евгений Иваха</section>
-        </footer>
+  <div id="sidebar-content" class="inner">
+    <h2 class="blog-title">
+      <a href="https://ivahaev.ru/">ivahaev.ru</a>
+    </h2>
+    <h3 class="blog-description">
+      О программировании, IP телефонии и смежных областях.
+    </h3>
+    <div id="sidebar-links">
+      
+      <ul id="navigation">
+        
+        <li class="nav" role="presentation">
+          <a href="https://ivahaev.ru/about">
+            <i class="fa fa-navicon"></i>Об авторе</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-external">
+        <li>
+          <a href="https://github.com/ivahaev">
+            <i class="fa fa-github"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/getblank">
+            <i class="fa fa-github"></i>getblank</a
+          >
+        </li>
+        <li>
+          <a href="https://telegram.me/ivahaev">
+            <i class="fa fa-paper-plane"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a target="_blank" href="mailto:ivahaev@gmail.com">
+            <i class="fa fa-envelope"></i>ivahaev@gmail.com</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-partners">
+        <div>Партнёры:</div>
+        
+        <li>
+          <a href="http://borisoft.info/"></a>
+          <a href="http://sclif.pro"> <i class="fa fa-linux"></i>Sclif</a>
+        </li>
+      </ul>
     </div>
+
+    <footer class="site-footer">
+      <section class="copyright">&copy; 2022 Евгений Иваха</section>
+    </footer>
+  </div>
 </div>
+
 
     <main>
         <div class="main-inner">
@@ -168,76 +177,76 @@
 <h2 id="1-итерация-через-range">1. Итерация через range</h2>
 <p>Использовать <code>range</code> очень удобно. Перебирая срез или отображение, для каждого элемента мы получаем две переменные, в первой индекс элемента, во второй <strong>копия</strong> значения.
 Например:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">mySlice</span> {
-    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;index: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">index</span>)
-    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;value: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">value</span>)
-}
-</code></pre></div><p>Но что же здесь происходит на самом деле? Рассмотрим более подробный пример:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Foo</span> <span style="color:#66d9ef">struct</span> {
-    <span style="color:#a6e22e">bar</span> <span style="color:#66d9ef">string</span>
-}
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-    <span style="color:#a6e22e">list</span> <span style="color:#f92672">:=</span> []<span style="color:#a6e22e">Foo</span>{
-        {<span style="color:#e6db74">&#34;A&#34;</span>},
-        {<span style="color:#e6db74">&#34;B&#34;</span>},
-        {<span style="color:#e6db74">&#34;C&#34;</span>},
-    }
-
-    <span style="color:#a6e22e">list2</span> <span style="color:#f92672">:=</span> make([]<span style="color:#f92672">*</span><span style="color:#a6e22e">Foo</span>, len(<span style="color:#a6e22e">list</span>))
-    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
-        <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">value</span>
-    }
-
-    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">list</span>[<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">list</span>[<span style="color:#ae81ff">2</span>])
-    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list2</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">list2</span>[<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">list2</span>[<span style="color:#ae81ff">2</span>])
-}
-</code></pre></div><p>В данном примере происходит следующее:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">mySlice</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;index: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">index</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;value: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">value</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Но что же здесь происходит на самом деле? Рассмотрим более подробный пример:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Foo</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bar</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">list</span> <span style="color:#f92672">:=</span> []<span style="color:#a6e22e">Foo</span>{
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;A&#34;</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;B&#34;</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;C&#34;</span>},
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">list2</span> <span style="color:#f92672">:=</span> make([]<span style="color:#f92672">*</span><span style="color:#a6e22e">Foo</span>, len(<span style="color:#a6e22e">list</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">value</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">list</span>[<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">list</span>[<span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list2</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">list2</span>[<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">list2</span>[<span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>В данном примере происходит следующее:</p>
 <ul>
 <li>Создается срез структур <code>Foo</code> под названием <code>list</code>;</li>
 <li>Определяется срез указателей на структуры <code>Foo</code>, под названием <code>list2</code> с длиной равной длине массива <code>list</code>;</li>
 <li>Перебираем все структуры в срезе <code>list</code> и присваиваем указатель на структуру соответствующему элементу среза <code>list2</code> (имеющему тот же индекс);</li>
 </ul>
 <p>Вероятнее всего, мы ожидаем следующий результат работы вышеприведенного кода:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{</span>A<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>B<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
-&amp;<span style="color:#f92672">{</span>A<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>B<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
-</code></pre></div><p>А на самом деле, получаем:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">{</span>A<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>B<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
-&amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
-</code></pre></div><p>Первая строка именно такая как ожидалась, а вот со второй что-то не так. Как будто бы распечатался указатель на третий элемент среза <code>list2</code> три раза. Почему же такое произошло?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">{</span>A<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>B<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&amp;<span style="color:#f92672">{</span>A<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>B<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>А на самом деле, получаем:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">{</span>A<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>B<span style="color:#f92672">}</span> <span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span> &amp;<span style="color:#f92672">{</span>C<span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Первая строка именно такая как ожидалась, а вот со второй что-то не так. Как будто бы распечатался указатель на третий элемент среза <code>list2</code> три раза. Почему же такое произошло?</p>
 <p>Всему виной этот самый удобный <code>range</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
-    <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">value</span>
-}
-</code></pre></div><p>Go передает <strong>копий</strong> значений элементов вместо самих значений, когда производится итерация с помощью <code>range</code>. И когда мы создаем указатель на <code>value</code>, на самом деле, мы создаем указатель на <strong>копию</strong> значения. При каждой итерации, копия нового значения помещается в ту же ячейку памяти, что и предыдущее, таким образом, все указатели в срезе <code>list2</code> приводят к одной области памяти.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">value</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Go передает <strong>копий</strong> значений элементов вместо самих значений, когда производится итерация с помощью <code>range</code>. И когда мы создаем указатель на <code>value</code>, на самом деле, мы создаем указатель на <strong>копию</strong> значения. При каждой итерации, копия нового значения помещается в ту же ячейку памяти, что и предыдущее, таким образом, все указатели в срезе <code>list2</code> приводят к одной области памяти.</p>
 <p>Правильно решить поставленную задачу можно так:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">value</span> <span style="color:#a6e22e">Foo</span>
-<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">list</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
-    <span style="color:#a6e22e">value</span> = <span style="color:#a6e22e">list</span>[<span style="color:#a6e22e">i</span>]
-    <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">value</span>
-}
-</code></pre></div><p>Или, все-таки, с помощью <code>range</code>, но взяв из него только индекс элемента:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
-    <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">list</span>[<span style="color:#a6e22e">i</span>]
-}
-</code></pre></div><h2 id="2-использование-встроенной-функций-append">2. Использование встроенной функций append</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">value</span> <span style="color:#a6e22e">Foo</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">list</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">value</span> = <span style="color:#a6e22e">list</span>[<span style="color:#a6e22e">i</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">value</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Или, все-таки, с помощью <code>range</code>, но взяв из него только индекс элемента:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">list2</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">list</span>[<span style="color:#a6e22e">i</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="2-использование-встроенной-функций-append">2. Использование встроенной функций append</h2>
 <p>Срезы — один из примитивных типов в Go. То что в других языках делается с массивами, в гоу можно сделать только со срезом.
 Например, нам нужно добавить значение в срез элементов типа <code>int</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">list</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>}
-<span style="color:#a6e22e">list</span> = append(<span style="color:#a6e22e">list</span>, <span style="color:#ae81ff">3</span>)
-<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>) <span style="color:#75715e">// [0 1 2 3]
-</span></code></pre></div><p>На первый взгляд, все похоже на метод <code>push()</code> для массивов в других языках, но срезы — это не совсем массивы и функция <code>append</code> иногда может удивить.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">list</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">list</span> = append(<span style="color:#a6e22e">list</span>, <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>) <span style="color:#75715e">// [0 1 2 3]
+</span></span></span></code></pre></div><p>На первый взгляд, все похоже на метод <code>push()</code> для массивов в других языках, но срезы — это не совсем массивы и функция <code>append</code> иногда может удивить.</p>
 <p>Рассмотрим другой пример:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-    <span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> []byte(<span style="color:#e6db74">&#34;foo&#34;</span>)
-    <span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> append(<span style="color:#a6e22e">a</span>, []byte(<span style="color:#e6db74">&#34;bar&#34;</span>)<span style="color:#f92672">...</span>)
-    <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> append(<span style="color:#a6e22e">a</span>, []byte(<span style="color:#e6db74">&#34;baz&#34;</span>)<span style="color:#f92672">...</span>)
-
-    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(string(<span style="color:#a6e22e">a</span>), string(<span style="color:#a6e22e">b</span>), string(<span style="color:#a6e22e">c</span>))
-}
-</code></pre></div><p>Здесь мы определили срез байт и сразу же инициировали его, преобразовав в срез строку <strong>&ldquo;foo&rdquo;</strong>. Далее мы добавляем срез <strong>[&ldquo;bar&rdquo;]</strong> к первому срезу, присваиваем полученное переменной <code>b</code>, после чего добавляем другой срез <strong>[&ldquo;baz&rdquo;]</strong> также к первому срезу и присваиваем полученное переменной <code>c</code>. Результатом работы данной программы будет следующее:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">foo foobaz foobaz
-</code></pre></div><p><img src="https://ivahaev.ru/img/shta.jpeg" alt="Шта?"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> []byte(<span style="color:#e6db74">&#34;foo&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> append(<span style="color:#a6e22e">a</span>, []byte(<span style="color:#e6db74">&#34;bar&#34;</span>)<span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> append(<span style="color:#a6e22e">a</span>, []byte(<span style="color:#e6db74">&#34;baz&#34;</span>)<span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(string(<span style="color:#a6e22e">a</span>), string(<span style="color:#a6e22e">b</span>), string(<span style="color:#a6e22e">c</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Здесь мы определили срез байт и сразу же инициировали его, преобразовав в срез строку <strong>&ldquo;foo&rdquo;</strong>. Далее мы добавляем срез <strong>[&ldquo;bar&rdquo;]</strong> к первому срезу, присваиваем полученное переменной <code>b</code>, после чего добавляем другой срез <strong>[&ldquo;baz&rdquo;]</strong> также к первому срезу и присваиваем полученное переменной <code>c</code>. Результатом работы данной программы будет следующее:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>foo foobaz foobaz
+</span></span></code></pre></div><p><img src="https://ivahaev.ru/img/shta.jpeg" alt="Шта?"></p>
 <p>Какого? Мы-то ждали <code>foo foobar foobaz</code>!</p>
 <p>Чтобы понять что произошло, следует разобраться с тем, а что же за звери такие эти срезы? Срез в Go — это дексриптор, который содержит три компонента:</p>
 <ul>
@@ -251,27 +260,27 @@
 <p>Не уверен в переводе термина (<strong>Variable shadowing</strong>), но примерно как-то так.</p>
 <p>В Go есть один интересный оператор, который выглядит вот так: <code>:=</code>. Из-за него некоторые говорят, что Go очень похож на Pascal, хотя в Go оператор выполняет несколько другую работу. <code>:=</code> — это короткая форма объявления переменной с одновременным присвоением значения и типа, соответствующего переданному значению. Очень удобная форма записи, но, к сожалению, именно она и таит в себе возможность совершить ошибку.</p>
 <p>Рассмотрим следующий код:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-    <span style="color:#a6e22e">list</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>}
-    <span style="color:#66d9ef">for</span> {
-        <span style="color:#a6e22e">list</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">repeat</span>(<span style="color:#a6e22e">list</span>)
-        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-            panic(<span style="color:#a6e22e">err</span>)
-        }
-        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>)
-        <span style="color:#66d9ef">break</span>
-    }
-    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>)
-}
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">repeat</span>(<span style="color:#a6e22e">list</span> []<span style="color:#66d9ef">string</span>) ([]<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">error</span>) {
-    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">list</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;Nothing to repeat!&#34;</span>)
-    }
-    <span style="color:#a6e22e">list</span> = append(<span style="color:#a6e22e">list</span>, <span style="color:#a6e22e">list</span><span style="color:#f92672">...</span>)
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">list</span>, <span style="color:#66d9ef">nil</span>
-}
-</code></pre></div><p>Автор считает, что это очень показательный пример. Ну что же, поверим, к тому же, он вполне себе хорошо иллюстрирует проблему. Происходит следующее:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">list</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">list</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">repeat</span>(<span style="color:#a6e22e">list</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>            panic(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">list</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">repeat</span>(<span style="color:#a6e22e">list</span> []<span style="color:#66d9ef">string</span>) ([]<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">list</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;Nothing to repeat!&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">list</span> = append(<span style="color:#a6e22e">list</span>, <span style="color:#a6e22e">list</span><span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">list</span>, <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Автор считает, что это очень показательный пример. Ну что же, поверим, к тому же, он вполне себе хорошо иллюстрирует проблему. Происходит следующее:</p>
 <ul>
 <li>Создается срез строк с именем <code>list</code>;</li>
 <li>Запускается бесконечный цикл;</li>
@@ -280,17 +289,17 @@
 <li>Печатаем <code>list</code>.</li>
 </ul>
 <p>Глядя на код, ожидается следующий вывод:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>a b c a b c<span style="color:#f92672">]</span>
-<span style="color:#f92672">[</span>a b c a b c<span style="color:#f92672">]</span>
-</code></pre></div><p>Но на деле получаем:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>a b c a b c<span style="color:#f92672">]</span>
-<span style="color:#f92672">[</span>a b c<span style="color:#f92672">]</span>
-</code></pre></div><p>А все потому, что когда использовали оператор <code>:=</code>, мы на самом деле определили новую переменную <code>list</code> в области видимости цикла. В Go фигурные скобки создают новую область видимости. Мы это сделали для того, чтобы быстренько объявить переменную <code>err</code> типа <code>error</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>a b c a b c<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>a b c a b c<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>Но на деле получаем:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>a b c a b c<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>a b c<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>А все потому, что когда использовали оператор <code>:=</code>, мы на самом деле определили новую переменную <code>list</code> в области видимости цикла. В Go фигурные скобки создают новую область видимости. Мы это сделали для того, чтобы быстренько объявить переменную <code>err</code> типа <code>error</code>.</p>
 <p><img src="https://ivahaev.ru/img/norma.jpeg" alt="Это норма"></p>
 <p>Чтобы исправить ситуацию, нужно объявить <code>err</code> заранее и далее использовать обычный оператор присваивания <code>=</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
-<span style="color:#a6e22e">list</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">duplicate</span>(<span style="color:#a6e22e">list</span>)
-</code></pre></div><p>В поставке Go есть отличная утилита <code>go vet</code>, запустив которую с опцией <code>-shadow</code>, можно проверить код на наличие потенциальных ошибок связанных с затенением переменных.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">list</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">duplicate</span>(<span style="color:#a6e22e">list</span>)
+</span></span></code></pre></div><p>В поставке Go есть отличная утилита <code>go vet</code>, запустив которую с опцией <code>-shadow</code>, можно проверить код на наличие потенциальных ошибок связанных с затенением переменных.</p>
 <p>Go — отличный язык, но чтобы создавать действительно классно работающие приложения, стоит понимать что происходит у него &ldquo;под капотом&rdquo;.</p>
             </div>
             <footer class="article-footer">

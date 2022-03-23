@@ -6,12 +6,8 @@
     <description>Recent content in telephony on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2020 Евгений Иваха</copyright>
-    <lastBuildDate>Mon, 23 Nov 2015 00:57:54 +0500</lastBuildDate>
-    
-	<atom:link href="https://ivahaev.ru/tags/telephony/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2022 Евгений Иваха</copyright>
+    <lastBuildDate>Mon, 23 Nov 2015 00:57:54 +0500</lastBuildDate><atom:link href="https://ivahaev.ru/tags/telephony/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Умный колбэк</title>
       <link>https://ivahaev.ru/smart-callback/</link>

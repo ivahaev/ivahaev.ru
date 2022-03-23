@@ -1,344 +1,208 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://ivahaev.ru/tags/frontend/</loc>
     <lastmod>2021-02-18T00:19:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/</loc>
     <lastmod>2021-02-18T00:19:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/react/</loc>
     <lastmod>2021-02-18T00:19:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/redux/</loc>
     <lastmod>2021-02-18T00:19:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/</loc>
     <lastmod>2021-02-18T00:19:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/tdd/</loc>
     <lastmod>2021-02-18T00:19:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/how-to-get-profit-with-redux-and-react/</loc>
     <lastmod>2021-02-18T00:19:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/about/</loc>
     <lastmod>2020-04-23T15:47:15+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/acid/</loc>
     <lastmod>2018-07-10T23:11:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/mongodb-docker-dev-transactions/</loc>
     <lastmod>2018-07-10T23:11:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/cluster/</loc>
     <lastmod>2018-07-10T23:11:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/docker/</loc>
     <lastmod>2018-07-10T23:11:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/mongodb/</loc>
     <lastmod>2018-07-10T23:11:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/transactions/</loc>
     <lastmod>2018-07-10T23:11:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/go/</loc>
     <lastmod>2018-04-21T11:55:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/goblin/</loc>
     <lastmod>2018-04-21T11:55:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/goconvey/</loc>
     <lastmod>2018-04-21T11:55:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/golang/</loc>
     <lastmod>2018-04-21T11:55:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/test/</loc>
     <lastmod>2018-04-21T11:55:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/testify/</loc>
     <lastmod>2018-04-21T11:55:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/testing/</loc>
     <lastmod>2018-04-21T11:55:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/</loc>
     <lastmod>2018-04-21T11:55:00+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/callback/</loc>
     <lastmod>2016-07-13T11:28:50+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/javascript/</loc>
     <lastmod>2016-07-13T11:28:50+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/node.js/</loc>
     <lastmod>2016-07-13T11:28:50+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/promise/</loc>
     <lastmod>2016-07-13T11:28:50+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/javascript-callback-promise-dual-api/</loc>
     <lastmod>2016-07-13T11:28:50+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/mocha/</loc>
     <lastmod>2016-07-08T03:11:50+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/how-to-test-go-applications-my-way-part-one/</loc>
     <lastmod>2016-07-08T03:11:50+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/git/</loc>
     <lastmod>2016-07-01T23:11:50+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/npm/</loc>
     <lastmod>2016-07-01T23:11:50+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/semver/</loc>
     <lastmod>2016-07-01T23:11:50+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/go-releases-versions/</loc>
     <lastmod>2016-07-01T23:11:50+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/pause/</loc>
     <lastmod>2016-05-01T14:12:32+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/time/</loc>
     <lastmod>2016-05-01T14:12:32+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/timer/</loc>
     <lastmod>2016-05-01T14:12:32+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/advanced-go-timer/</loc>
     <lastmod>2016-05-01T14:12:32+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/cli/</loc>
     <lastmod>2016-01-18T00:47:11+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/simple-logger-for-golang/</loc>
     <lastmod>2016-01-18T00:47:11+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/log/</loc>
     <lastmod>2016-01-18T00:47:11+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/logger/</loc>
     <lastmod>2016-01-18T00:47:11+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/ami/</loc>
     <lastmod>2016-01-14T21:52:24+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/amigo/</loc>
     <lastmod>2016-01-14T21:52:24+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/amigo-best-frend-of-golang-and-asterisk/</loc>
     <lastmod>2016-01-14T21:52:24+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/asterisk/</loc>
     <lastmod>2016-01-14T21:52:24+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/excel/</loc>
     <lastmod>2015-12-28T00:05:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/generator/</loc>
     <lastmod>2015-12-28T00:05:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/report/</loc>
     <lastmod>2015-12-28T00:05:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/template/</loc>
     <lastmod>2015-12-28T00:05:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/xlsx/</loc>
     <lastmod>2015-12-28T00:05:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/go-xlsx-templater/</loc>
     <lastmod>2015-12-28T00:05:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/callcenter/</loc>
     <lastmod>2015-11-23T00:57:54+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/pbx/</loc>
     <lastmod>2015-11-23T00:57:54+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/telephony/</loc>
     <lastmod>2015-11-23T00:57:54+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/smart-callback/</loc>
     <lastmod>2015-11-23T00:57:54+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/counter/</loc>
     <lastmod>2015-11-14T12:34:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/dialplan/</loc>
     <lastmod>2015-11-14T12:34:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/increment/</loc>
     <lastmod>2015-11-14T12:34:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/inkriemient-pieriemiennoi-v-dailplanie-astieriska/</loc>
     <lastmod>2015-11-14T12:34:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/debug/</loc>
     <lastmod>2015-11-12T16:30:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/voip/</loc>
     <lastmod>2015-11-12T16:30:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/deep-debug-astierisk/</loc>
     <lastmod>2015-11-12T16:30:30+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/three-often-mistakes-wth-go/</loc>
     <lastmod>2015-11-12T01:32:28+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4/</loc>
     <lastmod>2015-11-12T01:32:28+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/tags/freepbx/</loc>
     <lastmod>2015-11-11T01:53:02+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/proighryvaniie-faila-pri-tieliefonnom-razghovorie/</loc>
     <lastmod>2015-11-11T01:53:02+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/blank/</loc>
     <lastmod>2015-11-11T00:44:42+05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ivahaev.ru/categories/</loc>
   </url>
-  
 </urlset>

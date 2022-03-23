@@ -1,7 +1,7 @@
 baseurl = "https://ivahaev.ru/"
 languageCode = "ru-RU"
 title = "ivahaev.ru"
-copyright = "2020 Евгений Иваха"
+copyright = "2022 Евгений Иваха"
 disqusShortname = "ivahaev"
 publishdir = "docs"
 

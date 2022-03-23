@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
-<head>
+  <head>
     <title>Двойной API для асинхронных функций &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.69.1" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <meta name="description" content="">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+     
+    <meta name="description" content="" />
     
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <link
+      href="//fonts.googleapis.com/css?family=Open+Sans:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css" />
     <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
 <meta name='yandex-verification' content='7a8a89f15378f8c0' />
 
@@ -48,76 +56,77 @@
     })(document, window, "yandex_metrika_callbacks");
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
-
-    
+ 
     <meta propperty="og:url" content="https://ivahaev.ru/javascript-callback-promise-dual-api/" />
     <meta propperty="og:title" content="Двойной API для асинхронных функций" />
     
-      <meta propperty="og:description" content="Когда пишешь публичные асинхронные методы на JavaScript, желательно придерживаться двух простых правил:
+    <meta propperty="og:description" content="Когда пишешь публичные асинхронные методы на JavaScript, желательно придерживаться двух простых правил:
 
 Если метод может вернуть ошибку в колбэке, то ошибка должна идти первым аргументом. Часто, даже если метод никогда не возвращает ошибку, первым аргументом передают null для того, чтобы унифицировать все асинхронные вызовы;
 Если в метод не передана колбэк-функция, то метод должен вернуть Promise.
 " />
     
+  </head>
+</html>
 
-
-</head>
 
 <body>
     <div id="sidebar">
-    <div id="sidebar-content" class="inner">
-        <h2 class="blog-title">
-            <a href="https://ivahaev.ru/">ivahaev.ru</a>
-        </h2>
-        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
-        <div id="sidebar-links">
-            
-            <ul id="navigation">
-                
-                <li class="nav" role="presentation">
-                    <a href="https://ivahaev.ru/about">
-                        <i class="fa fa-navicon"></i>Об авторе</a>
-                </li>
-            </ul>
-            <ul id="sidebar-external">
-                <li>
-                    <a href="https://github.com/ivahaev">
-                        <i class="fa fa-github"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="https://github.com/getblank">
-                        <i class="fa fa-github"></i>getblank</a>
-                </li>
-                <li>
-                    <a href="https://telegram.me/ivahaev">
-                        <i class="fa fa-paper-plane"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="skype:ivahaev?chat">
-                        <i class="fa fa-skype"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a target="_blank" href="mailto:ivahaev@gmail.com">
-                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
-                </li>
-            </ul>
-            <ul id="sidebar-partners">
-                <div>Партнёры:</div>
-                
-                <li>
-                    <a href="http://borisoft.info/"></a>
-                    <a href="http://sclif.pro">
-                        <i class="fa fa-linux"></i>Sclif</a>
-                </li>
-            </ul>
-        </div>
-
-        <footer class="site-footer">
-            <section class="copyright">&copy; 2020 Евгений Иваха</section>
-        </footer>
+  <div id="sidebar-content" class="inner">
+    <h2 class="blog-title">
+      <a href="https://ivahaev.ru/">ivahaev.ru</a>
+    </h2>
+    <h3 class="blog-description">
+      О программировании, IP телефонии и смежных областях.
+    </h3>
+    <div id="sidebar-links">
+      
+      <ul id="navigation">
+        
+        <li class="nav" role="presentation">
+          <a href="https://ivahaev.ru/about">
+            <i class="fa fa-navicon"></i>Об авторе</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-external">
+        <li>
+          <a href="https://github.com/ivahaev">
+            <i class="fa fa-github"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/getblank">
+            <i class="fa fa-github"></i>getblank</a
+          >
+        </li>
+        <li>
+          <a href="https://telegram.me/ivahaev">
+            <i class="fa fa-paper-plane"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a target="_blank" href="mailto:ivahaev@gmail.com">
+            <i class="fa fa-envelope"></i>ivahaev@gmail.com</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-partners">
+        <div>Партнёры:</div>
+        
+        <li>
+          <a href="http://borisoft.info/"></a>
+          <a href="http://sclif.pro"> <i class="fa fa-linux"></i>Sclif</a>
+        </li>
+      </ul>
     </div>
+
+    <footer class="site-footer">
+      <section class="copyright">&copy; 2022 Евгений Иваха</section>
+    </footer>
+  </div>
 </div>
+
 
     <main>
         <div class="main-inner">
@@ -175,27 +184,27 @@
 <li>Если в метод не передана колбэк-функция, то метод должен вернуть Promise.</li>
 </ol>
 <p>Если с первым правилом все достаточно просто, то для удобного выполнения второго, в нашей команде родилось короткое однострочное выражение, которые мы повсеместно используем:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Javascript" data-lang="Javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">cb</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;function&#34;</span>) <span style="color:#f92672">?</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">f</span>, <span style="color:#a6e22e">r</span>) =&gt; (<span style="color:#a6e22e">cb</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">d</span>) =&gt; <span style="color:#a6e22e">e</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">r</span>(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">:</span> <span style="color:#a6e22e">f</span>(<span style="color:#a6e22e">d</span>))) <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
-</code></pre></div><p>Покажу, как водится, на примере таймера:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Javascript" data-lang="Javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">asyncMethod</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">timeOut</span>, <span style="color:#a6e22e">cb</span>) =&gt; {
-    <span style="color:#75715e">// Если cb не является функцией, создаем Promise и модифицируем cb для использования далее.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">cb</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;function&#34;</span>) <span style="color:#f92672">?</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">f</span>, <span style="color:#a6e22e">r</span>) =&gt; (<span style="color:#a6e22e">cb</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">d</span>) =&gt; <span style="color:#a6e22e">e</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">r</span>(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">:</span> <span style="color:#a6e22e">f</span>(<span style="color:#a6e22e">d</span>))) <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
-
-    <span style="color:#75715e">// Используем cb как обычный колбэк
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">cb</span>, <span style="color:#a6e22e">timeOut</span>);
-
-    <span style="color:#75715e">// Возвращаем либо Promise, если колбэка не было, либо null
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">d</span>;
-};
-
-<span style="color:#75715e">// Используем в классическом стиле:
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">asyncMethod</span>(<span style="color:#ae81ff">1000</span>, () =&gt; {
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Classic timeout reached!&#34;</span>);
-});
-
-<span style="color:#75715e">// Используем через Promise
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">asyncMethod</span>(<span style="color:#ae81ff">1000</span>).<span style="color:#a6e22e">then</span>(() =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Promise timeout reached!&#34;</span>));
-</code></pre></div><p>Таким вот простым способом, можно улучшить публичный API в части асинхронных методов.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Javascript" data-lang="Javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">cb</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;function&#34;</span>) <span style="color:#f92672">?</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">f</span>, <span style="color:#a6e22e">r</span>) =&gt; (<span style="color:#a6e22e">cb</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">d</span>) =&gt; <span style="color:#a6e22e">e</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">r</span>(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">:</span> <span style="color:#a6e22e">f</span>(<span style="color:#a6e22e">d</span>))) <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
+</span></span></code></pre></div><p>Покажу, как водится, на примере таймера:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Javascript" data-lang="Javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">asyncMethod</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">timeOut</span>, <span style="color:#a6e22e">cb</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Если cb не является функцией, создаем Promise и модифицируем cb для использования далее.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">cb</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;function&#34;</span>) <span style="color:#f92672">?</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">f</span>, <span style="color:#a6e22e">r</span>) =&gt; (<span style="color:#a6e22e">cb</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>, <span style="color:#a6e22e">d</span>) =&gt; <span style="color:#a6e22e">e</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">r</span>(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">:</span> <span style="color:#a6e22e">f</span>(<span style="color:#a6e22e">d</span>))) <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Используем cb как обычный колбэк
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">cb</span>, <span style="color:#a6e22e">timeOut</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Возвращаем либо Promise, если колбэка не было, либо null
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">d</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Используем в классическом стиле:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">asyncMethod</span>(<span style="color:#ae81ff">1000</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Classic timeout reached!&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Используем через Promise
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">asyncMethod</span>(<span style="color:#ae81ff">1000</span>).<span style="color:#a6e22e">then</span>(() =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Promise timeout reached!&#34;</span>));
+</span></span></code></pre></div><p>Таким вот простым способом, можно улучшить публичный API в части асинхронных методов.</p>
             </div>
             <footer class="article-footer">
     

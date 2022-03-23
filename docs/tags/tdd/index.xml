@@ -6,12 +6,8 @@
     <description>Recent content in tdd on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2020 Евгений Иваха</copyright>
-    <lastBuildDate>Thu, 18 Feb 2021 00:19:00 +0500</lastBuildDate>
-    
-	<atom:link href="https://ivahaev.ru/tags/tdd/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2022 Евгений Иваха</copyright>
+    <lastBuildDate>Thu, 18 Feb 2021 00:19:00 +0500</lastBuildDate><atom:link href="https://ivahaev.ru/tags/tdd/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Кому с Redux жить хорошо</title>
       <link>https://ivahaev.ru/how-to-get-profit-with-redux-and-react/</link>

@@ -6,10 +6,6 @@
     <description>Recent content in Categories on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2020 Евгений Иваха</copyright>
-    
-	<atom:link href="https://ivahaev.ru/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2022 Евгений Иваха</copyright><atom:link href="https://ivahaev.ru/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

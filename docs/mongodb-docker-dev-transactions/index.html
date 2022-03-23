@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
-<head>
+  <head>
     <title>ACID Транзакции и MongoDB &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.69.1" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <meta name="description" content="">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+     
+    <meta name="description" content="" />
     
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <link
+      href="//fonts.googleapis.com/css?family=Open+Sans:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css" />
     <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
 <meta name='yandex-verification' content='7a8a89f15378f8c0' />
 
@@ -48,74 +56,75 @@
     })(document, window, "yandex_metrika_callbacks");
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
-
-    
+ 
     <meta propperty="og:url" content="https://ivahaev.ru/mongodb-docker-dev-transactions/" />
     <meta propperty="og:title" content="ACID Транзакции и MongoDB" />
     
-      <meta propperty="og:description" content="Летом 2018 года (т.е. прямо сейчас, на момент написания данной статьи) случилось невероятное — в MongoDB завезли честные ACID транзакции. С выходом четвёртой версии этой документ-ориентированной СУБД, её можно использовать для чуть более серьёзных приложений.
+    <meta propperty="og:description" content="Летом 2018 года (т.е. прямо сейчас, на момент написания данной статьи) случилось невероятное — в MongoDB завезли честные ACID транзакции. С выходом четвёртой версии этой документ-ориентированной СУБД, её можно использовать для чуть более серьёзных приложений.
 Для тех, кто в танке, в двух словах: транзакции позволяют нам провести серию изменений в нескольких документах и сохранить их разом, либо так же разом отменить все вносимые в рамках транзакции изменения, если что-то пошло не так, либо произошел сбой в приложении.
 К сожалению, разработчику воспользоваться этой супер-фичей не так-то просто. Ниже я расскажу почему, и что с этим всем делать." />
     
+  </head>
+</html>
 
-
-</head>
 
 <body>
     <div id="sidebar">
-    <div id="sidebar-content" class="inner">
-        <h2 class="blog-title">
-            <a href="https://ivahaev.ru/">ivahaev.ru</a>
-        </h2>
-        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
-        <div id="sidebar-links">
-            
-            <ul id="navigation">
-                
-                <li class="nav" role="presentation">
-                    <a href="https://ivahaev.ru/about">
-                        <i class="fa fa-navicon"></i>Об авторе</a>
-                </li>
-            </ul>
-            <ul id="sidebar-external">
-                <li>
-                    <a href="https://github.com/ivahaev">
-                        <i class="fa fa-github"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="https://github.com/getblank">
-                        <i class="fa fa-github"></i>getblank</a>
-                </li>
-                <li>
-                    <a href="https://telegram.me/ivahaev">
-                        <i class="fa fa-paper-plane"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="skype:ivahaev?chat">
-                        <i class="fa fa-skype"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a target="_blank" href="mailto:ivahaev@gmail.com">
-                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
-                </li>
-            </ul>
-            <ul id="sidebar-partners">
-                <div>Партнёры:</div>
-                
-                <li>
-                    <a href="http://borisoft.info/"></a>
-                    <a href="http://sclif.pro">
-                        <i class="fa fa-linux"></i>Sclif</a>
-                </li>
-            </ul>
-        </div>
-
-        <footer class="site-footer">
-            <section class="copyright">&copy; 2020 Евгений Иваха</section>
-        </footer>
+  <div id="sidebar-content" class="inner">
+    <h2 class="blog-title">
+      <a href="https://ivahaev.ru/">ivahaev.ru</a>
+    </h2>
+    <h3 class="blog-description">
+      О программировании, IP телефонии и смежных областях.
+    </h3>
+    <div id="sidebar-links">
+      
+      <ul id="navigation">
+        
+        <li class="nav" role="presentation">
+          <a href="https://ivahaev.ru/about">
+            <i class="fa fa-navicon"></i>Об авторе</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-external">
+        <li>
+          <a href="https://github.com/ivahaev">
+            <i class="fa fa-github"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/getblank">
+            <i class="fa fa-github"></i>getblank</a
+          >
+        </li>
+        <li>
+          <a href="https://telegram.me/ivahaev">
+            <i class="fa fa-paper-plane"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a target="_blank" href="mailto:ivahaev@gmail.com">
+            <i class="fa fa-envelope"></i>ivahaev@gmail.com</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-partners">
+        <div>Партнёры:</div>
+        
+        <li>
+          <a href="http://borisoft.info/"></a>
+          <a href="http://sclif.pro"> <i class="fa fa-linux"></i>Sclif</a>
+        </li>
+      </ul>
     </div>
+
+    <footer class="site-footer">
+      <section class="copyright">&copy; 2022 Евгений Иваха</section>
+    </footer>
+  </div>
 </div>
+
 
     <main>
         <div class="main-inner">
@@ -179,15 +188,15 @@
 </blockquote>
 <p>Это нам говорит о том, что простой сервер MongoDB не поддерживает транзакции, только кластер в режиме <strong>replica set</strong>. Поддержка в <strong>sharded</strong> кластерах также будет позже, в версии 4.2.</p>
 <p>При этом, обычный сервер даст нам начать транзакцию, сохранить её, или отменить, но ничего в рамках неё сделать не получится, будет выведена примерно такая ошибка:</p>
-<pre><code class="language-mongodb" data-lang="mongodb">WriteCommandError({
-  &quot;ok&quot; : 0,
-  &quot;errmsg&quot; : &quot;Transaction numbers are only allowed on a replica set member or mongos&quot;,
-  &quot;code&quot; : 20,
-  &quot;codeName&quot; : &quot;IllegalOperation&quot;
+<pre tabindex="0"><code class="language-mongodb" data-lang="mongodb">WriteCommandError({
+  &#34;ok&#34; : 0,
+  &#34;errmsg&#34; : &#34;Transaction numbers are only allowed on a replica set member or mongos&#34;,
+  &#34;code&#34; : 20,
+  &#34;codeName&#34; : &#34;IllegalOperation&#34;
 })
 </code></pre><p>К счастью, каждый может запустить у себя кластер MongoDB, состоящий из одного сервера. На своих машинах, на которых я занимаюсь разработкой, все СУБД я запускаю в <a href="http://docker.com/">docker</a> контейнерах. Например, запуск обычного сервера MongoDB выглядит так:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -v ~/mongo/:/data/db --name mongo --restart<span style="color:#f92672">=</span>always -p 27017:27017 -d mongo mongod --smallfiles
-</code></pre></div><p>Разберём ключи запуска:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -v ~/mongo/:/data/db --name mongo --restart<span style="color:#f92672">=</span>always -p 27017:27017 -d mongo mongod --smallfiles
+</span></span></code></pre></div><p>Разберём ключи запуска:</p>
 <ul>
 <li><code>-v ~/mongo/:/data/db</code> означает примонтировать локальную директорию <code>~/mongo/</code> в <code>/data/db</code> контейнера, таким образом, сама база будет храниться на хост-машине, что позволит нам удалять запущенный контейнер, обновлять версии и т.д. с сохраненим наших данных;</li>
 <li><code>--name mongo</code> задаёт имя контейнеру;</li>
@@ -199,136 +208,136 @@
 </ul>
 <p>Как запускать простой сервер, я привёл просто для справки. Теперь давайте разбираться, что необходимо сделать для запуска сервера, поддерживающего транзакции.</p>
 <p>Первым делом, следует создать новую сеть внутри докера, в которой будут работать все серверы нашего кластера. Да, я писал выше, что сервер будет один, но сеть нужно создать обязательно, иначе ничего не получится.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker network create mongo-cluster
-</code></pre></div><p>Далее в параметрах запуска контейнера нужно указать использование новой сети <code>--net mongo-cluster</code>, а также передать параметр серверу, для работы в режиме <strong>replica set:</strong> <code>--replSet rs0</code>. Также, я намеренно опустил ключ <code>--restart=always</code>, т.к. не всегда использую MongoDB в работе в настоящее время и не хочу, чтобы она стартовала вместе с операционной системой.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run -v ~/mongo/:/data/db --name mongo -p 27017:27017 -d mongo mongod --smallfiles --replSet rs0
-</code></pre></div><p>Отлично, контейнер запущен, в чем мы можем убедиться, выполнив команду <code>docker ps</code> и увидев примерно следующее:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                      NAMES
-2292d7e0778b        mongo               <span style="color:#e6db74">&#34;docker-entrypoint.s…&#34;</span>   About a minute ago   Up About a minute   0.0.0.0:27017-&gt;27017/tcp   mongo
-</code></pre></div><p>Далее нам нужно инициализировать кластер, для этого войдём в консоль запущенного сервера, создадим конфигурацию нашего кластера и проведём инициализацию:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker exec -it mongo mongo
-<span style="color:#75715e"># output omited #</span>
-
-&gt; config <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;rs0&#34;</span>,
-    <span style="color:#e6db74">&#34;members&#34;</span> : <span style="color:#f92672">[</span>
-        <span style="color:#f92672">{</span>
-            <span style="color:#e6db74">&#34;_id&#34;</span> : 0,
-            <span style="color:#e6db74">&#34;host&#34;</span> : <span style="color:#e6db74">&#34;mongo:27017&#34;</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">]</span>
-<span style="color:#f92672">}</span>
-&gt; rs.initiate<span style="color:#f92672">(</span>config<span style="color:#f92672">)</span>
-<span style="color:#f92672">{</span>
-	<span style="color:#e6db74">&#34;ok&#34;</span> : 1,
-	<span style="color:#e6db74">&#34;operationTime&#34;</span> : Timestamp<span style="color:#f92672">(</span>1531248932, 1<span style="color:#f92672">)</span>,
-	<span style="color:#e6db74">&#34;</span>$clusterTime<span style="color:#e6db74">&#34;</span> : <span style="color:#f92672">{</span>
-		<span style="color:#e6db74">&#34;clusterTime&#34;</span> : Timestamp<span style="color:#f92672">(</span>1531248932, 1<span style="color:#f92672">)</span>,
-		<span style="color:#e6db74">&#34;signature&#34;</span> : <span style="color:#f92672">{</span>
-			<span style="color:#e6db74">&#34;hash&#34;</span> : BinData<span style="color:#f92672">(</span>0,<span style="color:#e6db74">&#34;AAAAAAAAAAAAAAAAAAAAAAAAAAA=&#34;</span><span style="color:#f92672">)</span>,
-			<span style="color:#e6db74">&#34;keyId&#34;</span> : NumberLong<span style="color:#f92672">(</span>0<span style="color:#f92672">)</span>
-		<span style="color:#f92672">}</span>
-	<span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-rs0:SECONDARY&gt;
-rs0:PRIMARY&gt;
-</code></pre></div><p>Готово! Мы получили кластер из одного сервера MongoDB. Теперь можно проверить, что всё работает, как ожидается.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rs0:PRIMARY&gt; session <span style="color:#f92672">=</span> db.getMongo<span style="color:#f92672">()</span>.startSession<span style="color:#f92672">()</span>
-session <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : UUID<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;7eb81006-983f-4398-adc7-5ed23e027377&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">}</span>
-rs0:PRIMARY&gt; database <span style="color:#f92672">=</span> session.getDatabase<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">)</span>
-test
-
-rs0:PRIMARY&gt; // Создадим несколько документов
-rs0:PRIMARY&gt; database.col.insert<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">})</span>
-WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nInserted&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
-rs0:PRIMARY&gt; database.col.insert<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;2&#34;</span><span style="color:#f92672">})</span>
-WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nInserted&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
-rs0:PRIMARY&gt; database.col.insert<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;3&#34;</span><span style="color:#f92672">})</span>
-WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nInserted&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
-rs0:PRIMARY&gt; database.col.insert<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;4&#34;</span><span style="color:#f92672">})</span>
-WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nInserted&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
-
-rs0:PRIMARY&gt; // Посмотрим, что у нас получилось
-rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;4&#34;</span> <span style="color:#f92672">}</span>
-
-rs0:PRIMARY&gt; // Начинаем транзакцию
-rs0:PRIMARY&gt; session.startTransaction<span style="color:#f92672">()</span>
-
-rs0:PRIMARY&gt; // Изменим один документ
-rs0:PRIMARY&gt; database.col.update<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;4&#34;</span><span style="color:#f92672">}</span>, <span style="color:#f92672">{</span>name: <span style="color:#e6db74">&#34;44&#34;</span><span style="color:#f92672">})</span>
-WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nMatched&#34;</span> : 1, <span style="color:#e6db74">&#34;nUpserted&#34;</span> : 0, <span style="color:#e6db74">&#34;nModified&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
-
-rs0:PRIMARY&gt; // Проверим изменения
-rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;44&#34;</span> <span style="color:#f92672">}</span>
-
-rs0:PRIMARY&gt; // Можно открыть соседний терминал и убедиться в другой сесии, что документ выглядит по-прежнему:
-rs0:PRIMARY&gt; // <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;4&#34;</span> <span style="color:#f92672">}</span>
-
-rs0:PRIMARY&gt; // Сохраняем изменения
-rs0:PRIMARY&gt; session.commitTransaction<span style="color:#f92672">()</span>
-
-rs0:PRIMARY&gt; // Проверяем результат
-rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;44&#34;</span> <span style="color:#f92672">}</span>
-
-rs0:PRIMARY&gt; // Попробуем изменить несколько документов
-rs0:PRIMARY&gt; session.startTransaction<span style="color:#f92672">()</span>
-rs0:PRIMARY&gt; database.col.update<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;44&#34;</span><span style="color:#f92672">}</span>, <span style="color:#f92672">{</span>name: <span style="color:#e6db74">&#34;42&#34;</span><span style="color:#f92672">})</span>
-WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nMatched&#34;</span> : 1, <span style="color:#e6db74">&#34;nUpserted&#34;</span> : 0, <span style="color:#e6db74">&#34;nModified&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
-rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;42&#34;</span> <span style="color:#f92672">}</span>
-rs0:PRIMARY&gt; database.col.update<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">}</span>, <span style="color:#f92672">{</span>name: <span style="color:#e6db74">&#34;21&#34;</span><span style="color:#f92672">})</span>
-WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nMatched&#34;</span> : 1, <span style="color:#e6db74">&#34;nUpserted&#34;</span> : 0, <span style="color:#e6db74">&#34;nModified&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
-rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;21&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;42&#34;</span> <span style="color:#f92672">}</span>
-rs0:PRIMARY&gt; session.commitTransaction<span style="color:#f92672">()</span>
-
-rs0:PRIMARY&gt; // Проверяем результат
-rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;21&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;42&#34;</span> <span style="color:#f92672">}</span>
-
-rs0:PRIMARY&gt; // А теперь убедимся, что работает отмена изменений
-rs0:PRIMARY&gt; session.startTransaction<span style="color:#f92672">()</span>
-rs0:PRIMARY&gt; database.col.update<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;21&#34;</span><span style="color:#f92672">}</span>, <span style="color:#f92672">{</span>name: <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">})</span>
-WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nMatched&#34;</span> : 1, <span style="color:#e6db74">&#34;nUpserted&#34;</span> : 0, <span style="color:#e6db74">&#34;nModified&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
-rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;42&#34;</span> <span style="color:#f92672">}</span>
-
-rs0:PRIMARY&gt; // Отменим изменения
-rs0:PRIMARY&gt; session.abortTransaction<span style="color:#f92672">()</span>
-rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;21&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
-<span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;42&#34;</span> <span style="color:#f92672">}</span>
-
-rs0:PRIMARY&gt; // Отлично! Данные вернулись в прежнее состояние!
-rs0:PRIMARY&gt;
-</code></pre></div><p>Таким образом, совершенно не напрягаясь, можно попробовать монговские транзакции уже сейчас без запуска многосерверного кластера. Советую заглянуть в <a href="https://docs.mongodb.com/master/core/transactions/">документацию</a> и прочитать об ограничениях транзакций. Например о том, что транзакции «живут» не более 1 минуты, если не успеть сохранить изменения, они будут отменены.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker network create mongo-cluster
+</span></span></code></pre></div><p>Далее в параметрах запуска контейнера нужно указать использование новой сети <code>--net mongo-cluster</code>, а также передать параметр серверу, для работы в режиме <strong>replica set:</strong> <code>--replSet rs0</code>. Также, я намеренно опустил ключ <code>--restart=always</code>, т.к. не всегда использую MongoDB в работе в настоящее время и не хочу, чтобы она стартовала вместе с операционной системой.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -v ~/mongo/:/data/db --name mongo -p 27017:27017 -d mongo mongod --smallfiles --replSet rs0
+</span></span></code></pre></div><p>Отлично, контейнер запущен, в чем мы можем убедиться, выполнив команду <code>docker ps</code> и увидев примерно следующее:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker ps
+</span></span><span style="display:flex;"><span>CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                      NAMES
+</span></span><span style="display:flex;"><span>2292d7e0778b        mongo               <span style="color:#e6db74">&#34;docker-entrypoint.s…&#34;</span>   About a minute ago   Up About a minute   0.0.0.0:27017-&gt;27017/tcp   mongo
+</span></span></code></pre></div><p>Далее нам нужно инициализировать кластер, для этого войдём в консоль запущенного сервера, создадим конфигурацию нашего кластера и проведём инициализацию:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it mongo mongo
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># output omited #</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&gt; config <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;rs0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;members&#34;</span> : <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;_id&#34;</span> : 0,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;host&#34;</span> : <span style="color:#e6db74">&#34;mongo:27017&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&gt; rs.initiate<span style="color:#f92672">(</span>config<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;ok&#34;</span> : 1,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;operationTime&#34;</span> : Timestamp<span style="color:#f92672">(</span>1531248932, 1<span style="color:#f92672">)</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;</span>$clusterTime<span style="color:#e6db74">&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#34;clusterTime&#34;</span> : Timestamp<span style="color:#f92672">(</span>1531248932, 1<span style="color:#f92672">)</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#34;signature&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;hash&#34;</span> : BinData<span style="color:#f92672">(</span>0,<span style="color:#e6db74">&#34;AAAAAAAAAAAAAAAAAAAAAAAAAAA=&#34;</span><span style="color:#f92672">)</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#e6db74">&#34;keyId&#34;</span> : NumberLong<span style="color:#f92672">(</span>0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>rs0:SECONDARY&gt;
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt;
+</span></span></code></pre></div><p>Готово! Мы получили кластер из одного сервера MongoDB. Теперь можно проверить, что всё работает, как ожидается.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rs0:PRIMARY&gt; session <span style="color:#f92672">=</span> db.getMongo<span style="color:#f92672">()</span>.startSession<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>session <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : UUID<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;7eb81006-983f-4398-adc7-5ed23e027377&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database <span style="color:#f92672">=</span> session.getDatabase<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>test
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Создадим несколько документов
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.insert<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nInserted&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.insert<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;2&#34;</span><span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nInserted&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.insert<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;3&#34;</span><span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nInserted&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.insert<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;4&#34;</span><span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nInserted&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Посмотрим, что у нас получилось
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;4&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Начинаем транзакцию
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; session.startTransaction<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Изменим один документ
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.update<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;4&#34;</span><span style="color:#f92672">}</span>, <span style="color:#f92672">{</span>name: <span style="color:#e6db74">&#34;44&#34;</span><span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nMatched&#34;</span> : 1, <span style="color:#e6db74">&#34;nUpserted&#34;</span> : 0, <span style="color:#e6db74">&#34;nModified&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Проверим изменения
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;44&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Можно открыть соседний терминал и убедиться в другой сесии, что документ выглядит по-прежнему:
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;4&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Сохраняем изменения
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; session.commitTransaction<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Проверяем результат
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;44&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Попробуем изменить несколько документов
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; session.startTransaction<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.update<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;44&#34;</span><span style="color:#f92672">}</span>, <span style="color:#f92672">{</span>name: <span style="color:#e6db74">&#34;42&#34;</span><span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nMatched&#34;</span> : 1, <span style="color:#e6db74">&#34;nUpserted&#34;</span> : 0, <span style="color:#e6db74">&#34;nModified&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;42&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.update<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">}</span>, <span style="color:#f92672">{</span>name: <span style="color:#e6db74">&#34;21&#34;</span><span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nMatched&#34;</span> : 1, <span style="color:#e6db74">&#34;nUpserted&#34;</span> : 0, <span style="color:#e6db74">&#34;nModified&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;21&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;42&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; session.commitTransaction<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Проверяем результат
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;21&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;42&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // А теперь убедимся, что работает отмена изменений
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; session.startTransaction<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.update<span style="color:#f92672">({</span>name: <span style="color:#e6db74">&#34;21&#34;</span><span style="color:#f92672">}</span>, <span style="color:#f92672">{</span>name: <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>WriteResult<span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;nMatched&#34;</span> : 1, <span style="color:#e6db74">&#34;nUpserted&#34;</span> : 0, <span style="color:#e6db74">&#34;nModified&#34;</span> : <span style="color:#ae81ff">1</span> <span style="color:#f92672">})</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;42&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Отменим изменения
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; session.abortTransaction<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database.col.find<span style="color:#f92672">({})</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b45026edc396f534f11952f&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;21&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450272dc396f534f119530&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450274dc396f534f119531&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;_id&#34;</span> : ObjectId<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;5b450276dc396f534f119532&#34;</span><span style="color:#f92672">)</span>, <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;42&#34;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; // Отлично! Данные вернулись в прежнее состояние!
+</span></span><span style="display:flex;"><span>rs0:PRIMARY&gt;
+</span></span></code></pre></div><p>Таким образом, совершенно не напрягаясь, можно попробовать монговские транзакции уже сейчас без запуска многосерверного кластера. Советую заглянуть в <a href="https://docs.mongodb.com/master/core/transactions/">документацию</a> и прочитать об ограничениях транзакций. Например о том, что транзакции «живут» не более 1 минуты, если не успеть сохранить изменения, они будут отменены.</p>
 <p>Успехов!</p>
             </div>
             <footer class="article-footer">

@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
-<head>
+  <head>
     <title>Проигрывание файла при телефонном разговоре &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.69.1" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <meta name="description" content="">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+     
+    <meta name="description" content="" />
     
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <link
+      href="//fonts.googleapis.com/css?family=Open+Sans:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css" />
     <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
 <meta name='yandex-verification' content='7a8a89f15378f8c0' />
 
@@ -48,73 +56,74 @@
     })(document, window, "yandex_metrika_callbacks");
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
-
-    
+ 
     <meta propperty="og:url" content="https://ivahaev.ru/proighryvaniie-faila-pri-tieliefonnom-razghovorie/" />
     <meta propperty="og:title" content="Проигрывание файла при телефонном разговоре" />
     
-      <meta propperty="og:description" content="В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.
+    <meta propperty="og:description" content="В работе оператора колл-центра часто возникает необходимость проиграть в канал заранее заготовленные голосовые файлы, например, адреса офисов и режимы работы.
 Рассмотрим вариант решения данной задачи на базе IP PBX Asterisk." />
     
+  </head>
+</html>
 
-
-</head>
 
 <body>
     <div id="sidebar">
-    <div id="sidebar-content" class="inner">
-        <h2 class="blog-title">
-            <a href="https://ivahaev.ru/">ivahaev.ru</a>
-        </h2>
-        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
-        <div id="sidebar-links">
-            
-            <ul id="navigation">
-                
-                <li class="nav" role="presentation">
-                    <a href="https://ivahaev.ru/about">
-                        <i class="fa fa-navicon"></i>Об авторе</a>
-                </li>
-            </ul>
-            <ul id="sidebar-external">
-                <li>
-                    <a href="https://github.com/ivahaev">
-                        <i class="fa fa-github"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="https://github.com/getblank">
-                        <i class="fa fa-github"></i>getblank</a>
-                </li>
-                <li>
-                    <a href="https://telegram.me/ivahaev">
-                        <i class="fa fa-paper-plane"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="skype:ivahaev?chat">
-                        <i class="fa fa-skype"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a target="_blank" href="mailto:ivahaev@gmail.com">
-                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
-                </li>
-            </ul>
-            <ul id="sidebar-partners">
-                <div>Партнёры:</div>
-                
-                <li>
-                    <a href="http://borisoft.info/"></a>
-                    <a href="http://sclif.pro">
-                        <i class="fa fa-linux"></i>Sclif</a>
-                </li>
-            </ul>
-        </div>
-
-        <footer class="site-footer">
-            <section class="copyright">&copy; 2020 Евгений Иваха</section>
-        </footer>
+  <div id="sidebar-content" class="inner">
+    <h2 class="blog-title">
+      <a href="https://ivahaev.ru/">ivahaev.ru</a>
+    </h2>
+    <h3 class="blog-description">
+      О программировании, IP телефонии и смежных областях.
+    </h3>
+    <div id="sidebar-links">
+      
+      <ul id="navigation">
+        
+        <li class="nav" role="presentation">
+          <a href="https://ivahaev.ru/about">
+            <i class="fa fa-navicon"></i>Об авторе</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-external">
+        <li>
+          <a href="https://github.com/ivahaev">
+            <i class="fa fa-github"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/getblank">
+            <i class="fa fa-github"></i>getblank</a
+          >
+        </li>
+        <li>
+          <a href="https://telegram.me/ivahaev">
+            <i class="fa fa-paper-plane"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a target="_blank" href="mailto:ivahaev@gmail.com">
+            <i class="fa fa-envelope"></i>ivahaev@gmail.com</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-partners">
+        <div>Партнёры:</div>
+        
+        <li>
+          <a href="http://borisoft.info/"></a>
+          <a href="http://sclif.pro"> <i class="fa fa-linux"></i>Sclif</a>
+        </li>
+      </ul>
     </div>
+
+    <footer class="site-footer">
+      <section class="copyright">&copy; 2022 Евгений Иваха</section>
+    </footer>
+  </div>
 </div>
+
 
     <main>
         <div class="main-inner">
@@ -170,14 +179,14 @@
 <p>Рассмотрим вариант решения данной задачи на базе <strong>IP PBX Asterisk</strong>.</p>
 <p>Пример для <strong>FreePBX</strong>, для голого астериска все делается ещё проще.</p>
 <p>Первым делом, нужно добавить сочетание клавиш на вызов макроса в <code>features.conf</code>, или для <strong>FreePBX</strong> в <code>features_applicationmap_custom.conf</code>:</p>
-<pre><code>playsound =&gt; *6,callee,macro,playsound
+<pre tabindex="0"><code>playsound =&gt; *6,callee,macro,playsound
 </code></pre><p>По нажатию в разговоре *<strong>6</strong> вызовется макрос playsound</p>
 <p>Важный момент, нужно добавить возможность вызова макроса. Для этого либо в дайлплане присваиваем переменную:</p>
-<pre><code>exten =&gt; _+x.,n,Set(DYNAMIC_FEATURES=playsound)
+<pre tabindex="0"><code>exten =&gt; _+x.,n,Set(DYNAMIC_FEATURES=playsound)
 </code></pre><p>Либо в <strong>extensions.conf</strong> пишем в секции <strong>[globals]</strong>:</p>
-<pre><code>DYNAMIC_FEATURES=playsound
+<pre tabindex="0"><code>DYNAMIC_FEATURES=playsound
 </code></pre><p>Макрос и нужный контекст в дайлплане:</p>
-<pre><code>[macro-playsound]
+<pre tabindex="0"><code>[macro-playsound]
 
 exten =&gt; s,1,AGI(create_spy.php,${CHANNEL})
 
@@ -194,7 +203,7 @@ exten =&gt; 2,n,Hangup
 
 ; end of [spy]
 </code></pre><p>Файл <strong>create_spy.agi</strong>:</p>
-<pre><code>#!/usr/bin/php -q
+<pre tabindex="0"><code>#!/usr/bin/php -q
 
 &lt;?php
 
@@ -202,17 +211,17 @@ $par=$argv[1];
 $channel= $par;
 
     $uid=time();
-    $f1=fopen(&quot;/tmp/$uid.call&quot;,&quot;w&quot;);
-    fputs($f1,&quot;Channel: LOCAL/2@spy\n&quot;);
-    fputs($f1,&quot;MaxRetries: 0\n&quot;);
-    fputs($f1,&quot;RetryTime: 600\n&quot;);
-    fputs($f1,&quot;WaitTime: 30\n&quot;);
-    fputs($f1,&quot;Context: spy\n&quot;);
-    fputs($f1,&quot;Extension: 1\n&quot;);
-    fputs($f1,&quot;Priority: 1\n&quot;);
-    fputs($f1,&quot;Set: audio=custom/VOICE_FILE\nSet: chan=$channel\n&quot;);
+    $f1=fopen(&#34;/tmp/$uid.call&#34;,&#34;w&#34;);
+    fputs($f1,&#34;Channel: LOCAL/2@spy\n&#34;);
+    fputs($f1,&#34;MaxRetries: 0\n&#34;);
+    fputs($f1,&#34;RetryTime: 600\n&#34;);
+    fputs($f1,&#34;WaitTime: 30\n&#34;);
+    fputs($f1,&#34;Context: spy\n&#34;);
+    fputs($f1,&#34;Extension: 1\n&#34;);
+    fputs($f1,&#34;Priority: 1\n&#34;);
+    fputs($f1,&#34;Set: audio=custom/VOICE_FILE\nSet: chan=$channel\n&#34;);
     fclose($f1);
-    system(&quot;mv /tmp/$uid.call /var/spool/asterisk/outgoing/&quot;);
+    system(&#34;mv /tmp/$uid.call /var/spool/asterisk/outgoing/&#34;);
 </code></pre><p>Здесь <strong>VOICE_FILE</strong> - это проигрываемый файл.  Не забыть сделать <code>chmod +x /var/lib/asterisk/agi-bin/create_spy.php</code> ну или где в нашем дистрибутиве расположены <strong>agi</strong> скрипты.</p>
 <p>Само собой, можно сделать все через <strong>AMI</strong>, в данном случае, была задача показать вариант решения вопроса. Реализация за вами!</p>
             </div>

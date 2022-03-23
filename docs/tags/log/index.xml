@@ -6,12 +6,8 @@
     <description>Recent content in log on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2020 Евгений Иваха</copyright>
-    <lastBuildDate>Mon, 18 Jan 2016 00:47:11 +0500</lastBuildDate>
-    
-	<atom:link href="https://ivahaev.ru/tags/log/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2022 Евгений Иваха</copyright>
+    <lastBuildDate>Mon, 18 Jan 2016 00:47:11 +0500</lastBuildDate><atom:link href="https://ivahaev.ru/tags/log/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>go-logger – простой и информативный логгер для Go</title>
       <link>https://ivahaev.ru/simple-logger-for-golang/</link>

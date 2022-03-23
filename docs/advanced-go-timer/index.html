@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
-<head>
+  <head>
     <title>Прокаченный таймер на Go &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.69.1" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <meta name="description" content="">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+     
+    <meta name="description" content="" />
     
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <link
+      href="//fonts.googleapis.com/css?family=Open+Sans:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css" />
     <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
 <meta name='yandex-verification' content='7a8a89f15378f8c0' />
 
@@ -48,76 +56,80 @@
     })(document, window, "yandex_metrika_callbacks");
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
-
-    
-      <meta propperty="og:image" content="https://ivahaev.ru//img/sandClock.png" />
+ 
+    <meta
+      propperty="og:image"
+      content="https://ivahaev.ru//img/sandClock.png"
+    />
     
     <meta propperty="og:url" content="https://ivahaev.ru/advanced-go-timer/" />
     <meta propperty="og:title" content="Прокаченный таймер на Go" />
     
-      <meta propperty="og:description" content="У языка Go шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет time. За всё время работы с Go, мне всего лишь дважды приходилось расширять его возможности.
+    <meta propperty="og:description" content="У языка Go шикарная стандартная библиотека, инструменты на все случаи жизни, при этом достаточно лаконичные. Например, рассмотрим отличный пакет time. За всё время работы с Go, мне всего лишь дважды приходилось расширять его возможности.
 Первый раз, около года назад, понадобилось строковое представление времени и периодов на русском языке, что привело к созданию пакета russian-time. Он не очень красивый, создан на скорую руку, потому не буду на нём останавливаться.
 Второй инструмент мне кажется более интересным. Предпосылкой к созданию этого небольшого пакета, была необходимость контроля времени выполнения скриптов во встроенном интерпретаторе JavaScript Google V8. Так уж повелось, что JavaScript, как правило, характеризуется асинхронным поведением, что несколько затрудняло выполнение поставленной задачи. Одним из компонентов решения должен был стать таймер, который можно приостанавливать на неопределённое время, а после запускать снова с момента остановки. Так появился timer." />
     
+  </head>
+</html>
 
-
-</head>
 
 <body>
     <div id="sidebar">
-    <div id="sidebar-content" class="inner">
-        <h2 class="blog-title">
-            <a href="https://ivahaev.ru/">ivahaev.ru</a>
-        </h2>
-        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
-        <div id="sidebar-links">
-            
-            <ul id="navigation">
-                
-                <li class="nav" role="presentation">
-                    <a href="https://ivahaev.ru/about">
-                        <i class="fa fa-navicon"></i>Об авторе</a>
-                </li>
-            </ul>
-            <ul id="sidebar-external">
-                <li>
-                    <a href="https://github.com/ivahaev">
-                        <i class="fa fa-github"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="https://github.com/getblank">
-                        <i class="fa fa-github"></i>getblank</a>
-                </li>
-                <li>
-                    <a href="https://telegram.me/ivahaev">
-                        <i class="fa fa-paper-plane"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="skype:ivahaev?chat">
-                        <i class="fa fa-skype"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a target="_blank" href="mailto:ivahaev@gmail.com">
-                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
-                </li>
-            </ul>
-            <ul id="sidebar-partners">
-                <div>Партнёры:</div>
-                
-                <li>
-                    <a href="http://borisoft.info/"></a>
-                    <a href="http://sclif.pro">
-                        <i class="fa fa-linux"></i>Sclif</a>
-                </li>
-            </ul>
-        </div>
-
-        <footer class="site-footer">
-            <section class="copyright">&copy; 2020 Евгений Иваха</section>
-        </footer>
+  <div id="sidebar-content" class="inner">
+    <h2 class="blog-title">
+      <a href="https://ivahaev.ru/">ivahaev.ru</a>
+    </h2>
+    <h3 class="blog-description">
+      О программировании, IP телефонии и смежных областях.
+    </h3>
+    <div id="sidebar-links">
+      
+      <ul id="navigation">
+        
+        <li class="nav" role="presentation">
+          <a href="https://ivahaev.ru/about">
+            <i class="fa fa-navicon"></i>Об авторе</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-external">
+        <li>
+          <a href="https://github.com/ivahaev">
+            <i class="fa fa-github"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/getblank">
+            <i class="fa fa-github"></i>getblank</a
+          >
+        </li>
+        <li>
+          <a href="https://telegram.me/ivahaev">
+            <i class="fa fa-paper-plane"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a target="_blank" href="mailto:ivahaev@gmail.com">
+            <i class="fa fa-envelope"></i>ivahaev@gmail.com</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-partners">
+        <div>Партнёры:</div>
+        
+        <li>
+          <a href="http://borisoft.info/"></a>
+          <a href="http://sclif.pro"> <i class="fa fa-linux"></i>Sclif</a>
+        </li>
+      </ul>
     </div>
+
+    <footer class="site-footer">
+      <section class="copyright">&copy; 2022 Евгений Иваха</section>
+    </footer>
+  </div>
 </div>
+
 
     <main>
         <div class="main-inner">
@@ -187,29 +199,29 @@
 </ul>
 <p><strong>Pause</strong> приостанавливает выполнение таймера, а <strong>Start</strong>, соответственно, запускает его с момента остановки, либо после инициализации. Т.е. после создания таймера, запускать его требуется вручную.</p>
 <p>Пример из теста лучше покажет идею:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">now</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
-
-<span style="color:#75715e">// Создаем таймер на 1 секунду
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timer</span> = <span style="color:#a6e22e">AfterFunc</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>, <span style="color:#66d9ef">func</span>() {
-
-    <span style="color:#75715e">// Сравниваем сколько прошло времени
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Sub</span>(<span style="color:#a6e22e">now</span>) &lt; <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> {
-		panic(<span style="color:#e6db74">&#34;Early func&#34;</span>)
-	}
-})
-
-<span style="color:#75715e">// Запускаем таймер
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Start</span>()
-
-<span style="color:#75715e">// Через полсекунды приостанавливаем
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Microsecond</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">500</span>)
-<span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Pause</span>()
-
-<span style="color:#75715e">// Через секунду запускаем снова
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
-<span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Start</span>()
-<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
-</code></pre></div><p><a href="https://godoc.org/github.com/ivahaev/timer"><img src="https://godoc.org/github.com/ivahaev/timer?status.svg" alt="GoDoc"></a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">now</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Создаем таймер на 1 секунду
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timer</span> = <span style="color:#a6e22e">AfterFunc</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>, <span style="color:#66d9ef">func</span>() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Сравниваем сколько прошло времени
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Sub</span>(<span style="color:#a6e22e">now</span>) &lt; <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> {
+</span></span><span style="display:flex;"><span>		panic(<span style="color:#e6db74">&#34;Early func&#34;</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Запускаем таймер
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Start</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Через полсекунды приостанавливаем
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Microsecond</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">500</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Pause</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Через секунду запускаем снова
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Start</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+</span></span></code></pre></div><p><a href="https://godoc.org/github.com/ivahaev/timer"><img src="https://godoc.org/github.com/ivahaev/timer?status.svg" alt="GoDoc"></a></p>
             </div>
             <footer class="article-footer">
     

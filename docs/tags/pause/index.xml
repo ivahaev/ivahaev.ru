@@ -6,12 +6,8 @@
     <description>Recent content in pause on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2020 Евгений Иваха</copyright>
-    <lastBuildDate>Sun, 01 May 2016 14:12:32 +0500</lastBuildDate>
-    
-	<atom:link href="https://ivahaev.ru/tags/pause/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2022 Евгений Иваха</copyright>
+    <lastBuildDate>Sun, 01 May 2016 14:12:32 +0500</lastBuildDate><atom:link href="https://ivahaev.ru/tags/pause/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Прокаченный таймер на Go</title>
       <link>https://ivahaev.ru/advanced-go-timer/</link>

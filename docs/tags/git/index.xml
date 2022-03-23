@@ -6,12 +6,8 @@
     <description>Recent content in git on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2020 Евгений Иваха</copyright>
-    <lastBuildDate>Fri, 01 Jul 2016 23:11:50 +0500</lastBuildDate>
-    
-	<atom:link href="https://ivahaev.ru/tags/git/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2022 Евгений Иваха</copyright>
+    <lastBuildDate>Fri, 01 Jul 2016 23:11:50 +0500</lastBuildDate><atom:link href="https://ivahaev.ru/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Версионирование go программ</title>
       <link>https://ivahaev.ru/go-releases-versions/</link>

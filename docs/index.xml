@@ -6,12 +6,8 @@
     <description>Recent content on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2020 Евгений Иваха</copyright>
-    <lastBuildDate>Thu, 18 Feb 2021 00:19:00 +0500</lastBuildDate>
-    
-	<atom:link href="https://ivahaev.ru/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2022 Евгений Иваха</copyright>
+    <lastBuildDate>Thu, 18 Feb 2021 00:19:00 +0500</lastBuildDate><atom:link href="https://ivahaev.ru/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Кому с Redux жить хорошо</title>
       <link>https://ivahaev.ru/how-to-get-profit-with-redux-and-react/</link>
@@ -183,7 +179,7 @@
       <pubDate>Wed, 11 Nov 2015 00:44:42 +0500</pubDate>
       
       <guid>https://ivahaev.ru/blank/</guid>
-      <description>&lt;p&gt;В данный момент занимаюсь разработкой собственной универсальной системы автоматизации бизнес-процессов, которая называется &lt;a href=&#34;http://getblank.net&#34;&gt;&lt;strong&gt;Blank&lt;/strong&gt;&lt;/a&gt;. Данный проект интересен тем, что позволяет построить практически любую информационную систему в кратчайшие сроки. В одном довольно простом конфигурационном файле описывается как структура данных, так и бизнес-логика. Платформа сама создаёт готовый пользовательский интерфейс для работы с данными сразу после описания их структуры. Задействованы многие современные технологии. Это и &lt;strong&gt;Go&lt;/strong&gt;, &lt;strong&gt;React.js&lt;/strong&gt;, &lt;strong&gt;WAMP&lt;/strong&gt;, встроенная база данных. Гибкая настройка прав, автоматическая генерация клиентского интерфейса, простая интеграция с существующими системами. Бизнес-логика описывается на хорошо знакомом &lt;strong&gt;Javascript&lt;/strong&gt; и выполняется с помощью движка &lt;strong&gt;V8&lt;/strong&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Параллельно занимаюсь разработкой собственной универсальной системы автоматизации бизнес-процессов, которая называется &lt;a href=&#34;https://getblank.github.io/site/&#34;&gt;&lt;strong&gt;Blank&lt;/strong&gt;&lt;/a&gt;. Данный проект интересен тем, что позволяет построить практически любую информационную систему в кратчайшие сроки. В одном довольно простом конфигурационном файле описывается как структура данных, так и бизнес-логика. Платформа сама создаёт готовый пользовательский интерфейс для работы с данными сразу после описания их структуры. Задействованы многие современные технологии. Это и &lt;strong&gt;Go&lt;/strong&gt;, &lt;strong&gt;React.js&lt;/strong&gt;, &lt;strong&gt;WAMP&lt;/strong&gt;, встроенная база данных. Гибкая настройка прав, автоматическая генерация клиентского интерфейса, простая интеграция с существующими системами. Бизнес-логика описывается на хорошо знакомом &lt;strong&gt;Javascript&lt;/strong&gt; и работает в микросервисе на &lt;strong&gt;Node.JS&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

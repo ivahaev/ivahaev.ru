@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
-<head>
+  <head>
     <title>Amigo – лучший друг Golang и Asterisk &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.69.1" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <meta name="description" content="">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+     
+    <meta name="description" content="" />
     
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <link
+      href="//fonts.googleapis.com/css?family=Open+Sans:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css" />
     <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
 <meta name='yandex-verification' content='7a8a89f15378f8c0' />
 
@@ -48,77 +56,81 @@
     })(document, window, "yandex_metrika_callbacks");
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
-
-    
-      <meta propperty="og:image" content="https://ivahaev.ru//img/three-amigos.jpg" />
+ 
+    <meta
+      propperty="og:image"
+      content="https://ivahaev.ru//img/three-amigos.jpg"
+    />
     
     <meta propperty="og:url" content="https://ivahaev.ru/amigo-best-frend-of-golang-and-asterisk/" />
     <meta propperty="og:title" content="Amigo – лучший друг Golang и Asterisk" />
     
-      <meta propperty="og:description" content="Начиная писать свой первый Peach Dialer, я выбрал язык, который довольно хорошо знал, благо работал с ним с 1999 года — PHP. Меня не смущало, что он, в принципе, не предназначен для создания долгоживущих процессов, но то, что получилось в итоге, работает по несколько месяцев и радует своих владельцев.
+    <meta propperty="og:description" content="Начиная писать свой первый Peach Dialer, я выбрал язык, который довольно хорошо знал, благо работал с ним с 1999 года — PHP. Меня не смущало, что он, в принципе, не предназначен для создания долгоживущих процессов, но то, что получилось в итоге, работает по несколько месяцев и радует своих владельцев.
 Потом пошла мода на Websocket, который захотелось применить в интерфейсе, а PHP в то время не очень-то умел с ними работать (может, и сейчас не умеет). Я обратил внимание на node.js. Классная штука, любовь на века, подумал я, но вскоре захотелось большего.
 Бо́льшим для меня стал Go — язык, совмещающий скорость и удобство деплоя компилируемых языков с простотой разработки, свойственной интерпретируемым языкам. К сожалению, разработанных библиотек надлежащего качества и с ожидаемым функционалом для взаимодействия с Asterisk в то время не было. Были какие-то начинания, но не доведённые до конца.
 Итак, по сусекам поскребя, да по амбару пометя́, испёк я Amigo — удобную библиотеку для работы с астериском посредством AMI протокола." />
     
+  </head>
+</html>
 
-
-</head>
 
 <body>
     <div id="sidebar">
-    <div id="sidebar-content" class="inner">
-        <h2 class="blog-title">
-            <a href="https://ivahaev.ru/">ivahaev.ru</a>
-        </h2>
-        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
-        <div id="sidebar-links">
-            
-            <ul id="navigation">
-                
-                <li class="nav" role="presentation">
-                    <a href="https://ivahaev.ru/about">
-                        <i class="fa fa-navicon"></i>Об авторе</a>
-                </li>
-            </ul>
-            <ul id="sidebar-external">
-                <li>
-                    <a href="https://github.com/ivahaev">
-                        <i class="fa fa-github"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="https://github.com/getblank">
-                        <i class="fa fa-github"></i>getblank</a>
-                </li>
-                <li>
-                    <a href="https://telegram.me/ivahaev">
-                        <i class="fa fa-paper-plane"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="skype:ivahaev?chat">
-                        <i class="fa fa-skype"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a target="_blank" href="mailto:ivahaev@gmail.com">
-                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
-                </li>
-            </ul>
-            <ul id="sidebar-partners">
-                <div>Партнёры:</div>
-                
-                <li>
-                    <a href="http://borisoft.info/"></a>
-                    <a href="http://sclif.pro">
-                        <i class="fa fa-linux"></i>Sclif</a>
-                </li>
-            </ul>
-        </div>
-
-        <footer class="site-footer">
-            <section class="copyright">&copy; 2020 Евгений Иваха</section>
-        </footer>
+  <div id="sidebar-content" class="inner">
+    <h2 class="blog-title">
+      <a href="https://ivahaev.ru/">ivahaev.ru</a>
+    </h2>
+    <h3 class="blog-description">
+      О программировании, IP телефонии и смежных областях.
+    </h3>
+    <div id="sidebar-links">
+      
+      <ul id="navigation">
+        
+        <li class="nav" role="presentation">
+          <a href="https://ivahaev.ru/about">
+            <i class="fa fa-navicon"></i>Об авторе</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-external">
+        <li>
+          <a href="https://github.com/ivahaev">
+            <i class="fa fa-github"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/getblank">
+            <i class="fa fa-github"></i>getblank</a
+          >
+        </li>
+        <li>
+          <a href="https://telegram.me/ivahaev">
+            <i class="fa fa-paper-plane"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a target="_blank" href="mailto:ivahaev@gmail.com">
+            <i class="fa fa-envelope"></i>ivahaev@gmail.com</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-partners">
+        <div>Партнёры:</div>
+        
+        <li>
+          <a href="http://borisoft.info/"></a>
+          <a href="http://sclif.pro"> <i class="fa fa-linux"></i>Sclif</a>
+        </li>
+      </ul>
     </div>
+
+    <footer class="site-footer">
+      <section class="copyright">&copy; 2022 Евгений Иваха</section>
+    </footer>
+  </div>
 </div>
+
 
     <main>
         <div class="main-inner">
@@ -183,53 +195,53 @@
 <p>Бо́льшим для меня стал <a href="https://golang.org">Go</a> — язык, совмещающий скорость и удобство деплоя компилируемых языков с простотой разработки, свойственной интерпретируемым языкам. К сожалению, разработанных библиотек надлежащего качества и с ожидаемым функционалом для взаимодействия с <strong>Asterisk</strong> в то время не было. Были какие-то начинания, но не доведённые до конца.</p>
 <p>Итак, по сусекам поскребя, да по амбару пометя́, испёк я <a href="https://github.com/ivahaev/amigo">Amigo</a> — удобную библиотеку для работы с астериском посредством AMI протокола.</p>
 <p>Установка библиотеки:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">go</span> <span style="color:#a6e22e">get</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ivahaev</span><span style="color:#f92672">/</span><span style="color:#a6e22e">amigo</span>
-</code></pre></div><p>Пример использования (здесь применяется ещё мой простой <a href="https://github.com/ivahaev/go-logger">логгер</a>):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> (
-    <span style="color:#e6db74">&#34;github.com/ivahaev/amigo&#34;</span>
-    <span style="color:#e6db74">&#34;github.com/ivahaev/go-logger&#34;</span>
-)
-
-<span style="color:#75715e">// Создаем функции-обработчики событий
-</span><span style="color:#75715e">// amigo.M – это псевдоним для map[string]string
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">DeviceStateChangeHandler</span> (<span style="color:#a6e22e">m</span> <span style="color:#a6e22e">amigo</span>.<span style="color:#a6e22e">M</span>) {
-    <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">Debug</span>(<span style="color:#e6db74">`Принято событие &#34;DeviceStateChange&#34;`</span>, <span style="color:#a6e22e">m</span>)
-}
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">DefaultHandler</span> (<span style="color:#a6e22e">m</span> <span style="color:#a6e22e">amigo</span>.<span style="color:#a6e22e">M</span>) {
-    <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">Debug</span>(<span style="color:#e6db74">&#34;Принято событие&#34;</span>, <span style="color:#a6e22e">m</span>)
-}
-
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-
-    <span style="color:#75715e">// Подключаемся к астериску.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Имя пользователя и пароль являются обязательными параметрами.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// По умолчанию хост – &#34;127.0.0.1&#34;, порт – &#34;5038&#34;.
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">amigo</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;username&#34;</span>, <span style="color:#e6db74">&#34;password&#34;</span>, <span style="color:#e6db74">&#34;host&#34;</span>, <span style="color:#e6db74">&#34;port&#34;</span>)
-    <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Connect</span>()
-
-
-    <span style="color:#75715e">//Регистрируем обработчик для события &#34;DeviceStateChange&#34;
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">RegisterHandler</span>(<span style="color:#e6db74">&#34;DeviceStateChange&#34;</span>, <span style="color:#a6e22e">DeviceStateChangeHandler</span>)
-
-    <span style="color:#75715e">// Регистрируем обработчик для всех событий
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">RegisterDefaultHandler</span>(<span style="color:#a6e22e">DefaultHandler</span>)
-
-    <span style="color:#75715e">// Также можем создать канал для приема всех событий
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// и зарегистрировать его
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>, <span style="color:#ae81ff">100</span>)
-    <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">SetEventChannel</span>(<span style="color:#a6e22e">c</span>)
-
-
-    <span style="color:#75715e">// Проверим, что подключение успешно и отправим запрос &#34;QueueSummary&#34;
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Connected</span>() {
-        <span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Action</span>(<span style="color:#a6e22e">amigo</span>.<span style="color:#a6e22e">M</span>{<span style="color:#e6db74">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;QueueSummary&#34;</span>, <span style="color:#e6db74">&#34;ActionID&#34;</span>: <span style="color:#e6db74">&#34;Init&#34;</span>})
-        <span style="color:#75715e">// Проверяем на ошибку и обрабатываем результат. Ответ на запрос придёт в соответствующем событии.
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// Ловить его нужно в общем канале, обработчике по умолчанию, либо в специальном обработчике.
-</span><span style="color:#75715e"></span>    }
-}
-</code></pre></div><p>Стоит заметить, что подключение будет автоматически восстанавливаться при обрыве связи.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">go</span> <span style="color:#a6e22e">get</span> <span style="color:#a6e22e">github</span>.<span style="color:#a6e22e">com</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ivahaev</span><span style="color:#f92672">/</span><span style="color:#a6e22e">amigo</span>
+</span></span></code></pre></div><p>Пример использования (здесь применяется ещё мой простой <a href="https://github.com/ivahaev/go-logger">логгер</a>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;github.com/ivahaev/amigo&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;github.com/ivahaev/go-logger&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Создаем функции-обработчики событий
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// amigo.M – это псевдоним для map[string]string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">DeviceStateChangeHandler</span> (<span style="color:#a6e22e">m</span> <span style="color:#a6e22e">amigo</span>.<span style="color:#a6e22e">M</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">Debug</span>(<span style="color:#e6db74">`Принято событие &#34;DeviceStateChange&#34;`</span>, <span style="color:#a6e22e">m</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">DefaultHandler</span> (<span style="color:#a6e22e">m</span> <span style="color:#a6e22e">amigo</span>.<span style="color:#a6e22e">M</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">Debug</span>(<span style="color:#e6db74">&#34;Принято событие&#34;</span>, <span style="color:#a6e22e">m</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Подключаемся к астериску.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Имя пользователя и пароль являются обязательными параметрами.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// По умолчанию хост – &#34;127.0.0.1&#34;, порт – &#34;5038&#34;.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">amigo</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;username&#34;</span>, <span style="color:#e6db74">&#34;password&#34;</span>, <span style="color:#e6db74">&#34;host&#34;</span>, <span style="color:#e6db74">&#34;port&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Connect</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Регистрируем обработчик для события &#34;DeviceStateChange&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">RegisterHandler</span>(<span style="color:#e6db74">&#34;DeviceStateChange&#34;</span>, <span style="color:#a6e22e">DeviceStateChangeHandler</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Регистрируем обработчик для всех событий
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">RegisterDefaultHandler</span>(<span style="color:#a6e22e">DefaultHandler</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Также можем создать канал для приема всех событий
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// и зарегистрировать его
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>, <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">SetEventChannel</span>(<span style="color:#a6e22e">c</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Проверим, что подключение успешно и отправим запрос &#34;QueueSummary&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Connected</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Action</span>(<span style="color:#a6e22e">amigo</span>.<span style="color:#a6e22e">M</span>{<span style="color:#e6db74">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;QueueSummary&#34;</span>, <span style="color:#e6db74">&#34;ActionID&#34;</span>: <span style="color:#e6db74">&#34;Init&#34;</span>})
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Проверяем на ошибку и обрабатываем результат. Ответ на запрос придёт в соответствующем событии.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// Ловить его нужно в общем канале, обработчике по умолчанию, либо в специальном обработчике.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Стоит заметить, что подключение будет автоматически восстанавливаться при обрыве связи.</p>
             </div>
             <footer class="article-footer">
     

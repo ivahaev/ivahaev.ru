@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
-<head>
+  <head>
     <title>Мой подход к тестированию. Часть вторая &middot; ivahaev.ru</title>
-    <meta name="generator" content="Hugo 0.69.1" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    
-      <meta name="description" content="">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+     
+    <meta name="description" content="" />
     
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" href="https://ivahaev.ru/favicon.ico">
+    <link rel="icon" href="https://ivahaev.ru/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="https://ivahaev.ru/css/screen.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <link
+      href="//fonts.googleapis.com/css?family=Open+Sans:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="https://ivahaev.ru/css/prism.css" />
     <meta name="google-site-verification" content="I1CNRMsxILrTgE6i4qRuZD48olwN7ZDa86ISrDBBm9k" />
 <meta name='yandex-verification' content='7a8a89f15378f8c0' />
 
@@ -48,72 +56,73 @@
     })(document, window, "yandex_metrika_callbacks");
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/33509963" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
-
-    
+ 
     <meta propperty="og:url" content="https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/" />
     <meta propperty="og:title" content="Мой подход к тестированию. Часть вторая" />
     
-      <meta propperty="og:description" content="В первой статье цикла о тестировании, которая вышла почти два года назад, я описал свой подход к тестированию, который был актуален в 2016 году. Время идёт, всё изменяется, стандартная библиотека Go становится лучше и вот пару-тройку мажорных версий назад в пакете testing появился новый метод Run(), который позволяет запускать именованные подтесты. Теперь Гоблина можно отправить обратно в пещеру и уменьшить число зависимостей проекта." />
+    <meta propperty="og:description" content="В первой статье цикла о тестировании, которая вышла почти два года назад, я описал свой подход к тестированию, который был актуален в 2016 году. Время идёт, всё изменяется, стандартная библиотека Go становится лучше и вот пару-тройку мажорных версий назад в пакете testing появился новый метод Run(), который позволяет запускать именованные подтесты. Теперь Гоблина можно отправить обратно в пещеру и уменьшить число зависимостей проекта." />
     
+  </head>
+</html>
 
-
-</head>
 
 <body>
     <div id="sidebar">
-    <div id="sidebar-content" class="inner">
-        <h2 class="blog-title">
-            <a href="https://ivahaev.ru/">ivahaev.ru</a>
-        </h2>
-        <h3 class="blog-description">О программировании, IP телефонии и смежных областях.</h3>
-        <div id="sidebar-links">
-            
-            <ul id="navigation">
-                
-                <li class="nav" role="presentation">
-                    <a href="https://ivahaev.ru/about">
-                        <i class="fa fa-navicon"></i>Об авторе</a>
-                </li>
-            </ul>
-            <ul id="sidebar-external">
-                <li>
-                    <a href="https://github.com/ivahaev">
-                        <i class="fa fa-github"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="https://github.com/getblank">
-                        <i class="fa fa-github"></i>getblank</a>
-                </li>
-                <li>
-                    <a href="https://telegram.me/ivahaev">
-                        <i class="fa fa-paper-plane"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a href="skype:ivahaev?chat">
-                        <i class="fa fa-skype"></i>ivahaev</a>
-                </li>
-                <li>
-                    <a target="_blank" href="mailto:ivahaev@gmail.com">
-                        <i class="fa fa-envelope"></i>ivahaev@gmail.com</a>
-                </li>
-            </ul>
-            <ul id="sidebar-partners">
-                <div>Партнёры:</div>
-                
-                <li>
-                    <a href="http://borisoft.info/"></a>
-                    <a href="http://sclif.pro">
-                        <i class="fa fa-linux"></i>Sclif</a>
-                </li>
-            </ul>
-        </div>
-
-        <footer class="site-footer">
-            <section class="copyright">&copy; 2020 Евгений Иваха</section>
-        </footer>
+  <div id="sidebar-content" class="inner">
+    <h2 class="blog-title">
+      <a href="https://ivahaev.ru/">ivahaev.ru</a>
+    </h2>
+    <h3 class="blog-description">
+      О программировании, IP телефонии и смежных областях.
+    </h3>
+    <div id="sidebar-links">
+      
+      <ul id="navigation">
+        
+        <li class="nav" role="presentation">
+          <a href="https://ivahaev.ru/about">
+            <i class="fa fa-navicon"></i>Об авторе</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-external">
+        <li>
+          <a href="https://github.com/ivahaev">
+            <i class="fa fa-github"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a href="https://github.com/getblank">
+            <i class="fa fa-github"></i>getblank</a
+          >
+        </li>
+        <li>
+          <a href="https://telegram.me/ivahaev">
+            <i class="fa fa-paper-plane"></i>ivahaev</a
+          >
+        </li>
+        <li>
+          <a target="_blank" href="mailto:ivahaev@gmail.com">
+            <i class="fa fa-envelope"></i>ivahaev@gmail.com</a
+          >
+        </li>
+      </ul>
+      <ul id="sidebar-partners">
+        <div>Партнёры:</div>
+        
+        <li>
+          <a href="http://borisoft.info/"></a>
+          <a href="http://sclif.pro"> <i class="fa fa-linux"></i>Sclif</a>
+        </li>
+      </ul>
     </div>
+
+    <footer class="site-footer">
+      <section class="copyright">&copy; 2022 Евгений Иваха</section>
+    </footer>
+  </div>
 </div>
+
 
     <main>
         <div class="main-inner">
@@ -177,156 +186,156 @@
                 <p>В <a href="https://ivahaev.ru/post/how-to-test-go-applications-my-way-part-one/">первой статье</a> цикла о тестировании, которая вышла почти два года назад, я описал свой подход к тестированию, который был актуален в 2016 году. Время идёт, всё изменяется, стандартная библиотека <strong>Go</strong> становится лучше и вот пару-тройку мажорных версий назад в пакете <a href="https://golang.org/pkg/testing/">testing</a> появился новый метод <a href="https://golang.org/pkg/testing/#T.Run">Run()</a>, который позволяет запускать именованные подтесты. Теперь <a href="https://github.com/franela/goblin">Гоблина</a> можно отправить обратно в пещеру и уменьшить число зависимостей проекта.</p>
 <h3 id="run-tester-run">Run tester Run</h3>
 <p>Не будем вспоминать, как мы без этого жили раньше, сразу же рассмотрим пример. Имеется у нас функция странного умножения:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Multiply</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
-    <span style="color:#a6e22e">res</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">b</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
-    }
-
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-}
-</code></pre></div><p>Нам нужно её протестировать. Как обычно, используем табличное тестирование, но теперь мы можем вложить дополнительную информацию в таблицу и вывести её:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">multi</span>
-
-<span style="color:#f92672">import</span> (
-    <span style="color:#e6db74">&#34;fmt&#34;</span>
-    <span style="color:#e6db74">&#34;testing&#34;</span>
-)
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestMultiply</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
-    <span style="color:#a6e22e">testData</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">struct</span>{
-        <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
-        <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">res</span> <span style="color:#66d9ef">int</span>
-    }{
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">1</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">2</span>,
-        },
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Second&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">1</span>,
-        },
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">3</span>,
-        },
-    }
-
-    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">testData</span> {
-        <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;#%d name: %s&#34;</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">name</span>), <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">t</span>  <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
-            <span style="color:#a6e22e">res</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Multiply</span>(<span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">b</span>)
-            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">res</span> {
-                <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;Multiply(%d, %d) =&gt; %d, expected %d&#34;</span>, <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">res</span>)
-            }
-        })
-    }
-}
-</code></pre></div><p>Выполнив данный тест, мы увидим следующее:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go test -v
-<span style="color:#f92672">===</span> RUN   TestMultiply
-<span style="color:#f92672">===</span> RUN   TestMultiply/#0_name:_First
-<span style="color:#f92672">===</span> RUN   TestMultiply/#1_name:_Second
-<span style="color:#f92672">===</span> RUN   TestMultiply/#2_name:_First
---- PASS: TestMultiply <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    --- PASS: TestMultiply/#0_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    --- PASS: TestMultiply/#1_name:_Second <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    --- PASS: TestMultiply/#2_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-PASS
-ok  	multi	0.008s
-</code></pre></div><p>Теперь усложним нашу функцию. Предположим, мы хотим к результату кратному десяти прибавлять пять. Добавим этот случай в таблицу:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#a6e22e">testData</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">struct</span>{
-        <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
-        <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">res</span> <span style="color:#66d9ef">int</span>
-    }{
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">1</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">2</span>,
-        },
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Second&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">1</span>,
-        },
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">3</span>,
-        },
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Twenty&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">10</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">25</span>,
-        },
-    }
-</code></pre></div><p>Тут же видим на каком элементе наш тест завалился:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go test -v
-<span style="color:#f92672">===</span> RUN   TestMultiply
-<span style="color:#f92672">===</span> RUN   TestMultiply/#0_name:_First
-<span style="color:#f92672">===</span> RUN   TestMultiply/#1_name:_Second
-<span style="color:#f92672">===</span> RUN   TestMultiply/#2_name:_First
-<span style="color:#f92672">===</span> RUN   TestMultiply/#3_name:_Twenty
---- FAIL: TestMultiply <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    --- PASS: TestMultiply/#0_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    --- PASS: TestMultiply/#1_name:_Second <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    --- PASS: TestMultiply/#2_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    --- FAIL: TestMultiply/#3_name:_Twenty <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    	ttt_test.go:43: Multiply<span style="color:#f92672">(</span>2, 10<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; 19, expected <span style="color:#ae81ff">25</span>
-FAIL
-exit status <span style="color:#ae81ff">1</span>
-FAIL     _/multi    0.008s
-</code></pre></div><p>Теперь подправим нашу функцию:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Multiply</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
-    <span style="color:#a6e22e">res</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">b</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
-    }
-
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>
-    }
-
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
-    }
-
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-}
-</code></pre></div><p>Всё встало на свои места, все проверки пройдены:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go test -v
-<span style="color:#f92672">===</span> RUN   TestMultiply
-<span style="color:#f92672">===</span> RUN   TestMultiply/#0_name:_First
-<span style="color:#f92672">===</span> RUN   TestMultiply/#1_name:_Second
-<span style="color:#f92672">===</span> RUN   TestMultiply/#2_name:_First
-<span style="color:#f92672">===</span> RUN   TestMultiply/#3_name:_Twenty
---- PASS: TestMultiply <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    --- PASS: TestMultiply/#0_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    --- PASS: TestMultiply/#1_name:_Second <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    --- PASS: TestMultiply/#2_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-    --- PASS: TestMultiply/#3_name:_Twenty <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
-PASS
-ok  	multi	0.008s
-</code></pre></div><h3 id="покрытие">Покрытие</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Multiply</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">b</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Нам нужно её протестировать. Как обычно, используем табличное тестирование, но теперь мы можем вложить дополнительную информацию в таблицу и вывести её:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">multi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;testing&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestMultiply</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">testData</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">res</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>    }{
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Second&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">testData</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;#%d name: %s&#34;</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">name</span>), <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">t</span>  <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Multiply</span>(<span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">b</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">res</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;Multiply(%d, %d) =&gt; %d, expected %d&#34;</span>, <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">res</span>)
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Выполнив данный тест, мы увидим следующее:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go test -v
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply/#0_name:_First
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply/#1_name:_Second
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply/#2_name:_First
+</span></span><span style="display:flex;"><span>--- PASS: TestMultiply <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    --- PASS: TestMultiply/#0_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    --- PASS: TestMultiply/#1_name:_Second <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    --- PASS: TestMultiply/#2_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>PASS
+</span></span><span style="display:flex;"><span>ok  	multi	0.008s
+</span></span></code></pre></div><p>Теперь усложним нашу функцию. Предположим, мы хотим к результату кратному десяти прибавлять пять. Добавим этот случай в таблицу:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#a6e22e">testData</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">res</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>    }{
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Second&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Twenty&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">25</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Тут же видим на каком элементе наш тест завалился:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go test -v
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply/#0_name:_First
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply/#1_name:_Second
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply/#2_name:_First
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply/#3_name:_Twenty
+</span></span><span style="display:flex;"><span>--- FAIL: TestMultiply <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    --- PASS: TestMultiply/#0_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    --- PASS: TestMultiply/#1_name:_Second <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    --- PASS: TestMultiply/#2_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    --- FAIL: TestMultiply/#3_name:_Twenty <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    	ttt_test.go:43: Multiply<span style="color:#f92672">(</span>2, 10<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; 19, expected <span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span>FAIL
+</span></span><span style="display:flex;"><span>exit status <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>FAIL     _/multi    0.008s
+</span></span></code></pre></div><p>Теперь подправим нашу функцию:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Multiply</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">b</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Всё встало на свои места, все проверки пройдены:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go test -v
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply/#0_name:_First
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply/#1_name:_Second
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply/#2_name:_First
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===</span> RUN   TestMultiply/#3_name:_Twenty
+</span></span><span style="display:flex;"><span>--- PASS: TestMultiply <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    --- PASS: TestMultiply/#0_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    --- PASS: TestMultiply/#1_name:_Second <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    --- PASS: TestMultiply/#2_name:_First <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    --- PASS: TestMultiply/#3_name:_Twenty <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>PASS
+</span></span><span style="display:flex;"><span>ok  	multi	0.008s
+</span></span></code></pre></div><h3 id="покрытие">Покрытие</h3>
 <p>Не смотря на то, что проверки в тесте выполнены успешно, мы не можем с уверенностью сказать, что протестировали все возможные результаты. Значительно повысить (либо наоборот) уверенность нам поможет ключ <code>-cover</code> команды <code>go test</code>. Запустим выполнение тестов нашего примера с ключом <code>-cover</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go test -cover
-PASS
-coverage: 87.5% of statements
-ok  	multi	0.009s
-</code></pre></div><p>Да, опасения были небеспочвенны, у нас покрыто только 87.5%. Наш старый знакомый <a href="http://goconvey.co/">GoConvey</a> в очень удобном виде покажет какие именно части кода не покрыты тестами:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go test -cover
+</span></span><span style="display:flex;"><span>PASS
+</span></span><span style="display:flex;"><span>coverage: 87.5% of statements
+</span></span><span style="display:flex;"><span>ok  	multi	0.009s
+</span></span></code></pre></div><p>Да, опасения были небеспочвенны, у нас покрыто только 87.5%. Наш старый знакомый <a href="http://goconvey.co/">GoConvey</a> в очень удобном виде покажет какие именно части кода не покрыты тестами:
 
 
 
@@ -334,59 +343,59 @@ ok  	multi	0.009s
 <img src="https://ivahaev.ru/how-to-test-go-applications-my-way-part-two/multi-cover-01.png" alt="test coverage 01" width="540" />
 </p>
 <p>У нас не отработан кейс, при котором произведение получается равным нулю, следует его добавить:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#a6e22e">testData</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">struct</span>{
-        <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
-        <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">res</span> <span style="color:#66d9ef">int</span>
-    }{
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">1</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">2</span>,
-        },
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Second&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">1</span>,
-        },
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">3</span>,
-        },
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Twenty&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">10</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">25</span>,
-        },
-        {
-            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Zero&#34;</span>,
-            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
-            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">0</span>,
-            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">0</span>,
-        },
-    }
-</code></pre></div><p>Проверяем покрытие:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go test -cover
-PASS
-coverage: 100.0% of statements
-ok  	multi	0.007s
-</code></pre></div><p>С таким покрытием не стыдно и в продакшн!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#a6e22e">testData</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">res</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>    }{
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Second&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;First&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Twenty&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">25</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;Zero&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">a</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Проверяем покрытие:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go test -cover
+</span></span><span style="display:flex;"><span>PASS
+</span></span><span style="display:flex;"><span>coverage: 100.0% of statements
+</span></span><span style="display:flex;"><span>ok  	multi	0.007s
+</span></span></code></pre></div><p>С таким покрытием не стыдно и в продакшн!</p>
 <h3 id="немного-о-проверках">Немного о проверках</h3>
 <p>В стандартном пакете <a href="https://golang.org/pkg/testing/">testing</a> нет никаких инструментов для проведения проверок, т.н. ассертов (assert). Многие рекомендуют использовать пакет <a href="https://github.com/stretchr/testify/assert">assert</a> из поставки <a href="https://github.com/stretchr/testify">testify</a>. Я для себя решил, что обойдусь. Виной тому несколько причин:</p>
 <h4 id="сложнее-читать-код">Сложнее читать код</h4>
 <p>Сравним:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">Equal</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#e6db74">&#34;The two words should be the same.&#34;</span>)
-
-<span style="color:#75715e">// и
-</span><span style="color:#75715e"></span>
-   <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">a</span> {
-       <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;got %s, want %s&#34;</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">a</span>)
-   }
-</code></pre></div><p>Если не знать API <em>testify</em>, не сразу догадаешься, что к чему. Обычное сравнение и вывод ошибки гораздо нагляднее, не смотря на то, что более громоздко выглядит.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">Equal</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#e6db74">&#34;The two words should be the same.&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// и
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">a</span> {
+</span></span><span style="display:flex;"><span>       <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;got %s, want %s&#34;</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">a</span>)
+</span></span><span style="display:flex;"><span>   }
+</span></span></code></pre></div><p>Если не знать API <em>testify</em>, не сразу догадаешься, что к чему. Обычное сравнение и вывод ошибки гораздо нагляднее, не смотря на то, что более громоздко выглядит.</p>
 <h4 id="не-канонично">Не канонично</h4>
 <p>Обратимся к официальным комментариям к коду, в частости о <a href="https://github.com/golang/go/wiki/CodeReviewComments#useful-test-failures">проверках в тестах</a>:</p>
 <blockquote>
@@ -394,8 +403,8 @@ ok  	multi	0.007s
 (Некоторые тест-фреймворки подстрекают писать проверки в обратном порядке: 0 != x, &ldquo;хотели 0, получили x&rdquo; и в таком духе. Go не такой!)</p>
 </blockquote>
 <p>Посмотрим на сигнатуру метода <a href="https://godoc.org/github.com/stretchr/testify/assert#Equal">Equal</a>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Equal</span>(<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">TestingT</span>, <span style="color:#a6e22e">expected</span>, <span style="color:#a6e22e">actual</span> <span style="color:#66d9ef">interface</span>{}, <span style="color:#a6e22e">msgAndArgs</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">bool</span>
-</code></pre></div><p>Видим, что первым аргументом идёт ожидаемый результат, а лишь затем полученный, что идёт в разрез с рекомендациями. И тут не трудно запутиться. Какзалось бы, для проверки на равенство не имеет значение что с чем сравнивать, но, в случае, если проверка завалится, вывод в консоль может быть некорректным, что только добавит путаницы.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Equal</span>(<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">TestingT</span>, <span style="color:#a6e22e">expected</span>, <span style="color:#a6e22e">actual</span> <span style="color:#66d9ef">interface</span>{}, <span style="color:#a6e22e">msgAndArgs</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">bool</span>
+</span></span></code></pre></div><p>Видим, что первым аргументом идёт ожидаемый результат, а лишь затем полученный, что идёт в разрез с рекомендациями. И тут не трудно запутиться. Какзалось бы, для проверки на равенство не имеет значение что с чем сравнивать, но, в случае, если проверка завалится, вывод в консоль может быть некорректным, что только добавит путаницы.</p>
 <p>Именно поэтому я не использую <a href="https://github.com/stretchr/testify">testify</a>, а пишу размашисто, зато более понятно.</p>
             </div>
             <footer class="article-footer">

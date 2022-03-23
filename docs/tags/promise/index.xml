@@ -6,12 +6,8 @@
     <description>Recent content in promise on ivahaev.ru</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-RU</language>
-    <copyright>2020 Евгений Иваха</copyright>
-    <lastBuildDate>Wed, 13 Jul 2016 11:28:50 +0500</lastBuildDate>
-    
-	<atom:link href="https://ivahaev.ru/tags/promise/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2022 Евгений Иваха</copyright>
+    <lastBuildDate>Wed, 13 Jul 2016 11:28:50 +0500</lastBuildDate><atom:link href="https://ivahaev.ru/tags/promise/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Двойной API для асинхронных функций</title>
       <link>https://ivahaev.ru/javascript-callback-promise-dual-api/</link>
