@@ -98,27 +98,14 @@
           >
         </li>
         <li>
-          <a href="https://github.com/getblank">
-            <i class="fa fa-github"></i>getblank</a
-          >
-        </li>
-        <li>
           <a href="https://telegram.me/ivahaev">
             <i class="fa fa-paper-plane"></i>ivahaev</a
           >
         </li>
         <li>
-          <a target="_blank" href="mailto:ivahaev@gmail.com">
-            <i class="fa fa-envelope"></i>ivahaev@gmail.com</a
+          <a target="_blank" href="mailto:ivahaev@yandex.ru">
+            <i class="fa fa-envelope"></i>ivahaev@yandex.ru</a
           >
-        </li>
-      </ul>
-      <ul id="sidebar-partners">
-        <div>Партнёры:</div>
-        
-        <li>
-          <a href="http://borisoft.info/"></a>
-          <a href="http://sclif.pro"> <i class="fa fa-linux"></i>Sclif</a>
         </li>
       </ul>
     </div>
@@ -140,7 +127,7 @@
             
             <a href="https://ivahaev.ru/go-releases-versions/" itemprop="url">
                 
-                <img src="https://ivahaev.ru//img/semver02.png" class="article-banner">
+                <img src="https://ivahaev.ru//img/semver02.png" class="article-banner" style="max-width: 100%; height: auto;">
                 
             
             </a> <header class="article-header">
@@ -200,7 +187,7 @@
 <li>Навешивает на комит тэг, соответствующий версии в <strong>package.json</strong>.</li>
 </ul>
 <p>В нашем главном проекте <a href="http://getblank.net">Blank</a>, в npm пакетах, мы дописали скрипты в файл <strong>package.json</strong> для автоматической заливки изменений на <a href="https://github.com/">github</a>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JSON" data-lang="JSON"><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-JSON" data-lang="JSON"><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;patch&#34;</span>: <span style="color:#e6db74">&#34;npm version patch &amp;&amp; npm run push&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;push&#34;</span>: <span style="color:#e6db74">&#34;git push origin master --follow-tags &amp;&amp; npm publish&#34;</span>
 </span></span><span style="display:flex;"><span>  }

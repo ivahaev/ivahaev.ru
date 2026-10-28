@@ -14,9 +14,9 @@
                 {{ if and (isset .Params "banner") (not (eq .Params.banner "")) }}
                 <a href="{{ .Permalink }}" itemprop="url">
                 {{if or (in (substr .Params.banner 0 7) "http://") (in (substr .Params.banner 0 8) "https://")}}
-                <img src="{{ .Params.banner }}" class="article-banner">
+                <img src="{{ .Params.banner }}" class="article-banner" style="max-width: 100%; height: auto;">
                 {{ else }}
-                <img src="{{ .Site.BaseURL }}{{ .Params.banner }}" class="article-banner">
+                <img src="{{ .Site.BaseURL }}{{ .Params.banner }}" class="article-banner" style="max-width: 100%; height: auto;">
                 {{end}}
             {{ end }}
 

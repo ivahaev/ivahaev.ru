@@ -796,6 +796,14 @@ main
     overflow: hidden;
 }
 
+/* Post banners are often larger than the text column. */
+.article-banner {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+}
+
 /* Keep images centered, and allow images wider than the main
    text column to break out. */
 .post-content img {

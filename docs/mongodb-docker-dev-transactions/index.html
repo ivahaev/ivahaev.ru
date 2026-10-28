@@ -94,27 +94,14 @@
           >
         </li>
         <li>
-          <a href="https://github.com/getblank">
-            <i class="fa fa-github"></i>getblank</a
-          >
-        </li>
-        <li>
           <a href="https://telegram.me/ivahaev">
             <i class="fa fa-paper-plane"></i>ivahaev</a
           >
         </li>
         <li>
-          <a target="_blank" href="mailto:ivahaev@gmail.com">
-            <i class="fa fa-envelope"></i>ivahaev@gmail.com</a
+          <a target="_blank" href="mailto:ivahaev@yandex.ru">
+            <i class="fa fa-envelope"></i>ivahaev@yandex.ru</a
           >
-        </li>
-      </ul>
-      <ul id="sidebar-partners">
-        <div>Партнёры:</div>
-        
-        <li>
-          <a href="http://borisoft.info/"></a>
-          <a href="http://sclif.pro"> <i class="fa fa-linux"></i>Sclif</a>
         </li>
       </ul>
     </div>
@@ -195,7 +182,7 @@
   &#34;codeName&#34; : &#34;IllegalOperation&#34;
 })
 </code></pre><p>К счастью, каждый может запустить у себя кластер MongoDB, состоящий из одного сервера. На своих машинах, на которых я занимаюсь разработкой, все СУБД я запускаю в <a href="http://docker.com/">docker</a> контейнерах. Например, запуск обычного сервера MongoDB выглядит так:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -v ~/mongo/:/data/db --name mongo --restart<span style="color:#f92672">=</span>always -p 27017:27017 -d mongo mongod --smallfiles
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -v ~/mongo/:/data/db --name mongo --restart<span style="color:#f92672">=</span>always -p 27017:27017 -d mongo mongod --smallfiles
 </span></span></code></pre></div><p>Разберём ключи запуска:</p>
 <ul>
 <li><code>-v ~/mongo/:/data/db</code> означает примонтировать локальную директорию <code>~/mongo/</code> в <code>/data/db</code> контейнера, таким образом, сама база будет храниться на хост-машине, что позволит нам удалять запущенный контейнер, обновлять версии и т.д. с сохраненим наших данных;</li>
@@ -208,15 +195,15 @@
 </ul>
 <p>Как запускать простой сервер, я привёл просто для справки. Теперь давайте разбираться, что необходимо сделать для запуска сервера, поддерживающего транзакции.</p>
 <p>Первым делом, следует создать новую сеть внутри докера, в которой будут работать все серверы нашего кластера. Да, я писал выше, что сервер будет один, но сеть нужно создать обязательно, иначе ничего не получится.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker network create mongo-cluster
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker network create mongo-cluster
 </span></span></code></pre></div><p>Далее в параметрах запуска контейнера нужно указать использование новой сети <code>--net mongo-cluster</code>, а также передать параметр серверу, для работы в режиме <strong>replica set:</strong> <code>--replSet rs0</code>. Также, я намеренно опустил ключ <code>--restart=always</code>, т.к. не всегда использую MongoDB в работе в настоящее время и не хочу, чтобы она стартовала вместе с операционной системой.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -v ~/mongo/:/data/db --name mongo -p 27017:27017 -d mongo mongod --smallfiles --replSet rs0
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -v ~/mongo/:/data/db --name mongo -p 27017:27017 -d mongo mongod --smallfiles --replSet rs0
 </span></span></code></pre></div><p>Отлично, контейнер запущен, в чем мы можем убедиться, выполнив команду <code>docker ps</code> и увидев примерно следующее:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker ps
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker ps
 </span></span><span style="display:flex;"><span>CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                      NAMES
 </span></span><span style="display:flex;"><span>2292d7e0778b        mongo               <span style="color:#e6db74">&#34;docker-entrypoint.s…&#34;</span>   About a minute ago   Up About a minute   0.0.0.0:27017-&gt;27017/tcp   mongo
 </span></span></code></pre></div><p>Далее нам нужно инициализировать кластер, для этого войдём в консоль запущенного сервера, создадим конфигурацию нашего кластера и проведём инициализацию:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it mongo mongo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it mongo mongo
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># output omited #</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>&gt; config <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
@@ -243,7 +230,7 @@
 </span></span><span style="display:flex;"><span>rs0:SECONDARY&gt;
 </span></span><span style="display:flex;"><span>rs0:PRIMARY&gt;
 </span></span></code></pre></div><p>Готово! Мы получили кластер из одного сервера MongoDB. Теперь можно проверить, что всё работает, как ожидается.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rs0:PRIMARY&gt; session <span style="color:#f92672">=</span> db.getMongo<span style="color:#f92672">()</span>.startSession<span style="color:#f92672">()</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rs0:PRIMARY&gt; session <span style="color:#f92672">=</span> db.getMongo<span style="color:#f92672">()</span>.startSession<span style="color:#f92672">()</span>
 </span></span><span style="display:flex;"><span>session <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : UUID<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;7eb81006-983f-4398-adc7-5ed23e027377&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>rs0:PRIMARY&gt; database <span style="color:#f92672">=</span> session.getDatabase<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>test

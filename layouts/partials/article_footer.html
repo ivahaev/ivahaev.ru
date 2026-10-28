@@ -1,5 +1,5 @@
 <footer class="article-footer">
-    {{ if not (eq .Site.DisqusShortname "") }}
+    {{ if not (eq .Site.Config.Services.Disqus.Shortname "") }}
     <a href="{{ .Permalink }}/#disqus_thread" class="article-comment-link">
         {{with .Site.Data.l10n.articles.comments}}{{.}}{{end}}
     </a>
@@ -10,7 +10,7 @@
         <script type="text/javascript">
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//{{ .Site.DisqusShortname }}.disqus.com/embed.js';
+                dsq.src = '//{{ .Site.Config.Services.Disqus.Shortname }}.disqus.com/embed.js';
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>

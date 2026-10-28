@@ -94,27 +94,14 @@
           >
         </li>
         <li>
-          <a href="https://github.com/getblank">
-            <i class="fa fa-github"></i>getblank</a
-          >
-        </li>
-        <li>
           <a href="https://telegram.me/ivahaev">
             <i class="fa fa-paper-plane"></i>ivahaev</a
           >
         </li>
         <li>
-          <a target="_blank" href="mailto:ivahaev@gmail.com">
-            <i class="fa fa-envelope"></i>ivahaev@gmail.com</a
+          <a target="_blank" href="mailto:ivahaev@yandex.ru">
+            <i class="fa fa-envelope"></i>ivahaev@yandex.ru</a
           >
-        </li>
-      </ul>
-      <ul id="sidebar-partners">
-        <div>Партнёры:</div>
-        
-        <li>
-          <a href="http://borisoft.info/"></a>
-          <a href="http://sclif.pro"> <i class="fa fa-linux"></i>Sclif</a>
         </li>
       </ul>
     </div>
@@ -199,8 +186,8 @@
 <h3 id="go">Go</h3>
 <p>С <a href="https://golang.org/">Go</a> ситуация несколько иная. Стандартная поставка уже имеет средства для оформления и запуска тестов. Я сейчас говорю о пакете <a href="https://golang.org/pkg/testing/">testing</a>, в котором есть даже средства для замера производительности кода. Всё, что требуется — это создать рядом с тестируемым кодом файл с именем, <em>оканчивающимся</em> на <code>_test.go</code>, например, <code>app_test.go</code>, а в нем должны быть функции, <em>начинающиеся</em> на <code>Test</code> и получающие на вход указатель на структуру <code>testing.T</code>, с помощью методов которой можно, например, «завалить» тест. Во время компилляции, такие файлы игнорируются.</p>
 <p>Например, у нас есть пакет с единственным методом, складывающим два положительных целых числа. В случае, если одно из чисел окажется отрицательным, функция возвращает ошибку. Понятно, что в реальной жизни программы должны делать что-то более полезное, но для объяснения сути, так даже понятнее:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// adder.go
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">adder</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// adder.go</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">adder</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;errors&#34;</span>
 </span></span><span style="display:flex;"><span>
@@ -211,8 +198,8 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>, <span style="color:#66d9ef">nil</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Напишем тесты:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// adder_test.go
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">adder</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// adder_test.go</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">adder</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;testing&#34;</span>
 </span></span><span style="display:flex;"><span>
@@ -234,12 +221,12 @@
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>В общем случае, чтобы запустить тестирование, достаточно выполнить команду <code>go test</code>. Если все работает правильно, мы увидим нечто вроде <strong>PASS</strong> в консоли, что означает, что тесты выполнились успешно.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash-3.2$ go test
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash-3.2$ go test
 </span></span><span style="display:flex;"><span>PASS
 </span></span><span style="display:flex;"><span>ok  	_/tmp/adder	0.018s
 </span></span></code></pre></div><p>Не очень-то информативно.</p>
 <p>Вроде бы, никаких проблем, тест читаемый — если произошла ошибка, или результат выполнения функции не тот, что ожидали, то всё плохо. Смысл теста можно вложить в название тест-функции. Если тест будет завален, то в консоль будет выведена функция, в которой не прошли проверки и строка с соответствующей инструкцией <code>t.Fatal</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash-3.2$ go test
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash-3.2$ go test
 </span></span><span style="display:flex;"><span>--- FAIL: TestAddPositiveFail <span style="color:#f92672">(</span>0.00s<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>	adder_test.go:19: must <span style="color:#66d9ef">return</span> error
 </span></span><span style="display:flex;"><span>FAIL
@@ -253,7 +240,7 @@
 </blockquote>
 <p>То, что доктор прописал!</p>
 <p>Перепишем наш тест с использованием Гоблина:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">adder</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">adder</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
 </span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/franela/goblin&#34;</span>
@@ -278,7 +265,7 @@
 </span></span><span style="display:flex;"><span>	})
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>А теперь посмотрим на вывод команды <code>go test</code> в консоли:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash-3.2$ go test
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash-3.2$ go test
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">#AddPositive</span>
 </span></span><span style="display:flex;"><span>    ✔ should <span style="color:#66d9ef">return</span> nil error and expected result when positiv integer passed

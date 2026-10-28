@@ -99,27 +99,14 @@
           >
         </li>
         <li>
-          <a href="https://github.com/getblank">
-            <i class="fa fa-github"></i>getblank</a
-          >
-        </li>
-        <li>
           <a href="https://telegram.me/ivahaev">
             <i class="fa fa-paper-plane"></i>ivahaev</a
           >
         </li>
         <li>
-          <a target="_blank" href="mailto:ivahaev@gmail.com">
-            <i class="fa fa-envelope"></i>ivahaev@gmail.com</a
+          <a target="_blank" href="mailto:ivahaev@yandex.ru">
+            <i class="fa fa-envelope"></i>ivahaev@yandex.ru</a
           >
-        </li>
-      </ul>
-      <ul id="sidebar-partners">
-        <div>Партнёры:</div>
-        
-        <li>
-          <a href="http://borisoft.info/"></a>
-          <a href="http://sclif.pro"> <i class="fa fa-linux"></i>Sclif</a>
         </li>
       </ul>
     </div>
@@ -141,7 +128,7 @@
             
             <a href="https://ivahaev.ru/advanced-go-timer/" itemprop="url">
                 
-                <img src="https://ivahaev.ru//img/sandClock.png" class="article-banner">
+                <img src="https://ivahaev.ru//img/sandClock.png" class="article-banner" style="max-width: 100%; height: auto;">
                 
             
             </a> <header class="article-header">
@@ -199,26 +186,26 @@
 </ul>
 <p><strong>Pause</strong> приостанавливает выполнение таймера, а <strong>Start</strong>, соответственно, запускает его с момента остановки, либо после инициализации. Т.е. после создания таймера, запускать его требуется вручную.</p>
 <p>Пример из теста лучше покажет идею:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">now</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">now</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Создаем таймер на 1 секунду
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timer</span> = <span style="color:#a6e22e">AfterFunc</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>, <span style="color:#66d9ef">func</span>() {
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Создаем таймер на 1 секунду</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">timer</span> = <span style="color:#a6e22e">AfterFunc</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>, <span style="color:#66d9ef">func</span>() {
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Сравниваем сколько прошло времени
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Sub</span>(<span style="color:#a6e22e">now</span>) &lt; <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Сравниваем сколько прошло времени</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Sub</span>(<span style="color:#a6e22e">now</span>) &lt; <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> {
 </span></span><span style="display:flex;"><span>		panic(<span style="color:#e6db74">&#34;Early func&#34;</span>)
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>})
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Запускаем таймер
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Start</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Запускаем таймер</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Start</span>()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Через полсекунды приостанавливаем
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Microsecond</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">500</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Через полсекунды приостанавливаем</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Microsecond</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">500</span>)
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Pause</span>()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Через секунду запускаем снова
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Через секунду запускаем снова</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Start</span>()
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
 </span></span></code></pre></div><p><a href="https://godoc.org/github.com/ivahaev/timer"><img src="https://godoc.org/github.com/ivahaev/timer?status.svg" alt="GoDoc"></a></p>
